@@ -1,0 +1,11 @@
+Third-party components bundled with context-cost-verifier
+=========================================================
+
+ccv/templates/tool_chat_template_llama3.1_json.jinja is copied unchanged from the
+vLLM project (https://github.com/vllm-project/vllm, tag v0.29.0) and is licensed
+under the Apache License 2.0.
+
+Model weights used by this project keep their own licenses:
+  Qwen/Qwen2.5-7B-Instruct-AWQ                       Apache-2.0
+  hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4  Llama 3.1 Community License
+  microsoft/llmlingua-2-xlm-roberta-large-meetingbank MIT

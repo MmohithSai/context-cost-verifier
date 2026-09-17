@@ -19,8 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-ccv/templates/tool_chat_template_llama3.1_json.jinja is copied unchanged from
-the vLLM project (https://github.com/vllm-project/vllm, tag v0.29.0) and is
-licensed under the Apache License 2.0.

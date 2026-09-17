@@ -175,6 +175,6 @@ It needs the Qwen2.5-0.5B and Llama-3.1 tokenizers from the Hugging Face Hub (do
 
 ## License
 
-MIT (see `LICENSE`). `ccv/templates/tool_chat_template_llama3.1_json.jinja` comes from vLLM (Apache-2.0). Model weights keep their own licenses (Qwen: Apache-2.0; Llama 3.1: Llama 3.1 Community License).
+MIT (see `LICENSE`). Bundled third-party components and model licenses are listed in `NOTICE`.
 
 Undergraduate major project by L. Prasanna, Shashank and K. Mmohith (IV B.Tech CSE-IDDMP), under the guidance of Dr. G. Vijayakumari.
