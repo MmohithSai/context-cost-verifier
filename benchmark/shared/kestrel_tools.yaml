@@ -1,0 +1,121 @@
+# Shared tool catalog. Required in tool_call tasks; present as realistic "always-on" schemas elsewhere.
+- type: function
+  function:
+    name: lookup_order
+    description: Fetch the status, items and shipping details of a customer order.
+    parameters:
+      type: object
+      properties:
+        order_id:
+          type: string
+          description: Kestrel order number, e.g. KR-55120.
+      required: [order_id]
+- type: function
+  function:
+    name: schedule_maintenance
+    description: Book a maintenance slot for a Kestrel drone or robot at a service center.
+    parameters:
+      type: object
+      properties:
+        serial_number:
+          type: string
+          description: Device serial number, e.g. KR4-88217.
+        center_id:
+          type: string
+          description: Service center identifier, e.g. SC-PNQ-02.
+        date:
+          type: string
+          description: Appointment date in YYYY-MM-DD format.
+      required: [serial_number, center_id, date]
+- type: function
+  function:
+    name: book_meeting_room
+    description: Reserve a meeting room in a Kestrel office.
+    parameters:
+      type: object
+      properties:
+        room_id:
+          type: string
+          description: Room code, e.g. HYD-3B.
+        date:
+          type: string
+          description: Date in YYYY-MM-DD format.
+        start_time:
+          type: string
+          description: 24-hour start time, e.g. 14:30.
+        attendees:
+          type: integer
+          description: Number of people attending.
+      required: [room_id, date, start_time, attendees]
+- type: function
+  function:
+    name: send_invoice_copy
+    description: Email a PDF copy of an invoice to a verified customer address.
+    parameters:
+      type: object
+      properties:
+        invoice_id:
+          type: string
+          description: Invoice number, e.g. INV-20931.
+        email:
+          type: string
+          description: Recipient email address on file.
+      required: [invoice_id, email]
+- type: function
+  function:
+    name: update_shipping_address
+    description: Change the delivery address of an order that has not shipped yet.
+    parameters:
+      type: object
+      properties:
+        order_id:
+          type: string
+        address:
+          type: string
+          description: Full postal address on one line.
+      required: [order_id, address]
+- type: function
+  function:
+    name: check_stock
+    description: Check warehouse stock for a part or product SKU.
+    parameters:
+      type: object
+      properties:
+        sku:
+          type: string
+          description: Stock keeping unit, e.g. PRT-BAT-48V.
+        warehouse:
+          type: string
+          enum: [HYD, PNQ, BLR]
+      required: [sku]
+- type: function
+  function:
+    name: create_support_ticket
+    description: Open a support ticket for a problem that cannot be solved in chat.
+    parameters:
+      type: object
+      properties:
+        serial_number:
+          type: string
+        category:
+          type: string
+          enum: [hardware, software, billing, delivery]
+        summary:
+          type: string
+          description: One-sentence description of the problem.
+      required: [category, summary]
+- type: function
+  function:
+    name: issue_refund
+    description: Refund all or part of a paid invoice.
+    parameters:
+      type: object
+      properties:
+        invoice_id:
+          type: string
+        amount:
+          type: number
+          description: Amount to refund in the invoice currency.
+        reason:
+          type: string
+      required: [invoice_id, amount, reason]

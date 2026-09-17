@@ -1,0 +1,78 @@
+@startuml class
+' Module-level design of the ccv package (Python modules shown as classes).
+skinparam classAttributeIconSize 0
+hide empty members
+
+class Task <<YAML record>> {
+  id : str
+  workload : qa | extraction | tool_call
+  segments : system, instructions, tools,
+  examples, retrieved, history
+  query : str
+  gold_doc : int
+  grader : Grader
+  hash : str
+}
+class Grader <<tasks.py>> {
+  type : qa | json | tool_call
+  +grade(task, output, tool_calls) : bool
+}
+class Config <<ablations.py>> {
+  config_id : subset:101111, truncate:0.5,
+  lingua2:0.2, reorder:middle
+  +variant(task, config_id, tok, cache) : segments
+  +compress_all(tasks, bench, rates)
+}
+class Suite <<ablations.SUITES>> {
+  calibrate | noise | shapley | ablations
+  configs : list of (config_id, repeats)
+}
+class Prompter <<attribution.py>> {
+  tok : HF tokenizer
+  template : Jinja chat template
+  +render(messages, tools) : str
+  +attribute(layout, tools) : dict
+}
+class Runner <<runner.py>> {
+  +plan(tasks, suites) : runs
+  +stream_chat(client, url, body) : response
+  +measure(response, gpu_stats) : dict
+  +run(tasks, model, suites, out, ...)
+}
+class Gpu <<runner.py>> {
+  name : str
+  stats : util %, memory MB, energy J
+  +start/stop sampling (with gpu:)
+}
+class RunRecord <<JSONL line>> {
+  run_id, request_hash, task_hash
+  model, suite, task_id, config_id, repeat
+  status, error
+  prefill_tokens, decode_tokens, finish_reason
+  prefill_ms, decode_ms, queue_ms, gpu_seconds
+  gpu_util_mean, gpu_mem_max_mb, energy_j
+  attribution, attribution_ok, compression
+  output, tool_calls, env, ts
+}
+class Analysis <<analysis.py>> {
+  +shapley(v) / interactions(v) / leave_one_out(v)
+  +mcnemar(base, other)
+  +paired_bootstrap(diffs)
+  +pareto(cost, acc)
+  +analyze(paths, tasks, out) : tables
+}
+class Report <<report.py>> {
+  +plot_all(tables, out) : figures
+}
+
+Task "1" *-- "1" Grader
+Suite "1" o-- "many" Config
+Runner ..> Config : builds variants
+Runner ..> Prompter : exact attribution
+Runner ..> Gpu : samples during request
+Runner "1" --> "many" RunRecord : appends
+Analysis ..> RunRecord : reads
+Analysis ..> Grader : grades outputs
+Report ..> Analysis : plots tables
+Config ..> Task : transforms segments
+@enduml

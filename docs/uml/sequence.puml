@@ -1,0 +1,34 @@
+@startuml sequence
+' One measured request inside `ccv run`.
+autonumber
+actor Researcher
+participant "cli.main" as CLI
+participant "runner.run" as Run
+participant "ablations.variant" as Var
+participant "tasks.layout" as Lay
+participant "Prompter" as P
+participant "Gpu (NVML)" as G
+participant "vLLM server" as V
+database "results.jsonl" as J
+
+Researcher -> CLI : ccv run --model qwen2.5-7b --suite shapley
+CLI -> Run : run(tasks, model, suites, out)
+Run -> J : read finished run_ids (skip partial line)
+loop each pending (suite, task, config, repeat)
+  Run -> Var : variant(task, config_id)
+  Var --> Run : ablated segments
+  Run -> Lay : layout(segments, query)
+  Lay --> Run : messages + tools
+  Run -> P : attribute(messages, tools)
+  P --> Run : tokens per segment (exact)
+  Run -> G : start sampling
+  Run -> V : POST /v1/chat/completions (stream)
+  V --> Run : content / tool-call deltas
+  V --> Run : final chunk: usage + per-request metrics
+  Run -> G : stop sampling
+  G --> Run : utilisation, memory, energy
+  Run -> Run : measure(): prefill_ms, decode_ms, gpu_seconds
+  Run -> J : append record, flush, fsync
+end
+Run --> Researcher : progress lines; rerun the same command to resume
+@enduml

@@ -1,0 +1,62 @@
+id: ex-01
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the fields of the single invoice the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    invoice_id (string), order_id (string), total (number, no currency symbol),
+    currency (ISO 4217 code), due_date (YYYY-MM-DD).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Invoice INV-18840 for order KR-51002. Amount due: USD 612.00. Payment due by 5 January 2026.
+    Output: {"invoice_id": "INV-18840", "order_id": "KR-51002", "total": 612.00, "currency": "USD", "due_date": "2026-01-05"}
+
+    Document: Order KR-50977 was billed on invoice INV-18791, total INR 48,250.00, due 2025-12-19.
+    Output: {"invoice_id": "INV-18791", "order_id": "KR-50977", "total": 48250.00, "currency": "INR", "due_date": "2025-12-19"}
+  retrieved:
+    - title: Invoice INV-20918
+      text: |
+        Customer: Deccan Aerial Services (Hyderabad dealer). Order: KR-55107.
+        Items: 1 x K3 Sparrow (EUR 1,290.00), 1 x HeavyLift kit (EUR 190.50).
+        Total: EUR 1,480.50. Issued 2026-02-05. Payment due 2026-03-07.
+    - title: Invoice INV-20931
+      text: |
+        Customer: Lindqvist Freight AB (Gothenburg). Order: KR-55120. Customer reference: PO-3319.
+        Items: 1 x K4 Hauler (EUR 1,650.00), 1 x spare 48 V battery pack (EUR 190.50).
+        Total: EUR 1,840.50. Issued 2026-02-12. Payment terms: 30 days net, due 2026-03-14.
+    - title: Credit note CN-4410
+      text: |
+        Issued against invoice INV-20874 (order KR-55061, Nordkap Logistics).
+        EUR 190.50 refunded for a returned spare 48 V battery pack. Issued 2026-02-20.
+    - title: Quote Q-7712 for Lindqvist Freight AB
+      text: |
+        Proforma quote, not an invoice. K4 Hauler with 3-year extended warranty: EUR 1,905.00.
+        Quote valid until 2026-01-31. Accepting the quote creates a new order number.
+    - title: Invoice payment policy
+      text: |
+        Invoices are due 30 days after the issue date. A reminder is emailed 7 days before the
+        due date, and a late fee of 1.5% per month applies after it.
+  history:
+    - role: user
+      content: |
+        Hello, this is Maja from Lindqvist Freight. Our purchase order reference is PO-3319,
+        and your order number for it is KR-55120.
+    - role: assistant
+      content: Thanks, Maja. I've found order KR-55120 for Lindqvist Freight AB.
+    - role: user
+      content: Our accounts team keeps mixing up your documents with the quote you sent in January.
+    - role: assistant
+      content: Understood. Quotes carry a Q- number, while invoices carry an INV- number.
+query: Please give me the invoice details for our order so our accounts team can book it.
+gold_doc: 1
+grader:
+  type: json
+  strict: true
+  expected:
+    invoice_id: INV-20931
+    order_id: KR-55120
+    total: 1840.5
+    currency: EUR
+    due_date: "2026-03-14"

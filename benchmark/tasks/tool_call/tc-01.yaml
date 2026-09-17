@@ -1,0 +1,58 @@
+id: tc-01
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Dates must be YYYY-MM-DD.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Reserve room HYD-3B for the six of us on 2026-02-10 at 15:00.
+    Action: call book_meeting_room with room_id "HYD-3B", date "2026-02-10", start_time "15:00", attendees 6.
+
+    Request: Send a copy of invoice INV-18840 to the finance address you have for us (ap@orbitalparcel.in).
+    Action: call send_invoice_copy with invoice_id "INV-18840", email "ap@orbitalparcel.in".
+  retrieved:
+    - title: "Service center directory: Hyderabad"
+      text: |
+        SC-HYD-01, Kondapur. Services K-series drones and Stowbot robots.
+        Next open maintenance slot: 2026-04-06. Opening hours 09:00-18:00, Monday to Saturday.
+    - title: "Service center directory: Pune"
+      text: |
+        SC-PNQ-02, Hinjewadi Phase 2. Services K-series drones only.
+        Next open maintenance slot: 2026-04-02.
+        SC-PNQ-01 in Kharadi services Stowbot robots only; its next slot is 2026-03-27.
+    - title: "Service center directory: Bengaluru"
+      text: |
+        SC-BLR-03, Whitefield. Services K-series drones and Stowbot robots.
+        Next open maintenance slot: 2026-03-30.
+    - title: K-series maintenance policy
+      text: |
+        A full inspection is required every 50 flight hours. Book it at a service center in the
+        customer's registered city that services the device type. Inspections take one working day.
+    - title: Holiday notice
+      text: |
+        SC-PNQ-02 is closed on 2026-03-31 and 2026-04-01 for its annual inventory count.
+        All other service centers keep their normal hours.
+  history:
+    - role: user
+      content: |
+        Hi, Arjun here from SkyCart Deliveries in Pune. Our K4 Hauler, serial KR4-90533,
+        just crossed 50 flight hours.
+    - role: assistant
+      content: Thanks, Arjun. A 50-flight-hour inspection is now due for KR4-90533.
+    - role: user
+      content: We're registered in Pune, so please always use a centre there.
+    - role: assistant
+      content: Noted. I'll use a Pune service center for your bookings.
+query: Book the inspection for the earliest available date.
+gold_doc: 1
+grader:
+  type: tool_call
+  name: schedule_maintenance
+  arguments:
+    serial_number: KR4-90533
+    center_id: SC-PNQ-02
+    date: "2026-04-02"

@@ -1,0 +1,62 @@
+id: qa-01
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: K3 Sparrow technical sheet (rev. C)
+      text: |
+        The K3 Sparrow is Kestrel's compact delivery drone for last-mile parcels. Maximum payload:
+        9 kg. Range with full payload: 38 km. Flight time without payload: 41 minutes. Top speed:
+        61 km/h. Ingress protection: IP43. Charging time with the standard 48 V charger: 70 minutes.
+    - title: K4 Hauler Lite datasheet
+      text: |
+        The K4 Hauler Lite uses a reduced carbon frame for operators who prioritise range over
+        lifting capacity. Maximum payload: 8 kg. Range with full payload: 52 km. Top speed: 64 km/h.
+        The Lite is identified by the letter L at the end of its serial number (for example KR4-70112L).
+    - title: K4 Hauler technical sheet (rev. F)
+      text: |
+        The K4 Hauler is the standard heavy-lift model of the K-series. Maximum payload: 12.5 kg.
+        Range with full payload: 46 km. Top speed: 68 km/h. Ingress protection: IP54. Serial numbers
+        start with KR4- and have no suffix. Operating temperature: -10 °C to 45 °C.
+    - title: "Service bulletin SB-2026-07: K-series load-cell calibration"
+      text: |
+        All K-series drones must run firmware 4.2.1 before their first flight. Technicians
+        calibrate the K4 load cell with a certified 10 kg reference weight during commissioning.
+        Calibration takes about 20 minutes and must be repeated after any crash landing.
+    - title: "Dealer FAQ: payload upgrades"
+      text: |
+        The optional HeavyLift kit raises the K3 Sparrow's maximum payload to 11 kg by adding two
+        reinforced motor arms. No upgrade kit is offered for either K4 variant, and fitting
+        third-party arms voids the warranty.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, we took delivery of our new drone last week. It's the standard K4 Hauler,
+        serial KR4-88217, not the Lite version.
+    - role: assistant
+      content: Welcome aboard! I've noted your K4 Hauler (serial KR4-88217). How can I help?
+    - role: user
+      content: Quick one first. Does it need a firmware update before its first flight?
+    - role: assistant
+      content: Yes. Please install firmware 4.2.1 before the first flight, as described in service bulletin SB-2026-07.
+query: What's the maximum payload my drone can carry?
+gold_doc: 2
+grader:
+  type: qa
+  answers: ["12.5 kg", "12.5 kilograms", "12.5kg"]
+  distractors: ["9 kg", "8 kg", "11 kg"]

@@ -1,0 +1,36 @@
+@startuml use_case
+' Render with the PlantUML VS Code extension or https://www.plantuml.com/plantuml
+left to right direction
+skinparam packageStyle rectangle
+actor "LLM app developer" as Dev
+actor "Researcher" as Res
+actor "vLLM server\n(OpenAI-compatible)" as Server <<system>>
+
+rectangle "Context Cost Verifier (ccv)" {
+  usecase "Author benchmark tasks\n(six labelled segments)" as UC1
+  usecase "Start a measurement-safe\nmodel server (ccv serve)" as UC2
+  usecase "Run suites\n(ccv run)" as UC3
+  usecase "Measure noise floor" as UC3a
+  usecase "Exact Shapley sweep\n(64 segment subsets)" as UC3b
+  usecase "Truncation / LLMLingua-2 /\nreordering ablations" as UC3c
+  usecase "Resume an interrupted run" as UC4
+  usecase "Inspect token attribution\n(ccv attribute)" as UC5
+  usecase "Precompute compressions\n(ccv compress)" as UC6
+  usecase "Analyze results and plot\n(ccv analyze)" as UC7
+}
+
+Dev --> UC1
+Dev --> UC3
+Dev --> UC5
+Dev --> UC7
+Res --> UC2
+Res --> UC3
+Res --> UC6
+Res --> UC7
+UC3 <.. UC3a : <<include>>
+UC3 <.. UC3b : <<include>>
+UC3 <.. UC3c : <<include>>
+UC4 .> UC3 : <<extend>>
+UC3c ..> UC6 : <<uses cache of>>
+UC3 --> Server
+@enduml

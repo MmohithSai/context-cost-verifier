@@ -1,0 +1,26 @@
+@startuml activity
+' The fault-tolerant, resumable run loop.
+start
+:Load and validate tasks (resolve @shared segments);
+:Plan runs: suites in order, shuffled within each suite;
+:Read results.jsonl, skipping a half-written last line;
+:Drop runs whose run_id is already recorded as ok;
+if (anything left?) then (no)
+  stop
+endif
+:Check the endpoint serves the model;
+:Send 3 warm-up requests (not recorded);
+:Terminate any partial last line;
+repeat
+  if (time budget (--max-minutes) used up?) then (yes)
+    :Print "rerun to resume";
+    stop
+  endif
+  :Build request for (task, config) and attribute tokens;
+  repeat
+    :Stream the request while sampling the GPU;
+  repeat while (transport or 5xx error, fewer than 3 attempts?) is (yes: back off 5s, 10s)
+  :Write ok or error record (flush + fsync);
+repeat while (more pending runs?) is (yes)
+stop
+@enduml

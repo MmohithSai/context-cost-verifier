@@ -1,0 +1,30 @@
+@startuml deployment
+node "Team laptop (Windows 11)" as Laptop {
+  artifact "ccv (pip install -e .)" as LocalCcv
+  artifact "benchmark/ YAML tasks" as Tasks
+  artifact "analysis/ tables + figures" as Figures
+}
+cloud "GitHub" as GitHub {
+  artifact "context-cost-verifier repo" as Repo
+}
+cloud "Hugging Face Hub" as HF {
+  artifact "Qwen2.5-7B-Instruct-AWQ" as Qwen
+  artifact "Llama-3.1-8B-Instruct-AWQ-INT4" as Llama
+  artifact "LLMLingua-2 (xlm-roberta-large)" as Lingua
+}
+node "Kaggle notebook VM" as Kaggle {
+  node "NVIDIA T4 16 GB (GPU 0)" as T4 {
+    component "vLLM 0.29 server :8000\nfp16, TRITON_ATTN, max-num-seqs 1,\nno prefix cache, per-request metrics" as VLLM
+  }
+  component "ccv run (runner + NVML sampler)" as Runner
+  artifact "results/<model>.jsonl" as Jsonl
+}
+
+Tasks --> Repo : git push
+Repo --> Kaggle : git clone
+HF --> VLLM : model weights
+Runner --> VLLM : HTTP (OpenAI chat API, streaming)
+Runner --> Jsonl : append + fsync
+Jsonl --> Laptop : notebook output download
+LocalCcv --> Figures : ccv analyze
+@enduml
