@@ -112,7 +112,21 @@ Kaggle sessions die (time limits, quota, preemption). The runner was designed ar
 
 **Evidence:** commit `dcc4976`; `pytest` 12 passed; dry run 4,635 runs, prompts 1,558–2,365 tokens.
 
-### 3.4 Calibration (rule)
+### 3.4 Calibration outcome and freeze (benchmark-v1.0)
+
+| Workload | Drafts | Passed calibration | Frozen | Of which need history |
+|---|---|---|---|---|
+| QA | 15 | 15 | 10 | 3 |
+| Extraction | 15 | 13 (after D33 + D35) | 10 | 3 |
+| Tool calling | 15 | 15 | 10 | 3 |
+
+- **Rule:** full context passes 3/3 and query only fails (D26 makes it "on Qwen" rather than "on both models").
+- **Selection:** among passing tasks, 3 history-dependent and 7 self-contained per workload, evenly spaced by prompt length (1,560–2,365 tokens overall). qa-01 and tc-01 were swapped in for the nearest-length history tasks because the tests use them (D36).
+- **Path to 13/15 extraction:** 1/15 (tools hijack, §5.4) → 2/15 (query fix, but answers swallowed, §5.5) → 13/15 (output recovery). The two that still fail (ex-02, ex-06) call `lookup_order` (ex-02) and `check_stock` (ex-06) in 3/3 runs even with the query fix. Both are history-dependent ("our purchase order", "that part"): once the model has worked out from the conversation which record is meant, it reaches for the matching tool rather than the documents.
+- **Query-only failed on all 45 drafts**, so the fictional world works as intended: nothing is answerable from memory.
+- Unused drafts are in `benchmark/drafts/`; the freeze is the git tag `benchmark-v1.0`; the dry run plans exactly the budgeted 3,090 requests.
+
+### 3.5 Calibration (rule)
 
 Keep tasks whose full-context run passes 3/3 and whose query-only run fails, then keep 10 per workload. Results of the real calibration are in §5 below.
 
@@ -167,7 +181,10 @@ LLMLingua-2 hits its target on average but varies a lot per text. That is why pl
 | K1c | 2026-10-30 07:19 | same, after phone verification | 3 | ~13 min | 0 / 0 | **Partial success.** Installs worked and **LLMLingua-2 compression of all 45 tasks succeeded** (`benchmark/compressed.json`, 155 KB) — the D30 venv fix worked first time. Then `vllm serve` crashed at import: vLLM 0.29 installs a PyTorch built for CUDA 13.0, Kaggle preinstalls a `torchaudio` built for CUDA 12.8, and `transformers` imports `torchaudio` whenever it is installed. Fix: `pip uninstall torchaudio` after installing vLLM (D32). Also noticed the repo was cloned into `/kaggle/working`, so the saved output contained a full copy of the repo; it is now cloned to `/kaggle/tmp`. |
 | K1d | 2026-10-30 07:33 | qwen2.5-7b, `calibrate`, `COMPRESS=False` (cache committed) | 4 | ~17 min (170 s server start, 9.8 min of requests) | 180 / 0 | **First successful GPU run.** All sanity checks pass (§5.3). Calibration: QA 15/15 and tool calling 15/15 kept, extraction 1/15 — tools hijacked extraction (§5.4). |
 | K1e | 2026-10-30 07:55 | same + dataset `mmohithsai/ccv-results` attached (resume); extraction queries fixed | 5 | ~10 min | 60 / 0 (120 resumed, no duplicates) | **Resume across sessions worked first time.** Extraction tool calls fell from 42/45 to 6/45 — but 33 runs came back with *no text and no tool call* despite 46–71 generated tokens: a measurement bug (§5.5). Extraction kept 2/15. |
-| K1f | 2026-10-30 08:09 | same; runner recovers swallowed output; 60 affected records removed from the dataset | 6 | | | |
+| K1f | 2026-10-30 08:09 | same; runner recovers swallowed output; 60 affected records removed from the dataset | 6 | ~15 min | 60 / 0 | **Diagnosis confirmed.** 33 runs needed recovery, and every recovered text was `<tool_call>
+{…the correct JSON…}
+</tool_call>`. Extraction kept 13/15 (ex-02, ex-06 still call a lookup tool). |
+| K2 | 2026-10-30 08:26 | qwen2.5-7b, `noise shapley ablations`, frozen 30 tasks, dataset attached | 7 | | | |
 
 **Fixes after K1:**
 1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.

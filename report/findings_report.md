@@ -60,7 +60,7 @@ Free GPU sessions die. Each record is appended and `fsync`ed; a content-hashed `
 
 **Quality control.** (i) A unit test checks that every grader accepts its own gold answer and rejects every listed distractor. (ii) A three-way review of all 45 drafts before any GPU time found and fixed 33 defects: cross-task contradictions, answer phrasings a correct reply would fail, queries that leaked the answer, and gold identifiers leaked through tool-catalogue examples. (iii) **Calibration:** each draft is run 3× with full context and 1× with the query only. A task is kept only if it passes 3/3 with full context and fails with the query alone. We keep 10 per workload.
 
-_Calibration outcome (tasks kept per workload, rule changes if any): pending._
+**Calibration outcome.** QA 15/15, tool calling 15/15 and extraction 13/15 drafts passed; query-only failed on all 45. Extraction needed two fixes first. Tool definitions made the model call lookup tools instead of reading the documents (42/45 full-context runs), until each extraction query said where to take the answer from. The model then wrapped its JSON answers in `<tool_call>` tags, which vLLM's streaming tool parser silently dropped (33/45 runs); the runner now recovers such output with an unstreamed request. Ten tasks per workload were frozen as `benchmark-v1.0`.
 
 ---
 
