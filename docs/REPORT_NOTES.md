@@ -280,6 +280,7 @@ The full results are in `report/findings_report.md` §6, and every number there 
 
 Other checks:
 - **Shapley efficiency on real data:** the pass-rate φ values sum to 1.001 = v(all) − v(none).
+- **Independent cross-check:** a parallel session drafted §6–9 independently from the same `analysis/` files. Every shared number agreed except one: I had given the maximum prefill CV as 1.1% instead of 1.4% (tc-15), now corrected. Its extra findings were recomputed before they were added: prefill slope by prompt length, leave-one-out misreading cost, the per-workload instructions table, and the query alone costing 18% more than the full prompt. Its notebook check for capped runs was also adopted (D38).
 - **Figures:** all ten were inspected. The interaction heatmap's overall title overlapped the panel titles; the figure was made taller (`report.py`).
 
 ---

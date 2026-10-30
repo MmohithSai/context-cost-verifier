@@ -84,7 +84,7 @@ All numbers come from one Kaggle session (run K2, 30 Oct 2026). It made 3,090 re
 
 ### 6.1 Noise floor (`noise_floor.csv`)
 
-Each of the 30 tasks was repeated 30 times with full context. **All 900 outputs were byte-identical to their task's other repeats, and no pass/fail result ever flipped.** Timing varied very little: the coefficient of variation per task was 0.15–1.1% for prefill time and 0.4–2.3% for decode time.
+Each of the 30 tasks was repeated 30 times with full context. **All 900 outputs were byte-identical to their task's other repeats, and no pass/fail result ever flipped.** Timing varied very little: the coefficient of variation per task was 0.15–1.4% for prefill time and 0.4–2.3% for decode time.
 
 Greedy decoding on an unbatched server is therefore deterministic here. Any change in output or accuracy after a context change is caused by that change. The planned extra repeats for the ablations were not needed, and only timing differences below about 2% count as noise.
 
@@ -106,7 +106,18 @@ A linear fit over all 3,090 runs gives:
 
 The **measured decode:prefill cost ratio is therefore 19.2:1, almost four times the 5:1 price-list ratio (RQ3).** On this hardware, output is 28% of the GPU time for a full prompt, while the price-list model counts it as only 9% of the cost.
 
-Prefill is not quite linear. Its fit has a negative intercept (−229 ms), and the points curve upwards (the figure), because the per-token cost of attention grows with prompt length when Turing-generation GPUs lack FlashAttention.
+Prefill is not quite linear. Its fit has a negative intercept (−229 ms), and the points curve upwards (the figure), because the per-token cost of attention grows with prompt length when Turing-generation GPUs lack FlashAttention. Fitted separately by prompt length, the prefill slope is:
+
+| Prompt length (tokens) | Prefill ms per token |
+|---|---|
+| Below 600 | 0.84 |
+| 600–1,200 | 1.21 |
+| 1,200–1,800 | 1.63 |
+| 1,800–2,400 | 2.03 |
+
+The marginal decode:prefill ratio therefore runs from about 30:1 for short prompts to about 12:1 for long ones.
+
+At these lengths one output token costs as much as about 19 input tokens. Cutting 1,000 input tokens saves about 1.3 s, and 52 extra output tokens are enough to cancel that saving.
 
 ### 6.3 Which segments carry accuracy (`shapley.csv`, `shapley_passed.png`)
 
@@ -166,6 +177,13 @@ The physical and price-list models disagree on which segment is most expensive:
 
 **Instructions and examples have negative cost.** Their few tokens shorten every answer by enough to pay for themselves several times over. Removing the 61-token instructions segment *adds* 1.46 GPU-seconds on average, almost half a full request.
 
+**Leave-one-out misreads cost.** It probes only prompts one segment away from the full prompt, but output grows only once several segments are gone:
+
+- Leave-one-out says dropping the tool catalogue saves 1.65 GPU-seconds; its Shapley value is 0.63.
+- In tool calling, leave-one-out says the instructions *cost* 0.16 s, while their Shapley value shows they *save* 1.42 s.
+
+The φ values sum to v(all) − v(none) = −0.58 s: the query alone is *more* expensive than the full prompt (§6.8).
+
 ### 6.6 Truncation versus LLMLingua-2 at equal budget (`comparisons.csv`, `truncation_vs_llmlingua2.png`)
 
 | Method, nominal rate | Long-segment tokens kept | Accuracy | McNemar q | GPU-seconds vs full | Price-list cost vs full |
@@ -214,6 +232,22 @@ Removing whole segments is a different matter from truncation or compression. Ea
 **In 19% of segment-removal cells, the shorter prompt used *more* GPU time than the full prompt (RQ2).** The price-list model sees only a third of these cases, because it underweights output (§6.2).
 
 Almost all of the cost increases are explained by one segment: **98.6% of the cells where GPU time rose had no instructions segment**, against 51% of all cells. The increases also come with failure: 295 of the 359 such cells also failed the task, so the model paid more to be wrong.
+
+| Workload | Instructions removed: output > 2× | Instructions removed: cost above full prompt | Instructions kept: cost above full prompt |
+|---|---|---|---|
+| QA | 99.7% | 60% | 0% |
+| Extraction | 23% | 23% | 0% |
+| Tool calling | 30% | 27% | 1.6% |
+
+When the instructions are missing, keeping the few-shot examples roughly halves the damage: cost rises above the full prompt in 27% of such cells, against 47% without examples.
+
+**The smallest prompt is not the cheapest.** The query alone fails every task, yet it costs 18% more GPU time than the full prompt:
+
+| Workload | Query alone vs full prompt |
+|---|---|
+| QA | +83% |
+| Tool calling | +26% |
+| Extraction | −27% |
 
 QA is the most exposed workload, with cost rising in 31% of its cells, because its full-context answers are so short (about 6 tokens). Some examples:
 
