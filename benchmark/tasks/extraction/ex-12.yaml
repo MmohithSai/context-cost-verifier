@@ -61,7 +61,7 @@ segments:
         firmware. I need the record for that one, the airframe that is not yet flight ready.
     - role: assistant
       content: Understood, the single Lite airframe still below its minimum version.
-query: Give me the firmware record for that airframe.
+query: Give me the firmware record for that airframe. Take it from the documents above and reply with the JSON object only.
 gold_doc: 1
 grader:
   type: json

@@ -44,7 +44,7 @@ segments:
         the 48 V pack we care about, not the 36 V one for the older robots.
     - role: assistant
       content: "Noted: SkyCart Deliveries, Pune, asking about the spare 48 V battery pack."
-query: Give me the stock position for that part at our warehouse.
+query: Give me the stock position for that part at our warehouse. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

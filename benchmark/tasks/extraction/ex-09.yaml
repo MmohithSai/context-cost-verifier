@@ -45,7 +45,7 @@ segments:
         form, one object per event.
     - role: assistant
       content: Understood. I can return the incident fields as JSON.
-query: Give me the incident record for IR-2311.
+query: Give me the incident record for IR-2311. Take it from the documents above and reply with the JSON object only.
 gold_doc: 1
 grader:
   type: json

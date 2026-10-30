@@ -45,7 +45,7 @@ segments:
         structured form, straight from your dispatch records.
     - role: assistant
       content: Understood. I can return the dispatch note fields as JSON.
-query: Give me the shipment record for order KR-55107.
+query: Give me the shipment record for order KR-55107. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

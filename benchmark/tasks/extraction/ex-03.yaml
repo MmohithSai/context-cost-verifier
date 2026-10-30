@@ -43,7 +43,7 @@ segments:
         structured form rather than a screenshot.
     - role: assistant
       content: Understood. I can return the booking fields as JSON.
-query: Give me the appointment details for booking BK-9911.
+query: Give me the appointment details for booking BK-9911. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

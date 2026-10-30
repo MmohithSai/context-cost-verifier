@@ -43,7 +43,7 @@ segments:
         PDF quote is no use to us.
     - role: assistant
       content: Understood. I can return the quote fields as JSON.
-query: Give me quote Q-7903 in structured form for our board pack.
+query: Give me quote Q-7903 in structured form for our board pack. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

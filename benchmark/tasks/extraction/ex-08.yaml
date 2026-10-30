@@ -42,7 +42,7 @@ segments:
         I need the record for the one that arrived late on backorder, not the two that came in January.
     - role: assistant
       content: Understood, the Lite airframe that was delivered after the others because of a backorder.
-query: Give me the registration record for that airframe.
+query: Give me the registration record for that airframe. Take it from the documents above and reply with the JSON object only.
 gold_doc: 2
 grader:
   type: json

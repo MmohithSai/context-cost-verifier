@@ -138,6 +138,18 @@ On 30 Oct the project was about five weeks behind on GPU work (the plan expected
 - **Plan:** serve Qwen2.5-0.5B in the official `vllm/vllm-openai:v0.29.0` Docker image on the laptop's RTX 3050 (Docker Desktop with the NVIDIA runtime was already installed).
 - **Challenge:** the ~10 GB image download failed with `unexpected EOF` partway through (network drop); retried, since completed layers are kept.
 
+### 5.1b LLMLingua-2 compression cache (measured, run K1c)
+
+389 long texts (examples, each retrieved doc, each history turn) × 3 rates, compressed on the Kaggle T4 with `microsoft/llmlingua-2-xlm-roberta-large-meetingbank`. Token counts below use Qwen2.5's tokenizer.
+
+| Target rate | Achieved kept fraction: median (min–max) | Compression time per text: median / p90 |
+|---|---|---|
+| 0.8 | 0.82 (0.69–0.90) | 111 ms / 125 ms |
+| 0.5 | 0.53 (0.30–0.69) | 111 ms / 124 ms |
+| 0.2 | 0.22 (0.08–0.36) | 111 ms / 124 ms |
+
+LLMLingua-2 hits its target on average but varies a lot per text. That is why plots use the **achieved** fraction, not the nominal rate (D15). Compression is not free: ~0.1 s per text, i.e. several texts per request. That overhead belongs in any cost comparison against plain truncation, which is essentially instant.
+
 ### 5.2 Kaggle automation
 
 **Approach:** drive Kaggle entirely from the Kaggle CLI: `kaggle kernels push` (a per-run copy of the notebook with `MODEL`/`SUITES`/`LIMIT`/`COMPRESS` substituted, so the committed notebook keeps its defaults), a background `kaggle kernels status` loop, and `kaggle kernels output` to download results. The API token is held in an environment variable read from a file outside the repository; it is never committed.
@@ -151,6 +163,8 @@ On 30 Oct the project was about five weeks behind on GPU work (the plan expected
 | K1 | 2026-10-30 06:58 | qwen2.5-7b, `calibrate`, `COMPRESS=True` | 1 | ~6 min | 0 / 0 | **Failed: no internet in the kernel.** `pip install vllm` could not resolve pypi.org, so nothing installed and the notebook stopped at `ccv serve`. Kaggle silently disables Internet for accounts without phone verification. A second, independent bug also surfaced: `python -m venv` on Kaggle's Python 3.13 image fails at `ensurepip`, so the compression venv could never have worked. |
 
 | K1b | 2026-10-30 ~07:40 | same, with boolean metadata | 2 | ~4 min | 0 / 0 | **Failed again, no internet** — rules out the string-valued `enable_internet` flag as the cause; the account needs phone verification. The new install assertion stopped the notebook in the first code cell with the message "install failed: is Internet on?", as intended. |
+| K1c | 2026-10-30 07:19 | same, after phone verification | 3 | ~13 min | 0 / 0 | **Partial success.** Installs worked and **LLMLingua-2 compression of all 45 tasks succeeded** (`benchmark/compressed.json`, 155 KB) — the D30 venv fix worked first time. Then `vllm serve` crashed at import: vLLM 0.29 installs a PyTorch built for CUDA 13.0, Kaggle preinstalls a `torchaudio` built for CUDA 12.8, and `transformers` imports `torchaudio` whenever it is installed. Fix: `pip uninstall torchaudio` after installing vLLM (D32). Also noticed the repo was cloned into `/kaggle/working`, so the saved output contained a full copy of the repo; it is now cloned to `/kaggle/tmp`. |
+| K1d | 2026-10-30 07:33 | qwen2.5-7b, `calibrate`, `COMPRESS=False` (cache committed) | 4 | | | |
 
 **Fixes after K1:**
 1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.

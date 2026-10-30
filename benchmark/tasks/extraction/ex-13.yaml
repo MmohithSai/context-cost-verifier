@@ -43,7 +43,7 @@ segments:
         need them field by field.
     - role: assistant
       content: Understood. I can return the ticket fields as JSON.
-query: Give me the record for ticket TK-5602.
+query: Give me the record for ticket TK-5602. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

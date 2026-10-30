@@ -47,7 +47,7 @@ segments:
         them, so nothing gets retyped incorrectly.
     - role: assistant
       content: Understood. I can return the contact fields as JSON.
-query: Give me the billing contact record you hold for SkyCart Deliveries.
+query: Give me the billing contact record you hold for SkyCart Deliveries. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

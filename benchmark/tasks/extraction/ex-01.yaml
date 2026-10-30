@@ -49,7 +49,7 @@ segments:
       content: Our accounts team keeps mixing up your documents with the quote you sent in January.
     - role: assistant
       content: Understood. Quotes carry a Q- number, while invoices carry an INV- number.
-query: Please give me the invoice details for our order so our accounts team can book it.
+query: Please give me the invoice details for our order so our accounts team can book it. Take it from the documents above and reply with the JSON object only.
 gold_doc: 1
 grader:
   type: json

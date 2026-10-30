@@ -45,7 +45,7 @@ segments:
         load them straight into their system.
     - role: assistant
       content: Understood. I can return the claim fields as JSON.
-query: Give me the record for warranty claim WC-3402.
+query: Give me the record for warranty claim WC-3402. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

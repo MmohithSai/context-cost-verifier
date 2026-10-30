@@ -168,3 +168,7 @@ Scatter plots cap at three colours, so Pareto charts grey out non-frontier confi
 
 **D31. Benchmark review fixes, and what was deliberately left** (2026-10-30)
 33 edits from a three-way review (see REPORT_NOTES §3.3). The shared tool catalogue's example values were changed to ids no task uses (`KR-50001`, `SC-MAA-01`, `INV-10001`), because examples equal to gold values let `{tools, query}` pass without documents. A soft hint in tc-15's query and a few low-visibility world inconsistencies in few-shot examples were left for calibration to judge.
+
+**D32. The Kaggle notebook uninstalls `torchaudio` after installing vLLM** (2026-10-30)
+*Why:* vLLM 0.29 pulls a CUDA 13.0 PyTorch, while the Kaggle image ships a CUDA 12.8 `torchaudio`; `transformers` imports `torchaudio` whenever it is installed, and its CUDA check raises, so `vllm serve` died before loading the model. Nothing in this project uses audio.
+*Consequence:* if a future Kaggle image or vLLM version changes torch builds, check `vllm.log` for import-time errors first.

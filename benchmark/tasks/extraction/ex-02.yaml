@@ -60,7 +60,7 @@ segments:
         the sorter robot on it, not the small wheels order we placed two days later.
     - role: assistant
       content: Understood, the order containing the Stowbot S3 Sorter rather than the consumables order.
-query: Give me the purchase order details so our finance team can book it.
+query: Give me the purchase order details so our finance team can book it. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

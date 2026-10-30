@@ -45,7 +45,7 @@ segments:
         numbers rather than prose, so I can sort on them.
     - role: assistant
       content: Understood. I can return the maintenance fields as JSON.
-query: Give me the maintenance position for SB2-30117 against its full service interval.
+query: Give me the maintenance position for SB2-30117 against its full service interval. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json

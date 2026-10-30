@@ -43,7 +43,7 @@ segments:
         data so it can be matched against the credit note automatically.
     - role: assistant
       content: Understood. I can return the refund request fields as JSON.
-query: Give me the record for refund request RR-1180.
+query: Give me the record for refund request RR-1180. Take it from the documents above and reply with the JSON object only.
 gold_doc: 0
 grader:
   type: json
