@@ -26,7 +26,7 @@
 | LLMLingua-2 cache | **Done** | `benchmark/compressed.json`, built on the T4 (run K1c) |
 | Benchmark | **Frozen: `benchmark-v1.0`, 30 tasks** | Calibration table `results/evidence/calibration_v2_final.csv`; 15 drafts in `benchmark/drafts/` |
 | Kaggle automation | **Done** | Kaggle CLI push/status/output; results carried in private dataset `mmohithsai/ccv-results` |
-| Qwen main sweep (noise, Shapley, ablations) | **Done** — Kaggle run K2 | `results/qwen2.5-7b.jsonl`: 3,090 / 3,090 ok, 2.36 GPU-hours, no duplicates |
+| Qwen main sweep (noise, Shapley, ablations) | **Done** — Kaggle run K2 | `results/qwen2.5-7b.jsonl`: 3,090 / 3,090 ok, 2.36 GPU-hours, no duplicates. Not in git (public repo); backed up in the private Kaggle dataset `mmohithsai/ccv-results` |
 | Analysis and figures | **Done** | `ccv analyze results/qwen2.5-7b.jsonl --out analysis/` → 12 CSVs, `summary.md`, 10 figures (`analysis/` is git-ignored; regenerate in about 10 s) |
 | Formal report | **Complete draft** | [report/formal_report.md](../report/formal_report.md) |
 | Findings report | **Complete draft** | [report/findings_report.md](../report/findings_report.md) |
