@@ -1,8 +1,15 @@
 # Progress tracker
 
-**Last updated:** 2026-10-30 (session 5) · **Deadline:** mid-November 2026 · **Week:** 6 (schedule started Mon 21 Sep)
+**Last updated:** 2026-10-30 (session 5, after K2) · **Deadline:** mid-November 2026 · **Week:** 6 (schedule started Mon 21 Sep)
 
-> **Back on track for Qwen.** Session 5 cut scope to Qwen2.5-7B only (D26), ran the first real GPU sessions, calibrated and froze the benchmark (`benchmark-v1.0`, 30 tasks) and launched the main sweep (Kaggle run K2). Llama is future work.
+> **Qwen study complete.** Session 5 cut the scope to Qwen2.5-7B only (D26) and did the following:
+>
+> - Ran the first real GPU sessions.
+> - Calibrated and froze the benchmark (`benchmark-v1.0`, 30 tasks).
+> - Ran the full sweep (Kaggle run K2: 3,090 requests, all clean) and analysed it.
+> - Wrote both reports, including results.
+>
+> What remains: render the UML, revoke the Kaggle token, and the release (tag `v1.0`, and a decision on publishing traces). Llama is future work.
 
 > Read this file first when picking the project back up. [PLAN.md](PLAN.md) is what we are building, [DECISIONS.md](DECISIONS.md) is why it is built that way, [RUNBOOK.md](RUNBOOK.md) is how to run it, and [REPORT_NOTES.md](REPORT_NOTES.md) is the report-writing journal (every challenge, option and choice, with evidence).
 
@@ -13,16 +20,16 @@
 | Area | State | Evidence |
 |---|---|---|
 | Python package (7 modules + CLI) | **Done** | `.venv/Scripts/python.exe -m pytest` → 12 passed |
-| Exact token attribution | **Verified on the real server** | `attribution_ok` 240/240 on Kaggle (Qwen2.5-7B, vLLM 0.29.0) |
+| Exact token attribution | **Verified on the real server** | `attribution_ok` 3,330/3,330 on Kaggle (Qwen2.5-7B, vLLM 0.29.0) |
 | Resumable runner | **Verified across Kaggle sessions** | Resume from a private dataset reran only changed tasks, no duplicates |
-| Swallowed-output recovery | **Done** (D35) | Fake-server test; 33 real extraction answers recovered in run K1f |
+| Swallowed-output recovery | **Done** (D35) | Fake-server test; 417 extraction answers recovered in K2, 0 failures |
 | LLMLingua-2 cache | **Done** | `benchmark/compressed.json`, built on the T4 (run K1c) |
 | Benchmark | **Frozen: `benchmark-v1.0`, 30 tasks** | Calibration table `results/evidence/calibration_v2_final.csv`; 15 drafts in `benchmark/drafts/` |
 | Kaggle automation | **Done** | Kaggle CLI push/status/output; results carried in private dataset `mmohithsai/ccv-results` |
-| Qwen main sweep (noise, Shapley, ablations) | **Running** — Kaggle run K2, started 08:26 UTC | 3,090 requests, ~2.8 GPU-hours |
-| Analysis and figures | Code done; waiting for K2 data | |
-| Formal report | **Drafted** except results | [report/formal_report.md](../report/formal_report.md) |
-| Findings report | **Drafted** except results, recommendations, conclusion | [report/findings_report.md](../report/findings_report.md) |
+| Qwen main sweep (noise, Shapley, ablations) | **Done** — Kaggle run K2 | `results/qwen2.5-7b.jsonl`: 3,090 / 3,090 ok, 2.36 GPU-hours, no duplicates |
+| Analysis and figures | **Done** | `ccv analyze results/qwen2.5-7b.jsonl --out analysis/` → 12 CSVs, `summary.md`, 10 figures (`analysis/` is git-ignored; regenerate in about 10 s) |
+| Formal report | **Complete draft** | [report/formal_report.md](../report/formal_report.md) |
+| Findings report | **Complete draft** | [report/findings_report.md](../report/findings_report.md) |
 | UML diagrams | Written, not rendered | [`docs/uml/`](uml); render with the PlantUML VS Code extension |
 | Llama-3.1-8B sweep | **Cut** (D26) | Future work |
 
@@ -30,19 +37,19 @@
 
 ## 2. Next actions, in order
 
-### A. Finish the Qwen sweep
-- [ ] When K2 finishes: download output (`kaggle kernels output mmohithsai/ccv-context-cost-verifier -p <dir>`), copy `results/qwen2.5-7b.jsonl` into the repo, and check the RUNBOOK §5 table (no duplicate `run_id`, `attribution_ok` all true).
-- [ ] If K2 stopped on its time budget: upload the JSONL as a new version of the `ccv-results` dataset and push the same run again; it resumes.
-- [ ] If the noise floor shows non-identical repeats, give `ablations` 3 repeats (PLAN §5).
-
-### B. Analysis
-- [ ] `ccv analyze results/qwen2.5-7b.jsonl --out analysis/`; read `summary.md` and look at every figure.
-- [ ] Report how often `output_recovered` occurs per config (a measure of the tools segment pulling the model to tool-call formatting).
+### A–B. Sweep and analysis — done
+- [x] K2 downloaded and checked (REPORT_NOTES §5.6); no ablation repeats needed (D39).
+- [x] Analysis run; every figure inspected; the surprising results were checked against raw outputs (REPORT_NOTES §5.7).
 
 ### C. Reports
-- [ ] Fill findings report §6, §7, §9 and formal report ch. 8–9 and Appendix B from `analysis/`.
+- [x] Findings report §6, §7, §9 and formal report ch. 8, 9.1 and Appendix B filled from `analysis/`.
+- [ ] Read both reports end to end and convert them to the university template; insert the figures from `analysis/`.
 - [ ] Render [`docs/uml/`](uml) to PNG.
-- [ ] Revoke the Kaggle API token used in session 5 once runs are done.
+- [ ] Revoke the Kaggle API token used in session 5. All runs are done.
+
+### Optional, if time allows
+- [ ] Token-level history truncation as a fourth ablation family. The current turn-based truncation removes all history at any rate below 1.0 for 26 tasks (findings §6.6). Costs one short Kaggle session.
+- [ ] Validate the in-sample Pareto configurations (findings §6.9) on the 15 drafts in `benchmark/drafts/` that were not used.
 
 ### D. Release (week 8)
 - [ ] RUNBOOK §7 checklist; tag `v1.0`; ask the team before publishing traces.
@@ -51,7 +58,7 @@
 
 | Item | Needed from | Notes |
 |---|---|---|
-| Revoke the session-5 Kaggle API token | Account owner | After the Qwen runs are done |
+| Revoke the session-5 Kaggle API token | Account owner | Runs are done, so revoke it now (Kaggle → Settings → API) |
 | Whether traces are published publicly | The team | Plan says GitHub release or HF dataset in week 8; ask before anything is made public |
 
 ---
@@ -61,19 +68,20 @@
 | Quantity | Estimate used before | Measured | Where it matters |
 |---|---|---|---|
 | Server start to healthy (incl. weight download) | ~10 min | 170 s | Kaggle session budget |
-| Prefill at ~1,756 tokens | ~1 s | 2,162 ms (1.24 ms/token) | Cost fit |
-| Decode speed | ~30 tok/s | 35.9 tok/s (27.9 ms/token) | Cost fit |
-| Mean seconds per request | 6 s | 3.27 s (`SEC_PER_REQUEST = 3.3`) | Dry-run estimate |
-| Full sweep, 30 tasks | ~5 GPU-hours | ~2.8 GPU-hours estimated; K2 will confirm | Schedule |
-| Runs hitting `max_tokens=1024` | assumed rare | 0 of 240 calibration runs | Censoring |
-| Energy per full-context request | — | 196 J median | Energy cost model |
+| Prefill cost (fit over 3,090 runs) | ~1 s at 1,756 tokens | 1.33 ms/token, R² 0.983, slightly convex | Cost fit |
+| Decode cost (fit) | ~30 tok/s | 25.5 ms/token, R² 0.998 → **decode:prefill 19.2:1** (price lists 5:1) | Headline result |
+| Mean seconds per request | 6 s | 3.21 GPU-s full context (QA 2.28, tool calling 3.41, extraction 3.93) | Dry-run estimate |
+| Full sweep, 30 tasks | ~5 GPU-hours | 2.36 GPU-hours; 2 h 56 min wall time | Schedule |
+| Runs hitting `max_tokens=1024` | assumed rare | 1 of 3,330 (vLLM labels it `tool_calls`, D38) | Censoring |
+| Energy per full-context request | — | 209 J mean; 0.155 kWh for the whole sweep | Energy cost model |
+| Repeat-to-repeat variation | unknown | Outputs identical in 900/900; timing CV ≤ 2.3% | Noise floor |
 
 ## 5. Known gaps and deliberate simplifications
 
 1. **Calibration used one model** (Qwen), so tasks are calibrated to Qwen, not to a pair of models as PLAN §4 intended (D26).
 2. **Extraction format guidance sits partly in the query** (D33), so `instructions` gets less Shapley credit in extraction than it would otherwise.
 3. **Reorder assumes `gold_doc`.** Tasks without it are skipped for that family. All current tasks have one.
-4. **Truncation strategy is fixed:** head-of-text for `examples` and each doc, most-recent whole turns for `history`. With only 2 history pairs, an 0.8 truncation can drop a whole pair, so the achieved ratio is recorded and plots use the achieved fraction, not the nominal one.
+4. **Truncation strategy is fixed:** head-of-text for `examples` and each doc, most-recent whole turns for `history`. Measured consequence: 26 of 30 tasks have one history pair, so every truncation rate removes all of their history. This explains 11 of the 14 failures at 0.8 (findings §6.6). Plots use the achieved kept fraction (0.75 / 0.51 / 0.27).
 5. **Baseline pooling.** The baseline config is measured by both `noise` (30×) and `shapley` (1×); analysis pools repeats of identical requests, so the baseline cell is an average over ~31 runs while other cells are single runs. Fine for deterministic greedy decoding; the noise floor quantifies the residual.
 6. **The `tools` segment absorbs the template's tool preamble.** With Llama and no system message, the template adds its own tool-calling system prompt, which is charged to `tools` (138 → 200 tokens in one example). This is a real interaction and Shapley reports it as such.
 7. **Figures are static PNGs** for the LaTeX report, so they have no hover layer; the CSV tables are their accessible table view.
@@ -124,6 +132,10 @@
 - Froze 30 tasks as `benchmark-v1.0` (D36) and launched the main sweep K2.
 - Drafted both reports except the results chapters; wrote REPORT_NOTES.md.
 - Dropped the local Docker smoke test (D34); UML rendering left to the PlantUML extension (jar download blocked).
+- K2 finished all 3,090 requests in 2 h 56 min. Kaggle reported `ERROR` only because the summary cell could not import `ccv` (fixed, D37). Sanity checks all passed.
+- Analysis found and fixed a second vLLM parser fault: a capped run labelled `tool_calls` (D38). Also fixed the heatmap title overlap.
+- Checked the three surprising results against raw outputs (REPORT_NOTES §5.7): turn-based history truncation, LLMLingua-2's own cost, and the instructions segment driving cost increases.
+- Wrote findings report §6, §7, §9 and formal report ch. 8, 9.1 and Appendix B.
 
 ---
 

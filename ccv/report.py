@@ -99,7 +99,7 @@ def interaction_heatmaps(inter, out, written):
             if data.empty:
                 continue
             wls = _workloads(data)
-            fig, axes = plt.subplots(1, len(wls), figsize=(2.9 * len(wls), 3.1), squeeze=False,
+            fig, axes = plt.subplots(1, len(wls), figsize=(2.9 * len(wls), 3.5), squeeze=False,
                                      layout="constrained")
             mats = []
             for wl in wls:

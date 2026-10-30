@@ -2,7 +2,7 @@
 
 *Findings report (target: 10 pages). Draft in Markdown. Figures come from `analysis/` after `ccv analyze`.*
 
-> **Draft status:** §1–5 and §8 are written. §6, §7 and §9 are filled from the Qwen2.5-7B runs. Every number in §6 must trace to a file in `analysis/`.
+> **Draft status:** complete. Every number in §6 traces to a file in `analysis/`, produced by `ccv analyze results/qwen2.5-7b.jsonl --out analysis/`. Insert the named figures from `analysis/` when converting to the final format.
 
 ---
 
@@ -80,22 +80,174 @@ Free GPU sessions die. Each record is appended and `fsync`ed; a content-hashed `
 
 ## 6. Results
 
-_Pending the Kaggle runs. Planned subsections, each tied to an `analysis/` file:_
+All numbers come from one Kaggle session (run K2, 30 Oct 2026). It made 3,090 requests: noise 900, Shapley 1,920 and ablations 270, using 2.36 GPU-hours and 0.155 kWh. Every request completed, and every record passed `attribution_ok`, had server-side timings and an energy reading. No `run_id` was duplicated. One run hit the 1,024-token cap (§6.8). In 417 extraction runs vLLM's streaming parser dropped the answer text; it was recovered with the unstreamed request described in §4, and no recovery failed. Each subsection names the `analysis/` file it comes from.
 
-- 6.1 Noise floor (`noise_floor.csv`)
-- 6.2 Shapley values for accuracy, output tokens and GPU-seconds; Shapley versus leave-one-out (`shapley.csv`, `shapley_*.png`)
-- 6.3 Interactions: retrieved × history and system × tools (`interactions.csv`, heatmaps)
-- 6.4 Truncation versus LLMLingua-2 at equal budget (`comparisons.csv`, `truncation_vs_lingua.png`)
-- 6.5 Lost in the middle (`reorder.png`)
-- 6.6 Output expansion tails and how often reduction raised cost (`expansion.csv`, CCDF)
-- 6.7 Pareto frontiers under physical and price-list cost (`pareto.csv`)
-- 6.8 Measured decode:prefill ratio versus 5:1 (`cost_fit.csv`)
+### 6.1 Noise floor (`noise_floor.csv`)
+
+Each of the 30 tasks was repeated 30 times with full context. **All 900 outputs were byte-identical to their task's other repeats, and no pass/fail result ever flipped.** Timing varied very little: the coefficient of variation per task was 0.15–1.1% for prefill time and 0.4–2.3% for decode time.
+
+Greedy decoding on an unbatched server is therefore deterministic here. Any change in output or accuracy after a context change is caused by that change. The planned extra repeats for the ablations were not needed, and only timing differences below about 2% count as noise.
+
+### 6.2 Physical cost: decode costs 19× prefill per token (`cost_fit.csv`, `cost_per_token.png`)
+
+| Workload | Prompt tokens | Output tokens | Prefill ms | Decode ms | GPU-s | Energy (J) | Decode share of GPU time | Output share of price-list cost |
+|---|---|---|---|---|---|---|---|---|
+| QA | 1,751 | 6.2 | 2,142 | 141 | 2.28 | 148 | 6% | 2% |
+| Extraction | 1,870 | 59.4 | 2,350 | 1,581 | 3.93 | 257 | 40% | 14% |
+| Tool calling | 1,745 | 49.0 | 2,112 | 1,293 | 3.41 | 223 | 38% | 12% |
+| **All** | | | | | **3.21** | **209** | **28%** | **9%** |
+
+*Full-context baseline (noise suite, means; GPU utilisation 99.8%).*
+
+A linear fit over all 3,090 runs gives:
+
+- **Prefill:** 1.33 ms per input token (R² = 0.983).
+- **Decode:** 25.5 ms per output token (R² = 0.998).
+
+The **measured decode:prefill cost ratio is therefore 19.2:1, almost four times the 5:1 price-list ratio (RQ3).** On this hardware, output is 28% of the GPU time for a full prompt, while the price-list model counts it as only 9% of the cost.
+
+Prefill is not quite linear. Its fit has a negative intercept (−229 ms), and the points curve upwards (the figure), because the per-token cost of attention grows with prompt length when Turing-generation GPUs lack FlashAttention.
+
+### 6.3 Which segments carry accuracy (`shapley.csv`, `shapley_passed.png`)
+
+| Segment | Shapley φ (all) | 95% CI | Leave-one-out | QA | Extraction | Tool calling |
+|---|---|---|---|---|---|---|
+| retrieved | **0.528** | 0.446 – 0.609 | 0.900 | 0.730 | 0.488 | 0.365 |
+| tools | 0.160 | 0.070 – 0.260 | 0.333 | 0.007 | −0.042 | **0.515** |
+| instructions | 0.137 | 0.077 – 0.199 | 0.300 | 0.080 | **0.328** | 0.002 |
+| history | 0.131 | 0.073 – 0.194 | 0.367 | 0.137 | 0.140 | 0.115 |
+| examples | 0.051 | 0.021 – 0.087 | 0.133 | 0.017 | 0.135 | 0.002 |
+| system | −0.006 | −0.027 – 0.023 | 0.033 | 0.030 | −0.050 | 0.002 |
+
+*φ for pass rate; values sum to v(all) − v(none) = 1 − 0, as the efficiency axiom requires.*
+
+The retrieved documents carry half of all accuracy. After that, each workload depends on the segment that tells it *what to produce*:
+
+- Tool calling depends on the tool catalogue.
+- Extraction depends on the instructions, which list the JSON fields.
+
+The system persona contributes nothing measurable.
+
+Leave-one-out values sum to 2.07, about twice the total there is to share. They count every synergy once per partner (§6.4), which is why we report Shapley values.
+
+Removing only the history fails 11 of 30 tasks (37%), close to the intended third (§4).
+
+### 6.4 Interactions (`interactions.csv`, heatmaps)
+
+The strongest accuracy interactions are synergies between the documents and the segment that turns them into an answer:
+
+| Workload | Pair | Interaction | Meaning |
+|---|---|---|---|
+| Tool calling | tools × retrieved | +0.70 | The model needs the tools and the facts to fill their arguments |
+| Extraction | instructions × retrieved | +0.66 | The model needs the field list and the documents |
+| QA | retrieved × history | +0.24 | The model needs the documents and the history that names the record |
+
+Each such segment is worth little on its own, so neither leave-one-out nor input-token share can rank them.
+
+For output length, instructions, tools and examples interact positively (all workloads: instructions × tools +46 tokens, instructions × examples +40). This means they are **substitutes**: any one of them is enough to keep answers short. Output grows only when all of them are gone.
+
+### 6.5 Which segments carry cost (`shapley.csv`, `shapley_gpu_seconds.png`, `shapley_decode_tokens.png`)
+
+| Segment | Prompt tokens | φ output tokens | φ GPU-seconds | φ energy (J) | φ price-list units |
+|---|---|---|---|---|---|
+| tools | 993 | −26.5 | +0.63 | +38.5 | **+861** |
+| retrieved | 352 | +14.0 | **+0.84** | +54.9 | +423 |
+| system | 143 | −7.0 | +0.02 | +0.7 | +107 |
+| history | 68 | −3.9 | −0.01 | −0.5 | +48 |
+| examples | 119 | −30.3 | −0.59 | −39.4 | −33 |
+| instructions | 61 | **−60.9** | **−1.46** | **−97.1** | −243 |
+
+*All workloads; the baseline is 3.21 GPU-s and 1,980 price units.*
+
+The physical and price-list models disagree on which segment is most expensive:
+
+- **Price list:** the tool catalogue is the most expensive segment, at 43% of the cost, because it is half the prompt.
+- **Physical cost:** the retrieved documents cost more GPU time than the catalogue. The catalogue shortens the output by 26 tokens, which buys back most of its prefill, while the documents lengthen it.
+
+**Instructions and examples have negative cost.** Their few tokens shorten every answer by enough to pay for themselves several times over. Removing the 61-token instructions segment *adds* 1.46 GPU-seconds on average, almost half a full request.
+
+### 6.6 Truncation versus LLMLingua-2 at equal budget (`comparisons.csv`, `truncation_vs_llmlingua2.png`)
+
+| Method, nominal rate | Long-segment tokens kept | Accuracy | McNemar q | GPU-seconds vs full | Price-list cost vs full |
+|---|---|---|---|---|---|
+| Truncation 0.8 | 0.75 | 0.53 | 0.0002 | −9.3% | −7.5% |
+| Truncation 0.5 | 0.51 | 0.17 | < 0.001 | −17.9% | −14.3% |
+| Truncation 0.2 | 0.27 | 0.07 | < 0.001 | −28.7% | −22.2% |
+| LLMLingua-2 0.8 | 0.85 | 0.80 | 0.035 | −6.9% | −4.8% |
+| LLMLingua-2 0.5 | 0.59 | 0.50 | < 0.001 | −14.6% | −11.7% |
+| LLMLingua-2 0.2 | 0.31 | 0.20 | < 0.001 | −22.1% | −19.0% |
+
+*Baseline accuracy is 1.0 by calibration; the kept fractions are medians of the achieved values.*
+
+**Every reduction lost a statistically significant amount of accuracy, even when it kept 75–85% of the long text.** At each budget, LLMLingua-2 kept more accuracy than truncation, and the two saved about the same GPU time per token removed. Neither method made outputs longer (§6.8).
+
+**Why truncation is so harsh here.** Truncation drops whole user/assistant turns from the history, oldest first, as a chat window does. Twenty-six of the 30 tasks have a single exchange of history, so "keep 80%" removed *all* of it. Eleven of the 14 tasks that fail at truncation 0.8 are exactly the tasks that fail whenever the history is removed. Their oldest turn holds the order number or serial the query refers to.
+
+**What compression costs.** On the same T4, LLMLingua-2 took a median of **0.88 s per task** to compress. The GPU time it then saved was:
+
+- 0.14 s at rate 0.8;
+- 0.38 s at rate 0.5;
+- 0.59 s at rate 0.2.
+
+If compression runs once per request, total GPU time *rises* for 90–97% of tasks. The saving only materialises if compressed documents are cached and reused across many queries.
+
+**A failure mode.** Two compressed extraction tasks failed by calling `lookup_order` instead of answering from the documents. This is the same tool hijacking seen during calibration (§4), and it returned once the documents became harder to read.
+
+### 6.7 Lost in the middle (`reorder_position.png`)
+
+| Gold document position | First | Middle | Last |
+|---|---|---|---|
+| Pass rate | 1.00 | 0.90 | 0.97 |
+
+The middle position is the lowest, matching Liu et al., but the drop is three tasks out of 30 and is **not significant** (McNemar q = 0.26). With 4–6 documents of about 2k tokens in total, position matters little for this model.
+
+### 6.8 Output expansion and when reduction raised cost (`expansion.csv`, `expansion_ccdf.png`)
+
+Removing whole segments is a different matter from truncation or compression. Each cell below is one task under one reduced configuration, compared with the same task at full context:
+
+| Reduction | Cells | Output > 1.5× | Output > 2× | p90 ratio | Max ratio | GPU-seconds rose | Price-list cost rose |
+|---|---|---|---|---|---|---|---|
+| Segment removal (63 subsets) | 1,890 | 30.4% | 26.3% | 7.9× | 146× | **19.0%** | 6.1% |
+| Truncation | 90 | 2.2% | 0% | 1.06× | 2× | 1.1% | 0% |
+| LLMLingua-2 | 90 | 2.2% | 0% | 1.09× | 2× | 1.1% | 0% |
+
+**In 19% of segment-removal cells, the shorter prompt used *more* GPU time than the full prompt (RQ2).** The price-list model sees only a third of these cases, because it underweights output (§6.2).
+
+Almost all of the cost increases are explained by one segment: **98.6% of the cells where GPU time rose had no instructions segment**, against 51% of all cells. The increases also come with failure: 295 of the 359 such cells also failed the task, so the model paid more to be wrong.
+
+QA is the most exposed workload, with cost rising in 31% of its cells, because its full-context answers are so short (about 6 tokens). Some examples:
+
+- **QA without instructions** (`subset:101111`): 90% accurate, but 40 more output tokens, +43% GPU time and +8% price-list cost.
+- **Query alone:** median output length is 164 tokens for QA, 172 for tool calling and 93 for extraction. With full context the medians are 6, 49 and 60.
+- **The single capped run** (qa-10 without instructions or history): 1,024 tokens of repeated `lookup_flight_envelope` calls, taking 26 s of decode time, as much as eight normal requests.
+
+### 6.9 Pareto frontiers (`pareto.csv`, `pareto_qwen2.5-7b.png`)
+
+The cheapest configuration that still passed every task:
+
+| Workload | Segments kept | GPU-s | vs full context |
+|---|---|---|---|
+| QA | system, instructions, retrieved, history | 0.77 | **−66%** |
+| Extraction | instructions, retrieved, history | 2.01 | **−49%** |
+| Tool calling | instructions, tools, retrieved, history | 2.94 | −14% |
+| All (one prompt) | instructions, tools, retrieved, history | 2.72 | −15% (accuracy 0.93) |
+
+The savings come from dropping segments the workload does not use, chiefly the tool catalogue for QA and extraction, and from dropping the examples. They do not come from cutting content. These configurations were chosen in-sample, from 64 options on 10 tasks each, so they are optimistic and must be validated on held-out tasks before use.
+
+The price-list frontier (bottom row of the figure) has the same shape, but it ranks configurations with long outputs as cheaper than they are physically.
 
 ---
 
 ## 7. Deployment recommendations
 
-_Written from §6._
+1. **Measure output, not just input.** A decode token cost 19× a prefill token on this setup, against 5× on price lists. A change that removes input tokens but adds output tokens can raise both cost and latency, and input-token counters will not show it.
+2. **Never strip format and brevity instructions to save tokens.** Instructions are the only segment with clearly negative cost: removing them added 1.46 GPU-seconds per request and lay behind almost every case where a shorter prompt cost more. Few-shot examples behave similarly, to a lesser degree.
+3. **Remove what the workload does not use before compressing what it does.** Dropping the tool catalogue from QA and extraction prompts saved 49–66% of GPU time at no in-sample accuracy loss. Truncation and compression saved at most 29%, and lost accuracy at every rate.
+4. **Do not window chat history by whole turns.** The oldest turn often holds the identifiers the conversation is about. Pin those facts, or summarise old turns, rather than drop them.
+5. **If compressing, prefer LLMLingua-2 over head truncation, and cache the result.** It kept more accuracy at every budget. Run per request on the same GPU, however, its own cost exceeded the saving.
+6. **Gate every context change on accuracy with a paired test.** Even 80–85% retention lost significant accuracy. Greedy decoding is deterministic here (§6.1), so one paired run per task is enough to detect a change.
+7. **Track the output-length tail, not the mean.** Report the p90 output ratio and the capped share. One runaway tool-call loop cost as much as eight normal requests.
+8. **Test the serving stack's parsers.** vLLM's streaming hermes parser silently dropped 417 answers in this sweep alone and labelled a capped run as a finished tool call. Both would have corrupted accuracy and cost figures without the checks in `ccv`.
 
 ---
 
@@ -107,12 +259,22 @@ _Written from §6._
 - **Greedy decoding.** It isolates context effects, but sampling-based deployments would show more variance.
 - **Synthetic world.** The fictional world prevents memorisation but is cleaner than real enterprise data, and the shared tool catalogue fixes the share of tokens spent on tools.
 - **Calibration selection.** Keeping only tasks the model gets right with full context makes the baseline accuracy 100% by design. Results describe the loss from removing context, not absolute capability.
+- **Coarse history truncation.** Truncation drops whole turns, so with a single exchange of history any rate below 1.0 removes all of it. This mirrors common chat windowing, but it makes truncation look worse than token-level history truncation would.
+- **In-sample Pareto choices.** The cheapest sufficient configurations in §6.9 were picked from 64 options on the same 10 tasks they are scored on.
+- **Compression timing.** LLMLingua-2 compression was timed once per text, in the session that built the cache, rather than inside the measured requests.
 
 ---
 
 ## 9. Conclusion
 
-_Written from §6._
+Shrinking a prompt does not reliably shrink its cost. We combined physical GPU measurements, exact token attribution and an exact 64-subset Shapley analysis on a 7B model served on a T4. The results:
+
+- **Per-token cost:** a decode token cost 19 times a prefill token, nearly four times the price-list ratio.
+- **Segment removal:** in one case in five, removing a prompt segment made the request *more* expensive, almost always because the instructions that keep answers short were gone.
+- **Content reduction:** truncation and LLMLingua-2 rarely lengthened outputs, but both lost significant accuracy even when they kept most of the text. Turn-based history windowing was particularly damaging.
+- **Segment value:** Shapley values separated the segments that carry accuracy (documents, tools, instructions, history) from those that carry only cost. They also showed that the two cost models disagree about which segment is most expensive.
+
+The practical rule is to remove what a workload does not use, keep the instructions, and test every context change on accuracy and on physical cost before shipping it. `ccv` does exactly that, and its raw traces make every number here reproducible.
 
 ---
 

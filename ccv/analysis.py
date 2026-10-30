@@ -113,7 +113,10 @@ def load(paths, tasks):
                          for c in df.get("compression", missing)]
     df["passed"] = [float(grade(by_id[k], o, tc)) for k, o, tc in zip(df.task_id, df.output, df.tool_calls)]
     df["price_cost"] = df.prefill_tokens + PRICE_RATIO * df.decode_tokens
-    df["capped"] = df.finish_reason.eq("length").astype(float)
+    # vLLM's tool parser reports "tool_calls", not "length", when a run of tool calls hits max_tokens
+    max_tokens = [(e or {}).get("sampling", {}).get("max_tokens", np.inf) if isinstance(e, dict) else np.inf
+                  for e in df.get("env", missing)]
+    df["capped"] = (df.finish_reason.eq("length") | df.decode_tokens.ge(max_tokens)).astype(float)
     return df
 
 

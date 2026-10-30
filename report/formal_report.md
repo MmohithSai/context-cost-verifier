@@ -2,13 +2,17 @@
 
 *Undergraduate major project — formal report (draft in Markdown; convert into the university template).*
 
-> **Status of this draft.** Chapters 1–7, 9 and the appendices are complete. Chapter 8 (Results) is filled from the real Kaggle runs; see [findings_report.md](findings_report.md) for the full analysis and figures. Raw material, including every challenge met during development, is in [`docs/REPORT_NOTES.md`](../docs/REPORT_NOTES.md).
+> **Status of this draft.** All chapters are complete. Chapter 8 (Results) is filled from the real Kaggle runs; see [findings_report.md](findings_report.md) for the full analysis and figures. Raw material, including every challenge met during development, is in [`docs/REPORT_NOTES.md`](../docs/REPORT_NOTES.md).
 
 ---
 
 ## Abstract
 
-Production LLM systems routinely shrink their prompts — truncating documents, dropping old conversation turns, compressing context with tools such as LLMLingua-2 — on the assumption that fewer input tokens means lower cost. That assumption ignores two effects. First, output tokens are far more expensive than input tokens: commercial price lists charge roughly five times more per output token, and on the hardware every output token is a separate sequential decode step. Second, a model that loses context can write *longer* answers and get more of them *wrong*. `ccv` (Context Cost Verifier) is an open-source command-line tool that measures this trade-off before a context change ships. It sends benchmark tasks to any OpenAI-compatible endpoint, records physical cost on the GPU (prefill time, decode time, GPU-seconds, energy), attributes every prompt token exactly to one of six context segments using the served model's own tokenizer and chat template, and runs an exact Shapley analysis over all 64 subsets of those segments. Statistical tests (exact McNemar, paired bootstrap, Benjamini–Hochberg) separate real effects from run-to-run noise. The study runs at zero cost on a free Kaggle T4 GPU with Qwen2.5-7B-Instruct (AWQ) served by vLLM.
+Production LLM systems routinely shrink their prompts — truncating documents, dropping old conversation turns, compressing context with tools such as LLMLingua-2 — on the assumption that fewer input tokens means lower cost. That assumption ignores two effects. First, output tokens are far more expensive than input tokens: commercial price lists charge roughly five times more per output token, and on the hardware every output token is a separate sequential decode step. Second, a model that loses context can write *longer* answers and get more of them *wrong*. `ccv` (Context Cost Verifier) is an open-source command-line tool that measures this trade-off before a context change ships. It sends benchmark tasks to any OpenAI-compatible endpoint, records physical cost on the GPU (prefill time, decode time, GPU-seconds, energy), attributes every prompt token exactly to one of six context segments using the served model's own tokenizer and chat template, and runs an exact Shapley analysis over all 64 subsets of those segments. Statistical tests (exact McNemar, paired bootstrap, Benjamini–Hochberg) separate real effects from run-to-run noise. The study runs at zero cost on a free Kaggle T4 GPU with Qwen2.5-7B-Instruct (AWQ) served by vLLM. Over 3,090 measured requests on a calibrated 30-task benchmark:
+
+- A decode token cost 19× a prefill token, against the 5× of price lists.
+- In 19% of cases, removing a prompt segment raised GPU cost, almost always because format instructions were removed.
+- Truncation and LLMLingua-2 lost significant accuracy even when they kept 75–85% of the context.
 
 ---
 
@@ -268,7 +272,7 @@ The most instructive problems (full list in `docs/REPORT_NOTES.md`):
 | M6 | Attribution of a variant | `ccv attribute qa-01 --model qwen2.5-7b --config truncate:0.5` | Per-segment table that sums to the total | 1,573 tokens; tools 994 (63.2%), retrieved 255, system 148 … | Pass |
 | M7 | Version | `ccv --version` | Version string | `ccv 0.1.0` | Pass |
 | M8 | Offline validation | `ccv run --suite noise shapley ablations --dry-run` | All tasks valid; counts and time estimate | 4,635 runs; mean prompt 1,777 tokens (noise), max 2,365; 135 awaiting `ccv compress` | Pass |
-| M9 | Live sanity checks | Kaggle run output | `attribution_ok`, server metrics and energy on every record | *See §8.1* | — |
+| M9 | Live sanity checks | Kaggle run K2 output (3,330 records) | `attribution_ok`, server metrics and energy on every record; no duplicate IDs | All 3,330 attributed exactly; metrics and energy on every record; 0 duplicates | Pass |
 
 ---
 
@@ -278,11 +282,37 @@ The most instructive problems (full list in `docs/REPORT_NOTES.md`):
 
 ### 8.1 Live validation
 
-_Pending the Kaggle runs._
+The main sweep ran in one Kaggle T4 session on 30 Oct 2026, from 08:26 to 11:22 UTC. It made 3,090 requests: noise 900, Shapley 1,920 and ablations 270, over the 30 frozen tasks. The checks gave:
+
+| Check (test M9) | Result |
+|---|---|
+| Requests completed | 3,090 / 3,090 |
+| `attribution_ok` (local token count = server count) | 3,330 / 3,330, including calibration |
+| Server-side timings and energy present | every record |
+| Duplicate `run_id` | 0 |
+| Runs that hit the 1,024-token cap | 1 |
+| Answers dropped by the streaming parser and recovered | 417 (all extraction), 0 failures |
+| GPU time and energy | 2.36 GPU-hours, 0.155 kWh |
+
+Test M9 passes.
+
+Repeating each task 30 times produced byte-identical outputs every time, and timing varied by at most 2.3%. Every difference reported below is therefore caused by the context change, not by noise.
+
+The notebook's final summary cell failed with `ModuleNotFoundError`. This happened after all the data was written, so Kaggle marked the run as an error even though it was complete. The cause: an editable `pip install` is registered through a `.pth` file that Python reads only at start-up, after the notebook kernel had already started. The cell now adds the package to `sys.path` itself.
 
 ### 8.2 Headline findings
 
-_Pending the Kaggle runs._
+Full tables and figures are in [findings_report.md](findings_report.md), §6.
+
+1. **Decode costs 19× prefill per token.** The fits give 25.5 ms per output token against 1.33 ms per input token (R² 0.998 and 0.983). Price lists assume 5×. Output is 28% of the GPU time of a full prompt, but only 9% of its price-list cost.
+2. **Shorter prompts are often more expensive.** In 19% of the 1,890 segment-removal cases, GPU time rose above that of the full prompt; the price-list model detects only 6%. Of those cases, 98.6% had lost the instructions segment. Without instructions, QA answers grew by 40 tokens and cost 43% more GPU time.
+3. **Shapley values separate value from cost.**
+   - Accuracy comes from the retrieved documents (φ = 0.53), then tools, instructions and history (0.13–0.16); the system persona contributes nothing.
+   - On cost, instructions (−1.46 GPU-s) and examples (−0.59) are net-negative because they shorten answers.
+   - The tool catalogue is the most expensive segment on the price list (43%), but physically the documents cost more.
+4. **Truncation and compression lose accuracy at every rate.** Keeping 75% of the long text by truncation left 53% accuracy; keeping 85% with LLMLingua-2 left 80%. Most of the truncation losses come from dropping whole history turns. Compression took 0.88 s per task on the same GPU, more than the GPU time it saved.
+5. **Position matters little.** With the gold document in the middle, accuracy was 0.90, against 1.00 first and 0.97 last; the difference is not significant.
+6. **The cheapest sufficient prompts drop unused segments.** Keeping only the segments each workload needs passed every task at 66% (QA), 49% (extraction) and 14% (tool calling) less GPU time. These were chosen in-sample and need validation.
 
 ---
 
@@ -290,7 +320,17 @@ _Pending the Kaggle runs._
 
 ### 9.1 Conclusion
 
-_Written after the results._
+The project met its objectives. `ccv` joins physical GPU cost, exact per-segment token attribution and graded accuracy on the same requests. It is fault-tolerant and reproducible on a free GPU: all 3,090 measured requests completed in one session, with exact attribution on every one.
+
+The measurements contradict the usual assumption that fewer input tokens means lower cost:
+
+- A decode token cost 19× a prefill token.
+- Removing a segment raised the physical cost in one case in five, almost always because the instructions that keep answers short were removed.
+- Truncation and compression reduced cost only modestly, and lost accuracy even at mild rates.
+
+The exact Shapley analysis turned these observations into a ranking of segments by value and by cost. That ranking supports a concrete rule: remove the segments a workload does not use, keep the instructions, and test every change on accuracy and physical cost before shipping it.
+
+Development also uncovered two silent faults in a widely used serving stack: vLLM's streaming tool parser dropped answers and mislabelled a capped run. Both were caught only because `ccv` checks its own measurements.
 
 ### 9.2 Future scope
 
@@ -336,4 +376,27 @@ ccv analyze results/*.jsonl --out analysis/
 
 ## Appendix B — Sample JSONL record
 
-_Taken from the real Qwen2.5-7B run once available._
+One full-context QA request from the real run (`results/qwen2.5-7b.jsonl`):
+
+```json
+{
+ "run_id": "0f0815591071afc1", "model": "qwen2.5-7b", "suite": "shapley",
+ "task_id": "qa-09", "task_hash": "ac6b5c443e857444", "workload": "qa",
+ "config_id": "subset:111111", "repeat": 0, "request_hash": "150d13da0fa760bf",
+ "status": "ok", "error": null,
+ "prefill_tokens": 1600, "decode_tokens": 8, "finish_reason": "stop",
+ "prefill_ms": 1848.48, "decode_ms": 190.20, "queue_ms": 0.007,
+ "client_ttft_ms": 1864.64, "client_e2e_ms": 2054.16, "decode_tok_s": 36.8,
+ "gpu_seconds": 2.0387, "server_metrics": true,
+ "gpu_util_mean": 99.8, "gpu_mem_max_mb": 13937, "energy_j": 129.436,
+ "output": "1.75% per month", "tool_calls": null,
+ "attribution": {"system": 148, "instructions": 58, "tools": 994, "examples": 66,
+                 "retrieved": 238, "history": 53, "query": 20, "template": 23, "total": 1600},
+ "attribution_ok": true, "compression": null,
+ "env": {"ccv": "0.1.0", "server": "0.29.0", "gpu": "Tesla T4",
+         "sampling": {"temperature": 0, "seed": 0, "max_tokens": 1024}},
+ "ts": "2026-10-30T09:39:49+00:00"
+}
+```
+
+*Timings are rounded to two decimals here, and `env.host` is omitted.*

@@ -184,7 +184,7 @@ LLMLingua-2 hits its target on average but varies a lot per text. That is why pl
 | K1f | 2026-10-30 08:09 | same; runner recovers swallowed output; 60 affected records removed from the dataset | 6 | ~15 min | 60 / 0 | **Diagnosis confirmed.** 33 runs needed recovery, and every recovered text was `<tool_call>
 {…the correct JSON…}
 </tool_call>`. Extraction kept 13/15 (ex-02, ex-06 still call a lookup tool). |
-| K2 | 2026-10-30 08:26 | qwen2.5-7b, `noise shapley ablations`, frozen 30 tasks, dataset attached | 7 | | | |
+| K2 | 2026-10-30 08:26 | qwen2.5-7b, `noise shapley ablations`, frozen 30 tasks, dataset attached | 7 | 2 h 56 min (requests ended 11:22; 2.36 GPU-hours of requests) | 3,090 / 0 | **Complete; every planned request was made.** Kaggle still reported `ERROR`, because the notebook's final summary cell could not `import ccv` (§5.6). All data was already written. No session limit was hit, so no resume was needed. |
 
 **Fixes after K1:**
 1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.
@@ -237,6 +237,50 @@ Only the 15 extraction tasks changed (new task hashes), so resume reran just the
 **Test.** The fake vLLM server in `tests/test_ccv.py` now swallows streamed text starting with `{` and serves non-streamed requests; the end-to-end test's extraction Shapley assertions only pass if recovery works.
 
 **Lesson for the report.** "The model failed" and "the measurement lost the answer" look identical in a pass/fail table. Reading raw outputs before trusting calibration caught two separate problems in one afternoon (§5.4 and this one).
+
+### 5.6 Run K2: the main sweep, and two problems it surfaced
+
+**A notebook bug that made a complete run look failed.** Kaggle marked K2 `ERROR`. The log showed `[3090/3090]` and then `ModuleNotFoundError: No module named 'ccv'` in the summary cell.
+
+- *Cause:* `pip install -e` registers an editable package through a `.pth` file. Python reads `.pth` files only when the interpreter starts, and the Jupyter kernel had started before the install. Shell commands (`!ccv run …`) worked because each one starts a new interpreter. Only the in-kernel `from ccv.runner import …` failed.
+- *Fix:* the cell now calls `sys.path.insert(0, CCV)` first (D37).
+- *Lesson:* check the run log before trusting a platform's status flag. The data was complete.
+
+**A second vLLM parser fault: capped runs are labelled as tool calls.** The CCDF showed one output 146× longer than its baseline, exactly 1,024 tokens long, yet the analysis reported zero capped runs.
+
+- *What happened:* the record (qa-10 without instructions or history) is a loop of repeated `lookup_flight_envelope` calls that ran into `max_tokens`. With the hermes tool parser active, vLLM reports `finish_reason: "tool_calls"` instead of `"length"`.
+- *Fix:* the analysis now also counts a run as capped when its output reaches the `max_tokens` stored in the record's `env.sampling` (D38). Detection lives in `analyze`, like grading (D13), so the fix cost no GPU time.
+- *Scale:* only this one run of 3,330 is affected. The bias would still have been systematic: capped runs are exactly the expensive tail the study is about.
+
+**Sanity checks** (RUNBOOK §5), all passed:
+
+| Check | Result |
+|---|---|
+| Records | 3,330 (240 calibration + 3,090 sweep), all `ok` |
+| Duplicate `run_id` | 0 |
+| `attribution_ok` | 3,330 / 3,330 |
+| Server timings and energy | on every record |
+| Output recovery | 417 sweep runs, all extraction, 0 failures |
+
+The 120 stale calibration records from before the extraction-query fix are skipped automatically by `analyze`, because their task hash no longer matches.
+
+**No extra ablation repeats were needed.** The plan said ablations would get 3 repeats if the noise floor showed non-identical repeats. It showed none: all 900 noise outputs were byte-identical within each task, and timing varied by less than 2.3% (D39).
+
+### 5.7 Results, and how the surprising ones were checked
+
+The full results are in `report/findings_report.md` §6, and every number there comes from `analysis/`. These notes record the checks behind the three results that looked wrong at first.
+
+1. **Truncation at 0.8 kept only 53% accuracy.** It looked like a bug. The check, a script in the session scratchpad, applied `variant()` to each failing task, looked for its gold values in the truncated text, and compared each failure with the per-task Shapley subsets.
+   - *Finding:* `_recent()` drops history in whole user/assistant pairs. Twenty-six tasks have exactly one pair, so any rate below 1.0 removes all of their history.
+   - *Evidence:* 11 of the 14 failures are exactly the tasks that fail under `subset:111110` (all segments except history).
+   - *Verdict:* this is a property of turn-based windowing, which is how chat systems usually window history, not a code bug. It is reported as a finding and as a limitation. Token-level history truncation is future work.
+2. **LLMLingua-2 "saves" GPU time.** Only if compression is free. The cache records 0.88 s of compression per task (median, T4, measured in K1c), against 0.14–0.59 s saved per request. Counted per request, net GPU time rose for 90–97% of tasks. The analysis keeps `compress_ms` separate from `gpu_seconds`, so the report states both.
+3. **Removing a segment made requests more expensive in 19% of cells.** The cost-increase cells were checked against the subset mask. 98.6% of them lack the `instructions` segment, against 51% of all cells. The outputs are long hedges, explanations or tool-call loops instead of a 6-token answer.
+   - *A mistake caught on the way:* the first version of this check read the wrong mask character, `str[9]` (tools) instead of `str[8]` (instructions), and gave 44%. Mask character *i* is `SEGMENTS[i]` after the 7-character `subset:` prefix (D11).
+
+Other checks:
+- **Shapley efficiency on real data:** the pass-rate φ values sum to 1.001 = v(all) − v(none).
+- **Figures:** all ten were inspected. The interaction heatmap's overall title overlapped the panel titles; the figure was made taller (`report.py`).
 
 ---
 

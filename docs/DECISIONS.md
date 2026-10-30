@@ -188,3 +188,12 @@ When a streamed response reports output tokens but carries neither text nor a to
 **D36. Benchmark v1.0: 30 tasks frozen by calibration** (2026-10-30)
 Kept 13/15 extraction, 15/15 QA and 15/15 tool-calling drafts (pass 3/3 with full context, fail with the query alone; table in `results/evidence/calibration_v2_final.csv`). From those, 10 per workload were chosen spread across prompt length (1,560–2,365 tokens), 3 per workload needing history. qa-01 and tc-01 were swapped in for the history tasks closest in length (qa-08, tc-09) because the test suite is built around qa-01/ex-01/tc-01. The 15 unused drafts moved to `benchmark/drafts/`, outside the runner's `tasks/` glob. Tagged `benchmark-v1.0`.
 *Recovered tool-call-wrapped answers are graded on their JSON:* the grader takes the first JSON object, so `<tool_call>{…}</tool_call>` passes when the fields are right. The wrapping is a format slip caused by the tools segment, and `output_recovered` lets the analysis report how often it happens.
+
+**D37. The notebook's summary cell puts the cloned repo on `sys.path`** (2026-10-30)
+*Why:* an editable install is registered through a `.pth` file, which Python reads only at interpreter start-up. The Kaggle kernel started before `pip install -e`, so `import ccv` failed in-kernel after a complete run (K2), and Kaggle reported `ERROR`. Shell `!ccv …` commands were unaffected because each starts a new interpreter.
+
+**D38. A run counts as capped when its output reaches `max_tokens`, whatever `finish_reason` says** (2026-10-30)
+*Why:* with the hermes tool parser, vLLM reports `finish_reason: "tool_calls"` for a run of tool calls that hit the token limit (one record in K2, 1,024 tokens). The limit is read from each record's `env.sampling`, and detection lives in `analyze` (D13), so no rerun was needed.
+
+**D39. Ablations stay at one repeat** (2026-10-30)
+*Why:* the plan added repeats only if the noise floor showed variation. All 900 noise outputs were identical within their task, with no pass flips, and timing CV was ≤ 2.3%. A single paired run per task and configuration is exact under greedy, unbatched decoding.
