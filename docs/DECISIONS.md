@@ -179,3 +179,12 @@ Each extraction query ends with "Take it from the documents above and reply with
 *Consequence:* the query is always kept, so some format guidance is present in every subset and `instructions` gets less Shapley credit in extraction than it would otherwise. The pre-fix calibration is kept in `results/evidence/` as a finding about the `tools` segment.
 
 **D34. The local Docker smoke test was dropped** (2026-10-30) — the real Kaggle run validated attribution, metrics and energy before the 10 GB image finished downloading.
+
+**D35. Swallowed streamed output is recovered with one unstreamed request** (2026-10-30)
+When a streamed response reports output tokens but carries neither text nor a tool call, the runner re-sends the same request with `stream: false`, takes its content or tool calls, and sets `output_recovered`. Timings and energy remain those of the streamed run.
+*Why:* vLLM's streaming hermes parser drops text it buffered as a would-be tool call that never parsed; the non-streamed path returns it (REPORT_NOTES §5.5). Turning the parser off would break the tool-calling workload, and dropping streaming would lose portable TTFT (D3).
+*Consequence:* a recovered record costs one extra unmeasured request. Analysis can report how often recovery happened per config, which is itself a measure of how often the tools segment pulls the model towards tool-call formatting.
+
+**D36. Benchmark v1.0: 30 tasks frozen by calibration** (2026-10-30)
+Kept 13/15 extraction, 15/15 QA and 15/15 tool-calling drafts (pass 3/3 with full context, fail with the query alone; table in `results/evidence/calibration_v2_final.csv`). From those, 10 per workload were chosen spread across prompt length (1,560–2,365 tokens), 3 per workload needing history. qa-01 and tc-01 were swapped in for the history tasks closest in length (qa-08, tc-09) because the test suite is built around qa-01/ex-01/tc-01. The 15 unused drafts moved to `benchmark/drafts/`, outside the runner's `tasks/` glob. Tagged `benchmark-v1.0`.
+*Recovered tool-call-wrapped answers are graded on their JSON:* the grader takes the first JSON object, so `<tool_call>{…}</tool_call>` passes when the fields are right. The wrapping is a format slip caused by the tools segment, and `output_recovered` lets the analysis report how often it happens.

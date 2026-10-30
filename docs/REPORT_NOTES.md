@@ -166,7 +166,8 @@ LLMLingua-2 hits its target on average but varies a lot per text. That is why pl
 | K1b | 2026-10-30 ~07:40 | same, with boolean metadata | 2 | ~4 min | 0 / 0 | **Failed again, no internet** — rules out the string-valued `enable_internet` flag as the cause; the account needs phone verification. The new install assertion stopped the notebook in the first code cell with the message "install failed: is Internet on?", as intended. |
 | K1c | 2026-10-30 07:19 | same, after phone verification | 3 | ~13 min | 0 / 0 | **Partial success.** Installs worked and **LLMLingua-2 compression of all 45 tasks succeeded** (`benchmark/compressed.json`, 155 KB) — the D30 venv fix worked first time. Then `vllm serve` crashed at import: vLLM 0.29 installs a PyTorch built for CUDA 13.0, Kaggle preinstalls a `torchaudio` built for CUDA 12.8, and `transformers` imports `torchaudio` whenever it is installed. Fix: `pip uninstall torchaudio` after installing vLLM (D32). Also noticed the repo was cloned into `/kaggle/working`, so the saved output contained a full copy of the repo; it is now cloned to `/kaggle/tmp`. |
 | K1d | 2026-10-30 07:33 | qwen2.5-7b, `calibrate`, `COMPRESS=False` (cache committed) | 4 | ~17 min (170 s server start, 9.8 min of requests) | 180 / 0 | **First successful GPU run.** All sanity checks pass (§5.3). Calibration: QA 15/15 and tool calling 15/15 kept, extraction 1/15 — tools hijacked extraction (§5.4). |
-| K1e | 2026-10-30 07:55 | same + dataset `mmohithsai/ccv-results` attached (resume); extraction queries fixed | 5 | | | |
+| K1e | 2026-10-30 07:55 | same + dataset `mmohithsai/ccv-results` attached (resume); extraction queries fixed | 5 | ~10 min | 60 / 0 (120 resumed, no duplicates) | **Resume across sessions worked first time.** Extraction tool calls fell from 42/45 to 6/45 — but 33 runs came back with *no text and no tool call* despite 46–71 generated tokens: a measurement bug (§5.5). Extraction kept 2/15. |
+| K1f | 2026-10-30 08:09 | same; runner recovers swallowed output; 60 affected records removed from the dataset | 6 | | | |
 
 **Fixes after K1:**
 1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.
@@ -207,6 +208,18 @@ LLMLingua-2 hits its target on average but varies a lot per text. That is why pl
 3. **Chosen:** end each extraction query with "Take it from the documents above and reply with the JSON object only." — what a real application would put in the user turn. Cost: because the query is always kept, part of the format guidance now lives in every subset, so `instructions` will get less Shapley credit in extraction than it otherwise would. The report should say so.
 
 Only the 15 extraction tasks changed (new task hashes), so resume reran just their 60 calibration requests (run K1e).
+
+### 5.5 Measurement bug: the streaming tool parser swallowed answers
+
+**Symptom.** After the query fix, 33 of 45 full-context extraction runs recorded `output: ""` and `tool_calls: null`, with `finish_reason: "stop"` and 46–71 output tokens. The model clearly wrote *something* of answer length, but nothing reached the record. Without reading raw records this would have looked like "the model fails extraction" and those tasks would have been dropped at calibration.
+
+**Diagnosis.** The runner reads only `delta.content` and `delta.tool_calls` from the stream. vLLM's `hermes` tool parser (needed for the tool-calling workload, and server-wide) buffers streamed text that looks like the start of a tool call and only releases it as a parsed call. Qwen2.5, trained on `<tool_call>{...}</tool_call>` output, appears to wrap its plain JSON answer the same way; the parser then never finds a valid call and, *in streaming mode*, the buffered text is dropped. vLLM's non-streaming path falls back to returning the raw text as content when parsing fails. (The raw text of the affected runs was not recoverable, so this mechanism is inferred from the token counts, the finish reason and the parser's documented behaviour; the recovered outputs from run K1f confirm or refute it.)
+
+**Options.** (a) Turn off the tool parser — breaks the tool-calling workload. (b) Stop streaming — loses client TTFT for arbitrary endpoints (D3). (c) **Chosen:** when a streamed response has output tokens but neither text nor a tool call, re-send the identical greedy request without streaming and take its text; keep the streamed run's timings and energy; flag the record `output_recovered`. Greedy decoding makes the second generation identical, and the recovery request runs outside the GPU sampling window so it cannot touch the cost measurements.
+
+**Test.** The fake vLLM server in `tests/test_ccv.py` now swallows streamed text starting with `{` and serves non-streamed requests; the end-to-end test's extraction Shapley assertions only pass if recovery works.
+
+**Lesson for the report.** "The model failed" and "the measurement lost the answer" look identical in a pass/fail table. Reading raw outputs before trusting calibration caught two separate problems in one afternoon (§5.4 and this one).
 
 ---
 
