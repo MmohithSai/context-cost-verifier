@@ -42,7 +42,7 @@ segments:
         I would rather get them from you directly than guess.
     - role: assistant
       content: Of course. I can look up any order you name.
-query: Please check where order KR-55210 has got to.
+query: Please check where the Stowbot S3 Sorter order confirmed on 2026-03-02 has got to.
 gold_doc: 0
 grader:
   type: tool_call

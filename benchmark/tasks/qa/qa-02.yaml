@@ -43,10 +43,10 @@ segments:
   history:
     - role: user
       content: |
-        Hi Kiri, we run a K3 Sparrow, serial KR3-41208. We had your dealer fit the HeavyLift kit
+        Hi Kiri, we run a K3 Sparrow, serial KR3-41377. We had your dealer fit the HeavyLift kit
         on it back in January, and it has been flying with the kit ever since.
     - role: assistant
-      content: "Thanks, noted: a K3 Sparrow (KR3-41208) with the HeavyLift kit fitted."
+      content: "Thanks, noted: a K3 Sparrow (KR3-41377) with the HeavyLift kit fitted."
     - role: user
       content: Good. We have had no problems with it so far.
     - role: assistant

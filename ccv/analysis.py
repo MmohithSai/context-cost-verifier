@@ -263,9 +263,31 @@ def _md(frame):
     return "\n".join(lines + ["| " + " | ".join(map(fmt, row)) + " |" for row in frame.itertuples(index=False)])
 
 
+def calibration(df):
+    """Per task: full-context passes out of its repeats and the query-only result. A task is kept when it
+    always passes with full context and fails with the query alone (PLAN §4)."""
+    cal = df[df.suite == "calibrate"]
+    if cal.empty:
+        return pd.DataFrame()
+    keys = ["model", "workload", "task_id"]
+    full = cal[cal.config_id == BASELINE].groupby(keys).agg(
+        full_passes=("passed", "sum"), full_runs=("passed", "size"), prompt_tokens=("prefill_tokens", "mean"),
+        decode_tokens=("decode_tokens", "mean"))
+    query = cal[cal.config_id == "subset:000000"].groupby(keys).agg(query_only_passes=("passed", "sum"))
+    t = full.join(query, how="outer").reset_index()
+    t["keep"] = t.full_passes.eq(t.full_runs) & t.query_only_passes.eq(0)
+    return t
+
+
 def summary_md(df, t):
     parts = ["# ccv analysis summary", "## Runs",
              _md(df.groupby(["model", "suite"]).size().reset_index(name="runs"))]
+    if not t["calibration"].empty:
+        cal = t["calibration"]
+        parts += ["## Calibration (kept: full context passes every repeat, query only fails)",
+                  _md(cal.groupby(["model", "workload"], as_index=False).agg(tasks=("task_id", "size"),
+                                                                            kept=("keep", "sum"))),
+                  _md(cal)]
     if not t["cost_fit"].empty:
         parts += ["## Physical prefill vs decode cost (ms per token)", _md(t["cost_fit"])]
     if not t["noise_floor"].empty:
@@ -296,23 +318,43 @@ def summary_md(df, t):
     return "\n\n".join(parts) + "\n"
 
 
+_EMPTY = {k: pd.DataFrame() for k in ("noise_floor", "shapley", "interactions", "comparisons", "expansion_cells",
+                                      "expansion", "cost_fit", "pareto")}
+
+
+def _runs_table(df):
+    return df.drop(columns=["output", "tool_calls", "attribution", "compression", "env"], errors="ignore")
+
+
 def analyze(paths, tasks, out):
     """Write every table as CSV plus summary.md; returns the tables for plotting."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
-    df = load(paths, tasks)
+    everything = load(paths, tasks)
+    cal = calibration(everything)
+    # calibration ran on draft tasks; keeping it out of the cells keeps the baseline an average of the
+    # noise and Shapley runs only (D12)
+    df = everything[everything.suite != "calibrate"].reset_index(drop=True)
+    if df.empty:
+        tables = {"runs": _runs_table(everything), "calibration": cal}
+        for name, table in tables.items():
+            table.to_csv(out / f"{name}.csv", index=False)
+        tables = {**_EMPTY, **tables}
+        (out / "summary.md").write_text(summary_md(everything, tables), encoding="utf-8")
+        print(f"calibration only: tables and summary written to {out}")
+        return tables
     c = cells(df)
     pairs = pair_with_baseline(c)
     shap_tasks, shap, inter = shapley_tables(c)
     red, exp = expansion(pairs) if not pairs.empty else (pd.DataFrame(), pd.DataFrame())
     tables = {
-        "runs": df.drop(columns=["output", "tool_calls", "attribution", "compression", "env"], errors="ignore"),
-        "noise_floor": noise_floor(df), "shapley_per_task": shap_tasks, "shapley": shap, "interactions": inter,
+        "runs": _runs_table(everything), "calibration": cal, "noise_floor": noise_floor(df),
+        "shapley_per_task": shap_tasks, "shapley": shap, "interactions": inter,
         "comparisons": comparisons(pairs) if not pairs.empty else pd.DataFrame(),
         "expansion_cells": red, "expansion": exp, "cost_fit": cost_fit(df), "pareto": pareto_table(c),
     }
     for name, table in tables.items():
         table.to_csv(out / f"{name}.csv", index=False)
-    (out / "summary.md").write_text(summary_md(df, tables), encoding="utf-8")
+    (out / "summary.md").write_text(summary_md(everything, tables), encoding="utf-8")
     print(f"tables and summary written to {out}")
     return tables

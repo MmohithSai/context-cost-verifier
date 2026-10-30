@@ -21,7 +21,7 @@ segments:
         and S3 Sorter. PRT-BAT-36V fits the Stowbot S1 and the discontinued K2 Courier.
     - title: K-series spare parts catalogue (extract)
       text: |
-        PRT-BAT-48V: spare 48 V battery pack. PRT-BAT-36V: spare 36 V battery pack.
+        PRT-BAT-48V: spare 48 V battery pack. PRT-ARM-K4: motor arm, K4 Hauler.
         PRT-ARM-K3: motor arm, K3 Sparrow. PRT-PROP-K4: propeller set, K4 Hauler.
     - title: Warehouse codes
       text: |
@@ -42,7 +42,7 @@ segments:
         busy season and want to know what you are holding first.
     - role: assistant
       content: Of course. Tell me which pack and which warehouse and I will check.
-query: Check the spare 36 V battery packs at the warehouse serving the Hyderabad region.
+query: Check stock of the spare battery pack that fits the Stowbot S1, at the warehouse serving the Hyderabad region.
 gold_doc: 0
 grader:
   type: tool_call

@@ -25,7 +25,7 @@ segments:
     - title: "Stock report PRT-BAT-36V (spare 36 V battery pack)"
       text: |
         Hyderabad (HYD): 63 units on hand. Pune (PNQ): 29 units on hand.
-        Bengaluru (BLR): 12 units on hand. The 36 V pack fits the Stowbot S1 only.
+        Bengaluru (BLR): 12 units on hand. The 36 V pack fits the Stowbot S1 and the K2 Courier.
     - title: Which battery fits which machine
       text: |
         PRT-BAT-48V fits every K-series drone from the K3 Sparrow upward, and the Stowbot S2 Pallet

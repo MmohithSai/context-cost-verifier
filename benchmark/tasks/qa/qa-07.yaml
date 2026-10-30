@@ -44,4 +44,4 @@ gold_doc: 0
 grader:
   type: qa
   answers: ["1.4 m", "1.4m", "1.4 metres", "1.4 meters"]
-  distractors: ["1.1 m", "1.8 m", "1.6 m"]
+  distractors: ["1.1 m", "1.8 m"]

@@ -8,7 +8,7 @@
       properties:
         order_id:
           type: string
-          description: Kestrel order number, e.g. KR-55120.
+          description: Kestrel order number, e.g. KR-50001.
       required: [order_id]
 - type: function
   function:
@@ -22,7 +22,7 @@
           description: Device serial number, e.g. KR4-88217.
         center_id:
           type: string
-          description: Service center identifier, e.g. SC-PNQ-02.
+          description: Service center identifier, e.g. SC-MAA-01.
         date:
           type: string
           description: Appointment date in YYYY-MM-DD format.
@@ -56,7 +56,7 @@
       properties:
         invoice_id:
           type: string
-          description: Invoice number, e.g. INV-20931.
+          description: Invoice number, e.g. INV-10001.
         email:
           type: string
           description: Recipient email address on file.

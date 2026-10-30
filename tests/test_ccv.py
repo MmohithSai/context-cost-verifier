@@ -183,7 +183,7 @@ def test_attribution_is_exact(tasks, model):
 # ---- end to end without a GPU --------------------------------------------------------------
 
 FACTS = {  # query marker -> (fact only the gold doc has, fact only the history has, correct answer)
-    "maximum payload": ("Maximum payload: 12.5 kg", "KR4-88217", "12.5 kg"),
+    "maximum payload": ("Maximum payload: 12.5 kg", "KR4-88305", "12.5 kg"),
     "invoice details": ("Total: EUR 1,840.50", "KR-55120", json.dumps(
         {"invoice_id": "INV-20931", "order_id": "KR-55120", "total": 1840.5, "currency": "EUR",
          "due_date": "2026-03-14"})),
@@ -277,7 +277,7 @@ def test_pipeline_end_to_end(tmp_path, fake_server):
     (bench / "compressed.json").write_text(json.dumps(cache), encoding="utf-8")
 
     out = tmp_path / "results" / "fake.jsonl"
-    suites = ["noise", "shapley", "ablations"]
+    suites = ["calibrate", "noise", "shapley", "ablations"]
     kwargs = dict(bench=bench, endpoint=fake_server, gpu_index=-1)
     run(tasks, SMALL, suites, out, limit=7, **kwargs)
     with open(out, "a", encoding="utf-8") as f:
@@ -285,7 +285,7 @@ def test_pipeline_end_to_end(tmp_path, fake_server):
     run(tasks, SMALL, suites, out, **kwargs)
 
     records = list(read_records(out))
-    expected = len(tasks) * (30 + 64 + 9)
+    expected = len(tasks) * (4 + 30 + 64 + 9)
     assert len(records) == expected
     assert len({r["run_id"] for r in records}) == expected
     assert all(r["status"] == "ok" and r["attribution_ok"] and r["server_metrics"] for r in records)
@@ -294,6 +294,9 @@ def test_pipeline_end_to_end(tmp_path, fake_server):
     assert len(list(read_records(out))) == expected
 
     tables = analysis.analyze([out], tasks, tmp_path / "analysis")
+    cal = tables["calibration"]
+    assert len(cal) == len(tasks) and cal.keep.all() and (cal.full_runs == 3).all()
+    assert len(tables["runs"].query("suite == 'calibrate'")) == 4 * len(tasks)
     shap = tables["shapley"].set_index(["workload", "metric", "segment"]).shapley
     for wl in ("qa", "extraction"):
         assert np.isclose(shap[wl, "passed", "retrieved"], 0.5) and np.isclose(shap[wl, "passed", "history"], 0.5)

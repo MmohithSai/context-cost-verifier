@@ -46,5 +46,5 @@ query: What is the standard delivery lead time for a confirmed order in the Beng
 gold_doc: 0
 grader:
   type: qa
-  answers: ["12 working days", "12 days"]
+  answers: ["12 working days", "12 business days", "12 days"]
   distractors: ["7 working days", "9 working days", "21 working days", "3 working days"]

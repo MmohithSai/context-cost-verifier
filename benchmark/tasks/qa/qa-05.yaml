@@ -51,5 +51,5 @@ query: What is the published ingress protection rating of the K5 Freighter?
 gold_doc: 0
 grader:
   type: qa
-  answers: ["IP55"]
+  answers: ["IP55", "IP 55"]
   distractors: ["IP54", "IP43", "IP20"]

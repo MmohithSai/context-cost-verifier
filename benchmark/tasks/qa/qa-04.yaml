@@ -42,7 +42,7 @@ segments:
   history:
     - role: user
       content: |
-        Hi, Freja at Nordkap Logistics. We took your quote Q-7841 for two K4 Haulers last month, but
+        Hi, Freja at Nordkap Logistics. We took your quote Q-7841 for two K4 Haulers in January, but
         we dropped the extended warranty line before signing to keep the budget down. They are new
         airframes, not refurbished, and they were delivered on 2026-02-20.
     - role: assistant
@@ -56,4 +56,4 @@ gold_doc: 0
 grader:
   type: qa
   answers: ["24 months", "24months", "2 years"]
-  distractors: ["36 months", "12 months", "18 months", "9 months"]
+  distractors: ["36 months", "18 months", "9 months"]

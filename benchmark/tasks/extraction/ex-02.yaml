@@ -18,7 +18,7 @@ segments:
   retrieved:
     - title: Order KR-55210
       text: |
-        Customer: Whitefield Robotics (Bengaluru). Confirmed 2026-03-02.
+        Customer: Whitefield Robotics. Confirmed 2026-03-02.
         Lines: 1 x Stowbot S3 Sorter (INR 742,000.00), 1 x PRT-RAIL-14 aisle guide rail kit
         (INR 31,500.00), 1 x PRT-PAD-S2 gripper pad set (INR 8,400.00).
         Total: INR 781,900.00. Standard delivery, Bengaluru region.
@@ -32,7 +32,7 @@ segments:
         INR 812,400.00. Valid until 2026-03-20. Accepting a quote creates a new order number.
     - title: Order KR-55211
       text: |
-        Customer: Whitefield Robotics (Bengaluru). Confirmed 2026-03-04.
+        Customer: Whitefield Robotics. Confirmed 2026-03-04.
         Lines: 4 x PRT-WHL-S2 drive wheel (INR 4,900.00 each). Total: INR 19,600.00.
         This is a follow-up consumables order.
     - title: Order numbering note
@@ -45,7 +45,7 @@ segments:
         (INR 1,485,000.00). Total: INR 1,485,000.00. Status: delivered 2026-02-20.
     - title: Payment terms on machine orders
       text: |
-        Machine orders over INR 500,000.00 are invoiced in two parts: 40% on confirmation and 60% on
+        Machine orders over INR 500,000.00 may be invoiced in two parts at the customer's request: 40% on confirmation and 60% on
         dispatch. The order total shown on the order record is always the full value, never the
         instalment. Consumables orders are invoiced once, in full, at dispatch.
     - title: How an order total is built

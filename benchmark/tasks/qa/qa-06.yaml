@@ -50,9 +50,9 @@ segments:
         updated directly to the current minimum; no intermediate step is needed.
     - title: Fleet console export for SkyCart Deliveries
       text: |
-        KR4-70112L (K4 Hauler Lite): running 4.9.7, last flown 2025-11-30, 31.2 flight hours.
-        KR4-70118L (K4 Hauler Lite): running 5.0.3, last flown 2025-12-02, 28.8 flight hours.
-        KR4-70121L (K4 Hauler Lite): running 5.0.3, last flown 2025-12-02, 12.1 flight hours.
+        KR4-70112L (K4 Hauler Lite): running 4.9.7, last flown 2026-01-24, 31.2 flight hours.
+        KR4-70118L (K4 Hauler Lite): running 5.0.3, last flown 2026-01-25, 28.8 flight hours.
+        KR4-70121L (K4 Hauler Lite): running 5.0.3, last flown 2026-02-11, 12.1 flight hours.
         KR3-41208 (K3 Sparrow): running 4.2.1. KR4-90533 (K4 Hauler): running 4.2.1.
         Export taken 2026-03-06 by Anita Deshpande.
     - title: Storage and recommissioning checklist
@@ -75,7 +75,7 @@ segments:
     - role: assistant
       content: "Thanks, Anita: three K4 Hauler Lite airframes, all with the L suffix."
     - role: user
-      content: They have been sitting for months, so I assume the firmware is well out of date.
+      content: They have been sitting in storage for weeks, so I assume the firmware is out of date.
     - role: assistant
       content: Very likely. I can tell you which version they need before they will arm.
 query: What is the minimum flight-ready firmware version for our airframes?

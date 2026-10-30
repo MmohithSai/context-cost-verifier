@@ -18,7 +18,7 @@ segments:
     - title: "Account record: Whitefield Robotics"
       text: |
         Operations contact: Priya Nair, priya.nair@whitefieldrobotics.in.
-        Billing contact: Deepak Iyer, ap@whitefieldrobotics.in. Registered city: Bengaluru.
+        Billing contact: Deepak Iyer, deepak.iyer@whitefieldrobotics.in. Registered city: Bengaluru.
     - title: Invoice INV-21102
       text: |
         Customer: Whitefield Robotics. Order: KR-55210. Items: 1 x Stowbot S3 Sorter,
@@ -33,7 +33,7 @@ segments:
         given in chat that is not already on the account record.
     - title: Invoice numbering
       text: |
-        Invoice references begin INV- and are issued when the order ships. One invoice covers exactly
+        Invoice references begin INV- and are issued within a few days of order confirmation. One invoice covers exactly
         one order.
   history:
     - role: user
@@ -43,10 +43,10 @@ segments:
     - role: assistant
       content: Of course. Invoices go to the billing contact held on the account.
 query: Please email a copy of invoice INV-21102 to whoever handles billing for Whitefield Robotics.
-gold_doc: 1
+gold_doc: 0
 grader:
   type: tool_call
   name: send_invoice_copy
   arguments:
     invoice_id: INV-21102
-    email: ap@whitefieldrobotics.in
+    email: deepak.iyer@whitefieldrobotics.in

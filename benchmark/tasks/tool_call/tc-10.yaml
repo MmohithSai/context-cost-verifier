@@ -42,7 +42,7 @@ segments:
         give him something from your system than a guess.
     - role: assistant
       content: Of course. I can look up any order you name.
-query: Please chase order KR-55248 for us.
+query: Please chase the open order for two K4 Haulers.
 gold_doc: 1
 grader:
   type: tool_call

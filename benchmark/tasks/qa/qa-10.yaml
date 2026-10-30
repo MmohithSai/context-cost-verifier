@@ -51,4 +51,4 @@ gold_doc: 0
 grader:
   type: qa
   answers: ["2,400 m", "2400 m", "2,400 metres", "2400 metres", "2,400m", "2400m"]
-  distractors: ["1,800 m", "2,100 m", "2,900 m", "2,200 m", "120 m"]
+  distractors: ["1,800 m", "2,100 m", "2,900 m", "2,200 m"]

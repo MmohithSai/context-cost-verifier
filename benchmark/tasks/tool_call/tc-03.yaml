@@ -9,8 +9,8 @@ segments:
     Do not reply with text when a tool call is needed.
   tools: "@kestrel_tools"
   examples: |
-    Request: Reserve room HYD-3B for the six of us on 2026-02-10 at 15:00.
-    Action: call book_meeting_room with room_id "HYD-3B", date "2026-02-10", start_time "15:00", attendees 6.
+    Request: Reserve room BLR-1B for the six of us on 2026-02-10 at 15:00.
+    Action: call book_meeting_room with room_id "BLR-1B", date "2026-02-10", start_time "15:00", attendees 6.
 
     Request: Book the Pune training room for four people next Tuesday, 2026-02-17, first thing at 09:00.
     Action: call book_meeting_room with room_id "PNQ-1A", date "2026-02-17", start_time "09:00", attendees 4.

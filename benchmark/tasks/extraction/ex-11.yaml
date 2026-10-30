@@ -34,7 +34,7 @@ segments:
         re-priced, never extended. A superseded quote stays on file but cannot be accepted.
     - title: Service plan pricing
       text: |
-        The 3-year service plan is priced at 9.5% of the machine list price and covers all preventive
+        The 3-year service plan is priced at INR 70,400.00 for a Stowbot S3 Sorter and covers all preventive
         maintenance labour. Wear parts are charged separately.
   history:
     - role: user

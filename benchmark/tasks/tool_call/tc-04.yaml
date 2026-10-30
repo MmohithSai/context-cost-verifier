@@ -35,7 +35,7 @@ segments:
     - title: Invoice payment policy
       text: |
         Invoices are due 30 days after the issue date. A reminder is emailed 7 days before the due
-        date, and a late fee of 1.5% per month applies after it.
+        date, and a late fee of 1.75% per month applies after it.
   history:
     - role: user
       content: |
