@@ -136,7 +136,8 @@ On 30 Oct the project was about five weeks behind on GPU work (the plan expected
 ### 5.1 Local smoke test
 
 - **Plan:** serve Qwen2.5-0.5B in the official `vllm/vllm-openai:v0.29.0` Docker image on the laptop's RTX 3050 (Docker Desktop with the NVIDIA runtime was already installed).
-- **Challenge:** the ~10 GB image download failed with `unexpected EOF` partway through (network drop); retried, since completed layers are kept.
+- **Challenge:** the ~10 GB image download failed with `unexpected EOF` partway through (network drop), and the Docker CLI hung while the retry ran.
+- **Outcome: dropped.** Once the user verified the Kaggle account, the real 7B run produced 180/180 `attribution_ok`, server metrics and energy (§5.3) faster than the local download could finish. The local test's whole purpose — catch template and metrics problems before spending Kaggle hours — was met by the real run, so the download was stopped. Lesson: a de-risking step is worth doing only while it is cheaper than the real thing.
 
 ### 5.1b LLMLingua-2 compression cache (measured, run K1c)
 
@@ -164,7 +165,8 @@ LLMLingua-2 hits its target on average but varies a lot per text. That is why pl
 
 | K1b | 2026-10-30 ~07:40 | same, with boolean metadata | 2 | ~4 min | 0 / 0 | **Failed again, no internet** — rules out the string-valued `enable_internet` flag as the cause; the account needs phone verification. The new install assertion stopped the notebook in the first code cell with the message "install failed: is Internet on?", as intended. |
 | K1c | 2026-10-30 07:19 | same, after phone verification | 3 | ~13 min | 0 / 0 | **Partial success.** Installs worked and **LLMLingua-2 compression of all 45 tasks succeeded** (`benchmark/compressed.json`, 155 KB) — the D30 venv fix worked first time. Then `vllm serve` crashed at import: vLLM 0.29 installs a PyTorch built for CUDA 13.0, Kaggle preinstalls a `torchaudio` built for CUDA 12.8, and `transformers` imports `torchaudio` whenever it is installed. Fix: `pip uninstall torchaudio` after installing vLLM (D32). Also noticed the repo was cloned into `/kaggle/working`, so the saved output contained a full copy of the repo; it is now cloned to `/kaggle/tmp`. |
-| K1d | 2026-10-30 07:33 | qwen2.5-7b, `calibrate`, `COMPRESS=False` (cache committed) | 4 | | | |
+| K1d | 2026-10-30 07:33 | qwen2.5-7b, `calibrate`, `COMPRESS=False` (cache committed) | 4 | ~17 min (170 s server start, 9.8 min of requests) | 180 / 0 | **First successful GPU run.** All sanity checks pass (§5.3). Calibration: QA 15/15 and tool calling 15/15 kept, extraction 1/15 — tools hijacked extraction (§5.4). |
+| K1e | 2026-10-30 07:55 | same + dataset `mmohithsai/ccv-results` attached (resume); extraction queries fixed | 5 | | | |
 
 **Fixes after K1:**
 1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.
@@ -173,9 +175,38 @@ LLMLingua-2 hits its target on average but varies a lot per text. That is why pl
 
 **Lesson for the report:** the notebook had been written in week 1 but never executed. Both failures were invisible offline — exactly why the plan put a smoke test first. The cost was one 6-minute session.
 
-### 5.3 Measured hardware numbers
+### 5.3 First real measurements (run K1d, calibrate suite, 180 requests)
 
-_See [PROGRESS.md](PROGRESS.md) §4 once measured._
+**Sanity checks: all passed on the first real run.** `attribution_ok` 180/180 (the local tokenizer-and-template count equals vLLM's `usage.prompt_tokens` on every request, so the attribution work in §2.3 holds on the real server); server per-request metrics 180/180; NVML energy 180/180; 0 duplicate `run_id`s; 0 runs hit `max_tokens`; every tool-calling baseline returned a parsed tool call (hermes parser works).
+
+| Quantity | Plan's guess | Measured | Source |
+|---|---|---|---|
+| vLLM start to healthy (incl. weight download) | ~10 min | 170 s | notebook log |
+| GPU, driver | — | Tesla T4 15,360 MiB, driver 580.178.04 | notebook log |
+| vLLM version | 0.29.0 | 0.29.0 works on the T4 (fp16, TRITON_ATTN) once torchaudio is removed | `vllm.log` |
+| Prefill, full prompt (median 1,756 tokens) | ~1 s | **2,162 ms** (1.24 ms/token) | records |
+| Decode speed | ~30 tok/s | **35.9 tok/s** (27.9 ms/token) | records |
+| GPU utilisation during a request | — | 99.8% median | NVML |
+| Peak GPU memory | — | 14.1 GB (vLLM pre-allocates the KV cache) | NVML |
+| Energy per full-context request | — | 196 J median | NVML |
+| Mean seconds per request | 6 s | **3.27 s** (180 requests in 9.8 min) | records |
+
+**Early signal for RQ3 (to be confirmed by the cost fit on the full sweep):** one decode token costs ~27.9 ms, one prefill token ~1.24 ms, a physical ratio of about **22:1** — far above the 5:1 that price lists assume. Prefill is cheap per token because it is parallel; decode is sequential.
+
+**Early signal for RQ2:** with the query alone (median 46 prompt tokens), the model wrote a median **138** output tokens, versus **27** with full context. Removing context made answers ~5× longer. That is the output-expansion effect the project is about, visible before any Shapley analysis.
+
+### 5.4 Calibration finding: tools hijack extraction
+
+**What happened.** In the first calibration, QA kept 15/15 tasks and tool calling 15/15, but extraction kept only 1/15. Reading the raw outputs (not just the pass flags) showed why: in **42 of 45** full-context extraction runs the model ignored the documents in its own prompt and **called a lookup tool** (`lookup_order`, `lookup_firmware_record`, …) — even though the instructions in the system message said "do not call tools".
+
+**Why it matters for the report.** This is a real behavioural effect of the `tools` segment: tool definitions are not just a token cost, they can change what the model *does*. A query such as "Give me the record for ticket TK-5602" reads as a lookup request, and the tool schema in the prompt wins over an instruction several hundred tokens earlier. Evidence kept: `results/evidence/qwen2.5-7b.calibrate_v0.jsonl` and `results/evidence/calibration_v0_tools_hijack_extraction.csv`.
+
+**Options considered.**
+1. Send `tool_choice: "none"` for extraction. Rejected: vLLM then drops tool definitions from the prompt by default, which changes what is being measured and breaks the "tools as realistic distractor" design.
+2. Drop the tools from extraction tasks. Rejected: every task must fill all six segments for the 64-subset design.
+3. **Chosen:** end each extraction query with "Take it from the documents above and reply with the JSON object only." — what a real application would put in the user turn. Cost: because the query is always kept, part of the format guidance now lives in every subset, so `instructions` will get less Shapley credit in extraction than it otherwise would. The report should say so.
+
+Only the 15 extraction tasks changed (new task hashes), so resume reran just their 60 calibration requests (run K1e).
 
 ---
 

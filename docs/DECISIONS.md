@@ -172,3 +172,10 @@ Scatter plots cap at three colours, so Pareto charts grey out non-frontier confi
 **D32. The Kaggle notebook uninstalls `torchaudio` after installing vLLM** (2026-10-30)
 *Why:* vLLM 0.29 pulls a CUDA 13.0 PyTorch, while the Kaggle image ships a CUDA 12.8 `torchaudio`; `transformers` imports `torchaudio` whenever it is installed, and its CUDA check raises, so `vllm serve` died before loading the model. Nothing in this project uses audio.
 *Consequence:* if a future Kaggle image or vLLM version changes torch builds, check `vllm.log` for import-time errors first.
+
+**D33. Extraction queries say where the answer comes from** (2026-10-30)
+Each extraction query ends with "Take it from the documents above and reply with the JSON object only."
+*Why:* in the first real calibration, 42 of 45 full-context extraction runs called a lookup tool instead of reading the documents, despite "do not call tools" in the system message (REPORT_NOTES §5.4). `tool_choice: "none"` was rejected because vLLM then drops the tool definitions from the prompt, which changes the thing being measured.
+*Consequence:* the query is always kept, so some format guidance is present in every subset and `instructions` gets less Shapley credit in extraction than it would otherwise. The pre-fix calibration is kept in `results/evidence/` as a finding about the `tools` segment.
+
+**D34. The local Docker smoke test was dropped** (2026-10-30) — the real Kaggle run validated attribution, metrics and energy before the 10 GB image finished downloading.

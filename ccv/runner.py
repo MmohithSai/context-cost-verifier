@@ -16,7 +16,7 @@ from .ablations import SUITES, load_cache, variant
 from .attribution import MODELS, Prompter
 from .tasks import digest, layout, to_messages
 
-SEC_PER_REQUEST = 6  # rough T4 estimate for dry-run planning; re-measure with a smoke run
+SEC_PER_REQUEST = 3.3  # measured: Qwen2.5-7B AWQ on a Kaggle T4, calibrate suite (2026-10-30)
 
 
 class RequestError(Exception):
@@ -152,6 +152,21 @@ def stream_chat(client, url, body, headers):
         "client_ttft_ms": round((first - t0) * 1000, 2) if first else None,
         "client_e2e_ms": round((end - t0) * 1000, 2),
     }
+
+
+def unstreamed_output(client, url, body, headers):
+    """Output and tool calls of the same request, not streamed.
+
+    vLLM's streaming tool parser drops text it took for the start of a tool call that never parsed
+    (Qwen wrapping a plain JSON answer in <tool_call> tags), while the non-streamed path returns that
+    text as content. Greedy decoding makes the second response the same generation."""
+    r = client.post(url, json={**body, "stream": False}, headers=headers)
+    r.raise_for_status()
+    msg = r.json()["choices"][0]["message"]
+    calls = [{"type": "function", "function": {"name": c["function"]["name"],
+                                               "arguments": c["function"]["arguments"]}}
+             for c in msg.get("tool_calls") or []]
+    return {"output": msg.get("content") or "", "tool_calls": calls or None}
 
 
 def _pick(server, client):
@@ -293,6 +308,11 @@ def run(tasks, model, suites, out, bench=None, endpoint="http://localhost:8000/v
                     if attempt < 2:
                         time.sleep(5 * 2**attempt)
             ok = rec["status"] == "ok"
+            if ok and rec["decode_tokens"] and not rec["output"] and not rec["tool_calls"]:
+                try:  # timings stay those of the streamed run; this only recovers the text
+                    rec.update(unstreamed_output(client, url, body, headers), output_recovered=True)
+                except (httpx.HTTPError, KeyError, ValueError) as e:
+                    rec["output_recovered"] = f"failed: {type(e).__name__}: {e}"
             rec.update(attribution=attribution,
                        attribution_ok=attribution["total"] == rec["prefill_tokens"] if ok and attribution else None,
                        compression=compression, env=env, ts=datetime.now(timezone.utc).isoformat(timespec="seconds"))

@@ -226,6 +226,11 @@ class FakeVLLM(BaseHTTPRequestHandler):
         prompt = self.prompter.render(body["messages"], body.get("tools"))
         n_in = self.prompter.count(prompt)
         text, call = _behave(body, prompt)
+        if not body.get("stream"):
+            tool_calls = call and [{"id": "call_0", "type": "function", "function": {
+                "name": call["name"], "arguments": json.dumps(call["arguments"])}}]
+            return self._json({"choices": [{"message": {"content": None if call else text,
+                                                        "tool_calls": tool_calls}}]})
         self.send_response(200)
         self.send_header("Content-Type", "text/event-stream")
         self.end_headers()
@@ -241,6 +246,8 @@ class FakeVLLM(BaseHTTPRequestHandler):
         else:
             words = text.split(" ")
             for i, w in enumerate(words):
+                if text.startswith("{"):  # like vLLM's hermes parser, swallow it when streaming
+                    break
                 send({"choices": [{"index": 0, "delta": {"content": w if i == 0 else " " + w}}]})
             n_out = len(words)
         n_out = min(n_out, body["max_tokens"])
@@ -290,6 +297,7 @@ def test_pipeline_end_to_end(tmp_path, fake_server):
     assert len({r["run_id"] for r in records}) == expected
     assert all(r["status"] == "ok" and r["attribution_ok"] and r["server_metrics"] for r in records)
     assert all(r["env"]["server"] == "fake-vllm" for r in records)
+    assert any(r.get("output_recovered") is True and r["output"].startswith("{") for r in records)
     run(tasks, SMALL, suites, out, **kwargs)  # nothing left to do
     assert len(list(read_records(out))) == expected
 
