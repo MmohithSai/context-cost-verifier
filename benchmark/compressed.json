@@ -1,0 +1,4250 @@
+{
+ "0015b216eea2a4ea": {
+  "ms": 127.8,
+  "text": "two K4 Haulers 2026-02-20 warranty"
+ },
+ "002be59d7c4b01cf": {
+  "ms": 105.4,
+  "text": "Document Invoice INV-18840 order KR-51002. due USD 612.00 Payment 5 January 2026.\n Output\"invoice_id \"INV-18840\", \"order_id \"KR-51002\", \"total 612.00 \"currency \"due_date \"2026-01-05\"}\n\n Document Order KR-50977 billed invoice INV-18791 total INR 48,250.00 due 2025-12-19.\n Output\"invoice_id \"INV-18791\", \"order_id \"KR-50977\", \"total 48250.00 \"currency \"INR\", \"due_date \"2025-12-19\"}\n"
+ },
+ "00db5a0f1c7c641c": {
+  "ms": 119.8,
+  "text": "Size fleet on sustained throughput never peak throughput Add 15% headroom charging\n rotations Mixed fleets supported each model needs own dock type.\n"
+ },
+ "0108b8ae61923731": {
+  "ms": 99.8,
+  "text": "pad set replaced complete mixed depths\n robot drop light Pad screws torqued 2.5 Nm\n"
+ },
+ "0114999f91ecf867": {
+  "ms": 118.7,
+  "text": "Request: news on Hyderabad shipment? Order KR-51002.\n Action call lookup_order order_id \"KR-51002\".\n\n Request Chase Gothenburg order KR-50977.\n Action call lookup_order order_id \"KR-50977\".\n"
+ },
+ "0152c4257eb1cc13": {
+  "ms": 113.5,
+  "text": "Model K4 Hauler Lite Owner SkyCart Deliveries Registered Pune\n Delivered 2026-01-22 Warranty start delivery date\n"
+ },
+ "01556f866354e41e": {
+  "ms": 120.7,
+  "text": "green powered healthy idle Flashing green working Amber wear part\n drive robot stopped Red critical fault halted\n steady green rules mechanical fault\n"
+ },
+ "01a26c73ed780522": {
+  "ms": 100.5,
+  "text": "Authorised dealers billed 60-day late fee 0.9% month\n Dealer status account record invoice\n"
+ },
+ "01f1c6848fcfeb2b": {
+  "ms": 101.1,
+  "text": "Nordkap Logistics K4 Hauler 48\n 1,840.50 delivered 2026-02-03.\n"
+ },
+ "02563865271e705b": {
+  "ms": 96.1,
+  "text": "goodwill credit not no refund issued separately\n"
+ },
+ "025d6c75e5b77a86": {
+  "ms": 120.7,
+  "text": "Thanks, Arjun. 50-flight-hour inspection due for KR4-90533."
+ },
+ "02c21a58804cc47b": {
+  "ms": 119.9,
+  "text": "total line values tax\n free domestic express\n\n"
+ },
+ "032df773e4c771d4": {
+  "ms": 106.5,
+  "text": "PRT-BAT-36V 63 5\n\n\n PRT-RAIL-14 Bengaluru 20\n\n"
+ },
+ "036bc2e3823fa84a": {
+  "ms": 107.4,
+  "text": "Document Ticket TK-5510 KR4-88217 delivery problem opened 2026-01-15 still open\n Output\"ticket_id \"TK-5510\", \"serial_number \"KR4-88217\", \"category \"delivery\", \"opened \"2026-01-15\", \"open\"}\n\n Document TK-5488 SB1-20044 billing query raised 2 Feb 2026 resolved\n Output\"ticket_id \"TK-5488\", \"serial_number \"SB1-20044\", \"category \"billing\", \"opened \"2026-02-02\", \"closed\"}\n"
+ },
+ "0372206074dda76f": {
+  "ms": 115.7,
+  "text": "console pair KR4-88217 update\n\n\n consignment carton short KR-50977\n\n"
+ },
+ "0427a0dfd1309a5a": {
+  "ms": 106.3,
+  "text": "Arjun SkyCart importing open support items tracker\n need field field\n"
+ },
+ "04749513ff2eeb0b": {
+  "ms": 123.1,
+  "text": "order total is sum of line values before discount and before tax. Delivery\n is free on domestic orders. express delivery fee, when taken, is added as own line\n appears in line count.\n"
+ },
+ "04d355dd10bc44ef": {
+  "ms": 116.0,
+  "text": "Menon\n Billing Kavya\n Hyderabad Dealer\n"
+ },
+ "04d8519853a275ab": {
+  "ms": 101.0,
+  "text": "airframe stored 60 days recommissioned Charge\n pack 100% discharge 20% check firmware re-torque motor\n fasteners 5 Nm run hover test 3 minutes 2 m Record checklist\n Fleet console serial number Skipping step voids warranty\n 45 minutes airframe\n"
+ },
+ "0572c4fefc5746e6": {
+  "ms": 131.0,
+  "text": "install firmware 4.2.1 before first flight described in service bulletin SB-2026-07."
+ },
+ "0590f4450eee5a9f": {
+  "ms": 113.5,
+  "text": "KR3-41208 (K3 51.7 flight KR4-90533 (K4 12.4 hours\n SB2-30117 (Stowbot S2 Pallet): 1,835 operating hours\n SB2-30119 (Stowbot S2 402 operating hours Export 2026-03-06.\n"
+ },
+ "05b6f9a9a665fa43": {
+  "ms": 97.5,
+  "text": "goodwill credit issued\n"
+ },
+ "064273aa6b34539f": {
+  "ms": 118.8,
+  "text": "Technicians calibrate K4 load cell with certified 10 kg reference weight.\n Calibration takes 20 minutes repeated after crash landing.\n"
+ },
+ "0678e210dfdb4d6d": {
+  "ms": 129.4,
+  "text": "Understood return ticket JSON"
+ },
+ "06a8158aa2ea4e98": {
+  "ms": 115.3,
+  "text": "motor\n propeller Hauler blades\n"
+ },
+ "06b7e3cbcd5800ee": {
+  "ms": 112.9,
+  "text": "Machine orders over INR 500,000.00 invoiced in two parts at customer's request: 40% on confirmation 60% on\n dispatch. order total on order record always full value never\n instalment. Consumables orders invoiced once in full at dispatch.\n"
+ },
+ "06d2be214941dab1": {
+  "ms": 107.7,
+  "text": "Kiri new drone week standard K4 Hauler\n KR4-88305 not Lite\n"
+ },
+ "06f68f5d572c140c": {
+  "ms": 109.3,
+  "text": "63 Pune 29\n 12\n"
+ },
+ "072106f835784d5f": {
+  "ms": 123.6,
+  "text": "storage weeks firmware"
+ },
+ "072db2eeaac3b0d3": {
+  "ms": 98.0,
+  "text": "invoice INV-20931 Freight EUR 190.50\n returned part approved 2026-03-05\n"
+ },
+ "07693090c34412b4": {
+  "ms": 125.5,
+  "text": "Understood single Lite airframe still below minimum version."
+ },
+ "080d358dcfc45af5": {
+  "ms": 101.5,
+  "text": "Whitefield Robotics 4 PRT-WHL-S2 wheel\n INR 19,600.00-up consumables\n"
+ },
+ "0843dbd28c7acd2e": {
+  "ms": 121.3,
+  "text": "classic sign worn gripper pads S3 Sorter full set"
+ },
+ "08590b257da27dc6": {
+  "ms": 114.6,
+  "text": "can give installation requirements Stowbot model."
+ },
+ "086d7d283f3b4dbc": {
+  "ms": 107.8,
+  "text": "Arjun importing support\n\n"
+ },
+ "08c04c9cd6992ce9": {
+  "ms": 130.4,
+  "text": "We have HeavyLift kit on one our K3 Sparrows our technician doing first check."
+ },
+ "08cc81903b86daa8": {
+  "ms": 106.8,
+  "text": "Document KR4-88217 K4 Hauler registered Orbital Parcel Hyderabad delivered 2026-01-11.\n Output_number \"Orbital \"2026-01-11\n\n Stowbot S1 SB1-20044 Nordkap Logistics Gothenburg handed over 5 Feb 2026.\n Output_number \"Stowbot \"delivered \"2026-02-05\n"
+ },
+ "09187d88a898f9a3": {
+  "ms": 110.2,
+  "text": "Arjun SkyCart moved operations recently working through\n everything points old site\n"
+ },
+ "099aa3160b2100fc": {
+  "ms": 110.1,
+  "text": "no\n airframe uncommanded descent\n"
+ },
+ "09eed04bb2a09dde": {
+  "ms": 101.5,
+  "text": "Nordkap Confirmed 2 K4 Hauler\n EUR 3,300.00 production\n"
+ },
+ "0a30b1d20b1e62e6": {
+  "ms": 102.0,
+  "text": "Whitefield\n PRT 19,600.00\n-up\n"
+ },
+ "0a631ed47264cfda": {
+  "ms": 115.2,
+  "text": "issued confirmation Q\n orders\n"
+ },
+ "0a6ca6f94ca6fce2": {
+  "ms": 121.2,
+  "text": "SC-PNQ-02 Hinjewadi Phase 2. K-series drones\n Next maintenance slot 2026-04-02.\n SC-PNQ-01 Kharadi services Stowbot robots next slot 2026-03-27.\n"
+ },
+ "0ab1b4880d1aa637": {
+  "ms": 100.9,
+  "text": "Whitefield Robotics Confirmed 2026-03-02.\n Stowbot S3 Sorter PRT-RAIL-14 aisle rail\n PRT-PAD-S2 gripper 8\n INR 781,900.00 Bengaluru\n"
+ },
+ "0b5283aa8f5a0000": {
+  "ms": 112.1,
+  "text": "Pune"
+ },
+ "0b7c551958e28ac7": {
+  "ms": 99.5,
+  "text": "ticket problem book slot order\n airframe actions team\n second\n"
+ },
+ "0b84e963e493fe9e": {
+  "ms": 117.7,
+  "text": "Request console not pair KR4-88217 after update\n Action call create_support_ticket serial_number \"KR4-88217\", category \"software\", summary \"Console not pair after firmware update\".\n\n Request consignment arrived carton short order KR-50977\n call create_support_ticket category \"delivery\", summary \"Consignment KR-50977 arrived one carton short\".\n"
+ },
+ "0be2331ed70f62ac": {
+  "ms": 121.9,
+  "text": "K4 Hauler Lite reduced carbon frame revised flight controller\n range Maximum payload 8 kg Range full payload\n 52 km Top speed 64 km/h Lite identified L\n accept HeavyLift kit\n"
+ },
+ "0c1ad0d85becd33c": {
+  "ms": 122.6,
+  "text": "Fleet console 90%\n\n"
+ },
+ "0c5cb85b9d1acecf": {
+  "ms": 100.5,
+  "text": "smallest room everyone fewer\n not booked Rooms needing facilities approval excluded self-service booking\n"
+ },
+ "0c9e883122d54b3f": {
+  "ms": 114.1,
+  "text": "PRT-BAT-48V 48 V battery pack-ARM-K3 motor arm K3 Sparrow\n PRT-COWL-K5 splash cowling K5 Freighter-PROP-K4 propeller set K4 Hauler 4 blades\n"
+ },
+ "0cb9190eab697c54": {
+  "ms": 109.9,
+  "text": "check on-hand figure home warehouse"
+ },
+ "0cc3b336b12bbe3a": {
+  "ms": 106.7,
+  "text": "Hi Kiri, refreshing supplier contact sheet want fields exactly as you hold\n them, nothing gets retyped incorrectly.\n"
+ },
+ "0cd81dabf662785e": {
+  "ms": 112.9,
+  "text": "Operations Arjun Rao 5550 7741\n Billing Meera Nayak accounts@skycart 7799\n Pune Dealer status\n"
+ },
+ "0ce01bbbc0912d19": {
+  "ms": 106.3,
+  "text": "mezzanine Stowbot"
+ },
+ "0ceff706323e5f61": {
+  "ms": 116.8,
+  "text": "Hyderabad order? KR-51002.\n call lookup_order_id \"KR-51002\".\n\n Send copy invoice INV-18840 finance address (ap@orbitalparcel.in).\n call send_invoice_copy \"INV email\n"
+ },
+ "0d57f4873ec58933": {
+  "ms": 111.0,
+  "text": "aisle\n ceiling\n"
+ },
+ "0d956207fbbb58f5": {
+  "ms": 107.1,
+  "text": "can confirm warranty terms apply to your airframes."
+ },
+ "0d9eca3cbff608c0": {
+  "ms": 101.6,
+  "text": "SkyCart Deliveries Order KR-55233 4 PRT-PROP-K4 propeller set\n INR 22,400.00 Issued 2026-03-02. Due 2026-04-01\n"
+ },
+ "0dec0704ea6de684": {
+  "ms": 114.4,
+  "text": "Courier Sparrow Hauler\n Freighter refuses\n"
+ },
+ "0dfc7210243a8d9d": {
+  "ms": 114.3,
+  "text": "fasteners K-series 5\n HeavyLift\n"
+ },
+ "0e407e5184a7b51c": {
+  "ms": 105.2,
+  "text": "HeavyLift arm bolts torqued to 8 Nm Re-torque after first 20 flight hours\n at every 200-hour inspection check takes 15 minutes.\n"
+ },
+ "0e4b94169656e732": {
+  "ms": 118.2,
+  "text": "Stowbot intervals operating idle\n Drone intervals flight exclude ground time\n"
+ },
+ "0e5122132d78ad34": {
+  "ms": 107.3,
+  "text": "Hi Kiri, we hold quarterly review at your offices each quarter room is\n usually last thing we sort out.\n"
+ },
+ "0f175648644847c1": {
+  "ms": 101.7,
+  "text": "inter-warehouse transfer adds 4 days raised home\n cover\n"
+ },
+ "0f31847627e381e3": {
+  "ms": 102.3,
+  "text": "SkyCart Deliveries 2026-02-08. K4 Hauler\n 1,485 1,485 delivered\n"
+ },
+ "0f3fdc9e7639762e": {
+  "ms": 109.9,
+  "text": "L Lite\n Stowbot\n"
+ },
+ "0f78c9a685162fb5": {
+  "ms": 123.4,
+  "text": "order total sum line values before discount tax Delivery\n free domestic orders express delivery fee added line\n appears line count\n"
+ },
+ "0fefe1e7bb1fc7d3": {
+  "ms": 107.9,
+  "text": "Whitefield Robotics\n\n"
+ },
+ "0ffe89a8a3e30dad": {
+  "ms": 102.0,
+  "text": "SkyCart Deliveries 2026-02-08. K4 Hauler\n\n"
+ },
+ "1072e71812040692": {
+  "ms": 125.8,
+  "text": "Understood, standard K4 Hauler. Which figure need?"
+ },
+ "10922c2a5879bc50": {
+  "ms": 100.9,
+  "text": "SkyCart Deliveries Order KR-55190 Items 1 K4 Hauler\n Total INR 1,485,000.00 Issued 2026-02-10 Due 2026-03-12 Paid 2026-03-04.\n"
+ },
+ "10a9010483e38783": {
+  "ms": 104.8,
+  "text": "Good. no problems far."
+ },
+ "10b77795a11257d0": {
+  "ms": 121.2,
+  "text": "K4 Hauler Lite uses reduced carbon frame revised flight controller for operators\n prioritise range over lifting capacity. Maximum payload 8 kg. Range with full payload:\n 52 km. Top speed 64 km/h. Lite identified by letter L at end serial\n number for example KR4-70112L. not accept HeavyLift kit.\n"
+ },
+ "1105b0e2ad953484": {
+  "ms": 122.8,
+  "text": "S3\n 1,450 1,700\n 48 80 aisle 1.4\n"
+ },
+ "11e33ba493f6c19f": {
+  "ms": 130.7,
+  "text": "Updates Kestrel Fleet console Wi-Fi takes 12 minutes\n airframe powered Never update less 40% battery\n failed update leaves drone previous not flight-ready\n"
+ },
+ "12df3a0710ecd5a0": {
+  "ms": 104.1,
+  "text": "KR4-88217 K4 Hauler 4.2.1 needs 4.2.1.\n Output_number_version \"required_version \"flight_ready true}\n\n Document KR2-10044 K2 Courier running 3.6.0 minimum 3.8.4.\n Output_number \"K2_version \"3.6 \"required_version \"3 \"flight_ready false}\n"
+ },
+ "12df9025ae142a31": {
+  "ms": 112.9,
+  "text": "K4 Hauler Lite SkyCart Deliveries Pune\n airframe storage\n"
+ },
+ "12fa44bfe95fb669": {
+  "ms": 107.2,
+  "text": "Gripper pad set (PRT-PAD-S2) INR 8,400.00 per set six. Drive wheel (PRT-WHL-S2)\n INR 4,900.00 each fitted in pairs. Aisle guide kit (PRT-RAIL-14): INR 31,500.00\n Wear parts charged catalogue price replacement not price\n quoted when machine bought\n"
+ },
+ "136bd43fa7502267": {
+  "ms": 111.0,
+  "text": "Machine orders over INR 500,000.00 invoiced parts 40% confirmation 60%\n dispatch order total full value\n instalment Consumables orders invoiced once dispatch\n"
+ },
+ "13997d29ae128752": {
+  "ms": 108.0,
+  "text": "Hi Kiri, Anita from SkyCart Deliveries. We auditing three Lite airframes.\n need record for one arrived late on backorder, not two came in January.\n"
+ },
+ "13a415f742edb59e": {
+  "ms": 112.6,
+  "text": "Operations contact Arjun Rao@skycart.in\n Billing contact Meera Nayak accounts@skycart. Registered city Pune\n"
+ },
+ "13b0e5b3be8819e9": {
+  "ms": 111.0,
+  "text": "mixed site Stowbot K4\n\n"
+ },
+ "13c39796c698a9dc": {
+  "ms": 129.4,
+  "text": "two new K4 Haulers delivered 2026-02-20 without extended warranty"
+ },
+ "146cf4a3ac965a23": {
+  "ms": 121.4,
+  "text": "Bengaluru Hyderabad\n\n"
+ },
+ "1478c7a771e2e3ad": {
+  "ms": 100.4,
+  "text": "carrier claim\n Kestrel\n"
+ },
+ "151513e1681caaca": {
+  "ms": 116.4,
+  "text": "Email INV-18840\n\n\n resend INV-18791 finance?\n\n"
+ },
+ "156226ad82e82480": {
+  "ms": 116.6,
+  "text": "1,835\n 402 51.7\n"
+ },
+ "15d46fa5b6a8f2ea": {
+  "ms": 133.1,
+  "text": "software console\n invoices credits refunds\n cartons cause\n"
+ },
+ "15ea661432fb963f": {
+  "ms": 101.2,
+  "text": "Deccan Services Bluewing Freight\n warehouse 2026-02-24.\n arrival 2026-03-04. cartons 31.4 kg\n"
+ },
+ "1607c8c277f7c3c6": {
+  "ms": 121.2,
+  "text": "Thanks Anita three K4 Hauler Lite airframes all L suffix."
+ },
+ "161262d7d75d7085": {
+  "ms": 114.2,
+  "text": "Stowbot\n Orders rejected\n"
+ },
+ "1626f3df4c56d888": {
+  "ms": 111.6,
+  "text": "K-series airframes carry 24 months extended warranty adds 12 months\n Batteries carry 12 months Stowbot robots 18 months\n"
+ },
+ "1629b43425f81e5a": {
+  "ms": 110.3,
+  "text": "Hi, Anita from SkyCart Deliveries. three Lite airframes only one still behind on\n firmware. need record for that one, airframe not yet flight ready.\n"
+ },
+ "166a1c5451607545": {
+  "ms": 108.5,
+  "text": "Anita SkyCart Deliveries three Lite airframes one still behind\n firmware need record not flight ready\n"
+ },
+ "166a34d8d15d6435": {
+  "ms": 97.6,
+  "text": "full inspection required every 50 flight hours. Book at service center in\n customer's registered city services device type. Inspections take one working day.\n"
+ },
+ "16aff4cb861a0c6f": {
+  "ms": 104.2,
+  "text": "Drive wheels gripper pads parts excluded warranty charged\n price replacement\n"
+ },
+ "16f9b92870655c13": {
+  "ms": 102.3,
+  "text": "Nordkap Logistics Confirmed 2026-01-20 Lines 1 K4 Hauler 1 spare 48 V\n battery pack Total EUR 1,840.50 delivered 2026-02-03.\n"
+ },
+ "174f176a0ef7fbbd": {
+  "ms": 101.2,
+  "text": "Device: KR3-41208. Raised 2026-02-26 Chipped propeller hard landing.\n Category hardware Closed 2026-03-01 replacement shipped.\n"
+ },
+ "17655e6919f11551": {
+  "ms": 113.2,
+  "text": "altitude sea level K2 Courier 1,800 Sparrow 2,100\n Hauler 2,400 Lite 2,900 Freighter 2,200 m\n Above airframe refuses off\n"
+ },
+ "179d1f6670090163": {
+  "ms": 110.1,
+  "text": "Priya Whitefield Robotics commissioned two sorters week one\n not settled smoothly\n"
+ },
+ "18015c5d1625f333": {
+  "ms": 105.8,
+  "text": "Hi Kiri, we bringing group over from our Gothenburg office couple of them\n to join remotely as usual.\n"
+ },
+ "180294d2e6ec840c": {
+  "ms": 100.5,
+  "text": "Airframe KR3-41208. Loss of link 9 seconds 2026-03-04 51.7 flight hours.\n drone completed return-to-home routine Classified major link loss\n exceeded 5 seconds.\n"
+ },
+ "18411946bdaaa742": {
+  "ms": 114.4,
+  "text": "2 K4 Hauler EUR 1,650.00 Extended warranty EUR 255.00\n 2026-02-28 new order number\n"
+ },
+ "1846a2f7a8714ec4": {
+  "ms": 107.2,
+  "text": "If any line out of stock at serving warehouse, whole order ships together once\n line is covered. customer told revised date within one working day.\n"
+ },
+ "185dd9cf9d473260": {
+  "ms": 110.9,
+  "text": "Priya Whitefield Robotics big\n small\n"
+ },
+ "187e451b421ef7ae": {
+  "ms": 115.5,
+  "text": "-BAT-48V battery-ARM-K3 motor Sparrow\n-COWL-K5 splash cowling Freighter-PROP-K4 propeller Hauler 4 blades\n"
+ },
+ "18ae07a9675be050": {
+  "ms": 107.9,
+  "text": "Stowbot pads\n"
+ },
+ "18f78656fbdf7130": {
+  "ms": 124.2,
+  "text": "K3 HeavyLift?"
+ },
+ "192223427bc7d736": {
+  "ms": 131.0,
+  "text": "Versions compared field left 4.9.7 lower than 5.0.3\n middle field larger build trailing letter pre-release\n lower plain release same numbers\n"
+ },
+ "192fbcddaa7f7752": {
+  "ms": 104.0,
+  "text": "Good. had no problems it so far."
+ },
+ "195ddd5dea6dfe9b": {
+  "ms": 108.6,
+  "text": "Hyderabad 7 Pune 9 Bengaluru 12\n Lead times exclude day confirmation.\n"
+ },
+ "19e99ab981fbe801": {
+  "ms": 109.5,
+  "text": "Freja Nordkap Logistics depot manager asking update\n give something system than guess\n"
+ },
+ "1a0ea7ff3a4d76bd": {
+  "ms": 98.4,
+  "text": "Airframe landing wind 2026-02-26 48.2 hours\n damage cell recalibrated SB-2026\n minor\n"
+ },
+ "1a64e733cda8d41e": {
+  "ms": 110.3,
+  "text": "use Pune service center bookings"
+ },
+ "1a7a397946984482": {
+  "ms": 102.2,
+  "text": "Booking references start with BK-. booking open until work marked complete.\n Only one open booking may exist per device time.\n"
+ },
+ "1a8f65f0199d3ad2": {
+  "ms": 102.0,
+  "text": "Hauler\n propeller\n"
+ },
+ "1a96af1d557a4568": {
+  "ms": 125.8,
+  "text": "return JSON"
+ },
+ "1aaed1e8475962ba": {
+  "ms": 97.3,
+  "text": "credit note invoice payment\n invoice\n"
+ },
+ "1aca30a0c2087215": {
+  "ms": 114.2,
+  "text": "Order numbers begin KR- issued at confirmation. Quote numbers begin Q-.\n customer may hold several open orders once never merged.\n"
+ },
+ "1ae1a3eb4263adbc": {
+  "ms": 99.8,
+  "text": "Book smallest room seats everyone meets equipment\n room seats fewer not booked\n"
+ },
+ "1b29a284f9b65b86": {
+  "ms": 106.0,
+  "text": "KR-51002 Orbital USD 1,224.00\n\n\n Nordkap Logistics line 48,250.00\n\n"
+ },
+ "1b558a06b96dab17": {
+  "ms": 114.0,
+  "text": "Operations contact Priya Nair@whitefieldrobotics.in.\n Billing contact Deepak Iyer.iyer@whitefieldrobotics. Registered city Bengaluru.\n"
+ },
+ "1b6bd2d7934d8e2e": {
+  "ms": 108.6,
+  "text": "Hi Kiri, we run K3 Sparrow serial KR3-41377. had your dealer fit HeavyLift kit\n on back in January, been flying with kit ever since.\n"
+ },
+ "1c0e6041962cbcdf": {
+  "ms": 122.0,
+  "text": "K4 Hauler frame controller\n 8\n 52 km 64 km/h\n HeavyLift\n"
+ },
+ "1c317d04e7023fc4": {
+  "ms": 110.5,
+  "text": "Invoices 10 2% discount\n refund\n"
+ },
+ "1c4cd9df1bf18d99": {
+  "ms": 103.3,
+  "text": "Nordkap Logistics Order KR-55061 Items 1 x K4 Hauler\n 1 spare 48 V battery pack (EUR 190.50). Total EUR 1,840.50 Issued 2026-01-28\n"
+ },
+ "1c66abf6d7f37322": {
+  "ms": 120.9,
+  "text": "Technicians calibrate K4 load cell 10 kg weight\n 20 minutes repeated landing\n"
+ },
+ "1c7670f414e08b7e": {
+  "ms": 105.1,
+  "text": "K-series drone 24\n extended 12 36\n Batteries 12\n"
+ },
+ "1c966ff07da24d4c": {
+  "ms": 102.9,
+  "text": "Confirm serial number against delivery note, pair it with Fleet console, run\n aisle calibration lap, record commissioning date. robot cannot be paired is\n not commissioned, whatever else works, commissioning date stays blank.\n"
+ },
+ "1cb9cb6536aab8a3": {
+  "ms": 116.5,
+  "text": "Order numbers start with KR- issued at confirmation. Quote numbers start with Q-.\n customer may hold several open orders once never merged.\n"
+ },
+ "1d72c84f54759ee6": {
+  "ms": 122.9,
+  "text": "Torque wrenches Kestrel hardware recalibrated every 12 months or immediately\n after dropped calibration sticker date checked at every inspection.\n"
+ },
+ "1d754cee645459af": {
+  "ms": 111.6,
+  "text": "200 failed\n protection IP20\n"
+ },
+ "1daf9b2050116c0f": {
+  "ms": 98.9,
+  "text": "invoice INV-21118 (Whitefield INR\n damaged transit wheel four\n Finance approved 2026-03-11\n"
+ },
+ "1dc45f302e8c0862": {
+  "ms": 103.1,
+  "text": "Document KR4-88217 K4 Hauler on 4.2.1 needs 4.2.1.\n Output\"serial_number \"KR4-88217\", \"model \"K4 Hauler\", \"current_version \"4.2.1\", \"required_version \"4.2.1\", \"flight_ready true}\n\n Document KR2-10044 K2 Courier running 3.6.0 minimum 3.8.4.\n Output\"serial_number \"KR2-10044\", \"model \"K2 Courier\", \"current_version \"3.6.0\", \"required_version \"3.8.4\", \"flight_ready false}\n"
+ },
+ "1e57f51452e6d549": {
+  "ms": 108.2,
+  "text": "Ravi Deccan Aerial Services planning robot fleet\n Hyderabad sorting hall maths before order\n"
+ },
+ "1e5e7ecceddbf963": {
+  "ms": 113.6,
+  "text": "Refurbished K-series airframes Kestrel Renew 9 months\n labelled R prefix order line\n"
+ },
+ "1eb897f4b81e93d8": {
+  "ms": 117.1,
+  "text": "Reserve room BLR-1B six us 2026-02-10 15:00\n Action call book_meeting_room room_id \"BLR-1B\", date \"2026-02-10\", start_time \"15:00\", attendees 6.\n\n Book Pune training room four people next Tuesday 2026-02-17 09:00.\n Action call book_meeting_room room_id \"PNQ-1A\", date \"2026-02-17\", start_time \"09:00\", attendees 4.\n"
+ },
+ "1f090d57349f0708": {
+  "ms": 111.1,
+  "text": "Invoices due 30 days after issue date. reminder emailed 7 days before due\n date. late fee of 1.75% per month applies to any balance still open after due date\n charged from day after due date pro-rated to day.\n"
+ },
+ "1f186af4dc3cf662": {
+  "ms": 103.6,
+  "text": "SkyCart Deliveries Confirmed 2026-02-08. 1 x K4 Hauler\n delivered 2026-02-20\n"
+ },
+ "1f40af475b3cdef1": {
+  "ms": 130.6,
+  "text": "Water inside motor pod shows as rising winding temperature on motor, whistling\n note in hover, moisture in pod drain. airframe must be grounded until\n seal is replaced. seal replacement takes about 90 minutes does not need full\n inspection slot.\n"
+ },
+ "1f48762766622d95": {
+  "ms": 101.9,
+  "text": "units\n transfer 4 days\n"
+ },
+ "1f5ca18106d6ab71": {
+  "ms": 111.6,
+  "text": "Minimum aisle width: 1.1 m. Minimum ceiling height: 2.4 m. S1 only Stowbot\n run in narrow-aisle layout without guide rail.\n"
+ },
+ "1f7333fce10fbd14": {
+  "ms": 120.5,
+  "text": "classic sign worn gripper pads S3 Sorter replaced"
+ },
+ "1fd1d699a0586ce7": {
+  "ms": 118.8,
+  "text": "-PNQ-02 Hinjewadi K-series 2026-04-02.\n SC-PNQ-01 Kharadi Stowbot robots 2026-03-27\n"
+ },
+ "203623741df87cf7": {
+  "ms": 103.8,
+  "text": "KR4-90533 propeller\n\n repair chargeable\n"
+ },
+ "20370f16a07f8c77": {
+  "ms": 102.7,
+  "text": "KR4-90533 Raised 2026-02-18 Consignment\n Closed\n"
+ },
+ "2043ba01c8ac2a7e": {
+  "ms": 124.3,
+  "text": "optional HeavyLift kit raises K3 Sparrow maximum payload to 11 kg adding two\n reinforced motor arms No upgrade kit offered for K4 variant fitting\n third-party arms voids warranty\n"
+ },
+ "20cfe3019c8cfe73": {
+  "ms": 114.6,
+  "text": "Send KR-51002 new depot\n Action call update_shipping_address order_id \"KR-51002\", address \"Plot 14, Kondapur Industrial Estate Hyderabad 500084\".\n\n Change delivery address KR-50977 Gothenburg warehouse\n Action call update_shipping_address order_id \"KR-50977\", address \"Hamngatan 22, 411 06 Gothenburg\".\n"
+ },
+ "20e10ba70dcdcc80": {
+  "ms": 126.2,
+  "text": "return JSON"
+ },
+ "2103b80a39844a29": {
+  "ms": 118.9,
+  "text": "SB2-30117 (Stowbot S2 1,835 operating hours SB2-30119\n 402 operating hours KR3-41208 (K3 Sparrow): 51.7 flight hours\n"
+ },
+ "211a4c07b762ab17": {
+  "ms": 105.0,
+  "text": "Happy book Tell office date time group size need."
+ },
+ "211ec8e68abb9176": {
+  "ms": 115.7,
+  "text": "PRT-PAD-S0, gripper pad set for withdrawn Stowbot prototype no longer stocked.\n Orders it rejected automatically.\n"
+ },
+ "2120d7c3f7210f83": {
+  "ms": 126.6,
+  "text": "Understood JSON"
+ },
+ "2128348d00a5652c": {
+  "ms": 115.4,
+  "text": "Refund requests begin RR-. refund never exceeds invoice line it relates to.\n approved refund always paid out as credit note, never bank transfer.\n"
+ },
+ "2162edf776f4e0ed": {
+  "ms": 113.6,
+  "text": "Hyderabad 41 units 6 Pune 18 units 0\n Bengaluru 7 units 7 2026-03-02 06:00 IST\n"
+ },
+ "2164a15f3d9f6efd": {
+  "ms": 101.0,
+  "text": "Hinjewadi\n 50-flight\n SkyCart\n"
+ },
+ "216bb2f03fa6fcd9": {
+  "ms": 110.4,
+  "text": "Invoices due 30 days issue reminder emailed 7 days before\n late fee 1.75% month\n"
+ },
+ "218c27b07757ab30": {
+  "ms": 112.7,
+  "text": "Push updates outside flight hours airframe must stay powered for full 12 minutes\n start above 40% battery drone drops below 15% mid-update rolls back to\n previous version automatically reports update code 31 in console.\n"
+ },
+ "21bd4f753dda0f22": {
+  "ms": 105.6,
+  "text": "Hello this Maja from Lindqvist Freight. purchase order reference is PO-3319,\n your order number is KR-55120.\n"
+ },
+ "21e65449e324d32f": {
+  "ms": 100.2,
+  "text": "SkyCart propeller\n 22,400.00\n"
+ },
+ "21f3bbdcedc61ea0": {
+  "ms": 107.0,
+  "text": "Arjun SkyCart building calendar\n\n"
+ },
+ "2204ca652e3a222c": {
+  "ms": 99.7,
+  "text": "Amounts decimals Fees calculated outstanding invoice\n never converted\n"
+ },
+ "2207cc6376cf1d9b": {
+  "ms": 102.4,
+  "text": "3.x Airframes\n\n"
+ },
+ "2226c3400fdfe577": {
+  "ms": 98.8,
+  "text": "Airframe KR3-41208. Hard landing gusting wind 2026-02-26 48.2 flight hours.\n No structural damage. Load cell recalibrated SB-2026-07.\n Classified minor.\n"
+ },
+ "22f8905559638634": {
+  "ms": 105.2,
+  "text": "HYD-3B third floor seats 8 video wall. HYD-2A second floor seats 4 no screen.\n HYD-5C fifth floor seats 20 auditorium needs facilities approval.\n"
+ },
+ "2304a96f040551dc": {
+  "ms": 110.9,
+  "text": "Preventive maintenance labour billed at INR 2,200.00 per hour one-hour minimum.\n full service quoted at four hours. Customers on 3-year service plan pay no labour\n preventive work wear parts charged separately.\n"
+ },
+ "234f9b4a3d5a3f0f": {
+  "ms": 103.4,
+  "text": "SkyCart Deliveries KR-55190 K4 Hauler\n INR 1,485,000.00 Issued Due Paid\n"
+ },
+ "2372b83f2c86e987": {
+  "ms": 100.6,
+  "text": "Nordkap Confirmed 2026-03-03. Lines 2 x K4 Hauler\n Total EUR 3,300.00 Status production\n"
+ },
+ "23ac861e9df774b7": {
+  "ms": 126.9,
+  "text": "Understood. return dispatch note fields as JSON."
+ },
+ "242158add9ae5583": {
+  "ms": 112.5,
+  "text": "Kestrel drones software 120 m\n\n"
+ },
+ "2433b563284404a3": {
+  "ms": 102.7,
+  "text": "2026-02-18\n\n"
+ },
+ "24585c3556a44bc3": {
+  "ms": 107.5,
+  "text": "line out of stock warehouse whole order ships\n line customer told revised date working day\n"
+ },
+ "24e18f6482dcfb33": {
+  "ms": 127.2,
+  "text": "Understood return fields JSON"
+ },
+ "24f56e91b4edb8e6": {
+  "ms": 101.9,
+  "text": "Code 14 means refused at delivery. Code 07 means address not found, usually a sign\n closed site used.\n"
+ },
+ "257005b3017403e0": {
+  "ms": 125.1,
+  "text": "Tier 1 handles configuration account questions Tier 2 handles firmware controller\n faults Tier 3 is engineering reached through tier 2.\n"
+ },
+ "257774187c0fbd9d": {
+  "ms": 101.2,
+  "text": "Whitefield Robotics Stowbot S3 Sorter\n PRT-RAIL-14-PAD-S2. INR 781,900.00 Bengaluru\n"
+ },
+ "25a239b89a6ef301": {
+  "ms": 112.9,
+  "text": "SkyCart Deliveries 48 V battery pack"
+ },
+ "25ffda4dc49eed3b": {
+  "ms": 130.9,
+  "text": "bulk order local"
+ },
+ "2731742ed2b24146": {
+  "ms": 119.1,
+  "text": "Reserve room HYD-3B six 2026-02-10 15:00\n call book_meeting_room date start attendees 6.\n\n Book Pune training room four people 2026-02-17 09:00\n book room_id date start attendees 4.\n"
+ },
+ "273f00bb7cb8520f": {
+  "ms": 116.0,
+  "text": "-HYD-01 Stowbot\n\n"
+ },
+ "2745caf957bb084c": {
+  "ms": 116.9,
+  "text": "Send KR-51002 new depot\n update_shipping_address 14 Kondapur Industrial Estate Hyderabad 500084\".\n\n Change delivery address KR-50977 Gothenburg warehouse\n update 22, 411 06 Gothenburg\".\n"
+ },
+ "2757518f1c7af564": {
+  "ms": 104.2,
+  "text": "Priya Whitefield Robotics Finance requests told\n where landed\n"
+ },
+ "27b7622093ba2dbe": {
+  "ms": 113.9,
+  "text": "no damage loss control loss link 5 seconds damage\n airframe damage injury uncommanded descent\n"
+ },
+ "280b3b190c9caae3": {
+  "ms": 104.9,
+  "text": "Happy to book it. Tell me office, date time how many of you there are."
+ },
+ "2845424efc979f48": {
+  "ms": 126.9,
+  "text": "express option removes 3 days domestic fee\n INR 9,500.00 not available export orders confirmation\n"
+ },
+ "28fa119d439d9e5d": {
+  "ms": 100.0,
+  "text": "incident at or above major triggers load-cell recalibration firmware log upload.\n minor incident needs only log upload.\n"
+ },
+ "2929f769cbcde2c6": {
+  "ms": 132.8,
+  "text": "Welcome aboard! noted K4 Hauler (serial KR4-88305). How help?"
+ },
+ "294c7569e11d8e81": {
+  "ms": 114.8,
+  "text": "PRT-PAD-S1: gripper Stowbot S1 PRT-PAD-S2: gripper Stowbot S2 Pallet\n S3 Sorter PRT-WHL-S2: drive wheel S2 Pallet S3 Sorter\n PRT-TRY-S2: parcel tray accessory S2 Pallet\n"
+ },
+ "2979030bd144cb9e": {
+  "ms": 127.3,
+  "text": "fields JSON"
+ },
+ "29a10eab5dc7a8c2": {
+  "ms": 108.7,
+  "text": "Lindqvist Freight\n late\n"
+ },
+ "2a37791828a72000": {
+  "ms": 117.9,
+  "text": "K3 Sparrow HeavyLift kit fitted"
+ },
+ "2a785813dcea75cd": {
+  "ms": 101.2,
+  "text": "Damage in transit refunded per affected unit not order line carrier claim\n handled separately by Kestrel.\n"
+ },
+ "2b1e4155fab33407": {
+  "ms": 116.4,
+  "text": "Reserve room BLR-1B six 15:00\n 6.\n\n Pune room four\n 4.\n"
+ },
+ "2b95de4d98166632": {
+  "ms": 94.4,
+  "text": "Stowbot 3-year 812,400.00\n\n"
+ },
+ "2c2592744654197a": {
+  "ms": 109.3,
+  "text": "Lead times counted in working days from order confirmation Hyderabad 7 working days\n Pune 9 days. Bengaluru 12 working days Export orders outside India\n 21 working days Lead times exclude day confirmation.\n"
+ },
+ "2c3cbb9ce416bb6a": {
+  "ms": 98.6,
+  "text": "goodwill issued Kestrel\n\n"
+ },
+ "2c96e4e6c0d9b7df": {
+  "ms": 118.4,
+  "text": "Request Reserve room HYD-3B six us 2026-02-10 15:00.\n Action call book_meeting_room room_id \"HYD-3B\", date \"2026-02-10\", start_time \"15:00\", attendees 6.\n\n Request Send copy invoice INV-18840 finance address us (ap@orbitalparcel.in).\n Action call send_invoice_copy invoice_id \"INV-18840\", email \"ap@orbitalparcel.in\".\n"
+ },
+ "2c9874e967c0acab": {
+  "ms": 104.4,
+  "text": "new K-series drone carries standard warranty of 24 months from delivery date.\n optional extended warranty adds further 12 months, for 36 months in total,\n bought at time of order. Batteries carry 12 months whatever airframe warranty says.\n"
+ },
+ "2cbf9af20ad8de00": {
+  "ms": 120.3,
+  "text": "packs 30%\n 10% warranty\n"
+ },
+ "2d54c06a20658a47": {
+  "ms": 116.7,
+  "text": "Reserve room HYD-3B six 15:00\n\n\n invoice INV-18840\n\n"
+ },
+ "2d70100d47f3b8b8": {
+  "ms": 107.9,
+  "text": "Arjun Rao SkyCart propeller\n\n"
+ },
+ "2d7a7a30c1b83327": {
+  "ms": 117.2,
+  "text": "Reserve room HYD-3B six us 2026-02-10 15:00\n Action call book_meeting_room room_id \"HYD-3B\", date \"2026-02-10\", start_time \"15:00\", attendees 6.\n\n Book Pune training room four people 2026-02-17 09:00.\n call book_meeting_room room_id \"PNQ-1A\", date \"2026-02-17\", start_time \"09:00\", attendees 4.\n"
+ },
+ "2d82875beb9cde7e": {
+  "ms": 125.7,
+  "text": "return JSON"
+ },
+ "2de0fcadd0b59059": {
+  "ms": 117.2,
+  "text": "SB3-40112 (Stowbot S3 delivered 2026-03-12.\n SB3-40115 S3 delivered 2026-03-12\n SB2-30204 (Stowbot S2 delivered 2025-11-28.\n"
+ },
+ "2e1ed310872c1b9d": {
+  "ms": 101.7,
+  "text": "Whitefield Robotics-55211 4 PRT-WHL-S2\n INR INR 19,600.00 Issued\n"
+ },
+ "2e4380e0b04f6883": {
+  "ms": 101.3,
+  "text": "Customers served from warehouse in their registered city. inter-warehouse transfer\n adds 4 working days only raised when home warehouse cannot cover order.\n Reserved units already allocated to another order and not available.\n"
+ },
+ "2f2e6f8bb5eb456f": {
+  "ms": 99.8,
+  "text": "invoice charged\n credit warranty\n"
+ },
+ "30077a2abd61601d": {
+  "ms": 117.7,
+  "text": "SC-PNQ-02 closed 2026-03-31 2026-04-01 annual inventory count.\n All other service centers keep normal hours.\n"
+ },
+ "30bf377fe9abeaf7": {
+  "ms": 103.4,
+  "text": "Firmware 3.x support 2026-01-31 Airframes 3.x\n updated current minimum no intermediate step\n"
+ },
+ "30f8968392aebbfe": {
+  "ms": 109.0,
+  "text": "Arjun SkyCart Pune K4\n 48\n"
+ },
+ "31074e7e9b4e5453": {
+  "ms": 106.3,
+  "text": "Hello, Ravi at Deccan Aerial Services. topping up shelf stock spares before\n busy season want to know what you holding first.\n"
+ },
+ "316ebe35fac61418": {
+  "ms": 101.5,
+  "text": "inter-warehouse transfer adds 4 working days raised only when home warehouse\n cannot cover order.\n"
+ },
+ "317fe21439704e96": {
+  "ms": 103.9,
+  "text": "Happy to help with Stowbot intervals. Which one need?"
+ },
+ "3180b4a2df737adc": {
+  "ms": 108.9,
+  "text": "KR4-70112L Hauler 4.9.7 5.0.3.\n 5.0.3. KR3-41208 4.2.1.\n KR4-90533 running 4.2.1. Export 2026-03-06.\n"
+ },
+ "31b30a08fc26542a": {
+  "ms": 105.7,
+  "text": "Drive wheel inspection 400 operating hours Gripper pad replacement 1,200\n operating hours Full service 2,000 hours\n"
+ },
+ "31ce34a312603494": {
+  "ms": 102.7,
+  "text": "Bluewing Freight waybills BW- Harbour Express consignment\n HX- return reference not tracking number quoted\n\n"
+ },
+ "3208dc5de4ba2181": {
+  "ms": 120.0,
+  "text": "K4 10 kg\n 20\n"
+ },
+ "321bd12b3a1fe72b": {
+  "ms": 101.6,
+  "text": "KR3-41208. Fault invoice charged twice Raised 2026-02-20 Category billing\n Resolved credit note Billing claims affect airframe warranty\n"
+ },
+ "3244080534d37b32": {
+  "ms": 122.6,
+  "text": "Stowbot 900\n 2.1 36\n"
+ },
+ "3252191f58f1c7b9": {
+  "ms": 98.1,
+  "text": "pad set replaced as complete set, never individually, mixed pad depths make\n robot drop light items.\n"
+ },
+ "326fe501189debbb": {
+  "ms": 107.6,
+  "text": "Arjun SkyCart Deliveries compliance file booking paperwork\n structured\n"
+ },
+ "3298ba60126e6105": {
+  "ms": 101.1,
+  "text": "Raised 2026-02-26 Chipped propeller landing\n Closed replacement shipped\n"
+ },
+ "32f1bae7b3581ec3": {
+  "ms": 124.5,
+  "text": "Understood Lite airframe delivered after backorder"
+ },
+ "333bca44ad821557": {
+  "ms": 127.1,
+  "text": "Quotes carry Q invoices INV number"
+ },
+ "337073f6bcec1133": {
+  "ms": 112.3,
+  "text": "lead times"
+ },
+ "33a8ce983ba97d01": {
+  "ms": 112.7,
+  "text": "Invoices billing"
+ },
+ "341ce038c503cce3": {
+  "ms": 104.2,
+  "text": "Orbital Parcel Sana Iqbal 5550 1188\n\n\n Nordkap Logistics Freja Holm 31 555\n\n"
+ },
+ "34af7b80daa5cac7": {
+  "ms": 109.6,
+  "text": "line out of stock whole order ships covered\n customer told revised date working day\n"
+ },
+ "34ef5b311730459e": {
+  "ms": 113.3,
+  "text": "KR4-70112L (K4 Hauler running 4.9.7 KR4-70118L running 5.0.3.\n KR4-70121L running 5.0.3. KR3-41208 (K3 Sparrow): running 4.2.1.\n KR4-90533 (K4 running 4.2.1. Export taken 2026-03-06.\n"
+ },
+ "354b438909d9bc36": {
+  "ms": 127.6,
+  "text": "Kestrel Fleet Wi-Fi\n airframe 40%\n failed update-ready\n"
+ },
+ "355627accd941945": {
+  "ms": 121.5,
+  "text": "K3 Sparrow Kestrel's compact delivery drone last-mile parcels Maximum payload\n 9 kg Range full payload 38 km Flight without payload 41 minutes Top speed\n 61 km/h Ingress protection IP43 Charging time standard 48 V charger 70 minutes\n"
+ },
+ "356d3716722f97ab": {
+  "ms": 117.1,
+  "text": "2026-03-12\n\n 2025-11-28\n"
+ },
+ "3606305e7c900ec7": {
+  "ms": 120.0,
+  "text": "SC-HYD-01 Kondapur K-series drones Stowbot robots\n Next maintenance slot 2026-04-06. Opening hours 09:00-18:00 Monday Saturday\n"
+ },
+ "36636d42774b7e56": {
+  "ms": 110.6,
+  "text": "K4 Hauler SkyCart\n\n"
+ },
+ "36855cf81b0a641e": {
+  "ms": 105.0,
+  "text": "no problems"
+ },
+ "36cbdb557ea3e60d": {
+  "ms": 130.2,
+  "text": "Updates pushed from Kestrel Fleet console over Wi-Fi. update takes 12 minutes\n airframe must stay powered throughout. Never update drone with less than 40% battery.\n failed update leaves drone on previous version, safe but not flight-ready.\n"
+ },
+ "36d6105d0dff1149": {
+  "ms": 109.0,
+  "text": "Hi Kiri, took delivery of new drone last week standard K4 Hauler,\n serial KR4-88305, not Lite version.\n"
+ },
+ "3747adb3fee1a021": {
+  "ms": 118.0,
+  "text": "Reserve room HYD-3B six\n 6.\n\n Pune room four\n 4.\n"
+ },
+ "3766eecbb31bc8c2": {
+  "ms": 105.1,
+  "text": "book office date time"
+ },
+ "37690ca5892105e3": {
+  "ms": 112.2,
+  "text": "scoping delivery route hill station ceiling figures\n standard K4 Hauler not\n"
+ },
+ "3775ab0531fd8baa": {
+  "ms": 105.6,
+  "text": "Hello, Ravi at Deccan Aerial Services. insurer only accept shipment details in\n structured form straight from dispatch records.\n"
+ },
+ "379ec17702a85a29": {
+  "ms": 120.7,
+  "text": "Tell what it doing get logged right team"
+ },
+ "37c5cf5209161b6f": {
+  "ms": 114.9,
+  "text": "SC-HYD-01 Kondapur K-series drones Stowbot robots\n Next maintenance slot 2026-04-06. Opening hours 09:00 18:00 Monday Saturday\n"
+ },
+ "37c8e07109b84427": {
+  "ms": 122.7,
+  "text": "HeavyLift K3 Sparrow payload 11 kg\n reinforced arms No upgrade K4\n third-party arms voids warranty\n"
+ },
+ "38d43893dd09ef08": {
+  "ms": 114.5,
+  "text": "Refund requests begin refund exceeds invoice line\n approved refund paid credit note bank transfer\n"
+ },
+ "38eddb801a206c9d": {
+  "ms": 121.1,
+  "text": "sounds like failed pod seal on KR5-11207, a physical fault rather than configuration one."
+ },
+ "390d2c99b29632d3": {
+  "ms": 114.5,
+  "text": "PRT-PAD-S0 withdrawn Stowbot prototype no stocked orders\n rejected\n"
+ },
+ "391bab9f7c373fc2": {
+  "ms": 104.8,
+  "text": "Claim WC-3301 KR4-88217 cracked motor boss opened 2026-01-14 inside warranty\n Output_id_number \"opened \"covered true\n\n Claim WC-3318 SB1-20044 console pair raised 2026-02-02 warranty expired\n Output_id_number \"opened \"covered false}\n"
+ },
+ "39d17a875365772d": {
+  "ms": 111.4,
+  "text": "Arjun SkyCart K4 registered\n\n"
+ },
+ "39e4ec54c18a9af0": {
+  "ms": 104.6,
+  "text": "office 3rd Floor Amar Tech Park Balewadi Pune 411045\n New depot Unit 7 Hinjewadi Park Phase 2 Pune 411057\n Old depot Gate 3 Kharadi Yard Pune 411014\n"
+ },
+ "3a81709afc1c7d0c": {
+  "ms": 121.8,
+  "text": "K4 Hauler standard heavy-lift model K-series. Maximum payload 12.5 kg.\n Range full payload 46 km. Top speed 68 km/h. Ingress protection IP54. Serial numbers\n start KR4- no suffix Operating temperature -10 °C to 45 °C.\n"
+ },
+ "3ab1a9cf08f81212": {
+  "ms": 102.1,
+  "text": "KR4-90533 K4 Hauler SC-PNQ-02 14:00\n propeller replacement\n"
+ },
+ "3adcb156d4747990": {
+  "ms": 110.5,
+  "text": "K4 airframes serials KR4- L Lite variant\n different controller board firmware line\n"
+ },
+ "3b244daa7bdf939c": {
+  "ms": 109.9,
+  "text": "Kiri refreshing supplier contact sheet want fields hold\n nothing retyped incorrectly\n"
+ },
+ "3b5b16c4200c4738": {
+  "ms": 120.0,
+  "text": "classic sign of worn gripper pads on S3 Sorter. They replaced as a set."
+ },
+ "3ba4a0cf24a31d91": {
+  "ms": 101.3,
+  "text": "order confirmed payment approved purchase order recorded against\n quote never confirmation becomes order number\n"
+ },
+ "3bae906389625b52": {
+  "ms": 104.4,
+  "text": "HYD-3B third floor seats 8 video HYD-2A second floor seats 4 screen\n"
+ },
+ "3bf86771bb632d9b": {
+  "ms": 121.7,
+  "text": "Sparrow Kestrel\n 9 38 61\n 70\n"
+ },
+ "3bfc94679eebebda": {
+  "ms": 125.9,
+  "text": "booking fields"
+ },
+ "3c1b3c34f4b80a35": {
+  "ms": 114.0,
+  "text": "Proforma quote not order 1 Stowbot S3 Sorter 3-year service plan\n INR 812,400.00 Valid until 2026-03-20 quote number never becomes order number\n"
+ },
+ "3cfe9b1eefa20031": {
+  "ms": 126.9,
+  "text": "Stowbot Sorter"
+ },
+ "3d15fbec42cf6ff8": {
+  "ms": 112.4,
+  "text": "Arjun: SkyCart Deliveries registered Pune operating K4 Haulers."
+ },
+ "3d45b8f13ce9e099": {
+  "ms": 127.0,
+  "text": "Kestrel 12 minutes\n 40%\n"
+ },
+ "3d7520b676dcb02a": {
+  "ms": 115.6,
+  "text": "Quote references begin Q-. quote expires end of validity date then\n re-priced, never extended superseded quote stays on file but cannot be accepted.\n"
+ },
+ "3d9280c6b8905f53": {
+  "ms": 111.6,
+  "text": "Hyderabad (HYD): 41 hand 6 reserved. Pune (PNQ): 18 hand 0 reserved\n Bengaluru (BLR): 7 hand 7 Figures 2026-03-02, 06:00 IST.\n"
+ },
+ "3dc386daa3b3404e": {
+  "ms": 101.4,
+  "text": "Lindqvist Freight KR-55120 PO-3319\n K4 Hauler 48 V battery 190\n EUR 1,840.50 Issued 2026-02-12 30 days 2026-03-14\n"
+ },
+ "3e24a58915a20408": {
+  "ms": 119.3,
+  "text": "SC-HYD-01 Kondapur K-series drones Stowbot robots\n Next maintenance slot 2026-04-06.\n"
+ },
+ "3e87bf9ed97dd1e9": {
+  "ms": 98.9,
+  "text": "82.00 late delivery\n credit\n"
+ },
+ "3eac97342d564e54": {
+  "ms": 109.1,
+  "text": "Invoices settled 10 days attract 2% discount discount\n credit note month combined dealer rebate\n"
+ },
+ "3f0cb5f781cb210c": {
+  "ms": 117.0,
+  "text": "-48V Stowbot\n Stowbot S1 K2\n"
+ },
+ "3fb0b81a83603318": {
+  "ms": 131.7,
+  "text": "We're registered in Pune, always use centre there."
+ },
+ "4060219ed0765947": {
+  "ms": 111.1,
+  "text": "Hi Arjun from SkyCart Deliveries Pune. K4 Hauler serial KR4-90533\n crossed 50 flight hours.\n"
+ },
+ "40d1fec23b36af67": {
+  "ms": 109.9,
+  "text": "52 Pune 33\n 15\n"
+ },
+ "413dc98e8456299c": {
+  "ms": 113.6,
+  "text": "Operations Priya Nair@whitefieldrobotics 5550 6612\n Billing Deepak Iyer 6699\n Bengaluru Dealer status\n"
+ },
+ "414304118d773392": {
+  "ms": 115.6,
+  "text": "PRT-PAD-S0, pad set for withdrawn Stowbot prototype no longer stocked orders\n for it rejected automatically.\n"
+ },
+ "4159a94136683d55": {
+  "ms": 103.5,
+  "text": "Document Quote Q-7712 Lindqvist Freight AB EUR 1,905.00 valid until 31 January 2026.\n Output\"quote_id \"Q-7712\", \"customer \"Lindqvist Freight \"total 1905.00 \"currency \"EUR\", \"valid_until \"2026-01-31\"}\n\n Document Q-7841 Nordkap Logistics EUR 3,810.00 expires 2026-02-28.\n Output\"quote_id \"Q-7841\", \"customer \"Nordkap \"total 3810.00 \"currency \"EUR\", \"valid_until \"2026-02-28\"}\n"
+ },
+ "4167c9e6c52e1781": {
+  "ms": 100.0,
+  "text": "KR3-41208. Loss link 9 seconds 2026-03-04 51.7 flight hours\n return-home major\n 5 seconds\n"
+ },
+ "416a60a03f25d02a": {
+  "ms": 113.7,
+  "text": "Tell pack warehouse I will check"
+ },
+ "416f52209d6a8e73": {
+  "ms": 123.9,
+  "text": "K3 Sparrow HeavyLift kit fitted technician?"
+ },
+ "4204c4b00aa9091b": {
+  "ms": 120.1,
+  "text": "Stowbot S3 Sorter fastest robot throughput\n 1,450 parcels hour Peak throughput 1,700 parcels\n Battery 48 V charges 80 minutes Needs aisle 1.4 m\n"
+ },
+ "4253cb8286481178": {
+  "ms": 101.9,
+  "text": "drone\n console update 2.\n"
+ },
+ "42846c4e08bca7e0": {
+  "ms": 114.8,
+  "text": "Reserve room BLR-1B six 2026-02-10 15:00\n book_meeting_room_id date start attendees 6.\n\n Book Pune training room four people Tuesday 2026-02-17 09:00\n call book_meeting room_id date start_time attendees 4.\n"
+ },
+ "4335f75c5f13c14e": {
+  "ms": 97.6,
+  "text": "full inspection required every 50 flight hours. Inspections take one working day\n booked at service center in customer's registered city.\n"
+ },
+ "4358560a542c1f09": {
+  "ms": 105.7,
+  "text": "Ravi Deccan Aerial Services insurer shipment details\n structured dispatch records\n"
+ },
+ "43be183dcb9b6c82": {
+  "ms": 115.9,
+  "text": "Refund requests invoice\n credit note\n"
+ },
+ "43f452ca5f96b2bc": {
+  "ms": 112.8,
+  "text": "flight-ready firmware K2 Courier 3.8.4. K3 Sparrow 4.2.1. K4 Hauler 4.2.1.\n Lite 5.0.3. K5 Freighter 5.1.0. drone below minimum refuses arm\n"
+ },
+ "441e68a4553b2acd": {
+  "ms": 113.6,
+  "text": "Raise ticket problem documents Product facts\n stock levels appointment dates answered need no ticket\n"
+ },
+ "444b7e31d2c936ca": {
+  "ms": 101.9,
+  "text": "Whitefield\n Stowbot PRT\n\n 781,900.00 Bengaluru\n"
+ },
+ "447ad48e2045402e": {
+  "ms": 102.2,
+  "text": "airframe 60 Charge\n 100% 20% firmware-torque\n 5 hover test 3 checklist\n\n 45 minutes\n"
+ },
+ "447bde54d54a215f": {
+  "ms": 108.2,
+  "text": "Freja Nordkap manager\n\n"
+ },
+ "44b1e85f3a7e64a7": {
+  "ms": 101.6,
+  "text": "Lindqvist Freight AB Order KR-55120 Items 1 x K4 Hauler\n 1 spare 48 V battery pack (EUR 190.50). Total EUR 1,840.50 Issued 2026-02-12\n"
+ },
+ "44decf1d88b3a7dc": {
+  "ms": 105.7,
+  "text": "bolts torqued 8 Nm Re-torque 20 hours\n 200-hour inspection check 15 minutes\n"
+ },
+ "450d0cc5724be4a4": {
+  "ms": 121.1,
+  "text": "Freighter inter-depot\n 24 kg 71 59\n 4\n"
+ },
+ "45af47d6b677ac9f": {
+  "ms": 113.8,
+  "text": "Hauler warranty 1,905.00\n\n"
+ },
+ "45b0d4cbc71f8c88": {
+  "ms": 113.8,
+  "text": "ticket problem\n appointment dates ticket\n"
+ },
+ "45f7cbd3e1854138": {
+  "ms": 127.4,
+  "text": "Understood. will quote only technical sheets say."
+ },
+ "4697af5c3a73bd2f": {
+  "ms": 127.5,
+  "text": "return JSON"
+ },
+ "4698a6a5e1fbecc8": {
+  "ms": 109.3,
+  "text": "\n S3 2026-01-30\n"
+ },
+ "46ab9f254dbb9966": {
+  "ms": 114.9,
+  "text": "K2?\n 54 km/h\n\n?\n 95\n\n?\n unknown\n"
+ },
+ "46b237e4d46d6912": {
+  "ms": 125.7,
+  "text": "standard K4 Hauler figure?"
+ },
+ "46d8cfe4b3b01689": {
+  "ms": 116.1,
+  "text": "Operations contact Ravi Menon@deccanaerial +91 40 5550 3320\n Billing Kavya Suresh finance@deccanaerial +91 40 5550 3399\n Registered city Hyderabad Dealer status yes\n"
+ },
+ "46df79ca9f6bcf1a": {
+  "ms": 117.2,
+  "text": "-HYD-01 Kondapur Stowbot\n\n"
+ },
+ "46e9fadbec08d67d": {
+  "ms": 112.5,
+  "text": "Operations Ravi Menon@deccanaerial 5550 3320\n Billing Kavya Suresh finance 3399\n Hyderabad Dealer status\n"
+ },
+ "4729370593e3ec21": {
+  "ms": 110.2,
+  "text": "Arjun SkyCart Deliveries writing internal service procedure\n Pune centres\n"
+ },
+ "473843739628a816": {
+  "ms": 115.8,
+  "text": "Raise ticket only for a problem cannot be answered from documents. Product facts,\n stock levels appointment dates answered directly need no ticket.\n"
+ },
+ "4738e65c802fdb11": {
+  "ms": 118.7,
+  "text": "Hinjewadi K\n Kharadi Stowbot\n"
+ },
+ "475b30af7873897f": {
+  "ms": 122.9,
+  "text": "Understood return dispatch fields JSON"
+ },
+ "47b3ea9e50626801": {
+  "ms": 113.3,
+  "text": "Arjun SkyCart"
+ },
+ "47d9e7ef814c2e7f": {
+  "ms": 121.3,
+  "text": "3-year plan INR 70,400.00 Stowbot S3 Sorter covers preventive\n maintenance parts\n"
+ },
+ "485ef10e887a90db": {
+  "ms": 108.2,
+  "text": "Arjun SkyCart Pune\n 2,000-hour\n"
+ },
+ "48b5b6ad59cd53ea": {
+  "ms": 101.3,
+  "text": "Authorised dealers billed on 60-day terms charged late fee of 0.9% per month.\n Dealer status shown on account record, never on invoice itself.\n"
+ },
+ "48c9d787e0d66bce": {
+  "ms": 97.4,
+  "text": "contact change\n billing\n"
+ },
+ "48ea9cc20f75ead4": {
+  "ms": 101.5,
+  "text": "open work complete\n device\n"
+ },
+ "49ddaf786c611b8c": {
+  "ms": 122.6,
+  "text": "Fleet console reaches robots over site Wi-Fi on 5 GHz band only. robot on\n 2.4 GHz-only access point powers up normally shows steady green light, but never\n appears in console. Check access point band before assuming fault in robot.\n"
+ },
+ "49fee4d6cc9ef5b1": {
+  "ms": 99.7,
+  "text": "incident major triggers recalibration firmware log upload\n minor log upload\n"
+ },
+ "4b5a026a3c1f753f": {
+  "ms": 107.3,
+  "text": "Hi, Arjun from SkyCart. moved operations recently I working through\n everything that still points at old site.\n"
+ },
+ "4bf1e38cef12dfce": {
+  "ms": 118.4,
+  "text": "-PNQ-02 Hinjewadi K-series\n 2026-04-02.-PNQ-01 Kharadi Stowbot robots 2026-03-27\n"
+ },
+ "4c4a23fce6c1d152": {
+  "ms": 120.1,
+  "text": "Maja order Lindqvist Freight"
+ },
+ "4c55a3777039019b": {
+  "ms": 97.8,
+  "text": "pad set replaced as complete set never individually mixed pad depths\n robot drop light items. Pad screws torqued to 2.5 Nm by hand.\n"
+ },
+ "4cb7b34e31ba2eb0": {
+  "ms": 108.7,
+  "text": "Hi Kiri bringing group from Gothenburg office couple\n join remotely.\n"
+ },
+ "4cd6c3a2882f5883": {
+  "ms": 115.0,
+  "text": "Arjun\n Meera\n"
+ },
+ "4cff02899c04a4ba": {
+  "ms": 101.0,
+  "text": "BLR-4D 12 video conferencing\n BLR-1B 6 whiteboard\n"
+ },
+ "4d0fa138b980844d": {
+  "ms": 101.6,
+  "text": "serial proof delivery\n parts excluded\n"
+ },
+ "4d2552843d930eed": {
+  "ms": 114.4,
+  "text": "Order numbers begin KR- issued at confirmation. Quote numbers begin Q-.\n customer may hold several orders once never merged.\n"
+ },
+ "4d3d7597b38f2453": {
+  "ms": 120.9,
+  "text": "classic sign of worn gripper pads on S3 Sorter, they go as a full set."
+ },
+ "4d4855780c6f62b5": {
+  "ms": 116.5,
+  "text": "SC-HYD-01 Kondapur Stowbot robots\n 2026-04-06. 09:00-18:00\n"
+ },
+ "4da8eae22cf061bb": {
+  "ms": 102.9,
+  "text": "Drive wheels gripper pads are wear parts, excluded from warranty charged at\n catalogue price at time of replacement.\n"
+ },
+ "4dbcf50652ea683a": {
+  "ms": 126.1,
+  "text": "quote sheets"
+ },
+ "4e2bb463b4a6568c": {
+  "ms": 119.1,
+  "text": "Hinjewadi K\n\n Stowbot\n"
+ },
+ "4e3131d2cfb9d4a6": {
+  "ms": 97.9,
+  "text": "credit note reduces balance invoice creates payment\n References begin exceed invoice total\n"
+ },
+ "4e4a54388803044c": {
+  "ms": 104.6,
+  "text": "KR4-90533 propeller chipped landing Raised 2026-02-27\n hardware fault propellers wear not covered\n repair chargeable\n"
+ },
+ "4ed539d420a732af": {
+  "ms": 115.2,
+  "text": "-RAIL-14 required aisle narrower 1.6 m lower minimum aisle\n keeps robot centred\n"
+ },
+ "4f21a577340d93b1": {
+  "ms": 109.8,
+  "text": "Invoices due 30 days after issue reminder emailed 7 days before\n late fee 1.75% month applies balance open after due\n charged pro-rated day\n"
+ },
+ "4f4ff37951884c66": {
+  "ms": 125.2,
+  "text": "express option removes 3 working days domestic lead time for flat fee\n INR 9,500.00. not available on export orders cannot be added after confirmation.\n"
+ },
+ "4f856be08552d820": {
+  "ms": 98.8,
+  "text": "K-series drones-ready\n K4 cell 10\n 20\n"
+ },
+ "4fc5b9e3bd04ed4d": {
+  "ms": 119.3,
+  "text": "Stowbot\n Drone ground\n"
+ },
+ "4fdfcca7ad3ca785": {
+  "ms": 105.5,
+  "text": "HYD-3B third seats 8 video second 4\n HYD-5C fifth floor seats 20 auditorium approval\n"
+ },
+ "4fe2ed4b0ad1a5cf": {
+  "ms": 107.7,
+  "text": "Tomas Orbital Parcel. drawing tender depot-to-depot flights\n customer asking published figures measurements\n"
+ },
+ "4ff7fde957768bc1": {
+  "ms": 99.4,
+  "text": "robot pairs Fleet console Wi-Fi 60 seconds powering\n robot never console status light steady green\n configuration fault not mechanical\n"
+ },
+ "5092fa4ec4ed0258": {
+  "ms": 129.8,
+  "text": "Understood return refund fields JSON"
+ },
+ "50c65a3688550708": {
+  "ms": 126.3,
+  "text": "optional HeavyLift kit K3 Sparrow payload 11 kg\n motor arms Range 31 km not\n K4 variant third-party arms voids warranty\n"
+ },
+ "50d2cd6002f55007": {
+  "ms": 105.3,
+  "text": "Priya Whitefield Robotics Bengaluru S3 Sorter units\n items pads worn\n"
+ },
+ "51381915e919cd78": {
+  "ms": 111.3,
+  "text": "Ravi Deccan Aerial Services Freighters KR5-11207 water\n motor wet week KR5-11203 fine\n"
+ },
+ "513996676d9d6d36": {
+  "ms": 116.7,
+  "text": "top speed K2 Courier?\n 54 km/h\n\n Stowbot S1 battery charge empty?\n 95 minutes\n\n colour options K9 Titan?\n unknown\n"
+ },
+ "514d678e9edf7aad": {
+  "ms": 110.3,
+  "text": "Invoice credit queries handled by billing team through billing ticket, never\n through operations queue.\n"
+ },
+ "519744c7790be631": {
+  "ms": 109.1,
+  "text": "Invoices credit notes billing\n\n"
+ },
+ "51aca3d452e57424": {
+  "ms": 101.1,
+  "text": "Whitefield Robotics Confirmed\n 4 PRT-WHL-S2 wheel INR 19,600.00\n follow-up consumables\n"
+ },
+ "51aef4569f738c74": {
+  "ms": 115.1,
+  "text": "Stowbot orders\n rejected\n"
+ },
+ "51c74e65b501ae93": {
+  "ms": 105.9,
+  "text": "new K-series drone standard warranty 24 months delivery\n optional extended warranty adds 12 months 36 months\n bought order Batteries carry 12 months airframe\n"
+ },
+ "524ad0036313f8b6": {
+  "ms": 101.2,
+  "text": "Book at service center in customer's registered city handles device type.\n Only one open booking may exist per device time.\n"
+ },
+ "5297ed1bb6ef0986": {
+  "ms": 101.3,
+  "text": "Whitefield Robotics Confirmed INR 781,900.00\n order validity\n"
+ },
+ "52b6a4c181d0b844": {
+  "ms": 111.1,
+  "text": "dust K-series\n rain 8 mm\n splash cowling\n"
+ },
+ "53062cd27490facd": {
+  "ms": 103.4,
+  "text": "Device: KR4-90533. Fault: propeller chipped on landing. Raised 2026-02-27.\n Assessed as hardware fault, propellers are wear parts claim not covered\n repair quoted as chargeable.\n"
+ },
+ "5357cc2a4133fa4b": {
+  "ms": 101.6,
+  "text": "12 video\n 6 whiteboard\n 10\n"
+ },
+ "53da0db4d9f5fa01": {
+  "ms": 101.3,
+  "text": "Nordkap Hauler\n 1,840.50\n"
+ },
+ "541cc6a6b56add70": {
+  "ms": 105.3,
+  "text": "KR-51002 2026-01-08 Bluewing Freight\n\n\n KR-50977 2025 Harbour Express HX-88120 19 December\n\n"
+ },
+ "54251b20cf4b0c10": {
+  "ms": 105.1,
+  "text": "Order KR-51002 Orbital Parcel 2 lines Total USD 1,224.00\n Output_id_count 2 1224.00 \"currency\n\n Order KR-50977 Nordkap Logistics single line INR 48,250.00\n Output_id_count 1 48250.00 \"currency \"INR\n"
+ },
+ "542f1406b3742fae": {
+  "ms": 100.6,
+  "text": "Whitefield 781,900.00\n\n"
+ },
+ "5436190b446db703": {
+  "ms": 121.1,
+  "text": "Stowbot S1 entry-level warehouse robot. throughput 900 parcels per hour.\n Shelf height reach 2.1 m. Battery 36 V charges empty 95 minutes.\n"
+ },
+ "54727bf7f522d471": {
+  "ms": 105.0,
+  "text": "charging Stowbot"
+ },
+ "54ace0888543ba5d": {
+  "ms": 109.6,
+  "text": "reminder\n late fee 1.75%\n"
+ },
+ "54c1a61104ba5c47": {
+  "ms": 113.0,
+  "text": "seals K-series airframes inspected 200 hours failed\n drops protection IP20 replaced\n"
+ },
+ "54d6b93c12eed7a9": {
+  "ms": 102.2,
+  "text": "Code 14 means refused at delivery Code 07 means address not found. Exceptions change\n original estimated arrival date on dispatch note.\n"
+ },
+ "54e9728b7c37957a": {
+  "ms": 131.4,
+  "text": "4.9.7 lower 5.0.3\n trailing pre-release\n\n"
+ },
+ "551de77830ed1fc4": {
+  "ms": 107.1,
+  "text": "Arjun SkyCart regulator\n\n"
+ },
+ "552c280d7963691c": {
+  "ms": 110.9,
+  "text": "K4 Hauler SkyCart\n\n"
+ },
+ "557f8d89a3546694": {
+  "ms": 96.5,
+  "text": "ticket records routes problem. does not book service slot, order a part, or\n ground an airframe; are separate actions raised by service team once ticket is\n triaged. Opening second ticket for same fault duplicates work is closed as such.\n"
+ },
+ "5675746a3aa6775a": {
+  "ms": 121.0,
+  "text": "K4 Hauler 8\n 52 km\n"
+ },
+ "56948c32de79f020": {
+  "ms": 111.7,
+  "text": "Of course. Tell me which pack warehouse I will check."
+ },
+ "56cd9b573e85d172": {
+  "ms": 100.5,
+  "text": "KR3-41208. Raised 2026-03-05 reports drone pair\n Fleet console update assigned 2.\n"
+ },
+ "56cf51eaab240404": {
+  "ms": 110.4,
+  "text": "SkyCart K4\n 50\n"
+ },
+ "56d09806b4bc5719": {
+  "ms": 108.5,
+  "text": "Arjun SkyCart Deliveries K4 Hauler\n crossed 50 hours\n"
+ },
+ "56da774c0c2970bf": {
+  "ms": 112.0,
+  "text": "Freja Nordkap Logistics quote Q-7841 two K4 Haulers January\n dropped extended warranty budget new\n airframes not delivered 2026-02-20\n"
+ },
+ "575b48dea3509726": {
+  "ms": 119.6,
+  "text": "SC-PNQ-02 closed on 2026-03-31 and 2026-04-01 for annual inventory count.\n Bookings on those dates moved customer notified.\n"
+ },
+ "578253159d3e86fa": {
+  "ms": 115.9,
+  "text": "service center Hyderabad Stowbot robots?\n SC-HYD-01\n\n warehouse Bengaluru?\n\n\n center airframes Kochi?\n unknown\n"
+ },
+ "57c5e5818f9f6a2e": {
+  "ms": 108.6,
+  "text": "Hyderabad 63 units Pune 29\n Bengaluru 12 36 V pack fits Stowbot S1 K2 Courier\n"
+ },
+ "57eb489099da2216": {
+  "ms": 110.6,
+  "text": "Invoices billing bookings\n operations roles\n\n"
+ },
+ "580c6a54f878876c": {
+  "ms": 104.4,
+  "text": "HYD BLR Bengaluru\n warehouse\n"
+ },
+ "5850fc26d6691f86": {
+  "ms": 113.9,
+  "text": "PRT-BAT-48V fits K-series drone Stowbot S2\n Sorter-BAT-36V Stowbot S1 K2 Courier\n"
+ },
+ "58f334eb1391e15f": {
+  "ms": 117.2,
+  "text": "5.0.3 flight-ready Lite controller fixes\n drift barometric hold 1,800 m shortens arming self-test 22\n adds load-cell calibration console export supersedes\n 4.9.7 pre-release cleared flight\n"
+ },
+ "594401d694c19691": {
+  "ms": 131.9,
+  "text": "noted K4 Hauler KR4-88305). help?"
+ },
+ "595a9b95a15717aa": {
+  "ms": 105.7,
+  "text": "Maja Lindqvist Freight\n\n"
+ },
+ "59757ffa9e0035e2": {
+  "ms": 98.2,
+  "text": "refund raised against approved request declined never paid\n refund exceeds invoice line\n"
+ },
+ "59816a794cfa929a": {
+  "ms": 127.7,
+  "text": "Understood. Quotes carry Q- number, invoices carry INV- number."
+ },
+ "59a1e521b97013a0": {
+  "ms": 101.0,
+  "text": "zero degrees battery capacity falls 20% effective range falls\n altitude limits change temperature\n"
+ },
+ "59a602ae6a10396a": {
+  "ms": 103.2,
+  "text": "KR4-88217 K4 Hauler\n\n\n KR2-10044 K2 Courier 3.6.0 3.8.4\n\n"
+ },
+ "59ca262d708dcadc": {
+  "ms": 119.6,
+  "text": "Thanks Maja found order KR-55120 Lindqvist Freight AB."
+ },
+ "59e922cf51be4e06": {
+  "ms": 111.4,
+  "text": "Operations Arjun Rao\n Billing Meera Nayak accounts Pune\n"
+ },
+ "5a05307f7793d4ce": {
+  "ms": 124.1,
+  "text": "parcel tray accessory-S2) Pallet loose parcels aisle\n rail kit aisles 1.6 m\n"
+ },
+ "5a17b72bc10f1eab": {
+  "ms": 111.1,
+  "text": "Invoices credit notes billing bookings\n operations\n\n"
+ },
+ "5a8732fad16cae02": {
+  "ms": 119.6,
+  "text": "fasteners K-series airframes torqued 5\n HeavyLift pod over-torquing cracks carbon boss\n"
+ },
+ "5a8f5713d7086ed5": {
+  "ms": 112.4,
+  "text": "Invoices settled 10 days attract 2% discount credit note\n month discount credit note D not refund\n"
+ },
+ "5aeca5b84674ceaa": {
+  "ms": 110.2,
+  "text": "Hi, Priya at Whitefield Robotics. need booking details for big order, one with\n sorter robot it, not small wheels order placed two days later.\n"
+ },
+ "5b31b8f7fbe1dfc1": {
+  "ms": 101.1,
+  "text": "KR4-90533 K4 Hauler 2026-01-09. flight controller\n firmware update Raised 2026-03-05 software fault\n airframe 24-month warranty covered\n"
+ },
+ "5b3a7c75db72c342": {
+  "ms": 115.6,
+  "text": "SB3-40112 S3 2026-03-12\n SB3-40115\n SB2-30204 S2 2025-11-28\n"
+ },
+ "5b40c9c5ff037b12": {
+  "ms": 122.2,
+  "text": "easy confuse directory explicit handles what."
+ },
+ "5b552940cec1c11b": {
+  "ms": 100.9,
+  "text": "K-series drones must on minimum flight-ready firmware before first flight.\n Technicians calibrate K4 load cell with certified 10 kg reference weight during\n commissioning. Calibration takes 20 minutes repeated after crash landing.\n"
+ },
+ "5b6b9d3850e1cfe7": {
+  "ms": 130.9,
+  "text": "K4 Hauler?"
+ },
+ "5b7cb1017d628fbc": {
+  "ms": 99.4,
+  "text": "airframe water ingress not airworthy Fleet console\n hour report cleared service center seal\n replaced leak test passes grounded airframe voids warranty\n"
+ },
+ "5c035886c5cb068d": {
+  "ms": 121.4,
+  "text": "K3 Sparrow 9 kg Range 38 km\n speed 61 km/h IP43\n"
+ },
+ "5c9260c103c1ebaf": {
+  "ms": 103.2,
+  "text": "Booking KR4-88217 (K4 Hauler SC-HYD-01 6 April 2026\n Output_number \"K4_id \"2026-04-06\"\n\n SB1-20044 Stowbot S1 booked SC-BLR-03 2026-03-30\n Output_number \"Stowbot_id-BLR-03\", \"2026-03-30\"\n"
+ },
+ "5cb5af696cc4241d": {
+  "ms": 108.2,
+  "text": "Hi, Arjun from SkyCart Deliveries. We registered in Pune. pallet robot\n closest to 2,000-hour full service needs booking in, higher-houred of two.\n"
+ },
+ "5cd2c8847da8bef2": {
+  "ms": 104.2,
+  "text": "landing 48.2 hours\n damage\n minor\n"
+ },
+ "5d4c67d75af0ba76": {
+  "ms": 113.2,
+  "text": "look order"
+ },
+ "5d805bf208c3671e": {
+  "ms": 115.1,
+  "text": "Invoices go to billing contact account"
+ },
+ "5dc6769c4b64da2d": {
+  "ms": 130.8,
+  "text": "install firmware 4.2.1 flight bulletin SB-2026"
+ },
+ "5e0ca1714599fc45": {
+  "ms": 113.4,
+  "text": "course can look up any order you name."
+ },
+ "5e33b65f5a9f1861": {
+  "ms": 126.7,
+  "text": "HeavyLift payload 11 kg\n arms 31 km\n warranty\n"
+ },
+ "5e9ad7783b42585d": {
+  "ms": 111.4,
+  "text": "Nordkap\n 190.50 48\n"
+ },
+ "5ee3c89729386d3b": {
+  "ms": 101.6,
+  "text": "Device KR4-90533 K4 Hauler Center SC-PNQ-02. Appointment 2026-03-26, 14:00.\n Work propeller replacement. booking completed closed.\n"
+ },
+ "5f8ac34005bd3e4d": {
+  "ms": 108.1,
+  "text": "Whitefield board Friday\n\n"
+ },
+ "5f972ad89360345f": {
+  "ms": 101.4,
+  "text": "serial delivery\n warranty chargeable\n"
+ },
+ "5fff04311a63b32e": {
+  "ms": 117.5,
+  "text": "Stowbot\n 1,150\n 480 kg 48 110\n"
+ },
+ "6004cf4ad55a4205": {
+  "ms": 121.3,
+  "text": "KR4-90533"
+ },
+ "6033b08500a36016": {
+  "ms": 101.1,
+  "text": "Below zero degrees Celsius battery capacity falls roughly 20% effective range falls\n with. altitude limits do not change with temperature.\n"
+ },
+ "60b7a3718655c311": {
+  "ms": 127.0,
+  "text": "Understood. can return quote fields as JSON."
+ },
+ "6131689d156a96cc": {
+  "ms": 118.8,
+  "text": "inventory\n centers\n"
+ },
+ "613a8711091e5f44": {
+  "ms": 101.1,
+  "text": "Book service city\n nearest center\n told advance\n"
+ },
+ "6158f07742b6475f": {
+  "ms": 101.3,
+  "text": "14 refused 07 address not found Exceptions change\n original arrival date dispatch note\n"
+ },
+ "618448ba2b817464": {
+  "ms": 126.1,
+  "text": "change address"
+ },
+ "6189140bb5adac81": {
+  "ms": 102.9,
+  "text": "KR3-41208 Sparrow SC-PNQ-02 Hinjewadi\n April 2026 50-flight inspection\n SkyCart Deliveries\n"
+ },
+ "621925fb6ba2e7bc": {
+  "ms": 108.1,
+  "text": "Arjun SkyCart Deliveries registered Pune fly K4 Haulers\n 48 V pack not 36 older robots\n"
+ },
+ "6221a5164d4007df": {
+  "ms": 128.6,
+  "text": "Understood approved request paid"
+ },
+ "62b7f42af4ff5507": {
+  "ms": 106.8,
+  "text": "Priya Whitefield Robotics\n figures\n"
+ },
+ "62c3dde4a4aac871": {
+  "ms": 112.6,
+  "text": "aisle 1.4 m ceiling height 2.6 m Floor flatness tolerance 3 mm\n over 2 m Docks need 16 A socket within 3 m aisle head\n"
+ },
+ "62d9422974bd22ba": {
+  "ms": 96.5,
+  "text": "1 Stowbot S3 Sorter without service plan INR 742,000.00 Valid until 2026-03-14.\n Superseded later quote customer's request.\n"
+ },
+ "63bab224f4a8a664": {
+  "ms": 121.7,
+  "text": "3-year service plan priced INR 70,400.00 for Stowbot S3 Sorter covers preventive\n maintenance labour. Wear parts charged separately.\n"
+ },
+ "64d2cdb4c4ce894e": {
+  "ms": 116.0,
+  "text": "Book 50-hour inspection KR4-88217 Hyderabad next free slot\n call schedule serial center date \"2026-04-06\".\n\n Get SB1-20044 Bengaluru full service earliest date\n call schedule serial center date\n"
+ },
+ "6503b446339b1230": {
+  "ms": 125.0,
+  "text": "Understood order containing Stowbot S3 Sorter rather than consumables order."
+ },
+ "650ffefd9d09a1f9": {
+  "ms": 110.9,
+  "text": "Priya Whitefield Robotics need booking details big order\n sorter robot not small wheels days later\n"
+ },
+ "654a0b8d2e037c66": {
+  "ms": 127.8,
+  "text": "pay approved"
+ },
+ "65f818a420892cac": {
+  "ms": 102.0,
+  "text": "KR4-90533 K4 Hauler\n\n 24-month warranty\n"
+ },
+ "65fe5483b1a07c7f": {
+  "ms": 109.2,
+  "text": "laying new mezzanine need clearances fastest Stowbot"
+ },
+ "661e5511b12928c0": {
+  "ms": 121.1,
+  "text": "Arjun 50-flight-hour inspection KR4-90533"
+ },
+ "661e8103ffdd0dac": {
+  "ms": 104.4,
+  "text": "Arjun SkyCart insurer\n\n"
+ },
+ "664dec9b86863f6b": {
+  "ms": 110.4,
+  "text": "Hi Kiri Arjun SkyCart building maintenance calendar want hours\n numbers prose sort.\n"
+ },
+ "67428f9cbcfbae0b": {
+  "ms": 98.8,
+  "text": "address can be changed only while order not shipped. delivered or dispatched\n order needs return instead. Addresses marked closed may never be used.\n"
+ },
+ "674e07dc8d973e8f": {
+  "ms": 115.4,
+  "text": "Proforma quote 2 x K4 Hauler EUR 1,650.00 each Extended warranty EUR 255.00\n per airframe valid until 2026-02-28 Accepting quote creates new order number\n"
+ },
+ "6808cfef1c0b13b6": {
+  "ms": 110.9,
+  "text": "INV-18840 KR-51002. USD 612.00\n\n\n KR-50977-18791 INR 48,250.00 2025-12-19\n\n"
+ },
+ "6826102feb6ac4cb": {
+  "ms": 121.8,
+  "text": "K4 Hauler 12.5\n 46 68 IP54\n 45\n"
+ },
+ "683df40702cdcdcd": {
+  "ms": 104.0,
+  "text": "WC-3301 KR4-88217 cracked 2026-01-14\n\n\n WC-3318 SB1-20044 warranty expired\n\n"
+ },
+ "686584dd808e2976": {
+  "ms": 101.4,
+  "text": "Whitefield Robotics Confirmed 2026-03-02.\n Lines 1 Stowbot S3 Sorter (INR PRT-RAIL-14 aisle guide rail kit\n (INR PRT-PAD-S2 gripper pad set (INR 8,400.00).\n Total INR 781,900.00 Standard delivery Bengaluru region\n"
+ },
+ "68c7fdb5a0d87c36": {
+  "ms": 107.8,
+  "text": "Freja Nordkap Logistics K4 Haulers\n warranty\n\n"
+ },
+ "694a90596196f5b0": {
+  "ms": 104.9,
+  "text": "Drones with HeavyLift kit must have arm bolts re-torqued to 8 Nm after first\n 20 flight hours torque check takes 15 minutes free during warranty period.\n"
+ },
+ "69aa0daae148f179": {
+  "ms": 108.5,
+  "text": "Hyderabad region 7 working days Pune 9 working days Bengaluru region 12 working\n days. Lead times exclude day confirmation.\n"
+ },
+ "69c62b841421801d": {
+  "ms": 109.7,
+  "text": "Maximum operating altitude above sea level K2 Courier 1,800 m K3 Sparrow 2,100 m\n K4 Hauler 2,400 m Hauler Lite 2,900 m. K5 Freighter 2,200 m\n Above altitudes airframe refuses take off payload\n"
+ },
+ "69ec0fdc8f08b9f0": {
+  "ms": 101.1,
+  "text": "19:00 Monday Friday\n\n"
+ },
+ "6a54f77d3e7560d6": {
+  "ms": 113.6,
+  "text": "quote invoice K4 Hauler 3-year warranty EUR 1,905.00\n 2026-01-31 new order\n"
+ },
+ "6aac3c1ace8edfdf": {
+  "ms": 109.4,
+  "text": "Invoices 10 2% discount\n rebate\n"
+ },
+ "6afde8ecfaf6b697": {
+  "ms": 102.1,
+  "text": "smallest room fewer\n self-service\n"
+ },
+ "6b0943edf3102e1f": {
+  "ms": 126.1,
+  "text": "Understood return fields JSON"
+ },
+ "6b6c4da7209de025": {
+  "ms": 126.1,
+  "text": "K4 Haulers"
+ },
+ "6ba35927bb149217": {
+  "ms": 121.1,
+  "text": "K4 12.5\n 46 68\n"
+ },
+ "6bd92e80a4d30f7b": {
+  "ms": 111.4,
+  "text": "Motor seals inspected 200 hours failed seal drops\n protection IP20\n"
+ },
+ "6bd980b8f287f64a": {
+  "ms": 114.4,
+  "text": "Request Email accounts team copy INV-18840.\n Action call send_invoice_copy_id \"INV-18840\", email \"ap@orbitalparcel.in\".\n\n Request resend INV-18791 to finance?\n Action call send_invoice_copy_id \"INV-18791\", email \"freja.holm@nordkap.se\".\n"
+ },
+ "6c77ebfc52f89977": {
+  "ms": 120.0,
+  "text": "green powered working Amber\n\n green mechanical fault\n"
+ },
+ "6d407c447cf8caeb": {
+  "ms": 107.7,
+  "text": "Invoice credit queries handled billing team ticket\n operations queue.\n"
+ },
+ "6d434552660dc856": {
+  "ms": 100.8,
+  "text": "Deccan Aerial Services Hyderabad Carrier Bluewing Freight\n waybill BW-4417803. Left Hyderabad warehouse 2026-02-24.\n Estimated arrival 2026-03-04. Two cartons 31.4 kg\n"
+ },
+ "6d78312484681c9f": {
+  "ms": 98.8,
+  "text": "Above 1,500 m derate maximum payload 4% 300 m.\n flight controller overridden console\n"
+ },
+ "6da6f72ff0a44ef5": {
+  "ms": 99.7,
+  "text": "-warehouse transfer days\n\n"
+ },
+ "6dcfdf800a7f6430": {
+  "ms": 107.2,
+  "text": "Refund USD 612.00 INV-18840 duplicate Approved\n\n\n INV-18791 4,000.00 late\n\n"
+ },
+ "6dd8d249bbe87ed5": {
+  "ms": 115.0,
+  "text": "Arjun\n Meera\n Pune Dealer\n"
+ },
+ "6de0ae7cb4217c4c": {
+  "ms": 112.2,
+  "text": "first need firmware update first flight?"
+ },
+ "6e72df4d34eff4ed": {
+  "ms": 109.0,
+  "text": "If a line is out of stock whole order ships together once line covered,\n customer told revised date within one working day.\n"
+ },
+ "6e802cdc57acb47b": {
+  "ms": 112.2,
+  "text": "KR5-11203 delivered 2026-02-14\n 2026-02-14 SB3-40088 S3 2026-01-30\n"
+ },
+ "6eb6d5cde64b38b4": {
+  "ms": 108.2,
+  "text": "Hyderabad 63 5 Pune 29 2 reserved\n Bengaluru 12 0 reserved\n"
+ },
+ "6f08cae6ac320283": {
+  "ms": 125.9,
+  "text": "likely. tell version need before arm."
+ },
+ "6f08e64ef3a24578": {
+  "ms": 116.3,
+  "text": "news Hyderabad shipment? Order KR-51002.\n call lookup_order-51002\".\n\n Chase Gothenburg order KR-50977\n call lookup\n"
+ },
+ "6f808af2647f3535": {
+  "ms": 107.7,
+  "text": "check warehouse"
+ },
+ "6fb4681feabf599f": {
+  "ms": 124.0,
+  "text": "Stowbot S2 Pallet service Pune centre robots"
+ },
+ "702f1af7bdddac37": {
+  "ms": 100.7,
+  "text": "Book service center customer's city device type\n one open booking per device\n"
+ },
+ "7038402af9e44042": {
+  "ms": 112.7,
+  "text": "PRT-PAD-S1: gripper Stowbot S1 4\n 6-WHL-S2 drive wheel S2 Pallet S3 Sorter\n-TRY-S2 parcel tray accessory S2 Pallet\n"
+ },
+ "704efa70e96067ce": {
+  "ms": 120.2,
+  "text": "K5 Freighter largest K-series inter-depot\n Maximum payload 24 kg 71 km speed 59 km/h\n protection IP55 launch pad 4 m\n"
+ },
+ "711c5f1ef633ca0d": {
+  "ms": 101.5,
+  "text": "Device KR4-90533 Raised 2026-02-18 Consignment arrived carton short\n delivery Closed 2026-02-21\n"
+ },
+ "71ccd5b13f089861": {
+  "ms": 117.3,
+  "text": "Request Book 50-hour inspection KR4-88217 Hyderabad centre next free slot.\n Action call schedule_maintenance serial_number \"KR4-88217\", center_id \"SC-HYD-01\", date \"2026-04-06\".\n\n Request Get SB1-20044 Bengaluru full service earliest date\n Action call schedule_maintenance serial_number \"SB1-20044\", center_id \"SC-BLR-03\", date \"2026-03-30\".\n"
+ },
+ "71ef07cfd0a51148": {
+  "ms": 101.7,
+  "text": "airframe stored for more than 60 days recommissioned before it flies again. Charge\n pack to 100% discharge once to 20% check minimum firmware re-torque motor pod\n fasteners to 5 Nm run hover test of least 3 minutes at 2 m. Record checklist in\n Fleet console against serial number. Skipping step voids warranty for fault\n traced to storage checklist takes 45 minutes per airframe.\n"
+ },
+ "721d45744022233f": {
+  "ms": 101.3,
+  "text": "Whitefield Robotics PRT-WHL\n INR 19,600.00 Issued Due 2026-04-06.\n"
+ },
+ "726aaeb204782df4": {
+  "ms": 110.4,
+  "text": "Hyderabad 41 6 reserved Pune 18 0 reserved\n Bengaluru 7 7 2026-03-02 06:00\n"
+ },
+ "727324c0796a9588": {
+  "ms": 108.9,
+  "text": "Invoices credit notes go to billing contact only. Service bookings incident\n notices go to operations contact single person may hold both roles record\n always lists them separately.\n"
+ },
+ "72929379c7ebcf0d": {
+  "ms": 121.3,
+  "text": "Kestrel Fleet 90%\n\n"
+ },
+ "72a55c32f4b47039": {
+  "ms": 126.7,
+  "text": "Understood. I can only pay out request finance approved."
+ },
+ "72d324b3e3c64b92": {
+  "ms": 116.2,
+  "text": "5.0.3 fixes\n 1,800-test\n load-cell calibration\n 4.9.7\n"
+ },
+ "72da4361cc18b8db": {
+  "ms": 121.8,
+  "text": "Stowbot S3 Sorter fastest robot in Stowbot line. Sustained throughput:\n 1,450 parcels per hour. Peak throughput up to 10 minutes 1,700 parcels per\n hour. Battery 48 V charges from empty in 80 minutes. Needs aisle width least 1.4 m.\n"
+ },
+ "7366584c08a2e16f": {
+  "ms": 97.0,
+  "text": "disputed invoice line frozen dispute open accrue\n late fee. rest invoice continues normally\n"
+ },
+ "741483a11d48accf": {
+  "ms": 125.5,
+  "text": "Ticket references begin closed confirms fix\n 14 days no reply Reopening creates new reference\n"
+ },
+ "74270eb978377c77": {
+  "ms": 99.2,
+  "text": "shipped delivered\n return closed\n"
+ },
+ "74330a5487f2e771": {
+  "ms": 114.0,
+  "text": "Of course. can quote published lead times any region."
+ },
+ "7478e36d9fffad84": {
+  "ms": 114.8,
+  "text": "2 K4 Hauler EUR 1,650.00 Extended warranty EUR 255.00\n Valid 2026-02-28 order\n"
+ },
+ "747bab24a9095033": {
+  "ms": 97.3,
+  "text": "pad replaced complete set mixed depths\n robot drop light items\n"
+ },
+ "74ac2bf9ca987658": {
+  "ms": 113.0,
+  "text": "-PAD 4\n 6 drive wheel Sorter\n-S2 S2 Pallet\n"
+ },
+ "755c952d6ea3f04f": {
+  "ms": 132.0,
+  "text": "HeavyLift kit on K3 Sparrows technician first check"
+ },
+ "755f3442cb58a293": {
+  "ms": 116.3,
+  "text": "Which service center Hyderabad handles Stowbot robots?\n A: SC-HYD-01\n\n Which warehouse code covers Bengaluru region?\n: BLR\n\n Which service center handles airframes Kochi?\n: unknown\n"
+ },
+ "759320b87a938e99": {
+  "ms": 114.4,
+  "text": "K4 Hauler SkyCart Deliveries Pune Delivered\n"
+ },
+ "768e96d5c2c43afc": {
+  "ms": 131.1,
+  "text": "Versions compared field by field from left, so 4.9.7 is lower than 5.0.3 even though\n its middle field larger build with trailing letter is pre-release always\n treated as lower than plain release with same numbers.\n"
+ },
+ "76a713374855b240": {
+  "ms": 108.4,
+  "text": "Anita SkyCart Deliveries three Lite\n\n"
+ },
+ "76c7c5aabd36ace1": {
+  "ms": 111.3,
+  "text": "Hi, Freja at Nordkap Logistics. depot manager asking for update I rather\n give him something from your system than guess.\n"
+ },
+ "76d5c1a35c646ad1": {
+  "ms": 113.5,
+  "text": "-48V Hauler\n-K4 propeller Hauler\n"
+ },
+ "7714089e7a5a358e": {
+  "ms": 126.9,
+  "text": "HeavyLift K3"
+ },
+ "7780ebe00ea7848c": {
+  "ms": 115.3,
+  "text": "propeller sets Hyderabad?\n check_stock \"PRT-PROP warehouse \"HYD\".\n\n guide kits Bengaluru warehouse?\n check \"PRT warehouse \"BLR\".\n"
+ },
+ "77db2e9d29b56280": {
+  "ms": 126.2,
+  "text": "Understood, K3 Sparrow with HeavyLift kit fitted. What technician need?"
+ },
+ "77f9ad00161b6288": {
+  "ms": 102.0,
+  "text": "Nordkap Logistics-55061 K4 Hauler\n 48 V battery pack 190 1,840.50 Issued 2026-01-28\n"
+ },
+ "7806cd942cd031fe": {
+  "ms": 110.7,
+  "text": "31.2\n 5.0.3 28.8\n 12.1\n KR3-41208\n 2026-03-06 Deshpande\n"
+ },
+ "78260eb627a1ae2d": {
+  "ms": 108.2,
+  "text": "Anita SkyCart Deliveries taken three airframes storage\n K4 Hauler Lite units serials KR4-70112L\n"
+ },
+ "785171a50c6e925f": {
+  "ms": 101.4,
+  "text": "Lindqvist Harbour Express\n\n"
+ },
+ "7865a2bd258feb7c": {
+  "ms": 109.5,
+  "text": "invoice-20874-55061 Nordkap\n EUR 190.50 refunded 48 V battery pack Issued\n"
+ },
+ "7868e2d9521daa5f": {
+  "ms": 100.9,
+  "text": "Book smallest room seats everyone. room seats fewer people group\n may not be booked Rooms needing facilities approval excluded from self-service booking.\n"
+ },
+ "78d58ce64a7a1aaa": {
+  "ms": 130.8,
+  "text": "want know cover bulk order local stock"
+ },
+ "78f787a6a0b57b42": {
+  "ms": 119.1,
+  "text": "Standard motor pod fasteners K-series airframes torqued to 5 Nm. not apply\n HeavyLift figure to standard pod; over-torquing cracks carbon boss.\n"
+ },
+ "790aee7c338460ec": {
+  "ms": 105.2,
+  "text": "PRT-BAT-36V Hyderabad 63 hand 5 reserved\n Output_hand 63 \"reserved 5 \"available 58}\n\n PRT-RAIL-14 Bengaluru stock 20 20 allocated\n Output-RAIL-14\",_hand 20 \"reserved 20 \"available 0\n"
+ },
+ "7915aa0c80c6a6a2": {
+  "ms": 105.0,
+  "text": "Document: Refund USD 612.00 INV-18840 duplicate payment Approved finance.\n Output {\"invoice_id \"INV-18840\", \"amount 612.00 \"currency \"USD\", \"reason \"duplicate payment\", \"approved\" true}\n\n Document INV-18791 INR 4,000.00 asked back late delivery Finance declined\n Output {\"invoice_id \"INV-18791\", \"amount 4000.00 \"currency\" \"INR\", \"reason\" \"late delivery\", \"approved\" false}\n"
+ },
+ "7928388432a84a8c": {
+  "ms": 113.7,
+  "text": "Stowbot 3-year\n 812,400.00 order\n"
+ },
+ "7980c3566c06f57c": {
+  "ms": 107.1,
+  "text": "Nordkap\n 3,300.00\n"
+ },
+ "798e436446d2e549": {
+  "ms": 107.8,
+  "text": "Ravi Deccan Aerial Services topping shelf stock spares before\n busy season holding first\n"
+ },
+ "7992fe8fb6776273": {
+  "ms": 100.7,
+  "text": "14 refused 07\n closed\n"
+ },
+ "79c642351d0bcbb0": {
+  "ms": 101.8,
+  "text": "12\n 6 whiteboard\n"
+ },
+ "7a152047a6bf6cf1": {
+  "ms": 120.4,
+  "text": "Stowbot intervals counted operating hours include idle\n powered Drone intervals flight hours exclude ground time\n Confusing common missed service\n"
+ },
+ "7a84136030c626b1": {
+  "ms": 108.9,
+  "text": "Invoices due 30 days after issue date. reminder emailed 7 days before due\n date, late fee of 1.75% per month applies after it.\n"
+ },
+ "7a8fa6edabce869a": {
+  "ms": 114.3,
+  "text": "PRT-PAD-S1: gripper Stowbot S1 4 pads PRT-PAD-S2 gripper Stowbot S2\n Pallet S3 Sorter 6 pads PRT-WHL-S2 drive wheel S2 Pallet S3 Sorter\n PRT-TRY-S2: parcel tray accessory S2 Pallet\n"
+ },
+ "7af0f90473321009": {
+  "ms": 103.6,
+  "text": "Document Q-7712 Lindqvist Freight AB EUR 1,905.00 valid 31 January 2026\n Output_id Freight 1905.00_until \"2026-01-31\n\n Document Q-7841 Nordkap Logistics EUR 3,810.00 expires 2026-02-28\n Output_id-7841\", \"currency_until \"2026-02-28\n"
+ },
+ "7b043695cfb0af42": {
+  "ms": 117.8,
+  "text": "SB2-30117 S2 1,835 SB2-30119\n 402 hours KR3-41208 51.7 flight hours\n"
+ },
+ "7b7a0443d0cab4f3": {
+  "ms": 109.4,
+  "text": "Hi, Arjun from SkyCart Deliveries. We registered in Pune we fly K4 Haulers,\n 48 V pack we care about, not 36 V one for older robots.\n"
+ },
+ "7b8a20eb1cb34bac": {
+  "ms": 109.6,
+  "text": "Hyderabad (HYD): 63 hand 5 reserved Pune (PNQ): 29 2 reserved\n Bengaluru (BLR): 12 hand 0 reserved.\n"
+ },
+ "7b9848076b2817aa": {
+  "ms": 103.8,
+  "text": "Drive wheel inspection 400 Gripper pad replacement 1,200\n depth 2 mm Full service\n 2,000 hours Battery health report 6 months\n"
+ },
+ "7bb3b5cf46e79ce6": {
+  "ms": 112.5,
+  "text": "Noted SkyCart Deliveries Pune asking spare 48 V battery pack"
+ },
+ "7bd06f96bf5a3171": {
+  "ms": 113.8,
+  "text": "48?\n\n\n aisle?\n\n\n K9 Titan?\n\n"
+ },
+ "7be2bcf62e95c6e8": {
+  "ms": 115.3,
+  "text": "accounts team mixing up your documents with quote you sent in January."
+ },
+ "7c4dd9e8b283255b": {
+  "ms": 118.6,
+  "text": "-BLR-03 Whitefield K Stowbot robots\n 2026-03-30\n"
+ },
+ "7c50b41281aac8c3": {
+  "ms": 97.7,
+  "text": "refund raised only against approved request. declined request is never paid.\n refund never exceeds invoice line it relates to.\n"
+ },
+ "7c5960db3f424572": {
+  "ms": 117.3,
+  "text": "Priya\n Deepak\n Bengaluru Dealer\n"
+ },
+ "7c99e0db77030178": {
+  "ms": 101.2,
+  "text": "Whitefield Robotics Confirmed 2026-03-04. 4 PRT-WHL-S2 drive wheel\n Total INR 19,600.00 follow-up consumables order\n"
+ },
+ "7d555d12aba9bad7": {
+  "ms": 119.7,
+  "text": "packs 30% dangerous goods full use\n stored below 10% 60 days lose warranty\n"
+ },
+ "7d630f81dabf56ba": {
+  "ms": 110.5,
+  "text": "Kestrel drones software-limited 120 m above ground level\n separate limit operating altitude sea level\n"
+ },
+ "7db210767d1a1274": {
+  "ms": 127.4,
+  "text": "return JSON"
+ },
+ "7deb1f788700c326": {
+  "ms": 123.7,
+  "text": "Ticket references begin TK-. ticket closed when customer confirms fix or after\n 14 days no reply. Reopening closed ticket creates new reference.\n"
+ },
+ "7e129d78f5d21e1d": {
+  "ms": 105.2,
+  "text": "Maja Lindqvist Freight finance team tightening payment\n terms want rules written word of mouth\n"
+ },
+ "7f61cd9224da3775": {
+  "ms": 125.9,
+  "text": "Understood. return refund request fields as JSON."
+ },
+ "7f7ae563661e3280": {
+  "ms": 125.8,
+  "text": "Understood. can return maintenance fields as JSON."
+ },
+ "7f835d1082c53657": {
+  "ms": 108.6,
+  "text": "Invoices settled within 10 days attract 2% discount, applied as credit note following\n month. discount credit note carries suffix D on reference not a refund.\n"
+ },
+ "8043e200604f7d9d": {
+  "ms": 126.8,
+  "text": "Understood. return credit note fields as JSON."
+ },
+ "80839ae0423255f6": {
+  "ms": 122.7,
+  "text": "Stowbot Pune"
+ },
+ "8084547fee778dfc": {
+  "ms": 100.6,
+  "text": "order confirmed recorded\n quote order\n"
+ },
+ "808cc433d98af98f": {
+  "ms": 118.7,
+  "text": "Bengaluru office closed on 2026-04-14 for regional holiday.\n Bookings on date refused.\n"
+ },
+ "80b8fa67e62b95f3": {
+  "ms": 107.4,
+  "text": "can check on-hand figure for home warehouse."
+ },
+ "80d00ae3414ae4b1": {
+  "ms": 103.4,
+  "text": "IR-2201 KR4-88217 34.5 minor\n\n\n IR-2209 SB1-20044 210 hours major\n\n"
+ },
+ "80d543a770ad5902": {
+  "ms": 111.7,
+  "text": "Arjun SkyCart Deliveries registered Pune pallet robot\n closest 2,000-hour service booking higher-houred\n"
+ },
+ "810c4125cc38132d": {
+  "ms": 121.1,
+  "text": "K3 Sparrow Kestrel drone last parcels payload\n 9 kg 38 km 41 minutes speed\n 61 km/h protection IP43 48 V 70 minutes\n"
+ },
+ "810d982869637201": {
+  "ms": 111.9,
+  "text": "Issued against invoice INV-20874 KR-55061 Nordkap\n EUR 190.50 refunded returned spare 48 V battery pack Issued 2026-02-20\n"
+ },
+ "81224cf3c7edcfac": {
+  "ms": 101.0,
+  "text": "Customer Whitefield Robotics. Confirmed 2026-03-02. Total INR 781,900.00\n order not quote carries no validity date\n"
+ },
+ "8135c670d5c3b41b": {
+  "ms": 105.4,
+  "text": "Hello Priya at Whitefield Robotics. Our board pack generated from structured data\n PDF quote no use us.\n"
+ },
+ "81e7490a3757d206": {
+  "ms": 111.2,
+  "text": "Hi, we run mixed site, handful of Stowbot S2 Pallet robots two K4 Haulers, I\n building preventive maintenance calendar for robots.\n"
+ },
+ "8242ad2a92eebcf9": {
+  "ms": 113.5,
+  "text": "51.7 12.4\n SB2-30117 1,835\n 402\n"
+ },
+ "825bf9ceb6ceb3ed": {
+  "ms": 101.0,
+  "text": "Invoice INV-18840 order KR-51002. due USD 612.00 Payment 5 January 2026\n Output\"invoice_id_id 612.00_date \"2026-01-05\n\n Order KR-50977 invoice INV-18791 total INR 48,250.00 due 2025-12-19.\n Output\"invoice_id_id 48250.00_date \"2025-12-19\"\n"
+ },
+ "82701b24bb16d809": {
+  "ms": 115.6,
+  "text": "update flight?"
+ },
+ "830610aa85e9b9ab": {
+  "ms": 111.1,
+  "text": "Of course. can give installation requirements for any Stowbot model."
+ },
+ "8355d67be00bcba7": {
+  "ms": 105.8,
+  "text": "Happy to help. can quote policy exactly as it published."
+ },
+ "835899b8f90f497d": {
+  "ms": 101.1,
+  "text": "KR3-41208. invoice charged Raised 2026-02-20 billing\n Resolved credit warranty\n"
+ },
+ "83d40def79ae15aa": {
+  "ms": 105.4,
+  "text": "-7712 Lindqvist Freight 1,905.00\n 1905.00\n\n-7841 Nordkap Logistics 3,810.00\n\n"
+ },
+ "8403d7e283c9e066": {
+  "ms": 123.2,
+  "text": "1 configuration account questions 2 firmware\n faults 3 engineering reached 2.\n"
+ },
+ "8468f1e137b61acd": {
+  "ms": 112.5,
+  "text": "Order numbers begin KR- issued confirmation numbers Q-\n customer hold orders never merged\n"
+ },
+ "846c08e70dc3aa51": {
+  "ms": 101.0,
+  "text": "propeller\n replacement\n"
+ },
+ "84745cddb4628200": {
+  "ms": 110.8,
+  "text": "aisle ceiling 2.6\n 3\n"
+ },
+ "84884918b1316d36": {
+  "ms": 100.8,
+  "text": "served inter-warehouse\n 4 days\n units allocated\n"
+ },
+ "84ed6e2abed48f14": {
+  "ms": 99.9,
+  "text": "K-series drones flight-ready firmware (4.2.1 K4 before first flight Technicians\n calibrate K4 load cell 10 kg weight\n 20 minutes crash landing\n"
+ },
+ "857800ec861907e0": {
+  "ms": 123.4,
+  "text": "express 3\n INR 9,500.00\n"
+ },
+ "85b93990a2763f72": {
+  "ms": 122.3,
+  "text": "flight firmware Lite airframe\n controller Courier 3.8.4. Sparrow 4.2.1. Hauler\n 5.0.3. Freighter 5.1.0. drone below minimum refuses arm\n"
+ },
+ "86300b15480490aa": {
+  "ms": 102.4,
+  "text": "Whitefield Robotics Order KR-55210 Items 1 Stowbot S3 Sorter\n PRT-RAIL-14 1 PRT-PAD-S2. Total INR 781,900.00 Issued 2026-03-05 Due 2026-04-04.\n"
+ },
+ "86466478eabbfe91": {
+  "ms": 121.7,
+  "text": "K4 Hauler Lite trades lifting capacity for range. Maximum payload: 8 kg. Range full\n payload: 52 km. Lite identified by letter L end of serial number.\n"
+ },
+ "86530e51b9785d49": {
+  "ms": 126.8,
+  "text": "Hauler?"
+ },
+ "86571d32961295a4": {
+  "ms": 123.0,
+  "text": "optional HeavyLift kit raises K3 Sparrow's maximum payload to 11 kg adding two\n reinforced motor arms Range kit fitted drops to 31 km kit not offered for\n K4 variant fitting third-party arms voids warranty.\n"
+ },
+ "8664196d3aa76b2c": {
+  "ms": 125.7,
+  "text": "Understood. can return claim fields as JSON."
+ },
+ "867ef2afce8b5e09": {
+  "ms": 107.8,
+  "text": "Hi, Freja at Nordkap Logistics. took your quote Q-7841 for two K4 Haulers in January\n dropped extended warranty line before signing to keep budget down. new\n airframes, not refurbished delivered on 2026-02-20.\n"
+ },
+ "86b73019f32963a3": {
+  "ms": 111.4,
+  "text": "aisle width 1.1 ceiling height 2.4 S1 Stowbot\n narrow-aisle guide rail\n"
+ },
+ "86b955e598ed262e": {
+  "ms": 102.7,
+  "text": "Deccan Aerial Services Order KR-55107.\n Items 1 K3 Sparrow (EUR 1,290.00), 1 HeavyLift kit 190.50).\n Total EUR 1,480.50 Issued 2026-02-05 Payment due 2026-03-07.\n"
+ },
+ "86d255173da9a7c6": {
+  "ms": 112.3,
+  "text": "Proforma quote not invoice K4 Hauler 3-year warranty EUR 1,905.00.\n Quote valid until 2026-01-31 Accepting quote creates new order number\n"
+ },
+ "86f92f5c8be6a4d2": {
+  "ms": 103.3,
+  "text": "Document PRT-BAT-36V Hyderabad 63 hand 5 reserved\n Output {\"sku \"PRT-BAT-36V\", \"warehouse \"HYD\", \"on_hand\" 63 \"reserved 5 \"available\" 58}\n\n Document PRT-RAIL-14 Bengaluru stock 20 20 allocated.\n Output {\"sku \"PRT-RAIL-14\", \"warehouse \"BLR\", \"on_hand\" 20 \"reserved 20 \"available\" 0}\n"
+ },
+ "8740a3cc150b0dc1": {
+  "ms": 98.1,
+  "text": "full inspection 50 flight hours Book service center\n city device type Inspections one working day\n"
+ },
+ "879baabc547aa94e": {
+  "ms": 114.5,
+  "text": "Stowbot 3-year\n 812,400.00\n"
+ },
+ "87e811516e5ba9fb": {
+  "ms": 114.8,
+  "text": "Priya\n Bengaluru\n"
+ },
+ "88092858b94506de": {
+  "ms": 98.7,
+  "text": "pack below 10% charge 60 days loses warranty\n under 85% console flags below 80% replace-on-sight\n stored pack above 90% action charge\n"
+ },
+ "882d1eaf0cb035d6": {
+  "ms": 109.0,
+  "text": "Kiri run K3 Sparrow serial KR3-41377 dealer fit HeavyLift kit\n January flying kit since\n"
+ },
+ "8857b6cb807bfe86": {
+  "ms": 107.8,
+  "text": "Hello, Maja from Lindqvist Freight. accounts team wants refund record as structured\n data can matched against credit note automatically.\n"
+ },
+ "889af6ce90e210b7": {
+  "ms": 113.1,
+  "text": "-PAD\n S3 Sorter drive wheel Sorter\n-S2 S2\n"
+ },
+ "88fb07db9657b71b": {
+  "ms": 101.8,
+  "text": "Nordkap K4 Hauler\n 1,840.50\n"
+ },
+ "89181c0593e73b72": {
+  "ms": 100.7,
+  "text": "offices open 08:30 close 19:00 Monday Friday Bookings start\n half\n"
+ },
+ "8968141c34bd82d8": {
+  "ms": 124.6,
+  "text": "Understood, Lite airframe delivered after others because of a backorder."
+ },
+ "896fb8970f736ad1": {
+  "ms": 103.7,
+  "text": "Order KR-51002 left 2026-01-08 Bluewing Freight AWB BW-4410229 arriving 2026-01-15.\n Output\"order_id \"KR-51002\", \"Bluewing \"tracking_number \"BW-4410229\", \"dispatched \"2026-01-08\", \"eta \"2026-01-15\"}\n\n Document KR-50977 shipped 12 December 2025 Harbour Express consignment HX-88120 due 19 December 2025\n Output\"order_id \"KR-50977\", \"carrier \"Harbour \"tracking_number \"HX-88120\", \"dispatched \"2025-12-12\", \"eta \"2025-12-19\"}\n"
+ },
+ "897916fc941ce547": {
+  "ms": 121.8,
+  "text": "K3 Sparrow compact last-mile drone Maximum payload 9 kg Range 38 km\n Top speed 61 km/h Ingress protection IP43\n"
+ },
+ "8a24e1da526b1eea": {
+  "ms": 118.3,
+  "text": "three K4 Hauler airframes L"
+ },
+ "8a8c62fb83fd6087": {
+  "ms": 114.8,
+  "text": "updates outside flight hours airframe powered 12 minutes\n start above 40% battery drone below 15% mid-update rolls\n reports code 31\n"
+ },
+ "8ac280e8691f7914": {
+  "ms": 109.9,
+  "text": "KR5-11203 (K5 delivered 2026-02-14 KR5-11207 delivered\n 2026-02-14 SB3-40088 (Stowbot S3 delivered 2026-01-30\n"
+ },
+ "8b0526417bc515be": {
+  "ms": 113.3,
+  "text": "pack warehouse"
+ },
+ "8b24eba0027806eb": {
+  "ms": 121.0,
+  "text": "logged right team"
+ },
+ "8b96fca46b3f6a5a": {
+  "ms": 103.7,
+  "text": "Drones HeavyLift kit arm bolts 8 Nm\n 20 flight hours torque check 15 minutes free warranty\n"
+ },
+ "8bd2ced404e71028": {
+  "ms": 107.0,
+  "text": "3rd Park\n Hinjewadi\n Kharadi\n"
+ },
+ "8c1dc4ad092ea383": {
+  "ms": 101.0,
+  "text": "Whitefield\n 19,600.00\n"
+ },
+ "8c2f7b9287f80d15": {
+  "ms": 109.0,
+  "text": "Invoices credit notes billing contact Service bookings incident\n notices operations contact Never send invoice address\n not account record\n"
+ },
+ "8c34b3cb000ce6cc": {
+  "ms": 118.3,
+  "text": "K4 carbon frame\n 8 kg 52 km 64 km/h\n\n"
+ },
+ "8c565c0f107619ac": {
+  "ms": 104.2,
+  "text": "KR4-88217 SC-HYD-01\n\n\n SB1-20044 Stowbot S1 SC-BLR-03\n\n"
+ },
+ "8c7dfb1dcc49ac85": {
+  "ms": 119.6,
+  "text": "Stowbot screws torqued 2.5 Nm Power drivers\n"
+ },
+ "8cc00668029134d2": {
+  "ms": 115.9,
+  "text": "Right. insurer asking cover."
+ },
+ "8dac005d13d03f12": {
+  "ms": 101.2,
+  "text": "Book smallest room that seats everyone meets stated equipment need.\n room seats fewer people than group may not be booked.\n"
+ },
+ "8daf95fad4437ac0": {
+  "ms": 125.8,
+  "text": "Torque wrenches Kestrel hardware recalibrated 12 months\n calibration sticker checked inspection\n"
+ },
+ "8dde602dcd04d3af": {
+  "ms": 103.8,
+  "text": "400 Gripper 1,200\n\n 2,000 Battery 6\n"
+ },
+ "8e6cd6e9a61448b0": {
+  "ms": 112.6,
+  "text": "-RAIL-14 1.6 m\n robot\n"
+ },
+ "8e8b7cd15d8421b6": {
+  "ms": 109.2,
+  "text": "quarterly review room\n last\n"
+ },
+ "8ea1d8792f166027": {
+  "ms": 106.3,
+  "text": "Refund USD 612.00 INV-18840 duplicate payment Approved finance\n Output\"invoice_id-18840\", 612.00 \"duplicate \"approved true}\n\n INV-18791 INR 4,000.00 late delivery Finance declined\n Output\"invoice_id-18791\", 4000.00 \"currency \"approved false}\n"
+ },
+ "8f551515b79df093": {
+  "ms": 131.0,
+  "text": "want to know can cover bulk spare order from local stock."
+ },
+ "8f9ab6a00ad3e6df": {
+  "ms": 100.8,
+  "text": "14 refused 07\n arrival\n"
+ },
+ "8fde8689cc45c08b": {
+  "ms": 116.1,
+  "text": "Q: Which part number spare 48 V battery pack?\n: PRT-BAT-48V\n\n Q Which part number aisle guide rail kit?\n: PRT-RAIL-14\n\n Q Which part number K9 Titan landing skid?\n: unknown\n"
+ },
+ "8fe1a5b30ea3fb91": {
+  "ms": 105.3,
+  "text": "Hello, Arjun from SkyCart. importing open support items into own tracker\n need them field by field.\n"
+ },
+ "8fe4ff55464a7532": {
+  "ms": 112.6,
+  "text": "Hyderabad?\n\n\n Gothenburg KR-50977\n\n"
+ },
+ "902babd68d036752": {
+  "ms": 99.4,
+  "text": "replaced\n screws 2.5 Nm\n"
+ },
+ "9081e3c4de699414": {
+  "ms": 108.5,
+  "text": "Priya Whitefield Robotics\n\n"
+ },
+ "9084e4f5fbab848b": {
+  "ms": 106.6,
+  "text": "HYD serves Hyderabad Pune BLR Bengaluru\n customer served from warehouse registered city\n"
+ },
+ "90adc4cc2ff44d1d": {
+  "ms": 116.9,
+  "text": "INV-18840 612.00\n\n\n Refund INV-18791 4,000.00\n\n"
+ },
+ "90d123372ff47ee9": {
+  "ms": 106.6,
+  "text": "SkyCart three airframes\n K4 Hauler\n"
+ },
+ "90d551d39f8c1484": {
+  "ms": 114.4,
+  "text": "KR issued confirmation Q\n orders\n"
+ },
+ "90deff5653882ca6": {
+  "ms": 111.3,
+  "text": "Arjun SkyCart Deliveries K4 Haulers"
+ },
+ "91089a3477f334d4": {
+  "ms": 115.0,
+  "text": "Request: propeller sets Hyderabad?\n Action call check_stock sku \"PRT-PROP-K4\", warehouse \"HYD\".\n\n Request How many guide rail kits Bengaluru warehouse?\n Action call check_stock sku \"PRT-RAIL-14\", warehouse \"BLR\".\n"
+ },
+ "9115eb3e12b8865e": {
+  "ms": 116.8,
+  "text": "SC-BLR-03 Whitefield K-series drones Stowbot robots\n Next maintenance slot 2026-03-30\n"
+ },
+ "9123f04f9a7cc9b8": {
+  "ms": 108.1,
+  "text": "Invoice references INV issued days order confirmation invoice covers\n order\n"
+ },
+ "91733fc2a936ab75": {
+  "ms": 107.8,
+  "text": "Hi, Arjun from SkyCart Deliveries. writing internal service procedure keep\n getting two Pune centres mixed up.\n"
+ },
+ "917e1367141db0de": {
+  "ms": 116.6,
+  "text": "order KR-55107 refused\n replacement\n"
+ },
+ "917f137d821657b5": {
+  "ms": 105.0,
+  "text": "Arjun SkyCart insurer wants claim details structured data\n load system\n"
+ },
+ "91b138877ad9f838": {
+  "ms": 101.0,
+  "text": "Claims opened owner serial number proof delivery\n begins WC Wear parts excluded airframe warranty\n"
+ },
+ "91d477203e6d07e0": {
+  "ms": 120.4,
+  "text": "2.5 Nm\n"
+ },
+ "91e48a7ce081fa57": {
+  "ms": 111.3,
+  "text": "K-series 24\n robots 18\n"
+ },
+ "927297e60c57b345": {
+  "ms": 106.9,
+  "text": "Stowbot S3 Sorter units dropping pads worn\n"
+ },
+ "92a3687d0071ed90": {
+  "ms": 120.0,
+  "text": "fleet sustained peak Add 15% headroom charging\n Mixed fleets supported needs dock type\n"
+ },
+ "92c3fe6084bca75e": {
+  "ms": 122.8,
+  "text": "Stowbot S2 Pallet moves loaded pallets individual parcels\n throughput: 1,150 parcels per hour fitted with parcel tray accessory\n Maximum pallet load 480 kg Battery 48 V charges empty in 110 minutes.\n"
+ },
+ "92f18f7ff7efe9ce": {
+  "ms": 100.6,
+  "text": "Lindqvist Freight Harbour Express\n HX-91455 2026-02-18 2026-03-11\n"
+ },
+ "9335b24d1ec39668": {
+  "ms": 117.4,
+  "text": "-BAT-48V battery-ARM-K3 motor Sparrow\n-COWL-K5 splash cowling Freighter-PROP-K4 propeller Hauler\n"
+ },
+ "9337fbe4907bbbce": {
+  "ms": 109.5,
+  "text": "Hello, Priya at Whitefield Robotics. registered in Bengaluru. S3 Sorter units\n dropping small items pads look worn down.\n"
+ },
+ "933aeb0da72f0373": {
+  "ms": 123.2,
+  "text": "minimum flight-ready firmware differs variant Lite airframe uses\n different flight controller board K2 Courier 3.8.4. K3 Sparrow 4.2.1. K4 Hauler 4.2.1.\n Hauler Lite 5.0.3. K5 Freighter 5.1.0. drone below minimum refuses arm\n"
+ },
+ "934d4f803fe1cc82": {
+  "ms": 99.8,
+  "text": "Freight 190.50\n credit note\n"
+ },
+ "935c8975ff4d755d": {
+  "ms": 104.2,
+  "text": "hear airframe"
+ },
+ "936c85b0b1c027a8": {
+  "ms": 125.5,
+  "text": "return JSON"
+ },
+ "942f01f8bfe277b7": {
+  "ms": 112.7,
+  "text": "quote order Stowbot S3 Sorter 3-year service\n INR 812,400.00 Valid 2026-03-20 order\n"
+ },
+ "9452eac7d2e94fd4": {
+  "ms": 105.7,
+  "text": "Lindqvist Freight refund\n\n"
+ },
+ "9471a64f0738ca3b": {
+  "ms": 109.8,
+  "text": "63 Pune 29\n 12 Stowbot\n"
+ },
+ "947669d31b0fc04b": {
+  "ms": 122.8,
+  "text": "K5 Freighter largest airframe K-series built inter-depot runs\n Maximum payload 24 kg. Range full payload 71 km Top speed 59 km/h.\n Ingress protection IP55 Minimum runway-free launch pad 4 m by 4 m.\n"
+ },
+ "94cc01a2eebec782": {
+  "ms": 101.5,
+  "text": "Whitefield Robotics Stowbot S3 Sorter\n PRT-RAIL-14-PAD-S2. 781,900.00 Issued Due 2026-04-04.\n"
+ },
+ "94eb0a70b2a16569": {
+  "ms": 110.0,
+  "text": "Hi, Priya at Whitefield Robotics. warehouse team asking for status updates\n rather get them from you directly than guess.\n"
+ },
+ "95201001d7c5fa34": {
+  "ms": 105.8,
+  "text": "Happy book Tell office date time how many you there"
+ },
+ "95c3cfea373d8f03": {
+  "ms": 109.3,
+  "text": "Ingress protection dust water resistance K-series airframe\n cleared rain above 8 mm per hour\n optional splash cowling change IP class\n"
+ },
+ "9613e9b3d291bc34": {
+  "ms": 114.4,
+  "text": "K4 Hauler Lite SkyCart Deliveries Pune\n Delivered 2026-02-09. backorder\n"
+ },
+ "9636acb86556fd2f": {
+  "ms": 120.5,
+  "text": "pads S3 Sorter"
+ },
+ "973cd5249b543a87": {
+  "ms": 109.6,
+  "text": "Arjun Rao SkyCart Deliveries finance team propeller invoice\n unpaid not airframe invoice settled\n"
+ },
+ "9752ecd804ca71ec": {
+  "ms": 103.4,
+  "text": "Orbital Parcel Billing Sana Iqbal ap@orbitalparcel +91 40 5550 1188\n Output\"customer_name+91 40 5550 1188\n\n Nordkap Logistics Accounts payable Freja Holm freja.holm@nordkap +46 31 555 0142.\n Output\"customer+46 31 555 0142\n"
+ },
+ "9755782d83e79142": {
+  "ms": 108.6,
+  "text": "Lindqvist Freight\n\n"
+ },
+ "9785a4b84cd2c6dd": {
+  "ms": 111.8,
+  "text": "Invoices due 30 days issue reminder emailed 7 days\n due late fee 1.75% month\n"
+ },
+ "979eab4f3800a11b": {
+  "ms": 104.1,
+  "text": "KR4-88217 K4 Hauler 34.5\n\n\n SB1-20044 Stowbot 1,640 2,000-hour\n\n"
+ },
+ "97b2415580339327": {
+  "ms": 109.1,
+  "text": "Hi, we scoping a delivery route through hill station need ceiling figures for\n standard K4 Hauler, not Lite.\n"
+ },
+ "97c64f9d649c269a": {
+  "ms": 106.1,
+  "text": "Priya Whitefield pack\n\n"
+ },
+ "97f96536fae0ae84": {
+  "ms": 100.9,
+  "text": "order confirmed when payment or approved purchase order recorded against it.\n A quote is never a confirmation, quote number never becomes order number.\n"
+ },
+ "98fa40225dd6e34f": {
+  "ms": 101.2,
+  "text": "Deccan Aerial\n 2 Stowbot S1,000.00 INR 596,000.00\n"
+ },
+ "99864284a139b85b": {
+  "ms": 101.2,
+  "text": "Deccan\n Sparrow HeavyLift\n 1,480.50\n"
+ },
+ "9a11894cd17c3e94": {
+  "ms": 103.0,
+  "text": "Drive wheel inspection 400 operating hours Gripper pad replacement 1,200\n operating hours or pad depth below 2 mm whichever first Full service\n every 2,000 operating hours Battery health report 6 months regardless hours\n"
+ },
+ "9a9edf50f240d6ff": {
+  "ms": 104.1,
+  "text": "3.x support 2026-01-31 Airframes 3.x updated\n minimum no intermediate step\n"
+ },
+ "9af1883240300afd": {
+  "ms": 125.7,
+  "text": "Understood. can change address on any order not shipped yet."
+ },
+ "9b0156ed3051e367": {
+  "ms": 108.5,
+  "text": "stock order ships\n revised date\n"
+ },
+ "9b83e0020127f8d4": {
+  "ms": 116.5,
+  "text": "Pay duplicate charge INV-18840 USD 612.00\n call issue_refund invoice amount 612.00\n\n Refund returned battery INV-18791 INR 4,000.00\n issue invoice 4000.00\n"
+ },
+ "9bffe5c9da650b74": {
+  "ms": 114.2,
+  "text": "?\n\n\n Bengaluru?\n\n\n Kochi?\n\n"
+ },
+ "9c00ca4c661131e2": {
+  "ms": 121.3,
+  "text": "K4 Hauler Lite reduced carbon frame range\n Maximum payload 8 kg full payload 52 km Top speed 64 km/h\n Lite identified letter L serial number\n"
+ },
+ "9c53cd7bc5b5fe0a": {
+  "ms": 108.7,
+  "text": "Invoices due 30 days after issue date. reminder emailed 7 days before\n due date, late fee of 1.75% per month applies after it.\n"
+ },
+ "9c6b47c255f61258": {
+  "ms": 127.7,
+  "text": "K4 Hauler heavy-lift K-series payload 12.5 kg\n Range 46 km speed 68 km/h IP54 Serial\n no suffix Operating temperature 45 °C\n"
+ },
+ "9c836fede8dca05b": {
+  "ms": 109.1,
+  "text": "Tomas Orbital depot\n figures\n"
+ },
+ "9c95d85fdf429d2f": {
+  "ms": 99.0,
+  "text": "K-series drones flight-ready firmware first flight\n Technicians calibrate K4 load cell 10 kg weight\n 20 minutes repeated crash landing\n"
+ },
+ "9d0947341ceaad3d": {
+  "ms": 109.2,
+  "text": "Issued against invoice INV-20931 KR-55120 Lindqvist Freight\n EUR 82.00 refunded goodwill gesture late delivery Issued 2026-03-03.\n"
+ },
+ "9d262306a50cf6ba": {
+  "ms": 101.2,
+  "text": "KR3-41208 Sparrow SC-BLR-03 Appointment 2026-03-18\n Cancelled 2026-03-10 audit\n"
+ },
+ "9db13e68e5f949c1": {
+  "ms": 104.1,
+  "text": "SkyCart K4\n 1,485,485\n"
+ },
+ "9e6055e8c9c9f965": {
+  "ms": 127.7,
+  "text": "Understood quote technical sheets say"
+ },
+ "9f13c8c424dd05a3": {
+  "ms": 119.5,
+  "text": "Hinjewadi K\n Kharadi Stowbot\n"
+ },
+ "9f1c41750f522e65": {
+  "ms": 108.6,
+  "text": "Priya Whitefield Robotics\n\n"
+ },
+ "9f32711d74a983de": {
+  "ms": 104.6,
+  "text": "Hello, Arjun from SkyCart. regulator asked for incident records structured\n form one object per event.\n"
+ },
+ "9f379f868526960b": {
+  "ms": 107.3,
+  "text": "Hi Kiri, Arjun from SkyCart. building maintenance calendar want hours as\n numbers rather than prose, I can sort on them.\n"
+ },
+ "9f392648310454b6": {
+  "ms": 112.5,
+  "text": "invoice Lindqvist Freight\n 82.00 refunded goodwill late delivery Issued\n"
+ },
+ "9f51c70b65ff8763": {
+  "ms": 126.3,
+  "text": "Understood outstanding invoice propeller sets paid"
+ },
+ "9f8fb5b13439a574": {
+  "ms": 100.8,
+  "text": "Whitefield Robotics Order KR-55211 Items 4 x PRT-WHL-S2 drive wheel\n INR each Total INR 19,600.00 Issued 2026-03-07.\n"
+ },
+ "9fd91463eeffa963": {
+  "ms": 119.8,
+  "text": "Bengaluru office closed regional holiday\n Bookings refused\n"
+ },
+ "9fe3b815ee8730ff": {
+  "ms": 107.3,
+  "text": "Hello, Freja at Nordkap Logistics. accounts team reconciling month wants\n credit note fields rather than PDF.\n"
+ },
+ "a0288a3f62efdddf": {
+  "ms": 129.3,
+  "text": "hardware damage fault software firmware console pairing\n configuration billing invoices credits refunds delivery shipping addresses\n missing cartons root cause\n"
+ },
+ "a04419dd7ac3edc3": {
+  "ms": 118.3,
+  "text": "Request Pay back duplicate charge INV-18840 USD 612.00\n Action call issue_refund invoice_id \"INV-18840\", amount 612.00 reason \"duplicate payment\".\n\n Refund returned battery INV-18791 INR 4,000.00\n call issue_refund invoice-18791\", amount 4000.00 reason \"returned part\".\n"
+ },
+ "a0c5ff724de426a0": {
+  "ms": 121.1,
+  "text": "Stowbot intervals counted in operating hours include idle time while robot\n powered and docked. Drone intervals counted in flight hours exclude ground time.\n Confusing two is most common cause of missed service.\n"
+ },
+ "a1437163b037c753": {
+  "ms": 130.2,
+  "text": "Kestrel Fleet console Wi-Fi 12 minutes\n Never update below 40% battery failed update leaves\n"
+ },
+ "a1bd054a76b6a5d2": {
+  "ms": 100.1,
+  "text": "SkyCart KR-55233 4 PRT-K4 propeller\n INR 22,400.00 Issued Due\n"
+ },
+ "a1ef0cc9a8aae9b6": {
+  "ms": 108.7,
+  "text": "Arjun SkyCart moved\n\n"
+ },
+ "a202893f2ff94205": {
+  "ms": 116.0,
+  "text": "PRT-BAT-48V 48 V battery pack PRT-ARM-K4 motor arm K4 Hauler\n PRT-ARM-K3 motor arm K3-PROP-K4 propeller set K4 Hauler\n"
+ },
+ "a23abe9d4a5ddf7d": {
+  "ms": 110.0,
+  "text": "K3 Sparrow HeavyLift\n\n"
+ },
+ "a253ef137bbf7f10": {
+  "ms": 108.5,
+  "text": "Hello, Priya from Whitefield Robotics. We putting together planning sheet want\n published delivery figures rather than estimate from account manager.\n"
+ },
+ "a3152b2e4b879248": {
+  "ms": 115.2,
+  "text": "Refurbished K-series airframes sold through Kestrel Renew programme carry 9 months\n warranty. Refurbished units labelled R prefix order line.\n"
+ },
+ "a32de96e74ee292b": {
+  "ms": 105.2,
+  "text": "Happy to book it. Tell me office, date, time, group size what you need."
+ },
+ "a32e2458b3c9503d": {
+  "ms": 109.9,
+  "text": "30 reminder 7\n late fee 1.75%\n pro-rated\n"
+ },
+ "a34d9d003fc5a287": {
+  "ms": 112.4,
+  "text": "quote order Stowbot S3 Sorter 3-year\n INR 812,400.00 Valid 2026-03-20 quote order\n"
+ },
+ "a359da2756d41a31": {
+  "ms": 106.1,
+  "text": "3rd Floor Amar Tech Park Balewadi\n depot 7 Hinjewadi Park 2\n Old depot Gate 3 Kharadi Yard\n"
+ },
+ "a396d82dc671f2bd": {
+  "ms": 102.1,
+  "text": "Whitefield Robotics Confirmed 2026-03-02. Lines 1 Stowbot S3 Sorter\n PRT-RAIL-14 1 PRT-PAD-S2. Total INR 781,900.00 Standard delivery Bengaluru region\n"
+ },
+ "a409c4ec830d91e5": {
+  "ms": 113.3,
+  "text": "INR 2,200.00 one-hour\n four 3-year\n\n"
+ },
+ "a4291ba4a9687b5f": {
+  "ms": 99.6,
+  "text": "10% loses warranty\n 85%\n stored pack 90%\n"
+ },
+ "a4d964f320b9efa1": {
+  "ms": 113.2,
+  "text": "Operations Priya Nair@whitefieldrobotics\n Billing Deepak Iyer Bengaluru\n"
+ },
+ "a53944210e37adea": {
+  "ms": 105.1,
+  "text": "book office date group"
+ },
+ "a5d16ecd0476ac8d": {
+  "ms": 129.4,
+  "text": "4.2.1 bulletin"
+ },
+ "a6cfb8d4d8045851": {
+  "ms": 105.3,
+  "text": "Document KR4-88217 K4 Hauler registered Orbital Parcel Hyderabad delivered 2026-01-11.\n Output\"serial_number \"KR4-88217\", \"model \"K4 Hauler\", \"owner \"Orbital Parcel\", \"Hyderabad\", \"delivered \"2026-01-11\"}\n\n Document Stowbot S1 SB1-20044 Nordkap Logistics Gothenburg handed over 5 Feb 2026.\n Output\"serial_number \"SB1-20044\", \"model \"Stowbot S1\", \"owner \"Nordkap \"city \"Gothenburg\", \"delivered \"2026-02-05\"}\n"
+ },
+ "a6fcc9c1b425e7ff": {
+  "ms": 121.1,
+  "text": "K3 Sparrow Kestrel drone parcels payload\n 9 kg 38 km 61 km/h IP43\n Charging 48 V 70 minutes\n"
+ },
+ "a6fd02cd5e2a8479": {
+  "ms": 109.7,
+  "text": "Ingress protection ratings describe dust water resistance No K-series airframe\n cleared for flight in sustained rain above 8 mm per hour IP rating\n optional splash cowling (PRT-COWL-K5) change rated IP class\n"
+ },
+ "a7109683ad2d938c": {
+  "ms": 110.5,
+  "text": "run mixed site Stowbot S2 Pallet robots K4 Haulers\n building preventive maintenance calendar\n"
+ },
+ "a73559f8d386a87f": {
+  "ms": 117.5,
+  "text": "SC-PNQ-02 closed 2026-03-31 annual inventory\n Bookings moved customer notified\n"
+ },
+ "a7579df2f08381d9": {
+  "ms": 106.3,
+  "text": "Gripper 8,400.00 Drive wheel\n 4,900.00 31,500.00\n\n\n"
+ },
+ "a835bb0bc66cd930": {
+  "ms": 124.5,
+  "text": "invoice propeller"
+ },
+ "a860c91f64d7c60a": {
+  "ms": 96.8,
+  "text": "refund approved declined\n invoice\n"
+ },
+ "a8d2c5b72d451c73": {
+  "ms": 99.5,
+  "text": "invoice INV-20931 (Lindqvist Freight AB). Amount asked EUR 190.50.\n Reason returned part. Finance approved 2026-03-05 credit note follows.\n"
+ },
+ "a8e28d6b03fbb70a": {
+  "ms": 120.8,
+  "text": "K4 Hauler standard heavy-lift model K-series Maximum payload 12.5 kg.\n Range full payload 46 km. Top speed 68 km/h Ingress protection IP54. Serial numbers\n start KR4- carry no suffix Operating temperature -10 to 45 degrees Celsius\n"
+ },
+ "a8f5b217bf28969a": {
+  "ms": 97.5,
+  "text": "invoice INV-20931 (Lindqvist Freight AB). Amount asked EUR 190.50.\n Reason returned part Finance approved 2026-03-05.\n"
+ },
+ "a91591f57bd5d6f4": {
+  "ms": 131.4,
+  "text": "hardware: physical damage, wear, mechanical fault. software: firmware, console, pairing\n configuration. billing: invoices, credits refunds. delivery: shipping, addresses\n missing cartons. Use category matches root cause, not symptom.\n"
+ },
+ "a9ff542a78576667": {
+  "ms": 100.6,
+  "text": "battery range\n altitude limits\n"
+ },
+ "aa3754c1b2ac88b9": {
+  "ms": 106.6,
+  "text": "Hello, Maja from Lindqvist Freight. Our finance team tightening up handle payment\n terms want rules written down rather than passed by word of mouth.\n"
+ },
+ "aaaa7c3147e06862": {
+  "ms": 112.9,
+  "text": "aisle ceiling 2.4\n\n"
+ },
+ "aae45b8482a07985": {
+  "ms": 116.2,
+  "text": "documents quote January"
+ },
+ "ab78a02467e93803": {
+  "ms": 114.1,
+  "text": "PRT-PAD-S1: gripper S2\n S3 Sorter-WHL-S2 drive wheel S2 Pallet S3 Sorter\n-TRY-S2 parcel tray S2 Pallet\n"
+ },
+ "ac6a1d9bdbcc068d": {
+  "ms": 104.5,
+  "text": "Maja Lindqvist Freight finance\n\n"
+ },
+ "ac745044b457727d": {
+  "ms": 112.5,
+  "text": "K4 SkyCart\n"
+ },
+ "ac92fe2828b38117": {
+  "ms": 109.4,
+  "text": "Invoices settled within 10 days of issue attract 2% discount. discount applied as\n credit note in following month cannot be combined with dealer rebate.\n"
+ },
+ "ace54f3d45fb069b": {
+  "ms": 100.9,
+  "text": "Claims opened by registered owner need serial number and proof of delivery.\n claim number begins WC-. Wear parts excluded whatever airframe warranty says.\n"
+ },
+ "acfa1d40fd0ab64d": {
+  "ms": 102.8,
+  "text": "Credit note CN-4301 INV-18840 USD 612.00 refunded issued 2026-01-20\n Output_note_invoice 612.00 \"2026-01-20\n\n CN-4288 cancels INR 48,250.00 invoice INV-18791 Issued 19 December 2025\n Output_note_id_invoice 48250.00\n"
+ },
+ "ae492e7c07e88bbe": {
+  "ms": 109.2,
+  "text": "refreshing supplier contact fields\n\n"
+ },
+ "ae6bad573e41e8e6": {
+  "ms": 114.7,
+  "text": "Order numbers KR- issued confirmation numbers Q-\n customer hold orders never merged\n"
+ },
+ "aea71e75b26e8638": {
+  "ms": 108.3,
+  "text": "drone K4 Hauler\n\n"
+ },
+ "aef687423c8843df": {
+  "ms": 118.0,
+  "text": "Email accounts team INV-18840\n Action send_invoice email \"ap@orbitalparcel.in\".\n\n resend INV-18791 finance?\n send_invoice email \"freja.holm@nordkap\n"
+ },
+ "afb2d2644c7dc98b": {
+  "ms": 100.9,
+  "text": "service center\n booking device\n"
+ },
+ "b009a00cf9f2e228": {
+  "ms": 101.4,
+  "text": "Claims opened by registered owner need serial number and proof of delivery.\n Claims raised after warranty period quoted as chargeable repairs.\n"
+ },
+ "b02505818e8cd3a5": {
+  "ms": 113.8,
+  "text": "\n 4.2.1.\n KR4-90533 2026-03-06.\n"
+ },
+ "b0a24f1721b43fc1": {
+  "ms": 113.7,
+  "text": "Hi, Arjun from SkyCart Deliveries. We fly K4 Haulers registered in Pune,\n everything ours goes through your Pune warehouse.\n"
+ },
+ "b0cc867421ad7c49": {
+  "ms": 103.5,
+  "text": "Document Order KR-51002 Orbital Parcel 2 lines Total USD 1,224.00\n Output\"order_id \"KR-51002\", \"customer \"Orbital Parcel\", \"line_count 2 \"total 1224.00 \"currency \"USD\"}\n\n Document Order KR-50977 Nordkap Logistics single line INR 48,250.00\n Output\"order_id \"KR-50977\", \"customer \"Nordkap \"line_count 1 \"total 48250.00 \"currency \"INR\"}\n"
+ },
+ "b0d1d3cdfb49974f": {
+  "ms": 102.2,
+  "text": "K-series drones must be on minimum flight-ready firmware (4.2.1 for K4 Hauler) before first flight Technicians\n calibrate K4 load cell with certified 10 kg reference weight during commissioning.\n Calibration takes 20 minutes repeated after crash landing.\n"
+ },
+ "b0f401043daf1c71": {
+  "ms": 112.1,
+  "text": "aisle 1.8 m pallet forks\n ceiling 2.6 m\n"
+ },
+ "b11e7ddeb696e90c": {
+  "ms": 103.1,
+  "text": "Device: KR3-41208 K3 Sparrow Center SC-BLR-03. Appointment 2026-03-18.\n Cancelled customer 2026-03-10. Cancelled bookings kept for audit only.\n"
+ },
+ "b12e5d6599f3ff99": {
+  "ms": 124.6,
+  "text": "request paid"
+ },
+ "b1c021f54a7e3694": {
+  "ms": 116.4,
+  "text": "Q: top speed of K2 Courier?\n A: 54 km/h\n\n Q: How long Stowbot S1 battery take to charge from empty?\n: 95 minutes\n\n Which colour options K9 Titan come in?\n A: unknown\n"
+ },
+ "b225462ca627717c": {
+  "ms": 129.1,
+  "text": "Very likely. can tell you which version they need before arm."
+ },
+ "b28ae664c1d095a1": {
+  "ms": 112.9,
+  "text": "K4 1,650.00 warranty 255.00\n\n"
+ },
+ "b28f74c874fcd135": {
+  "ms": 129.8,
+  "text": "Water motor pod shows rising temperature whistling\n moisture drain airframe grounded until\n seal replaced seal replacement takes 90 minutes need full\n inspection slot\n"
+ },
+ "b294fef79c525a70": {
+  "ms": 119.8,
+  "text": "Fleet console reminder 90%. Reminders switched off\n device interval\n"
+ },
+ "b2afb3a97ae4940a": {
+  "ms": 102.7,
+  "text": "HeavyLift 8 Nm\n check warranty\n"
+ },
+ "b2be7354454241f5": {
+  "ms": 129.8,
+  "text": "return quote fields JSON"
+ },
+ "b2c402606f621d7d": {
+  "ms": 98.0,
+  "text": "1,500 payload 4% 300\n\n"
+ },
+ "b332a5b4ffec350f": {
+  "ms": 122.0,
+  "text": "Fleet console reaches robots Wi-Fi 5 GHz band robot\n 2.4 GHz access point powers shows green light\n console Check access point band before fault\n"
+ },
+ "b37ad463db3a244b": {
+  "ms": 101.8,
+  "text": "Lindqvist Freight KR-55120 K4 Hauler\n 48 V battery 190 1,840.50 Issued 2026-02-12\n"
+ },
+ "b396e28d4b5e2c88": {
+  "ms": 114.1,
+  "text": "Preventive maintenance INR 2,200.00 hour one-hour minimum\n full service four hours 3-year plan no\n preventive parts charged separately\n"
+ },
+ "b3af3aa6832f5dca": {
+  "ms": 113.1,
+  "text": "200 failed\n IP20\n"
+ },
+ "b3b807618ea86ac7": {
+  "ms": 111.3,
+  "text": "K4 Hauler Owner SkyCart Deliveries Registered Pune. Delivered 2026-01-09.\n"
+ },
+ "b3ba2fe2a619e165": {
+  "ms": 121.7,
+  "text": "K4 Hauler Lite uses reduced carbon frame for operators prioritise range over\n lifting capacity. Maximum payload 8 kg. Range full payload 52 km. Top speed 64 km/h.\n Lite identified by letter L end serial number (for example KR4-70112L).\n"
+ },
+ "b3cdbcbaab2b7eb2": {
+  "ms": 99.1,
+  "text": "full service takes one working day machine unavailable for whole of it.\n Plan full service for quietest day of week size fleet with 15% headroom so\n one machine can be out without slowing line drive wheel inspection takes 40 minutes\n can be done between shifts.\n"
+ },
+ "b429ea15bb519437": {
+  "ms": 118.9,
+  "text": "Stowbot intervals counted in operating hours include powered idle time.\n Drone intervals counted flight hours exclude ground time.\n"
+ },
+ "b44018910dcb805c": {
+  "ms": 124.2,
+  "text": "Understood order Stowbot S3 Sorter consumables"
+ },
+ "b4852018be9648d8": {
+  "ms": 119.1,
+  "text": "SC-PNQ-02 Hinjewadi Phase 2. Services K-series drones Next slot 2026-04-02.\n SC-PNQ-01 Kharadi services Stowbot robots next slot 2026-03-27.\n"
+ },
+ "b493102c6de610e6": {
+  "ms": 114.3,
+  "text": "Proforma quote not order 1 Stowbot S3 Sorter 3-year service plan\n INR 812,400.00 Valid until 2026-03-20 Accepting quote creates new order number\n"
+ },
+ "b4bd1e7d9f776d39": {
+  "ms": 114.6,
+  "text": "Release 5.0.3 is first flight-ready build for Lite flight controller. fixes\n drift in barometric hold above 1,800 m, shortens arming self-test from 22 to 9\n seconds, adds load-cell calibration record to console export. supersedes\n 4.9.7, a pre-release build never cleared for flight.\n"
+ },
+ "b4c755a9bb8bb590": {
+  "ms": 99.4,
+  "text": "Against invoice INV-20931. Amount asked EUR 82.00. Reason late delivery.\n Finance declined offered goodwill credit instead.\n"
+ },
+ "b51801d6958060db": {
+  "ms": 129.7,
+  "text": "return JSON"
+ },
+ "b5224ac2757f5bee": {
+  "ms": 99.0,
+  "text": "inspection 50 hours service center\n\n"
+ },
+ "b592e23d2b961ac4": {
+  "ms": 107.6,
+  "text": "Hello, Arjun from SkyCart Deliveries. compliance file needs booking paperwork\n structured form rather than screenshot.\n"
+ },
+ "b5cce059e1a79d8b": {
+  "ms": 101.3,
+  "text": "Device: KR4-90533, K4 Hauler delivered 2026-01-09. Fault: flight controller refuses to arm\n after firmware update. Raised 2026-03-05. Assessed as software fault.\n airframe inside 24-month standard warranty claim covered.\n"
+ },
+ "b5f40212603d69df": {
+  "ms": 100.5,
+  "text": "Bluewing Freight Harbour Express\n tracking\n\n"
+ },
+ "b5fb786ac4db1cc7": {
+  "ms": 108.9,
+  "text": "Hi Kiri, Arjun Rao from SkyCart Deliveries. finance team chasing propeller invoice,\n one still unpaid, not airframe invoice we already settled.\n"
+ },
+ "b60cb049b70b2552": {
+  "ms": 102.0,
+  "text": "Book service at center customer's registered city device type.\n If no center nearest center\n used customer told in advance.\n"
+ },
+ "b68e2e193924a1c5": {
+  "ms": 120.6,
+  "text": "Stowbot gripper pad screws torqued 2.5 Nm by hand Power drivers not permitted.\n"
+ },
+ "b6c04be3312be4d6": {
+  "ms": 101.8,
+  "text": "KR3-41208 Appointment\n Cancelled\n"
+ },
+ "b6d0e8ebf688108a": {
+  "ms": 102.8,
+  "text": "Firmware 3.x reached end support 2026-01-31. Airframes still on 3.x release\n updated directly to current minimum; no intermediate step needed.\n"
+ },
+ "b6ec9ae6c5b4b9f9": {
+  "ms": 115.1,
+  "text": "Order KR issued Q\n orders\n"
+ },
+ "b70051b0fbef7a4d": {
+  "ms": 101.2,
+  "text": "Damage transit refunded unit order line carrier claim\n handled Kestrel\n"
+ },
+ "b7b9cb1dc804a243": {
+  "ms": 101.3,
+  "text": "Stowbot S3 Sorter plan INR,000.00 Valid 2026-03-14\n Superseded request\n"
+ },
+ "b7cd87368c9d7ba7": {
+  "ms": 103.0,
+  "text": "Booking references start BK- open until work complete\n one booking per device\n"
+ },
+ "b7e56b384a95ea21": {
+  "ms": 115.2,
+  "text": "PRT-BAT-48V fits every K-series drone K3 Sparrow upward Stowbot S2 Pallet\n S3 Sorter PRT-BAT-36V fits Stowbot S1 discontinued K2 Courier.\n"
+ },
+ "b8179d6a027648f5": {
+  "ms": 105.1,
+  "text": "Arjun SkyCart booking\n\n"
+ },
+ "b88d58df3d58f050": {
+  "ms": 105.3,
+  "text": "Whitefield Bengaluru S3\n\n"
+ },
+ "b9722f4b11764d89": {
+  "ms": 102.0,
+  "text": "Confirm serial number delivery pair Fleet console run\n aisle calibration lap record commissioning date robot\n not commissioned commissioning date blank\n"
+ },
+ "b9907862c52e86d1": {
+  "ms": 123.2,
+  "text": "single Lite airframe below minimum"
+ },
+ "b9f93204b4894be1": {
+  "ms": 112.8,
+  "text": "Motor pod seals on K-series airframes inspected every 200 flight hours failed seal\n drops effective protection to IP20 until replaced.\n"
+ },
+ "ba21498de7ff09e9": {
+  "ms": 100.7,
+  "text": "KR3-41208 K3 Sparrow Center SC-PNQ-02 Hinjewadi Phase 2.\n Appointment 2 April 2026 09:30 50-flight-hour inspection\n Raised Arjun SkyCart Deliveries\n"
+ },
+ "ba3c5cbab9aabed7": {
+  "ms": 105.4,
+  "text": "Arjun SkyCart regulator asked incident records\n one object event\n"
+ },
+ "ba4678fc7846668e": {
+  "ms": 121.5,
+  "text": "3-year 70,400.00 Stowbot\n\n"
+ },
+ "ba53ad8bc1ae5400": {
+  "ms": 120.1,
+  "text": "-PNQ-02 Hinjewadi K-series\n 2026-04-02.\n SC-PNQ-01 Kharadi Stowbot 2026-03-27\n"
+ },
+ "ba684405abd33f78": {
+  "ms": 126.7,
+  "text": "Understood return credit note JSON"
+ },
+ "ba68fd8a8cca103b": {
+  "ms": 99.8,
+  "text": "full service unavailable\n fleet 15% headroom\n inspection 40\n shifts\n"
+ },
+ "ba6a4d0249c8251d": {
+  "ms": 101.3,
+  "text": "Whitefield Stowbot\n PRT 781,900.00\n"
+ },
+ "bac681b26ebc7632": {
+  "ms": 105.7,
+  "text": "Hello, Tomas from Orbital Parcel. We drawing tender for depot-to-depot flights\n customer asking us for published figures than our own measurements.\n"
+ },
+ "bad9e41ab344741a": {
+  "ms": 115.6,
+  "text": "closed 2026-03-31\n Bookings\n"
+ },
+ "bb22612c23bedfd1": {
+  "ms": 116.7,
+  "text": "insurer"
+ },
+ "bb76c3eaa362c039": {
+  "ms": 103.7,
+  "text": "Incident IR-2201 KR4-88217 34.5 flight hours 2026-01-18 logged minor\n Output_id_number_hours 34.5 \"2026-01-18\n\n Document IR-2209 airframe SB1-20044 210 hours 2 February 2026 classified major\n Output_id_number_hours 210 \"2026-02-02\"\n"
+ },
+ "bb9f6f771c309453": {
+  "ms": 112.7,
+  "text": "K4 Hauler\n Warranty\n"
+ },
+ "bc1670143292d443": {
+  "ms": 102.3,
+  "text": "Lindqvist Hauler\n 1,840.50\n"
+ },
+ "bc3a3d1dae414d2e": {
+  "ms": 101.1,
+  "text": "SkyCart K4\n\n"
+ },
+ "bcd8f44a9b64af99": {
+  "ms": 101.9,
+  "text": "SkyCart Deliveries Confirmed 2026-03-01 Lines 4 x PRT-PROP-K4 propeller\n Status picked not dispatched\n"
+ },
+ "bd738183a9bdf97f": {
+  "ms": 122.3,
+  "text": "Lite below"
+ },
+ "bdaf642e152b2dea": {
+  "ms": 125.1,
+  "text": "Lite backorder"
+ },
+ "bdc05ba739627094": {
+  "ms": 108.8,
+  "text": "bringing group Gothenburg\n join\n"
+ },
+ "bde6a129d6a136a6": {
+  "ms": 99.8,
+  "text": "9 seconds 51.7\n major\n seconds\n"
+ },
+ "beb70920171869ca": {
+  "ms": 115.2,
+  "text": "48 V battery pack?\n PRT-BAT-48V\n\n aisle guide kit?\n PRT-RAIL-14\n\n K9 Titan landing skid?\n unknown\n"
+ },
+ "beba00a68303b356": {
+  "ms": 99.6,
+  "text": "Amounts keep two decimals. Fees calculated on outstanding amount in invoice\n currency never converted.\n"
+ },
+ "bee071eb68d9b33c": {
+  "ms": 107.2,
+  "text": "Maja Lindqvist Freight order PO-3319\n order number KR-55120\n"
+ },
+ "bf1fe48f59cb015d": {
+  "ms": 112.1,
+  "text": "SkyCart 48"
+ },
+ "bf7136d4d1ebe062": {
+  "ms": 107.5,
+  "text": "bolts 8 Nm\n 200-hour\n"
+ },
+ "c045dfd4ad65bfc8": {
+  "ms": 109.1,
+  "text": "KR3-41208 51.7 KR4-90533 12.4\n SB2-30117 S2 1,835\n SB2-30119 S2 402 Export 2026-03-06.\n"
+ },
+ "c091881de4b9c325": {
+  "ms": 100.4,
+  "text": "Whitefield PRT\n 19,600.00\n"
+ },
+ "c0c53fbb990bf51f": {
+  "ms": 102.7,
+  "text": "wheel inspection 400 Gripper pad replacement 1,200\n Full service 2,000\n"
+ },
+ "c0d4596691b6fe8d": {
+  "ms": 100.1,
+  "text": "robot pairs with Fleet console over site Wi-Fi within 60 seconds of powering on.\n robot never appears in console, while status light is steady green, has\n configuration fault not mechanical one.\n"
+ },
+ "c0e68f6ddee9aae7": {
+  "ms": 111.5,
+  "text": "K4 airframes carry serials beginning KR4-. trailing L marks Lite variant, uses\n different flight controller board different firmware line.\n"
+ },
+ "c14ec1a910d350ba": {
+  "ms": 99.9,
+  "text": "\n damaged\n 2026-03-11\n"
+ },
+ "c16e175bb7bd3e93": {
+  "ms": 120.3,
+  "text": "Stowbot warehouse robots carry standard warranty 18 months. Drive wheels gripper pads\n are wear parts excluded from warranty entirely.\n"
+ },
+ "c1a6fbf4cdbb7136": {
+  "ms": 101.0,
+  "text": "Customers served warehouse registered city inter-warehouse transfer\n adds 4 days raised home warehouse\n Reserved units allocated order not available\n"
+ },
+ "c1c3f759e679de20": {
+  "ms": 100.2,
+  "text": "Whitefield Stowbot\n PRT 781,900.00\n"
+ },
+ "c1c696c7edf8c547": {
+  "ms": 104.7,
+  "text": "HYD-3B 8 4\n fifth 20\n"
+ },
+ "c2119ea453d5accb": {
+  "ms": 118.4,
+  "text": "K-series airframes Kestrel 9\n\n"
+ },
+ "c21406a5d510c783": {
+  "ms": 103.6,
+  "text": "Glad hear. Let me know if need anything about airframe."
+ },
+ "c2d676c12ea9c8c0": {
+  "ms": 101.4,
+  "text": "Whitefield\n INR 19,600.00\n"
+ },
+ "c2e520f5dbc46527": {
+  "ms": 104.2,
+  "text": "Happy help can quote policy published."
+ },
+ "c3876a9b35be6bad": {
+  "ms": 109.8,
+  "text": "Invoice references begin INV- issued within few days order confirmation. One invoice covers\n one order.\n"
+ },
+ "c3906904d96be9a5": {
+  "ms": 101.1,
+  "text": "Deccan Aerial Services Confirmed 2026-02-27.\n Lines 2 x Stowbot S1 (INR,000.00 Total INR 596,000.00\n"
+ },
+ "c39f1ff287e9d19e": {
+  "ms": 106.5,
+  "text": "Hello, we laying out a new mezzanine need clearances for fastest Stowbot."
+ },
+ "c3a9d27e023c9763": {
+  "ms": 101.8,
+  "text": "Both offices open 08:30 close 19:00, Monday to Friday. Bookings must start\n hour or half hour.\n"
+ },
+ "c3ce95f6124712a6": {
+  "ms": 96.9,
+  "text": "1 Stowbot S3 Sorter 3-year service plan INR 812,400.00\n Valid until 2026-03-20 Accepting quote creates new order number\n"
+ },
+ "c41003efde947a11": {
+  "ms": 107.3,
+  "text": "Hello, Maja from Lindqvist Freight. Finance finished reviewing our two requests\n come back with decision on each.\n"
+ },
+ "c46b059d3370852e": {
+  "ms": 108.3,
+  "text": "help Ravi throughput charging figures Stowbot model"
+ },
+ "c4904e705bfba17b": {
+  "ms": 109.5,
+  "text": "Invoice issued\n order\n"
+ },
+ "c4b9342c8d22216b": {
+  "ms": 97.0,
+  "text": "full inspection required 50 flight hours working day\n booked service center customer city\n"
+ },
+ "c4c300af05d2915f": {
+  "ms": 121.6,
+  "text": "K3 Sparrow Kestrel compact delivery drone last-mile parcels Maximum payload\n 9 kg Range full payload 38 km Top speed 61 km/h Ingress protection IP43.\n Charging time standard 48 V charger 70 minutes\n"
+ },
+ "c5861c4a007d4a47": {
+  "ms": 121.7,
+  "text": "K4 Hauler Lite capacity Maximum payload 8 kg\n payload 52 km Lite identified letter L serial number\n"
+ },
+ "c5ab1e012c67c3d6": {
+  "ms": 101.3,
+  "text": "SkyCart Hauler\n 1,485,000.00\n"
+ },
+ "c63c75b857f3800b": {
+  "ms": 115.1,
+  "text": "Quick one first. Does need firmware update before first flight?"
+ },
+ "c6a1c6d04d604c3a": {
+  "ms": 105.7,
+  "text": "help Stowbot intervals Which need?"
+ },
+ "c6a5a704b3b7dd2a": {
+  "ms": 114.7,
+  "text": "quote 2 x K4 Hauler EUR 1,650.00 each Extended warranty EUR 255.00\n per airframe Valid until 2026-02-28 Accepting quote creates new order number\n"
+ },
+ "c72fed5deb1b0623": {
+  "ms": 121.2,
+  "text": "K4 Hauler heavy-lift K-series payload 12.5 kg\n Range 46 km speed 68 km/h protection IP54 Serial\n no suffix Operating temperature 45\n"
+ },
+ "c747076e67690517": {
+  "ms": 121.1,
+  "text": "Bengaluru office closed regional holiday Hyderabad\n open\n"
+ },
+ "c763ed072cb92209": {
+  "ms": 109.4,
+  "text": "course look up order name."
+ },
+ "c779df8aed84b853": {
+  "ms": 100.9,
+  "text": "Bluewing Freight issues air waybills beginning BW-. Harbour Express issues consignment\n numbers beginning HX-. return reference not tracking number never quoted\n customer as one.\n"
+ },
+ "c77e7f409047a940": {
+  "ms": 105.5,
+  "text": "wheels pads warranty\n\n"
+ },
+ "c78b04c6133dbaa7": {
+  "ms": 104.1,
+  "text": "TK-5510 KR4-88217 delivery 2026-01-15\n\n\n TK-5488 SB1-20044 billing resolved\n\n"
+ },
+ "c7aa778f7455a871": {
+  "ms": 112.2,
+  "text": "K4 1,650.00 warranty 255.00\n\n"
+ },
+ "c7bf4a3986d4b85e": {
+  "ms": 108.2,
+  "text": "reminder\n late fee 1.75%\n"
+ },
+ "c8355b74367317f4": {
+  "ms": 108.0,
+  "text": "Arjun SkyCart\n Pune\n"
+ },
+ "c881ab69ee80796a": {
+  "ms": 103.2,
+  "text": "Order KR-51002 left 2026-01-08 Bluewing Freight AWB BW-4410229 arriving 2026-01-15.\n_id_number \"dispatched \"2026-01-15\"\n\n KR-50977 shipped 12 December 2025 Harbour Express consignment HX-88120 due 19 December 2025\n Output_id_number \"dispatched \"2025-12-19\"\n"
+ },
+ "c8a96efd9823bb13": {
+  "ms": 108.4,
+  "text": "ceiling\n K4 Hauler\n"
+ },
+ "c915e764330d55f2": {
+  "ms": 98.4,
+  "text": "formally disputed invoice line is frozen while dispute open does not accrue\n late fee. rest of invoice continues to accrue normally.\n"
+ },
+ "c922e9b6e5949db4": {
+  "ms": 115.6,
+  "text": "Relates order KR-55107. One carton refused at delivery came back with Bluewing\n Freight return reference BW-4417999 2026-03-06. replacement raised separately.\n"
+ },
+ "c95c3455004d253a": {
+  "ms": 111.2,
+  "text": "Kestrel drones software-limited to 120 m above ground level in all regions\n separate limit from operating altitude above sea level. two not be confused.\n"
+ },
+ "c987ed25fa45d0fe": {
+  "ms": 104.3,
+  "text": "HYD-3B seats 8 HYD-2A second 4\n"
+ },
+ "ca0929ffeed82028": {
+  "ms": 108.1,
+  "text": "Hello, this is Ravi from Deccan Aerial Services planning robot fleet for new\n Hyderabad sorting hall want to get maths right before order.\n"
+ },
+ "cac16f417c1d5200": {
+  "ms": 122.5,
+  "text": "parcel tray aisle\n 1.6 m\n"
+ },
+ "cb05801c6db01737": {
+  "ms": 101.0,
+  "text": "recalibration firmware\n minor\n"
+ },
+ "cb67ca0cc29a3775": {
+  "ms": 108.8,
+  "text": "Arjun SkyCart Deliveries fly K4 Haulers registered Pune\n everything Pune warehouse\n"
+ },
+ "cbfef0da0161ef15": {
+  "ms": 109.7,
+  "text": "Kiri Anita SkyCart Deliveries auditing three Lite airframes\n need record late backorder not two January\n"
+ },
+ "cc10ece84e6ebcfb": {
+  "ms": 106.5,
+  "text": "Hyderabad (HYD): 52 hand 4 reserved Pune (PNQ): 33 11 reserved\n Bengaluru (BLR): 15 hand 0 reserved.\n"
+ },
+ "cc49bcb340d143ed": {
+  "ms": 117.5,
+  "text": "Request: Where Hyderabad order got to? KR-51002.\n Action: call lookup_order order_id \"KR-51002\".\n\n Request: Send copy of invoice INV-18840 to finance address us (ap@orbitalparcel.in).\n Action call send_invoice_copy invoice_id \"INV-18840\", email \"ap@orbitalparcel.in\".\n"
+ },
+ "cd0b9cf8df8deb79": {
+  "ms": 106.1,
+  "text": "Document Claim WC-3301 KR4-88217 cracked motor boss opened 2026-01-14 inside warranty\n Output\"claim_id \"WC-3301\", \"serial_number \"KR4-88217\", \"category \"hardware\", \"opened \"2026-01-14\", \"covered true}\n\n Document Claim WC-3318 SB1-20044 console not pair raised 2026-02-02 warranty expired\n Output\"claim_id \"WC-3318\", \"serial_number \"SB1-20044\", \"software\", \"opened \"2026-02-02\", \"covered false}\n"
+ },
+ "cd5151c44eee18c0": {
+  "ms": 104.8,
+  "text": "8 4\n"
+ },
+ "cdd4a5d8f431461a": {
+  "ms": 108.3,
+  "text": "Hi Kiri hold quarterly review offices room\n last thing sort out\n"
+ },
+ "ce0228bd5f263b26": {
+  "ms": 122.6,
+  "text": "Fleet console robots 5 GHz\n 2.4 light\n Check\n"
+ },
+ "ce255acf7bfcac3d": {
+  "ms": 118.1,
+  "text": "Send KR-51002 depot\n Kondapur\n\n KR-50977 Gothenburg\n\n"
+ },
+ "ce61f19dba041c86": {
+  "ms": 105.7,
+  "text": "KR4-88217 K4 Hauler flown 34.5 hours drones inspected every 50.\n Output_number 34.5_hours 50 \"hours_remaining 15.5}\n\n SB1-20044 Stowbot S1 1,640 operating hours against 2,000-hour full service\n Output 1640_hours 2000,_remaining 360\n"
+ },
+ "ceac4044b58a7cfe": {
+  "ms": 99.0,
+  "text": "airframe ingress\n cleared\n leak test voids warranty\n"
+ },
+ "cebb0fed1df65929": {
+  "ms": 99.9,
+  "text": "airframe reported with water ingress is marked not airworthy in Fleet console within\n one hour of report mark cleared only by service center after seal\n replaced and leak test passes. Flying grounded airframe voids warranty entirely.\n"
+ },
+ "ceeb216cbba2b196": {
+  "ms": 110.0,
+  "text": "Hyderabad (HYD): 63 units hand Pune (PNQ): 29 units hand\n Bengaluru (BLR): 12 units hand 36 V pack fits Stowbot S1 K2 Courier.\n"
+ },
+ "cfd0aaa89821f642": {
+  "ms": 128.8,
+  "text": "Pune centre"
+ },
+ "d009b55d8f1e3cf2": {
+  "ms": 102.1,
+  "text": "Deccan Aerial KR-55107\n K3 Sparrow 1 HeavyLift 190\n 1,480.50 Issued 2026-02-05 2026-03-07.\n"
+ },
+ "d03a4862c17343a4": {
+  "ms": 114.0,
+  "text": "K-series airframes 24 extended warranty 12\n Batteries 12 robots 18 months\n"
+ },
+ "d0681e1910538907": {
+  "ms": 115.2,
+  "text": "Right. Our insurer now asking about cover."
+ },
+ "d0d3e5be50ea189e": {
+  "ms": 103.4,
+  "text": "Lindqvist Freight Order KR-55120 reference PO-3319.\n Items 1 x K4 Hauler (EUR 1,650.00), 1 spare 48 V battery pack (EUR 190.50).\n Total EUR 1,840.50 Issued 2026-02-12 Payment 30 days due 2026-03-14\n"
+ },
+ "d0d4292c5adb5585": {
+  "ms": 105.0,
+  "text": "Priya Whitefield Robotics planning sheet want\n published delivery figures estimate account manager\n"
+ },
+ "d19b2557b87eb8a6": {
+  "ms": 114.7,
+  "text": "airframe 12 minutes\n start 40% 15%\n 31\n"
+ },
+ "d252bf831aa5f9fe": {
+  "ms": 96.1,
+  "text": "disputed invoice line frozen\n fee\n"
+ },
+ "d25e8d655e98bcb9": {
+  "ms": 101.6,
+  "text": "Credit note CN-4301 against INV-18840 USD 612.00 refunded issued 2026-01-20.\n Output\"credit_note_id \"CN-4301\", \"against_invoice \"INV-18840\", \"amount 612.00 \"currency \"issued \"2026-01-20\"}\n\n CN-4288 cancels INR 48,250.00 invoice INV-18791 Issued 19 December 2025\n Output\"credit_note_id \"CN-4288\", \"against_invoice \"INV-18791\", 48250.00 \"currency \"INR\", \"issued \"2025-12-19\"}\n"
+ },
+ "d290a6ae3f088649": {
+  "ms": 127.5,
+  "text": "Understood, Stowbot S2 Pallet nearest full service, at Pune centre handles robots."
+ },
+ "d2a0a1018d3f517e": {
+  "ms": 112.0,
+  "text": "Of course. Invoices go to billing contact on account."
+ },
+ "d2d28ade05295fa4": {
+  "ms": 120.7,
+  "text": "Stowbot intervals idle\n Drone\n missed service\n"
+ },
+ "d2ddda684f12974c": {
+  "ms": 106.1,
+  "text": "Freja Nordkap\n fields\n"
+ },
+ "d380e6a8df9e52f2": {
+  "ms": 109.9,
+  "text": "41 6 Pune 18\n 7\n"
+ },
+ "d3aa425558bbe117": {
+  "ms": 121.0,
+  "text": "Sparrow Kestrel\n 9 38 km 41\n 61 70\n"
+ },
+ "d3ab9c25bdae7343": {
+  "ms": 127.0,
+  "text": "Understood. can return incident fields as JSON."
+ },
+ "d407b7b73dc9c957": {
+  "ms": 103.2,
+  "text": "Document Booking KR4-88217 (K4 Hauler SC-HYD-01 6 April 2026.\n Output\"serial_number \"KR4-88217\", \"model \"K4 Hauler\",_id \"SC-HYD-01\", \"date \"2026-04-06\"}\n\n Document SB1-20044 Stowbot S1 booked SC-BLR-03 2026-03-30.\n Output\"serial_number \"SB1-20044\", \"model \"Stowbot S1\", \"center_id \"SC-BLR-03\", \"date \"2026-03-30\"}\n"
+ },
+ "d41b429f266afd28": {
+  "ms": 121.8,
+  "text": "Kestrel Fleet console emails reminder at 90% interval. Reminders be turned\n off per device not per interval.\n"
+ },
+ "d4231c320a7f37c2": {
+  "ms": 111.4,
+  "text": "airframes L Lite\n firmware\n"
+ },
+ "d434acd898a9b6a2": {
+  "ms": 98.1,
+  "text": "Amounts Fees\n\n"
+ },
+ "d4cd54b9b8fd16e7": {
+  "ms": 114.1,
+  "text": "Operations Priya Nair@whitefieldrobotics +91 80 5550 6612\n Billing Deepak Iyer ap@whitefieldrobotics +91 80 5550 6699.\n Registered city Bengaluru Dealer status no.\n"
+ },
+ "d4dc3e813d7f81be": {
+  "ms": 105.2,
+  "text": "Hello, Stowbot S3 Sorter units dropping small items pads look worn down.\n"
+ },
+ "d4f429bcebc49bf1": {
+  "ms": 126.6,
+  "text": "Understood return fields JSON"
+ },
+ "d50bd8b273a789c3": {
+  "ms": 120.1,
+  "text": "SC-HYD-01 Kondapur K Stowbot robots\n 2026-04-06. 09:00 18:00\n"
+ },
+ "d52a51306223ba56": {
+  "ms": 120.7,
+  "text": "Bengaluru\n Bookings\n"
+ },
+ "d552e845e133791a": {
+  "ms": 126.5,
+  "text": "Understood return fields JSON"
+ },
+ "d57bcc08211327d4": {
+  "ms": 112.9,
+  "text": "Model: K4 Hauler Lite. Owner: SkyCart Deliveries. Registered city: Pune.\n Delivered: 2026-02-09. later other two backorder.\n"
+ },
+ "d5d6fe93388c276d": {
+  "ms": 100.7,
+  "text": "Whitefield Robotics Order KR-55211 4 PRT-WHL-S2 drive wheel\n INR 19,600.00 Issued 2026-03-07. Due 2026-04-06.\n"
+ },
+ "d66635f4671c675c": {
+  "ms": 127.0,
+  "text": "Understood. change address order not shipped."
+ },
+ "d7d150b0f1e468b3": {
+  "ms": 127.1,
+  "text": "closed\n 14 reply Reopening reference\n"
+ },
+ "d810a6b959bdca4b": {
+  "ms": 120.3,
+  "text": "Lindqvist"
+ },
+ "d840bee478a19515": {
+  "ms": 101.2,
+  "text": "Customers served warehouse city units\n allocated order inter-warehouse transfer adds 4 days\n"
+ },
+ "d88dc19a3c0ae3c2": {
+  "ms": 111.9,
+  "text": "Motor pod seals inspected every 200 flight hours failed seal drops effective\n protection to IP20 until replaced.\n"
+ },
+ "d89546285a2bec68": {
+  "ms": 100.0,
+  "text": "invoice 31,500.00\n rail kit\n"
+ },
+ "d93ea7a23444b778": {
+  "ms": 118.1,
+  "text": "Stowbot 18 months wheels\n\n"
+ },
+ "d9606baf7bb20766": {
+  "ms": 98.0,
+  "text": "goodwill credit not a refund issued at Kestrel's discretion, carries no refund\n reference, cannot be claimed as right.\n"
+ },
+ "d9aad8a531c06357": {
+  "ms": 120.5,
+  "text": "9 kg 38\n 61\n"
+ },
+ "d9b987dbac47fcdb": {
+  "ms": 110.9,
+  "text": "flight Courier 3.8.4 Sparrow 4.2.1. Hauler\n 5.0.3. Freighter 5.1.0 drone refuses arm\n"
+ },
+ "da4b449f08f85a81": {
+  "ms": 120.8,
+  "text": "K4 Hauler heavy-lift K-series 12.5 kg\n Range 46 km speed 68 km/h IP54\n"
+ },
+ "dac8cc0e719a8a30": {
+  "ms": 114.0,
+  "text": "Book 50-hour inspection KR4-88217 Hyderabad\n\n\n SB1-20044 Bengaluru service\n\n"
+ },
+ "dada8124fc70475b": {
+  "ms": 98.1,
+  "text": "goodwill credit not a refund. It carries no refund reference issued separately.\n"
+ },
+ "db2c993473ffade9": {
+  "ms": 126.2,
+  "text": "Understood, outstanding invoice for propeller sets rather than paid one."
+ },
+ "db7070320b3214a6": {
+  "ms": 100.9,
+  "text": "14 refused delivery 07 address not found sign\n closed site used\n"
+ },
+ "db7222faa27fcf67": {
+  "ms": 108.8,
+  "text": "Deccan Aerial Services topping\n\n"
+ },
+ "dbc6a54c6cd237fe": {
+  "ms": 121.9,
+  "text": "Fleet console emails reminder at 90% any interval. Reminders be switched off\n per device not per interval.\n"
+ },
+ "dbf80277273983b7": {
+  "ms": 105.9,
+  "text": "Firmware 3.x reached end support 2026-01-31. Airframes 3.x release can be updated\n straight to current minimum no intermediate step.\n"
+ },
+ "dc54b42630c5c195": {
+  "ms": 115.7,
+  "text": "expires validity\n re-priced superseded\n"
+ },
+ "dca8371949e7493d": {
+  "ms": 104.6,
+  "text": "Document KR4-88217 K4 Hauler flown 34.5 hours drones inspected every 50.\n Output {\"serial_number \"KR4-88217\", \"model \"K4 Hauler\", \"hours 34.5 \"interval_hours 50 \"hours_remaining: 15.5}\n\n Document SB1-20044 Stowbot S1 1,640 operating hours against 2,000-hour full service\n Output\"serial_number \"SB1-20044\", \"model \"Stowbot S1\", \"hours 1640 \"interval_hours 2000, \"hours_remaining 360}\n"
+ },
+ "dccc7c0555f336b8": {
+  "ms": 105.4,
+  "text": "Hello, Priya at Whitefield Robotics. Finance been through our requests told\n where they landed.\n"
+ },
+ "dd48e227058c3253": {
+  "ms": 112.0,
+  "text": "Quote references begin Q expires validity date\n re-priced extended superseded quote stays file accepted\n"
+ },
+ "dd99624db2a1944a": {
+  "ms": 110.0,
+  "text": "K4 Hauler Lite SkyCart Deliveries Pune\n 2026-01-22 Warranty\n"
+ },
+ "dde924a3cd6dc8d6": {
+  "ms": 110.9,
+  "text": "confirm warranty terms apply airframes."
+ },
+ "ddeb456d14a889c2": {
+  "ms": 120.5,
+  "text": "fleet 15%\n Mixed fleets\n"
+ },
+ "ddfe9fd93a2c0889": {
+  "ms": 103.8,
+  "text": "Document Orbital Parcel Billing Sana Iqbal ap@orbitalparcel +91 40 5550 1188.\n Output\"customer \"Orbital Parcel\", \"contact_name \"Sana \"email \"ap@orbitalparcel \"phone+91 40 5550 1188\"}\n\n Document Nordkap Logistics Accounts payable contact Freja Holm freja.holm@nordkap +46 31 555 0142.\n Output\"customer \"Nordkap \"contact_name \"Freja \"email \"freja.holm@nordkap \"phone+46 31 555 0142\"}\n"
+ },
+ "de13712c9dc00039": {
+  "ms": 112.6,
+  "text": "Lead times order confirmation Hyderabad 7\n Pune 9 Bengaluru 12 Export orders outside India\n 21 days exclude day confirmation\n"
+ },
+ "de44784408f1d655": {
+  "ms": 109.4,
+  "text": "Invoices and credit notes go to billing contact only. Never send invoice to address\n given in chat not already on account record.\n"
+ },
+ "de759d7980beefc1": {
+  "ms": 110.9,
+  "text": "stock order ships\n revised date\n"
+ },
+ "dec47cf071e8b5f9": {
+  "ms": 117.4,
+  "text": "Reserve room HYD-3B six 2026-02-10 15:00\n call book_meeting_room room_id date start_time attendees 6.\n\n Send copy invoice INV-18840 finance address@orbitalparcel\n send_invoice_copy_id \"INV email@orbitalparcel\n"
+ },
+ "deea8f416cfb7721": {
+  "ms": 108.3,
+  "text": "Maja Lindqvist Freight Finance finished reviewing two requests\n decision each\n"
+ },
+ "df52ce914df12718": {
+  "ms": 99.1,
+  "text": "Whitefield Robotics Confirmed 2026-03-04.\n 4 x PRT-WHL-S2 drive wheel (INR 4,900.00 each). Total INR 19,600.00\n follow-up consumables order\n"
+ },
+ "df619a8804d271a6": {
+  "ms": 99.5,
+  "text": "invoice INV-20931 Freight EUR 190.50\n returned part Finance approved 2026-03-05 credit note\n"
+ },
+ "df6559a4ca682e8e": {
+  "ms": 104.5,
+  "text": "help policy"
+ },
+ "df78ca1aacb2a75b": {
+  "ms": 97.6,
+  "text": "pack held below 10% charge for 60 days loses warranty cover shows\n state-of-health figure under 85%. console flags pack below 80% as replace-on-sight.\n stored pack reads above 90% needs no action beyond normal charge cycle.\n"
+ },
+ "df88229b5b26f227": {
+  "ms": 105.9,
+  "text": "Priya Whitefield Robotics. board pack generated structured data\n PDF quote\n"
+ },
+ "df9dd514a4cb105d": {
+  "ms": 123.4,
+  "text": "1 2 firmware\n 3\n"
+ },
+ "dff11e110f8990ae": {
+  "ms": 132.0,
+  "text": "temperature\n moisture drain airframe grounded\n 90 minutes\n\n"
+ },
+ "dff3d3e8c6ba68b3": {
+  "ms": 102.1,
+  "text": "SkyCart Deliveries 2026-03-01 4 PRT-K4 propeller\n dispatched\n"
+ },
+ "e01512a826cd27de": {
+  "ms": 95.1,
+  "text": "contact change accepted from address account effect\n next billing cycle\n"
+ },
+ "e029421722f1e15e": {
+  "ms": 102.0,
+  "text": "Claims opened owner need serial number proof delivery\n Claims warranty chargeable repairs\n"
+ },
+ "e069bf871c17240e": {
+  "ms": 120.0,
+  "text": "failed pod seal"
+ },
+ "e0791fac9554de25": {
+  "ms": 107.0,
+  "text": "Deccan Aerial Services\n\n"
+ },
+ "e09ce5845a628df6": {
+  "ms": 109.5,
+  "text": "Hyderabad 7\n 9 Bengaluru 12\n 21\n"
+ },
+ "e0d840705180f93b": {
+  "ms": 107.7,
+  "text": "SkyCart auditing three Lite airframes\n\n"
+ },
+ "e11cea6f64b2fb66": {
+  "ms": 101.1,
+  "text": "Against invoice INV-21102 (Whitefield Robotics). Amount asked: INR 31,500.00 for guide\n rail kit customer decided not keep. Finance declined kit installed.\n"
+ },
+ "e1228b852cfd1ea9": {
+  "ms": 130.7,
+  "text": "registered Pune use centre there."
+ },
+ "e146825ba773063b": {
+  "ms": 114.2,
+  "text": "Order numbers start KR- issued confirmation Quote numbers Q-\n customer hold orders never merged\n"
+ },
+ "e17db9ac3e88bdb8": {
+  "ms": 97.5,
+  "text": "invoice Freight 190.50\n\n"
+ },
+ "e18f07f9522e5605": {
+  "ms": 115.9,
+  "text": "-PAD-S0 gripper pad withdrawn Stowbot prototype stocked\n Orders rejected\n"
+ },
+ "e1cf81bb4d209658": {
+  "ms": 98.9,
+  "text": "invoice INV-20931 EUR 82.00 late delivery\n Finance declined goodwill credit\n"
+ },
+ "e265be57b813c8e3": {
+  "ms": 109.1,
+  "text": "Ravi at Deccan Aerial Services. One two Freighters, KR5-11207, has water inside\n motor pod after wet week other one, KR5-11203, fine.\n"
+ },
+ "e284bf9a927285db": {
+  "ms": 97.9,
+  "text": "credit note reduces balance of exactly one invoice never creates payment.\n References begin CN-. credit note cannot exceed invoice total.\n"
+ },
+ "e2d02936cfd4b5b6": {
+  "ms": 103.5,
+  "text": "400 Gripper\n 2,000\n"
+ },
+ "e2e2918776c34ab8": {
+  "ms": 100.8,
+  "text": "BLR-4D fourth floor seats 12 video conferencing\n BLR-1B ground floor seats 6 whiteboard\n"
+ },
+ "e343f8b815a5cf96": {
+  "ms": 125.9,
+  "text": "Quotes invoices"
+ },
+ "e3da7582eadcebb2": {
+  "ms": 120.8,
+  "text": "K4 Hauler standard heavy-lift model K-series. Maximum payload 12.5 kg.\n Range full payload 46 km. Top speed 68 km/h. Ingress protection IP54.\n"
+ },
+ "e428271e53c9f871": {
+  "ms": 119.2,
+  "text": "-HYD-01 Kondapur Stowbot\n\n"
+ },
+ "e4b77555e4509213": {
+  "ms": 122.7,
+  "text": "Bengaluru office closed 2026-04-14 for regional holiday. Hyderabad office\n stays open.\n"
+ },
+ "e4cbb62247c7f65b": {
+  "ms": 95.8,
+  "text": "contact change is accepted only from address already on account, takes effect\n on next billing cycle.\n"
+ },
+ "e515bb129aaa9b6e": {
+  "ms": 126.5,
+  "text": "wrenches Kestrel 12\n inspection\n"
+ },
+ "e524cf2300d71a36": {
+  "ms": 104.4,
+  "text": "CN-4301 INV-18840 612.00\n\n\n CN-4288 cancels 48,250.00 INV-18791 2025\n\n"
+ },
+ "e5af9fd3481d7b5b": {
+  "ms": 108.0,
+  "text": "Hyderabad 52 4 Pune 33 11 reserved\n Bengaluru 15 0 reserved\n"
+ },
+ "e67459e5a2cab198": {
+  "ms": 109.4,
+  "text": "Invoices credit notes billing Service bookings incident\n notices operations contact person both roles record\n lists separately\n"
+ },
+ "e681dbd4f8a3a926": {
+  "ms": 115.7,
+  "text": "Hyderabad order? KR-51002.\n\n\n invoice INV-18840 finance\n\n"
+ },
+ "e685538140b86e4c": {
+  "ms": 101.6,
+  "text": "smallest room equipment\n fewer\n"
+ },
+ "e6a9721abd2452e1": {
+  "ms": 110.4,
+  "text": "K4 airframes serials beginning KR4- trailing L marks Lite variant\n Stowbot serials begin SB followed model generation digit.\n"
+ },
+ "e727d20657b929fd": {
+  "ms": 107.6,
+  "text": "K-series drones.2.1\n cell 10 kg\n 20 minutes\n"
+ },
+ "e72d379dae1ba7a3": {
+  "ms": 119.5,
+  "text": "K3 HeavyLift"
+ },
+ "e7679175b1c13b04": {
+  "ms": 108.9,
+  "text": "7 Pune 9 12\n\n"
+ },
+ "e7ae7ccf4aad72a3": {
+  "ms": 98.1,
+  "text": "Stowbot S3 Sorter 3-year INR 812,400.00\n 2026-03-20 new order\n"
+ },
+ "e7dac76a52fc54e0": {
+  "ms": 106.9,
+  "text": "Maja Lindqvist Freight accounts team refund record structured\n data matched credit note\n"
+ },
+ "e83a9e1582f51a96": {
+  "ms": 105.9,
+  "text": "3.x 2026-01-31 Airframes\n\n"
+ },
+ "e84b3910ded242c3": {
+  "ms": 112.9,
+  "text": "quote published lead times any region"
+ },
+ "e8b4766caa60b3c8": {
+  "ms": 101.9,
+  "text": "BLR-4D 12 video conferencing\n BLR-1B 6 whiteboard\n second 10 screen\n"
+ },
+ "e998dfaaf8519039": {
+  "ms": 107.3,
+  "text": "Hi Kiri, Anita SkyCart Deliveries taken three airframes out of storage\n all K4 Hauler Lite units serials KR4-70112L, KR4-70118L KR4-70121L.\n"
+ },
+ "ea145f720143a730": {
+  "ms": 110.9,
+  "text": "Hi, Priya at Whitefield Robotics. commissioned two new sorters last week one\n not settled in as smoothly as other.\n"
+ },
+ "ea5e11c90b00bf03": {
+  "ms": 116.0,
+  "text": "SC-HYD-01 Kondapur K Stowbot robots\n\n"
+ },
+ "eb3f6dc5d089ddde": {
+  "ms": 120.9,
+  "text": "sounds failed pod seal KR5-11207 physical fault configuration"
+ },
+ "eb741446a2deec14": {
+  "ms": 101.3,
+  "text": "Bluewing Freight\n\n cartons 31.4 kg\n"
+ },
+ "eb871496e258a6ac": {
+  "ms": 113.8,
+  "text": "Noted.'ll use Pune service center for bookings."
+ },
+ "ebac777a15b8a19a": {
+  "ms": 99.3,
+  "text": "full service working day machine unavailable\n Plan full service quietest day size fleet 15% headroom\n machine out without slowing line drive wheel inspection 40 minutes\n between shifts\n"
+ },
+ "ebd60e080484f377": {
+  "ms": 100.9,
+  "text": "\n Stowbot 596,000.00\n"
+ },
+ "ebeff85a59506c66": {
+  "ms": 111.8,
+  "text": "accounts team mixing documents quote sent January"
+ },
+ "ec31abe01734e9ee": {
+  "ms": 101.5,
+  "text": "serial pair Fleet console\n record date\n blank\n"
+ },
+ "ec5d6f72286d398f": {
+  "ms": 117.1,
+  "text": "PRT-BAT-48V V battery-ARM-K4 motor Hauler\n-K3 motor-PROP-K4 propeller K4 Hauler\n"
+ },
+ "ec5f834b9771378e": {
+  "ms": 106.5,
+  "text": "Happy to help, Ravi. give throughput charging figures for any Stowbot model."
+ },
+ "ec8a2af2e9ca2c0a": {
+  "ms": 103.5,
+  "text": "HYD serves Hyderabad region, PNQ serves Pune region BLR serves Bengaluru region.\n customer always served from warehouse in registered city.\n"
+ },
+ "eca20b6febcd7d3b": {
+  "ms": 128.6,
+  "text": "Updates pushed from Kestrel Fleet console over Wi-Fi take 12 minutes\n Never update drone below 40% battery failed update leaves previous version place.\n"
+ },
+ "ece11cbb0bb15db2": {
+  "ms": 101.6,
+  "text": "BLR-4D fourth floor seats 12 video conferencing\n BLR-1B ground seats 6 whiteboard\n BLR-2C second floor seats 10 no screen\n"
+ },
+ "ed1d553cab4e75c2": {
+  "ms": 118.0,
+  "text": "Spare packs ship 30% charge dangerous goods rules Charge full before first use\n Packs stored below 10% 60 days lose warranty cover\n"
+ },
+ "ed4018c863e120f4": {
+  "ms": 121.0,
+  "text": "Hauler L"
+ },
+ "eda307dc8a27f39d": {
+  "ms": 96.7,
+  "text": "Stowbot S3,000.00\n\n"
+ },
+ "ee3cbcf2e3317bd9": {
+  "ms": 112.4,
+  "text": "orders INR 500,000.00 40% 60%\n\n Consumables dispatch\n"
+ },
+ "ee53e0252c427741": {
+  "ms": 106.5,
+  "text": "warranty"
+ },
+ "ef21ad5a285c2d20": {
+  "ms": 120.7,
+  "text": "Stowbot S1 warehouse 900 parcels hour\n Shelf 2.1 m Battery 36 V 95 minutes\n"
+ },
+ "ef3097cb5f60b1c6": {
+  "ms": 99.0,
+  "text": "robot pairs Fleet console 60 seconds\n\n fault\n"
+ },
+ "ef40393e9baf493a": {
+  "ms": 105.4,
+  "text": "Ravi Deccan Aerial fleet\n\n"
+ },
+ "ef6d05f991b788ab": {
+  "ms": 108.2,
+  "text": "Priya Whitefield Robotics warehouse team asking status updates\n get you directly guess\n"
+ },
+ "ef7002633289498d": {
+  "ms": 129.0,
+  "text": "Understood. Only approved request can paid out."
+ },
+ "f02349b95b5f22f8": {
+  "ms": 126.4,
+  "text": "Understood. can return contact fields as JSON."
+ },
+ "f0964ba4c3f8115e": {
+  "ms": 100.6,
+  "text": "invoice INV-21102 INR 31,500.00 guide\n rail kit customer keep Finance declined kit installed\n"
+ },
+ "f09c005c604c5b0d": {
+  "ms": 108.3,
+  "text": "Deccan Aerial KR5-11207\n\n"
+ },
+ "f0b5a90baadc98db": {
+  "ms": 97.1,
+  "text": "inspection 50 hours\n booked\n"
+ },
+ "f15f13d847667551": {
+  "ms": 126.8,
+  "text": "Understood. can return ticket fields as JSON."
+ },
+ "f1733bf7e2acca15": {
+  "ms": 115.4,
+  "text": "motor Sparrow\n-K4 propeller Hauler\n"
+ },
+ "f1b42acaf1ab56bb": {
+  "ms": 122.4,
+  "text": "They been sitting in storage for weeks, assume firmware is out of date."
+ },
+ "f1f3eba8f66905a2": {
+  "ms": 103.8,
+  "text": "Gripper pad-PAD-S2) INR 8,400.00 six Drive wheel-WHL-S2)\n INR 4,900.00 each pairs Aisle guide kit INR 31,500.00\n parts charged catalogue price replacement not\n\n"
+ },
+ "f2062efec8923494": {
+  "ms": 112.7,
+  "text": "Model K4 Hauler Lite Owner SkyCart Deliveries Registered city Pune\n Delivered 2026-01-22. airframe in storage.\n"
+ },
+ "f2ad336669ad1aea": {
+  "ms": 118.8,
+  "text": "Whitefield Stowbot\n\n"
+ },
+ "f2e5149c3ec28ec3": {
+  "ms": 111.7,
+  "text": "Invoices credit notes go to billing contact only. Service bookings incident\n notices go to operations contact. Never send invoice to address given in chat\n not already on account record.\n"
+ },
+ "f2e79c0aeb237982": {
+  "ms": 102.1,
+  "text": "Device KR3-41208. Raised 2026-03-05 customer reports drone not pair with\n Fleet console after update Category software Still open assigned tier 2.\n"
+ },
+ "f2f1e0db0713d3cf": {
+  "ms": 122.6,
+  "text": "sitting storage weeks assume firmware out of date"
+ },
+ "f32b72fa702bc23c": {
+  "ms": 108.2,
+  "text": "41 6 Pune 18\n 7\n"
+ },
+ "f3659d3f90412d3a": {
+  "ms": 109.0,
+  "text": "Freja Nordkap accounts team reconciling month\n credit note fields PDF\n"
+ },
+ "f417117cee702da6": {
+  "ms": 127.8,
+  "text": "likely version arm"
+ },
+ "f41bdb77ba65e80e": {
+  "ms": 122.7,
+  "text": "Stowbot S2 Pallet moves\n 1,150 parcels hour tray accessory\n Maximum pallet load 480 kg Battery 48 V 110 minutes\n"
+ },
+ "f49900715d3f801f": {
+  "ms": 96.8,
+  "text": "replaced mixed depths\n\n"
+ },
+ "f4a6cdac899a3407": {
+  "ms": 98.4,
+  "text": "goodwill credit not refund issued Kestrel discretion no refund\n claimed right\n"
+ },
+ "f4a70ba8b4a6961e": {
+  "ms": 107.5,
+  "text": "Hyderabad (HYD): 41 units 6 reserved. Pune (PNQ): 18 units 0 reserved\n Bengaluru (BLR): 7 units hand 7 reserved. Figures 2026-03-02, 06:00 IST.\n"
+ },
+ "f4ac625fefbe3292": {
+  "ms": 112.7,
+  "text": "KR4-70112L 4.9.7 2026-01-24 31.2\n KR4-70118L 5.0.3 2026-01-25 28.8\n KR4-70121L 5.0.3 2026-02-11 12.1\n KR3-41208 KR4-90533 4.2.1.\n 2026-03-06 Anita Deshpande\n"
+ },
+ "f4cc0d020136c163": {
+  "ms": 120.5,
+  "text": "Kestrel Fleet console reminder 90% interval. Reminders\n device not interval\n"
+ },
+ "f4da66ec70cdb7d3": {
+  "ms": 118.0,
+  "text": "Stowbot robots 18 months Drive wheels gripper pads\n parts excluded warranty\n"
+ },
+ "f5a76a74bfe1a543": {
+  "ms": 116.4,
+  "text": "SC-PNQ-02 Hinjewadi Phase 2. K-series drones Next maintenance slot\n 2026-04-02. SC-PNQ-01 Kharadi services Stowbot robots next slot 2026-03-27.\n"
+ },
+ "f5a8b615085f95f2": {
+  "ms": 107.8,
+  "text": "Hello, Arjun from SkyCart. insurer wants claim details as structured data they can\n load straight into system.\n"
+ },
+ "f5a9ad169a81b902": {
+  "ms": 126.4,
+  "text": "Understood can pay request finance approved"
+ },
+ "f5b74149b22ecb66": {
+  "ms": 109.9,
+  "text": "Minimum aisle 1.8 m pallet forks swing outward turning\n Minimum ceiling height 2.6 m.\n"
+ },
+ "f5d48828f75c896f": {
+  "ms": 125.9,
+  "text": "Understood. can return booking fields as JSON."
+ },
+ "f60ad4fabc6d2845": {
+  "ms": 107.3,
+  "text": "Invoice credit\n queue\n"
+ },
+ "f6528ce8fa9adbd2": {
+  "ms": 121.6,
+  "text": "K4 Hauler 12.5\n 46 68 IP54\n 45\n"
+ },
+ "f68adbf4e0c69f76": {
+  "ms": 125.5,
+  "text": "return booking fields JSON"
+ },
+ "f693bc387c123cfd": {
+  "ms": 108.1,
+  "text": "Kiri Priya Whitefield Robotics board meets Friday finance\n paperwork\n"
+ },
+ "f694d9d180ca9ec0": {
+  "ms": 98.1,
+  "text": "address changed order not shipped delivered dispatched\n order needs return Addresses marked closed used\n"
+ },
+ "f695d708a3a766d0": {
+  "ms": 123.0,
+  "text": "They easy to confuse. directory explicit about which handles what."
+ },
+ "f6e0bac91f14d9a9": {
+  "ms": 112.7,
+  "text": "PRT-RAIL-14 required in any aisle narrower than 1.6 m. not lower minimum aisle\n width of model; only keeps robot centred.\n"
+ },
+ "f71c3920125170ce": {
+  "ms": 98.1,
+  "text": "Against invoice INV-21118 (Whitefield Robotics). Amount asked INR 4,900.00\n Reason damaged transit one drive wheel four\n Finance approved 2026-03-11.\n"
+ },
+ "f71f5159b1be4db8": {
+  "ms": 110.5,
+  "text": "Courier 1,800 2,100\n 2,400 Freighter 2,200\n\n"
+ },
+ "f723152ba1a75369": {
+  "ms": 118.9,
+  "text": "PRT-BAT-48V 48 V battery pack-ARM-K3 motor arm K3 Sparrow\n PRT-COWL-K5 splash cowling K5 Freighter-PROP-K4 propeller set K4 Hauler\n"
+ },
+ "f76bf2e35a031452": {
+  "ms": 104.1,
+  "text": "Glad hear Let know need anything airframe"
+ },
+ "f79940787c30e88e": {
+  "ms": 117.5,
+  "text": "console pair KR4-88217 after update\n call create_support_ticket serial_number category summary pair firmware\n\n consignment arrived carton short order KR-50977\n create_support_ticket category \"Consignment KR-50977 carton\n"
+ },
+ "f7a4b4a7c1b34c95": {
+  "ms": 101.1,
+  "text": "Customers served from warehouse in registered city. Reserved units\n allocated to another order. inter-warehouse transfer adds 4 working days.\n"
+ },
+ "f84ca8e756dab2e4": {
+  "ms": 122.4,
+  "text": "HeavyLift 11 kg\n arms\n warranty\n"
+ },
+ "f86193ec2972b92e": {
+  "ms": 101.3,
+  "text": "SkyCart Deliveries Confirmed 2026-02-08. Lines 1 x K4 Hauler\n (INR 1,485 Total INR 1,485 Status delivered 2026-02-20.\n"
+ },
+ "f867d77da3a8fb1f": {
+  "ms": 120.1,
+  "text": "Tell me what it doing I will get it logged right team."
+ },
+ "f889de9ae66910dc": {
+  "ms": 101.3,
+  "text": "Lindqvist Freight\n K4 Hauler\n 1,840.50 30\n"
+ },
+ "f8f8eb918ad2f23d": {
+  "ms": 110.6,
+  "text": "Invoices credit notes billing contact Never send invoice address\n chat not account record\n"
+ },
+ "f944b55e4088d2c2": {
+  "ms": 100.7,
+  "text": "late fee 0.9%\n invoice\n"
+ },
+ "f9a3415694ff3e00": {
+  "ms": 112.6,
+  "text": "K4 airframes serials KR4- L Lite\n Stowbot serials SB model\n"
+ },
+ "f9f4b6e84eaddbdd": {
+  "ms": 106.6,
+  "text": "Incident IR-2201 KR4-88217 34.5 flight hours 2026-01-18 logged minor\n Output\"incident_id \"serial_number \"KR4-88217\", \"flight_hours 34.5 \"severity \"minor\", \"occurred \"2026-01-18\"}\n\n Document IR-2209 airframe SB1-20044 210 hours 2 February 2026 classified major\n Output\"incident_id \"IR-2209\", \"serial_number \"SB1-20044\", \"flight_hours 210 \"severity \"major\", \"occurred \"2026-02-02\"}\n"
+ },
+ "fa3f541ae1cb6dbb": {
+  "ms": 105.6,
+  "text": "Hi Kiri, Priya Nair at Whitefield Robotics. board meets Friday finance chasing\n paperwork for it.\n"
+ },
+ "fa9e76b178ea6671": {
+  "ms": 101.7,
+  "text": "Book service at a center in customer's registered city handles device type.\n If registered city has no center for device type, nearest center may\n be used, but customer must be told in advance.\n"
+ },
+ "faa8bde146c247a6": {
+  "ms": 101.3,
+  "text": "SkyCart 4 PRT\n\n"
+ },
+ "faed4f5513393fe5": {
+  "ms": 120.0,
+  "text": "Thanks noted: K3 Sparrow (KR3-41377) HeavyLift kit fitted."
+ },
+ "fafb1273324ce32e": {
+  "ms": 97.4,
+  "text": "ticket records routes problem book service slot order part\n ground airframe separate actions service team ticket\n triaged second ticket same fault duplicates work closed\n"
+ },
+ "fb32efaf7fd7f28a": {
+  "ms": 105.2,
+  "text": "Ticket TK-5510 KR4-88217 delivery problem opened 2026-01-15 still open\n Output_id_number \"KR4-88217\", \"open\"\n\n Document TK-5488 SB1-20044 billing query raised 2 Feb 2026 resolved\n Output_id_number \"SB1-20044\", \"opened \"closed\"\n"
+ },
+ "fb8b70cd9b98dbe0": {
+  "ms": 111.3,
+  "text": "Minor no damage no loss of control. Major loss of link over 5 seconds damage to\n wear part. Critical airframe damage injury uncommanded descent.\n"
+ },
+ "fbbe3b77e00bec6c": {
+  "ms": 118.4,
+  "text": "propeller sets Hyderabad?\n\n\n kits Bengaluru?\n\n"
+ },
+ "fbc8744b2351c831": {
+  "ms": 120.8,
+  "text": "Steady green: powered, healthy idle. Flashing green: working. Amber: wear part due.\n Flashing amber: drive fault robot stopped. Red: critical fault robot halted\n not restarted. steady green light rules out mechanical fault.\n"
+ },
+ "fbcc99266459dba2": {
+  "ms": 124.0,
+  "text": "Lite\n Courier Sparrow Hauler\n Freighter 5.1.0 drone\n"
+ },
+ "fbd8f69ae8f9b271": {
+  "ms": 127.0,
+  "text": "parcel tray accessory (PRT-TRY-S2) S2 Pallet handle loose parcels aisle guide\n rail kit (PRT-RAIL-14) required aisles narrower 1.6 m\n"
+ },
+ "fbe1158bc327fee7": {
+  "ms": 113.4,
+  "text": "aisle 1.4 ceiling 2.6 Floor flatness 3\n 2 Docks 16 socket 3 m aisle\n"
+ },
+ "fbe5074a1204a039": {
+  "ms": 121.1,
+  "text": "pads S3 Sorter"
+ },
+ "fbe7a9de32caf864": {
+  "ms": 125.5,
+  "text": "confuse directory"
+ },
+ "fbfedbfbe8e4bedb": {
+  "ms": 116.2,
+  "text": "order KR-55107 carton refused Bluewing\n Freight BW-4417999 2026-03-06. replacement raised\n"
+ },
+ "fc3f32d652cba3d6": {
+  "ms": 103.8,
+  "text": "KR4-88217 K4 Hauler Orbital Parcel\n\n\n Stowbot S1 SB1-20044 Nordkap Logistics\n\n"
+ },
+ "fcb6460e13183cb5": {
+  "ms": 119.9,
+  "text": "SC-PNQ-02 closed 2026-03-31 annual inventory\n service centers normal hours\n"
+ },
+ "fd0440a8c79e634b": {
+  "ms": 111.0,
+  "text": "KR4-70112L (K4 Hauler running 4.9.7 flown 2026-01-24 31.2 flight hours\n KR4-70118L running 5.0.3 flown 2026-01-25 28.8 flight hours\n KR4-70121L (K4 Hauler running 5.0.3 flown 2026-02-11 12.1 flight hours\n KR3-41208 (K3 running 4.2.1. KR4-90533 (K4 running 4.2.1.\n Export taken 2026-03-06 Anita Deshpande\n"
+ },
+ "fd121091ad99ce4b": {
+  "ms": 114.2,
+  "text": "Operations Arjun Rao@skycart +91 20 5550 7741.\n Billing Meera Nayak accounts@skycart +91 20 5550 7799.\n Registered city Pune Dealer status no.\n"
+ },
+ "fd20a0ce35a35e42": {
+  "ms": 105.8,
+  "text": "Stowbot?"
+ },
+ "fd7a401f7db0a2eb": {
+  "ms": 99.4,
+  "text": "Above 1,500 m derate maximum payload by 4% every additional 300 m. Derating\n applied automatically by flight controller be overridden from console.\n"
+ },
+ "fe6ec4648f81b7a2": {
+  "ms": 101.2,
+  "text": "Lindqvist Freight AB Gothenburg. Carrier Harbour Express\n Consignment HX-91455 Left 2026-02-18 Estimated arrival 2026-03-11\n"
+ },
+ "febcd491a751872f": {
+  "ms": 112.8,
+  "text": "installation Stowbot"
+ }
+}

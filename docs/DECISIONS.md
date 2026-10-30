@@ -143,3 +143,28 @@ Scatter plots cap at three colours, so Pareto charts grey out non-frontier confi
 `variant()` still raises `KeyError` when `benchmark/compressed.json` has no entry for a task, but `runner.run` now catches it, writes a normal `status: "error"` record and carries on; `--dry-run` counts the affected runs and prints them as "awaiting `ccv compress`".
 *Why:* the cache goes stale every time a task is edited, which is the normal state during authoring. Raising out of `build()` killed a whole Kaggle session at the first `lingua2` config, after the noise and Shapley runs had already been paid for, and it made `--dry-run` — the offline task validator the runbook tells authors to keep clean — unusable at the same time.
 *Consequence:* error records are retried on the next launch, so re-running after `ccv compress` fills them in with no extra bookkeeping.
+
+---
+
+## Session 5 (2026-10-30): scope, calibration and Kaggle automation
+
+**D26. Qwen2.5-7B only; Llama-3.1-8B becomes future work** (2026-10-30)
+*Why:* on 30 Oct no GPU run had happened and about two weeks remained. The plan's own cut order drops Llama's sweep first, and a second model doubles GPU time and needs a second Kaggle account.
+*Consequence:* findings describe one model. Calibration uses Qwen alone, so the "passes on both models" rule in PLAN §4 becomes "passes on Qwen". The Llama path (template, date pin, attribution) stays covered by the offline tests.
+
+**D27. Reports are drafted in Markdown** (2026-10-30) — no LaTeX on the laptop, and Markdown converts into whatever template the university requires. `report/formal_report.md`, `report/findings_report.md`.
+
+**D28. Calibration is its own analysis table, and calibrate runs are excluded from every other table** (2026-10-30)
+`analyze` writes `calibration.csv` (full-context passes out of 3, query-only passes, `keep`); all other tables use non-calibrate records only.
+*Why:* calibration runs on draft tasks before the freeze, and pooling its baseline and query-only repeats into the Shapley cells would make the baseline an average of noise, Shapley *and* calibration runs, contradicting D12's "31 runs" description.
+*Consequence:* a results file holding only calibration still analyses cleanly (calibration table and summary, no figures).
+
+**D29. Kaggle is driven from the CLI; results carry between sessions as a private dataset** (2026-10-30)
+*Why:* scripted pushes give an exact, logged record of every run's parameters, and nobody has to click through the UI. The CLI cannot attach a kernel's own previous output, so the restore cell searches `/kaggle/input/**/<model>.jsonl`, which matches both a UI-attached output and a dataset.
+*Consequence:* per-run parameters live in a generated copy of the notebook; the committed notebook keeps its defaults.
+
+**D30. The compression venv borrows the system pip** (2026-10-30)
+*Why:* on Kaggle's Python 3.13 image, `python -m venv` fails at `ensurepip`. `--without-pip --system-site-packages` plus `python -m pip` installs `llmlingua` and `transformers<5` into the venv while leaving vLLM's environment untouched (the reason for the venv in D16).
+
+**D31. Benchmark review fixes, and what was deliberately left** (2026-10-30)
+33 edits from a three-way review (see REPORT_NOTES §3.3). The shared tool catalogue's example values were changed to ids no task uses (`KR-50001`, `SC-MAA-01`, `INV-10001`), because examples equal to gold values let `{tools, query}` pass without documents. A soft hint in tc-15's query and a few low-visibility world inconsistencies in few-shot examples were left for calibration to judge.

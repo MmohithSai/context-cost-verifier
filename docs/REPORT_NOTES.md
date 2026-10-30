@@ -150,6 +150,8 @@ On 30 Oct the project was about five weeks behind on GPU work (the plan expected
 |---|---|---|---|---|---|---|
 | K1 | 2026-10-30 06:58 | qwen2.5-7b, `calibrate`, `COMPRESS=True` | 1 | ~6 min | 0 / 0 | **Failed: no internet in the kernel.** `pip install vllm` could not resolve pypi.org, so nothing installed and the notebook stopped at `ccv serve`. Kaggle silently disables Internet for accounts without phone verification. A second, independent bug also surfaced: `python -m venv` on Kaggle's Python 3.13 image fails at `ensurepip`, so the compression venv could never have worked. |
 
+| K1b | 2026-10-30 ~07:40 | same, with boolean metadata | 2 | ~4 min | 0 / 0 | **Failed again, no internet** — rules out the string-valued `enable_internet` flag as the cause; the account needs phone verification. The new install assertion stopped the notebook in the first code cell with the message "install failed: is Internet on?", as intended. |
+
 **Fixes after K1:**
 1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.
 2. The install cell now asserts `ccv` is on the path with a message naming the likely cause, so a missing-internet run fails in the first minute with a clear reason instead of cascading errors.
