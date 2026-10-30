@@ -1,0 +1,54 @@
+id: tc-03
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Dates must be YYYY-MM-DD and times must be 24-hour.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Reserve room HYD-3B for the six of us on 2026-02-10 at 15:00.
+    Action: call book_meeting_room with room_id "HYD-3B", date "2026-02-10", start_time "15:00", attendees 6.
+
+    Request: Book the Pune training room for four people next Tuesday, 2026-02-17, first thing at 09:00.
+    Action: call book_meeting_room with room_id "PNQ-1A", date "2026-02-17", start_time "09:00", attendees 4.
+  retrieved:
+    - title: "Meeting rooms: Hyderabad office"
+      text: |
+        HYD-3B, third floor, seats 8, has a video wall. HYD-2A, second floor, seats 4, no screen.
+        HYD-5C, fifth floor, seats 20, is the auditorium and needs facilities approval.
+    - title: "Meeting rooms: Bengaluru office"
+      text: |
+        BLR-4D, fourth floor, seats 12, video conferencing fitted.
+        BLR-1B, ground floor, seats 6, whiteboard only.
+    - title: Room booking rules
+      text: |
+        Book the smallest room that seats everyone. A room that seats fewer people than the group
+        may not be booked. Rooms needing facilities approval are excluded from self-service booking.
+    - title: Office opening hours
+      text: |
+        Both offices open at 08:30 and close at 19:00, Monday to Friday. Bookings must start on the
+        hour or the half hour.
+    - title: Holiday notice
+      text: |
+        The Bengaluru office is closed on 2026-04-14 for a regional holiday. The Hyderabad office
+        stays open.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, we hold our quarterly review at one of your offices each quarter and the room is
+        usually the last thing we sort out.
+    - role: assistant
+      content: Happy to book it. Tell me the office, the date, the time and how many of you there are.
+query: "Book us a room at the Hyderabad office on 2026-04-09 at 11:00 for seven people; we need the screen for a slide deck."
+gold_doc: 0
+grader:
+  type: tool_call
+  name: book_meeting_room
+  arguments:
+    room_id: HYD-3B
+    date: "2026-04-09"
+    start_time: "11:00"
+    attendees: 7

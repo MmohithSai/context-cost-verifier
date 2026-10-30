@@ -1,0 +1,73 @@
+id: ex-02
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the fields of the single purchase order the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    order_id (string), customer (string), line_count (number),
+    total (number, no currency symbol), currency (ISO 4217 code).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Order KR-51002 for Orbital Parcel. 2 lines. Total USD 1,224.00.
+    Output: {"order_id": "KR-51002", "customer": "Orbital Parcel", "line_count": 2, "total": 1224.00, "currency": "USD"}
+
+    Document: Order KR-50977, Nordkap Logistics, single line, INR 48,250.00.
+    Output: {"order_id": "KR-50977", "customer": "Nordkap Logistics", "line_count": 1, "total": 48250.00, "currency": "INR"}
+  retrieved:
+    - title: Order KR-55210
+      text: |
+        Customer: Whitefield Robotics (Bengaluru). Confirmed 2026-03-02.
+        Lines: 1 x Stowbot S3 Sorter (INR 742,000.00), 1 x PRT-RAIL-14 aisle guide rail kit
+        (INR 31,500.00), 1 x PRT-PAD-S2 gripper pad set (INR 8,400.00).
+        Total: INR 781,900.00. Standard delivery, Bengaluru region.
+    - title: Order KR-55198
+      text: |
+        Customer: Deccan Aerial Services (Hyderabad). Confirmed 2026-02-27.
+        Lines: 2 x Stowbot S1 (INR 298,000.00 each). Total: INR 596,000.00.
+    - title: Quote Q-7903 for Whitefield Robotics
+      text: |
+        Proforma quote, not an order. 1 x Stowbot S3 Sorter with a 3-year service plan:
+        INR 812,400.00. Valid until 2026-03-20. Accepting a quote creates a new order number.
+    - title: Order KR-55211
+      text: |
+        Customer: Whitefield Robotics (Bengaluru). Confirmed 2026-03-04.
+        Lines: 4 x PRT-WHL-S2 drive wheel (INR 4,900.00 each). Total: INR 19,600.00.
+        This is a follow-up consumables order.
+    - title: Order numbering note
+      text: |
+        Order numbers start with KR- and are issued at confirmation. Quote numbers start with Q-.
+        A customer may hold several open orders at once; they are never merged.
+    - title: Order KR-55190
+      text: |
+        Customer: SkyCart Deliveries (Pune). Confirmed 2026-02-08. Lines: 1 x K4 Hauler
+        (INR 1,485,000.00). Total: INR 1,485,000.00. Status: delivered 2026-02-20.
+    - title: Payment terms on machine orders
+      text: |
+        Machine orders over INR 500,000.00 are invoiced in two parts: 40% on confirmation and 60% on
+        dispatch. The order total shown on the order record is always the full value, never the
+        instalment. Consumables orders are invoiced once, in full, at dispatch.
+    - title: How an order total is built
+      text: |
+        The order total is the sum of the line values before any discount and before tax. Delivery
+        is free on domestic orders. The express delivery fee, when taken, is added as its own line
+        and therefore appears in the line count.
+  history:
+    - role: user
+      content: |
+        Hi, Priya at Whitefield Robotics. I need the booking details for the big order, the one with
+        the sorter robot on it, not the small wheels order we placed two days later.
+    - role: assistant
+      content: Understood, the order containing the Stowbot S3 Sorter rather than the consumables order.
+query: Give me the purchase order details so our finance team can book it.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    order_id: KR-55210
+    customer: Whitefield Robotics
+    line_count: 3
+    total: 781900.0
+    currency: INR

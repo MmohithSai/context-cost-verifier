@@ -101,6 +101,24 @@ def test_graders(tasks):
     assert grade({"grader": list_tool}, "", call("tag", json.dumps({"labels": '["a", "b"]'})))
 
 
+def test_every_task_grades_its_own_gold_answer(tasks):
+    """A task whose grader rejects its own answer would only fail after burning GPU time."""
+    for task in tasks.values():
+        g = task["grader"]
+        if g["type"] == "qa":
+            assert grade(task, g["answers"][0], None), task["id"]
+            for bad in g.get("distractors", []):
+                assert not grade(task, bad, None), (task["id"], bad)
+        elif g["type"] == "json":
+            assert grade(task, json.dumps(g["expected"]), None), task["id"]
+            assert not grade(task, "I could not find it.", None), task["id"]
+        else:
+            call = [{"type": "function", "function": {"name": g["name"],
+                                                      "arguments": json.dumps(g.get("arguments", {}))}}]
+            assert grade(task, "", call), task["id"]
+            assert not grade(task, json.dumps(g.get("arguments", {})), None), task["id"]
+
+
 def test_variants(tasks):
     qa = tasks["qa-01"]
     assert len({c for c, _ in SUITES["shapley"]}) == 64
@@ -146,7 +164,10 @@ def test_serve_command():
 def test_attribution_is_exact(tasks, model):
     p = _prompter(model)
     for task in tasks.values():
-        for mask in ("111111", "000000", "101010", "010101", "110111", "111110"):
+        # Every task is checked at full context; the mask sweep is a template property, so one
+        # task per workload covers it without paying 45x the render cost.
+        sweep = task["id"] in ("qa-01", "ex-01", "tc-01")
+        for mask in ("111111", "000000", "101010", "010101", "110111", "111110")[: 6 if sweep else 1]:
             seg, _ = variant(task, f"subset:{mask}")
             msgs, tools = layout(seg, task["query"])
             counts = p.attribute(msgs, tools)
@@ -243,6 +264,10 @@ def test_pipeline_end_to_end(tmp_path, fake_server):
     bench = tmp_path / "benchmark"
     shutil.copytree(BENCH, bench, ignore=shutil.ignore_patterns("compressed.json"))
     tasks = load_tasks(bench)
+    # What this test proves — resume, durability, Shapley identities — does not depend on how many
+    # tasks the benchmark holds, but the cost does: all 45 would mean 4,635 fake requests and a
+    # 64-subset sweep per task. Every task is covered by the attribution and grader tests instead.
+    tasks = [t for t in tasks if t["id"] in ("qa-01", "ex-01", "tc-01")]
     cache = {}
     for t in tasks:  # stand-in for LLMLingua-2: keep the first share of words
         for text in long_texts(t["segments"]):

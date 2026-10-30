@@ -1,0 +1,56 @@
+id: ex-15
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the details of the single refund request the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    invoice_id (string), amount (number, no currency symbol), currency (ISO 4217 code),
+    reason (string), approved (boolean).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Refund of USD 612.00 on INV-18840 for a duplicate payment. Approved by finance.
+    Output: {"invoice_id": "INV-18840", "amount": 612.00, "currency": "USD", "reason": "duplicate payment", "approved": true}
+
+    Document: INV-18791, INR 4,000.00 asked back for a late delivery. Finance declined it.
+    Output: {"invoice_id": "INV-18791", "amount": 4000.00, "currency": "INR", "reason": "late delivery", "approved": false}
+  retrieved:
+    - title: Refund request RR-1180
+      text: |
+        Against invoice INV-20931 (Lindqvist Freight AB). Amount asked: EUR 190.50.
+        Reason recorded as returned part. Finance approved it on 2026-03-05 and a credit note follows.
+    - title: Refund request RR-1174
+      text: |
+        Against invoice INV-20931. Amount asked: EUR 82.00. Reason recorded as late delivery.
+        Finance declined it and offered a goodwill credit instead.
+    - title: Invoice INV-20931
+      text: |
+        Customer: Lindqvist Freight AB. Order: KR-55120. Items: 1 x K4 Hauler (EUR 1,650.00),
+        1 x spare 48 V battery pack (EUR 190.50). Total: EUR 1,840.50. Issued 2026-02-12.
+    - title: Refund rules
+      text: |
+        Refund requests begin RR-. A refund never exceeds the invoice line it relates to.
+        An approved refund is always paid out as a credit note, never as a bank transfer.
+    - title: Goodwill credits
+      text: |
+        A goodwill credit is not a refund. It is issued at Kestrel's discretion, carries no refund
+        reference, and cannot be claimed as a right.
+  history:
+    - role: user
+      content: |
+        Hello, Maja from Lindqvist Freight. Our accounts team wants the refund record as structured
+        data so it can be matched against the credit note automatically.
+    - role: assistant
+      content: Understood. I can return the refund request fields as JSON.
+query: Give me the record for refund request RR-1180.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    invoice_id: INV-20931
+    amount: 190.5
+    currency: EUR
+    reason: returned part
+    approved: true

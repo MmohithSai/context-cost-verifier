@@ -1,0 +1,49 @@
+id: qa-15
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the identifier only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: Which part number is the spare 48 V battery pack?
+    A: PRT-BAT-48V
+
+    Q: Which part number is the aisle guide rail kit?
+    A: PRT-RAIL-14
+
+    Q: Which part number is the K9 Titan landing skid?
+    A: unknown
+  retrieved:
+    - title: Stowbot spare parts catalogue (extract)
+      text: |
+        PRT-PAD-S1: gripper pad set, Stowbot S1, 4 pads. PRT-PAD-S2: gripper pad set, Stowbot S2
+        Pallet and S3 Sorter, 6 pads. PRT-WHL-S2: drive wheel, S2 Pallet and S3 Sorter.
+        PRT-TRY-S2: parcel tray accessory for the S2 Pallet.
+    - title: K-series spare parts catalogue (extract)
+      text: |
+        PRT-BAT-48V: spare 48 V battery pack. PRT-ARM-K3: motor arm, K3 Sparrow.
+        PRT-COWL-K5: splash cowling, K5 Freighter. PRT-PROP-K4: propeller set, K4 Hauler, 4 blades.
+    - title: Gripper pad fitting note
+      text: |
+        A pad set is replaced as a complete set, never individually, because mixed pad depths make
+        the robot drop light items. Pad screws are torqued to 2.5 Nm by hand.
+    - title: Discontinued parts
+      text: |
+        PRT-PAD-S0, the gripper pad set for the withdrawn Stowbot prototype, is no longer stocked.
+        Orders for it are rejected automatically.
+  history:
+    - role: user
+      content: |
+        Hello, our Stowbot S3 Sorter units are dropping small items and the pads look worn right down.
+    - role: assistant
+      content: That is the classic sign of worn gripper pads on an S3 Sorter. They are replaced as a set.
+query: Which part number do we order for the gripper pads?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["PRT-PAD-S2"]
+  distractors: ["PRT-PAD-S1", "PRT-PAD-S0", "PRT-WHL-S2", "PRT-TRY-S2"]

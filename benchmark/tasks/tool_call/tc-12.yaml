@@ -1,0 +1,52 @@
+id: tc-12
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Always use the address already on the account record.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Email our accounts team a copy of INV-18840.
+    Action: call send_invoice_copy with invoice_id "INV-18840", email "ap@orbitalparcel.in".
+
+    Request: Can you resend INV-18791 to finance?
+    Action: call send_invoice_copy with invoice_id "INV-18791", email "freja.holm@nordkap.se".
+  retrieved:
+    - title: "Account record: Whitefield Robotics"
+      text: |
+        Operations contact: Priya Nair, priya.nair@whitefieldrobotics.in.
+        Billing contact: Deepak Iyer, ap@whitefieldrobotics.in. Registered city: Bengaluru.
+    - title: Invoice INV-21102
+      text: |
+        Customer: Whitefield Robotics. Order: KR-55210. Items: 1 x Stowbot S3 Sorter,
+        1 x PRT-RAIL-14, 1 x PRT-PAD-S2. Total: INR 781,900.00. Issued 2026-03-05. Due 2026-04-04.
+    - title: Invoice INV-21118
+      text: |
+        Customer: Whitefield Robotics. Order: KR-55211. Items: 4 x PRT-WHL-S2 drive wheel.
+        Total: INR 19,600.00. Issued 2026-03-07. Due 2026-04-06.
+    - title: Contact record policy
+      text: |
+        Invoices and credit notes go to the billing contact only. Never send an invoice to an address
+        given in chat that is not already on the account record.
+    - title: Invoice numbering
+      text: |
+        Invoice references begin INV- and are issued when the order ships. One invoice covers exactly
+        one order.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, Priya Nair at Whitefield Robotics. Our board meets on Friday and finance is chasing
+        the paperwork for it.
+    - role: assistant
+      content: Of course. Invoices go to the billing contact held on the account.
+query: Please email a copy of invoice INV-21102 to whoever handles billing for Whitefield Robotics.
+gold_doc: 1
+grader:
+  type: tool_call
+  name: send_invoice_copy
+  arguments:
+    invoice_id: INV-21102
+    email: ap@whitefieldrobotics.in

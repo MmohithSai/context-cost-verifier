@@ -1,0 +1,54 @@
+id: qa-10
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: K-series flight envelope table
+      text: |
+        Maximum operating altitude above mean sea level. K2 Courier: 1,800 m. K3 Sparrow: 2,100 m.
+        K4 Hauler: 2,400 m. K4 Hauler Lite: 2,900 m. K5 Freighter: 2,200 m.
+        Above these altitudes the airframe refuses to take off with any payload.
+    - title: Altitude and payload derating
+      text: |
+        Above 1,500 m, derate the maximum payload by 4% for every additional 300 m. Derating is
+        applied automatically by the flight controller and cannot be overridden from the console.
+    - title: Height above ground rules
+      text: |
+        Kestrel drones are software-limited to 120 m above ground level in all regions, which is a
+        separate limit from the operating altitude above sea level. The two must not be confused.
+    - title: Cold weather note
+      text: |
+        Below zero degrees Celsius, battery capacity falls by roughly 20% and effective range falls
+        with it. The altitude limits themselves do not change with temperature.
+    - title: K4 Hauler technical sheet (rev. F)
+      text: |
+        The K4 Hauler is the standard heavy-lift model of the K-series. Maximum payload: 12.5 kg.
+        Range with full payload: 46 km. Top speed: 68 km/h. Ingress protection: IP54.
+  history:
+    - role: user
+      content: |
+        Hi, we are scoping a delivery route through a hill station and need the ceiling figures for
+        the standard K4 Hauler, not the Lite.
+    - role: assistant
+      content: Understood, the standard K4 Hauler. Which figure do you need?
+query: What is the maximum operating altitude above sea level for the standard K4 Hauler?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["2,400 m", "2400 m", "2,400 metres", "2400 metres", "2,400m", "2400m"]
+  distractors: ["1,800 m", "2,100 m", "2,900 m", "2,200 m", "120 m"]

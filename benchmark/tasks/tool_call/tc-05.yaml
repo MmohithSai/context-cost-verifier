@@ -1,0 +1,53 @@
+id: tc-05
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Write a postal address on a single line, exactly as the
+    document gives it. Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Send KR-51002 to our new depot instead.
+    Action: call update_shipping_address with order_id "KR-51002", address "Plot 14, Kondapur Industrial Estate, Hyderabad 500084".
+
+    Request: Change the delivery address on KR-50977 to the Gothenburg warehouse.
+    Action: call update_shipping_address with order_id "KR-50977", address "Hamngatan 22, 411 06 Gothenburg".
+  retrieved:
+    - title: "Site list: SkyCart Deliveries"
+      text: |
+        Head office: 3rd Floor, Amar Tech Park, Balewadi, Pune 411045.
+        New sorting depot: Unit 7, Hinjewadi Logistics Park, Phase 2, Pune 411057.
+        Old depot (closed 2026-02-28): Gate 3, Kharadi Yard, Pune 411014.
+    - title: Order KR-55233
+      text: |
+        Customer: SkyCart Deliveries. Confirmed 2026-03-01. Lines: 4 x PRT-PROP-K4 propeller set.
+        Status: picked, not yet dispatched.
+    - title: Order KR-55190
+      text: |
+        Customer: SkyCart Deliveries. Confirmed 2026-02-08. Lines: 1 x K4 Hauler.
+        Status: delivered 2026-02-20.
+    - title: Address change rules
+      text: |
+        An address can be changed only while the order has not shipped. A delivered or dispatched
+        order needs a return instead. Addresses that are marked closed may never be used.
+    - title: Delivery exception codes
+      text: |
+        Code 14 means refused at delivery. Code 07 means address not found, which is usually a sign
+        that a closed site was used.
+  history:
+    - role: user
+      content: |
+        Hi, Arjun from SkyCart. We have moved our operations recently and I am working through
+        everything that still points at the old site.
+    - role: assistant
+      content: Understood. I can change the address on any order that has not shipped yet.
+query: Redirect order KR-55233 to our new sorting depot.
+gold_doc: 0
+grader:
+  type: tool_call
+  name: update_shipping_address
+  arguments:
+    order_id: KR-55233
+    address: Unit 7, Hinjewadi Logistics Park, Phase 2, Pune 411057

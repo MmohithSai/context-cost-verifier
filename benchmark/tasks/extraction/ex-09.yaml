@@ -1,0 +1,58 @@
+id: ex-09
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the details of the single flight incident the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    incident_id (string), serial_number (string), flight_hours (number),
+    severity (one of minor, major, critical), occurred (YYYY-MM-DD).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Incident IR-2201 on KR4-88217 at 34.5 flight hours, 2026-01-18, logged as minor.
+    Output: {"incident_id": "IR-2201", "serial_number": "KR4-88217", "flight_hours": 34.5, "severity": "minor", "occurred": "2026-01-18"}
+
+    Document: IR-2209, airframe SB1-20044, 210 hours, 2 February 2026, classified major.
+    Output: {"incident_id": "IR-2209", "serial_number": "SB1-20044", "flight_hours": 210, "severity": "major", "occurred": "2026-02-02"}
+  retrieved:
+    - title: Incident report IR-2304
+      text: |
+        Airframe KR3-41208. Hard landing in gusting wind on 2026-02-26 at 48.2 flight hours.
+        No structural damage found. Load cell recalibrated afterwards per SB-2026-07.
+        Classified as minor.
+    - title: Incident report IR-2311
+      text: |
+        Airframe KR3-41208. Loss of link for 9 seconds on 2026-03-04 at 51.7 flight hours.
+        The drone completed its return-to-home routine. Classified as major because the link loss
+        exceeded 5 seconds.
+    - title: Incident severity definitions
+      text: |
+        Minor: no damage and no loss of control. Major: loss of link over 5 seconds, or damage to a
+        wear part. Critical: airframe damage, injury, or an uncommanded descent.
+    - title: Post-incident actions
+      text: |
+        Any incident at or above major triggers a load-cell recalibration and a firmware log upload.
+        A minor incident needs only the log upload.
+    - title: "Service bulletin SB-2026-07: K-series load-cell calibration"
+      text: |
+        Technicians calibrate the K4 load cell with a certified 10 kg reference weight.
+        Calibration takes about 20 minutes and is repeated after any crash landing.
+  history:
+    - role: user
+      content: |
+        Hello, Arjun from SkyCart. Our regulator has asked for our incident records in a structured
+        form, one object per event.
+    - role: assistant
+      content: Understood. I can return the incident fields as JSON.
+query: Give me the incident record for IR-2311.
+gold_doc: 1
+grader:
+  type: json
+  strict: true
+  expected:
+    incident_id: IR-2311
+    serial_number: KR3-41208
+    flight_hours: 51.7
+    severity: major
+    occurred: "2026-03-04"

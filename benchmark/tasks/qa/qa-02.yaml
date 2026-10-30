@@ -1,0 +1,59 @@
+id: qa-02
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: K3 Sparrow technical sheet (rev. C)
+      text: |
+        The K3 Sparrow is Kestrel's compact delivery drone for last-mile parcels. Maximum payload:
+        9 kg. Range with full payload: 38 km. Top speed: 61 km/h. Ingress protection: IP43.
+        Charging time with the standard 48 V charger: 70 minutes.
+    - title: "Dealer FAQ: payload upgrades"
+      text: |
+        The optional HeavyLift kit raises the K3 Sparrow's maximum payload to 11 kg by adding two
+        reinforced motor arms. Range with the kit fitted drops to 31 km. The kit is not offered for
+        either K4 variant, and fitting third-party arms voids the warranty.
+    - title: K4 Hauler technical sheet (rev. F)
+      text: |
+        The K4 Hauler is the standard heavy-lift model of the K-series. Maximum payload: 12.5 kg.
+        Range with full payload: 46 km. Top speed: 68 km/h. Ingress protection: IP54.
+    - title: "Service bulletin SB-2026-11: HeavyLift torque check"
+      text: |
+        Drones with a HeavyLift kit must have the arm bolts re-torqued to 8 Nm after the first
+        20 flight hours. A torque check takes about 15 minutes and is free during the warranty period.
+    - title: K4 Hauler Lite datasheet
+      text: |
+        The K4 Hauler Lite trades lifting capacity for range. Maximum payload: 8 kg. Range with full
+        payload: 52 km. The Lite is identified by the letter L at the end of its serial number.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, we run a K3 Sparrow, serial KR3-41208. We had your dealer fit the HeavyLift kit
+        on it back in January, and it has been flying with the kit ever since.
+    - role: assistant
+      content: "Thanks, noted: a K3 Sparrow (KR3-41208) with the HeavyLift kit fitted."
+    - role: user
+      content: Good. We have had no problems with it so far.
+    - role: assistant
+      content: Glad to hear it. Let me know if you need anything about that airframe.
+query: What is the maximum payload of our drone as it is configured today?
+gold_doc: 1
+grader:
+  type: qa
+  answers: ["11 kg", "11 kilograms", "11kg"]
+  distractors: ["9 kg", "12.5 kg", "8 kg"]

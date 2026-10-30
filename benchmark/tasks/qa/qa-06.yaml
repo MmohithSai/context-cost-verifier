@@ -1,0 +1,86 @@
+id: qa-06
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: "Firmware matrix 2026-Q1: K-series"
+      text: |
+        The minimum flight-ready firmware differs by variant, because the Lite airframe uses a
+        different flight controller board. K2 Courier: 3.8.4. K3 Sparrow: 4.2.1. K4 Hauler: 4.2.1.
+        K4 Hauler Lite: 5.0.3. K5 Freighter: 5.1.0. A drone below its minimum refuses to arm.
+    - title: "Service bulletin SB-2026-07: K-series load-cell calibration"
+      text: |
+        All K-series drones must be on their minimum flight-ready firmware before the first flight.
+        Technicians calibrate the K4 load cell with a certified 10 kg reference weight during
+        commissioning. Calibration takes about 20 minutes and is repeated after any crash landing.
+    - title: Firmware update procedure
+      text: |
+        Updates are pushed from the Kestrel Fleet console over Wi-Fi. An update takes 12 minutes and
+        the airframe must stay powered throughout. Never update a drone with less than 40% battery.
+        A failed update leaves the drone on its previous version, which is safe but not flight-ready.
+    - title: K4 Hauler Lite datasheet
+      text: |
+        The K4 Hauler Lite uses a reduced carbon frame and a revised flight controller for operators
+        who prioritise range over lifting capacity. Maximum payload: 8 kg. Range with full payload:
+        52 km. Top speed: 64 km/h. The Lite is identified by the letter L at the end of its serial
+        number, for example KR4-70112L. It does not accept the HeavyLift kit.
+    - title: K4 Hauler technical sheet (rev. F)
+      text: |
+        The K4 Hauler is the standard heavy-lift model of the K-series. Maximum payload: 12.5 kg.
+        Range with full payload: 46 km. Top speed: 68 km/h. Ingress protection: IP54. Serial numbers
+        start with KR4- and carry no suffix. Operating temperature: -10 to 45 degrees Celsius.
+    - title: Legacy firmware notice
+      text: |
+        Firmware 3.x reached end of support on 2026-01-31. Airframes still on a 3.x release can be
+        updated directly to the current minimum; no intermediate step is needed.
+    - title: Fleet console export for SkyCart Deliveries
+      text: |
+        KR4-70112L (K4 Hauler Lite): running 4.9.7, last flown 2025-11-30, 31.2 flight hours.
+        KR4-70118L (K4 Hauler Lite): running 5.0.3, last flown 2025-12-02, 28.8 flight hours.
+        KR4-70121L (K4 Hauler Lite): running 5.0.3, last flown 2025-12-02, 12.1 flight hours.
+        KR3-41208 (K3 Sparrow): running 4.2.1. KR4-90533 (K4 Hauler): running 4.2.1.
+        Export taken 2026-03-06 by Anita Deshpande.
+    - title: Storage and recommissioning checklist
+      text: |
+        An airframe stored for more than 60 days is recommissioned before it flies again. Charge the
+        pack to 100% and discharge once to 20%, check the minimum firmware, re-torque the motor pod
+        fasteners to 5 Nm, and run a hover test of at least 3 minutes at 2 m. Record the checklist in
+        the Fleet console against the serial number. Skipping a step voids the warranty for any fault
+        traced to storage. The checklist takes about 45 minutes per airframe.
+    - title: Battery health after storage
+      text: |
+        A pack held below 10% charge for more than 60 days loses warranty cover and typically shows a
+        state-of-health figure under 85%. The console flags any pack below 80% as replace-on-sight.
+        A stored pack that reads above 90% needs no action beyond the normal charge cycle.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, Anita from SkyCart Deliveries. We have just taken three airframes out of storage.
+        They are all K4 Hauler Lite units, serials KR4-70112L, KR4-70118L and KR4-70121L.
+    - role: assistant
+      content: "Thanks, Anita: three K4 Hauler Lite airframes, all with the L suffix."
+    - role: user
+      content: They have been sitting for months, so I assume the firmware is well out of date.
+    - role: assistant
+      content: Very likely. I can tell you which version they need before they will arm.
+query: What is the minimum flight-ready firmware version for our airframes?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["5.0.3"]
+  distractors: ["4.2.1", "3.8.4", "5.1.0"]

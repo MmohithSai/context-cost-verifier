@@ -1,0 +1,58 @@
+id: qa-08
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: "Stock report PRT-BAT-48V (spare 48 V battery pack)"
+      text: |
+        Hyderabad (HYD): 41 units on hand, 6 reserved. Pune (PNQ): 18 units on hand, 0 reserved.
+        Bengaluru (BLR): 7 units on hand, 7 reserved. Figures as of 2026-03-02, 06:00 IST.
+    - title: "Stock report PRT-BAT-36V (spare 36 V battery pack)"
+      text: |
+        Hyderabad (HYD): 63 units on hand. Pune (PNQ): 29 units on hand.
+        Bengaluru (BLR): 12 units on hand. The 36 V pack fits the Stowbot S1 only.
+    - title: Which battery fits which machine
+      text: |
+        PRT-BAT-48V fits every K-series drone from the K3 Sparrow upward, and the Stowbot S2 Pallet
+        and S3 Sorter. PRT-BAT-36V fits the Stowbot S1 and the discontinued K2 Courier.
+    - title: Stock transfer policy
+      text: |
+        Customers are served from the warehouse in their registered city. An inter-warehouse transfer
+        adds 4 working days and is only raised when the home warehouse cannot cover the order.
+        Reserved units are already allocated to another order and are not available.
+    - title: Battery handling note
+      text: |
+        Spare packs ship at 30% charge under dangerous goods rules. Charge to full before first use.
+        Packs stored below 10% for more than 60 days lose warranty cover.
+  history:
+    - role: user
+      content: |
+        Hi, this is Arjun from SkyCart Deliveries. We fly K4 Haulers and we are registered in Pune,
+        so everything of ours goes through your Pune warehouse.
+    - role: assistant
+      content: "Noted, Arjun: SkyCart Deliveries, registered in Pune, operating K4 Haulers."
+    - role: user
+      content: We want to know whether you can cover a bulk spare order from local stock.
+    - role: assistant
+      content: I can check the on-hand figure for your home warehouse.
+query: How many spare battery packs for our drones are on hand at our warehouse?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["18"]
+  distractors: ["41", "29", "63", "12", "7"]

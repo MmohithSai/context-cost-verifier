@@ -1,0 +1,56 @@
+id: ex-07
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the details of the single credit note the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    credit_note_id (string), against_invoice (string), amount (number, no currency symbol),
+    currency (ISO 4217 code), issued (YYYY-MM-DD).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Credit note CN-4301 against INV-18840, USD 612.00 refunded, issued 2026-01-20.
+    Output: {"credit_note_id": "CN-4301", "against_invoice": "INV-18840", "amount": 612.00, "currency": "USD", "issued": "2026-01-20"}
+
+    Document: CN-4288 cancels INR 48,250.00 on invoice INV-18791. Issued 19 December 2025.
+    Output: {"credit_note_id": "CN-4288", "against_invoice": "INV-18791", "amount": 48250.00, "currency": "INR", "issued": "2025-12-19"}
+  retrieved:
+    - title: Credit note CN-4410
+      text: |
+        Issued against invoice INV-20874 (order KR-55061, Nordkap Logistics).
+        EUR 190.50 refunded for a returned spare 48 V battery pack. Issued 2026-02-20.
+    - title: Credit note CN-4421
+      text: |
+        Issued against invoice INV-20931 (order KR-55120, Lindqvist Freight AB).
+        EUR 82.00 refunded as a goodwill gesture for a late delivery. Issued 2026-03-03.
+    - title: Invoice INV-20874
+      text: |
+        Customer: Nordkap Logistics. Order: KR-55061. Items: 1 x K4 Hauler (EUR 1,650.00),
+        1 x spare 48 V battery pack (EUR 190.50). Total: EUR 1,840.50. Issued 2026-01-28.
+    - title: Early settlement discount
+      text: |
+        Invoices settled within 10 days attract a 2% discount, applied as a credit note the following
+        month. A discount credit note carries the suffix D on its reference and is not a refund.
+    - title: Credit note rules
+      text: |
+        A credit note reduces the balance of exactly one invoice and never creates a payment.
+        References begin CN-. A credit note cannot exceed the invoice total.
+  history:
+    - role: user
+      content: |
+        Hello, Freja at Nordkap Logistics. Our accounts team is reconciling the month and wants the
+        credit note fields rather than the PDF.
+    - role: assistant
+      content: Understood. I can return the credit note fields as JSON.
+query: Give me the details of credit note CN-4410.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    credit_note_id: CN-4410
+    against_invoice: INV-20874
+    amount: 190.5
+    currency: EUR
+    issued: "2026-02-20"

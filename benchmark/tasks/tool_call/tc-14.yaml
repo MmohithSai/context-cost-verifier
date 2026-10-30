@@ -1,0 +1,54 @@
+id: tc-14
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Dates must be YYYY-MM-DD and times must be 24-hour.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Reserve room HYD-3B for the six of us on 2026-02-10 at 15:00.
+    Action: call book_meeting_room with room_id "HYD-3B", date "2026-02-10", start_time "15:00", attendees 6.
+
+    Request: Book the Pune training room for four people on 2026-02-17 at 09:00.
+    Action: call book_meeting_room with room_id "PNQ-1A", date "2026-02-17", start_time "09:00", attendees 4.
+  retrieved:
+    - title: "Meeting rooms: Bengaluru office"
+      text: |
+        BLR-4D, fourth floor, seats 12, video conferencing fitted.
+        BLR-1B, ground floor, seats 6, whiteboard only.
+        BLR-2C, second floor, seats 10, no screen.
+    - title: "Meeting rooms: Hyderabad office"
+      text: |
+        HYD-3B, third floor, seats 8, video wall. HYD-2A, second floor, seats 4, no screen.
+    - title: Room booking rules
+      text: |
+        Book the smallest room that seats everyone and meets the stated equipment need.
+        A room that seats fewer people than the group may not be booked.
+    - title: Office opening hours
+      text: |
+        Both offices open at 08:30 and close at 19:00, Monday to Friday. Bookings must start on the
+        hour or the half hour.
+    - title: Holiday notice
+      text: |
+        The Bengaluru office is closed on 2026-04-14 for a regional holiday.
+        Bookings on that date are refused.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, we are bringing a group over from our Gothenburg office and a couple of them will
+        have to join remotely as usual.
+    - role: assistant
+      content: Happy to book it. Tell me the office, the date, the time, the group size and what you need.
+query: "Book a room at the Bengaluru office on 2026-04-16 at 14:30 for nine people, with video conferencing for two remote colleagues."
+gold_doc: 0
+grader:
+  type: tool_call
+  name: book_meeting_room
+  arguments:
+    room_id: BLR-4D
+    date: "2026-04-16"
+    start_time: "14:30"
+    attendees: 9

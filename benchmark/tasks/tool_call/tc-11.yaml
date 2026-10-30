@@ -1,0 +1,52 @@
+id: tc-11
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Always check stock at the customer's own warehouse.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Do you have propeller sets in Hyderabad?
+    Action: call check_stock with sku "PRT-PROP-K4", warehouse "HYD".
+
+    Request: How many guide rail kits are in the Bengaluru warehouse?
+    Action: call check_stock with sku "PRT-RAIL-14", warehouse "BLR".
+  retrieved:
+    - title: Which battery fits which machine
+      text: |
+        PRT-BAT-48V fits every K-series drone from the K3 Sparrow upward, and the Stowbot S2 Pallet
+        and S3 Sorter. PRT-BAT-36V fits the Stowbot S1 and the discontinued K2 Courier.
+    - title: K-series spare parts catalogue (extract)
+      text: |
+        PRT-BAT-48V: spare 48 V battery pack. PRT-BAT-36V: spare 36 V battery pack.
+        PRT-ARM-K3: motor arm, K3 Sparrow. PRT-PROP-K4: propeller set, K4 Hauler.
+    - title: Warehouse codes
+      text: |
+        HYD serves the Hyderabad region, PNQ serves the Pune region, BLR serves the Bengaluru region.
+        A customer is always served from the warehouse in their registered city.
+    - title: Battery handling note
+      text: |
+        Spare packs ship at 30% charge under dangerous goods rules. Charge to full before first use.
+        Packs stored below 10% for more than 60 days lose warranty cover.
+    - title: Stock transfer policy
+      text: |
+        An inter-warehouse transfer adds 4 working days and is raised only when the home warehouse
+        cannot cover the order.
+  history:
+    - role: user
+      content: |
+        Hello, Ravi at Deccan Aerial Services. We are topping up our shelf stock of spares before the
+        busy season and want to know what you are holding first.
+    - role: assistant
+      content: Of course. Tell me which pack and which warehouse and I will check.
+query: Check the spare 36 V battery packs at the warehouse serving the Hyderabad region.
+gold_doc: 0
+grader:
+  type: tool_call
+  name: check_stock
+  arguments:
+    sku: PRT-BAT-36V
+    warehouse: HYD

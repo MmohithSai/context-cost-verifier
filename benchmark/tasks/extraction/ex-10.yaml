@@ -1,0 +1,59 @@
+id: ex-10
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the billing contact record for the customer account being discussed.
+    Return only one JSON object with exactly these keys:
+    customer (string), contact_name (string), email (string), phone (string).
+    Use the billing contact, never the operations contact.
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Orbital Parcel. Billing: Sana Iqbal, ap@orbitalparcel.in, +91 40 5550 1188.
+    Output: {"customer": "Orbital Parcel", "contact_name": "Sana Iqbal", "email": "ap@orbitalparcel.in", "phone": "+91 40 5550 1188"}
+
+    Document: Nordkap Logistics. Accounts payable contact Freja Holm, freja.holm@nordkap.se, +46 31 555 0142.
+    Output: {"customer": "Nordkap Logistics", "contact_name": "Freja Holm", "email": "freja.holm@nordkap.se", "phone": "+46 31 555 0142"}
+  retrieved:
+    - title: "Account record: SkyCart Deliveries"
+      text: |
+        Operations contact: Arjun Rao, arjun.rao@skycart.in, +91 20 5550 7741.
+        Billing contact: Meera Nayak, accounts@skycart.in, +91 20 5550 7799.
+        Registered city: Pune. Dealer status: no.
+    - title: "Account record: Deccan Aerial Services"
+      text: |
+        Operations contact: Ravi Menon, ravi.menon@deccanaerial.in, +91 40 5550 3320.
+        Billing contact: Kavya Suresh, finance@deccanaerial.in, +91 40 5550 3399.
+        Registered city: Hyderabad. Dealer status: yes.
+    - title: "Account record: Whitefield Robotics"
+      text: |
+        Operations contact: Priya Nair, priya.nair@whitefieldrobotics.in, +91 80 5550 6612.
+        Billing contact: Deepak Iyer, ap@whitefieldrobotics.in, +91 80 5550 6699.
+        Registered city: Bengaluru. Dealer status: no.
+    - title: Contact record policy
+      text: |
+        Invoices and credit notes go to the billing contact only. Service bookings and incident
+        notices go to the operations contact. A single person may hold both roles, but the record
+        always lists them separately.
+    - title: Changing a contact
+      text: |
+        A contact change is accepted only from an address already on the account, and takes effect
+        on the next billing cycle.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, we are refreshing our supplier contact sheet and want the fields exactly as you hold
+        them, so nothing gets retyped incorrectly.
+    - role: assistant
+      content: Understood. I can return the contact fields as JSON.
+query: Give me the billing contact record you hold for SkyCart Deliveries.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    customer: SkyCart Deliveries
+    contact_name: Meera Nayak
+    email: accounts@skycart.in
+    phone: "+91 20 5550 7799"

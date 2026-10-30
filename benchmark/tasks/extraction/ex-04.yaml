@@ -1,0 +1,58 @@
+id: ex-04
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the shipment details for the single order the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    order_id (string), carrier (string), tracking_number (string),
+    dispatched (YYYY-MM-DD), eta (YYYY-MM-DD).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Order KR-51002 left on 2026-01-08 with Bluewing Freight, AWB BW-4410229, arriving 2026-01-15.
+    Output: {"order_id": "KR-51002", "carrier": "Bluewing Freight", "tracking_number": "BW-4410229", "dispatched": "2026-01-08", "eta": "2026-01-15"}
+
+    Document: KR-50977 shipped 12 December 2025 via Harbour Express, consignment HX-88120, due 19 December 2025.
+    Output: {"order_id": "KR-50977", "carrier": "Harbour Express", "tracking_number": "HX-88120", "dispatched": "2025-12-12", "eta": "2025-12-19"}
+  retrieved:
+    - title: Dispatch note for order KR-55107
+      text: |
+        Consignee: Deccan Aerial Services, Hyderabad. Carrier: Bluewing Freight.
+        Air waybill: BW-4417803. Left the Hyderabad warehouse on 2026-02-24.
+        Estimated arrival: 2026-03-04. Two cartons, 31.4 kg gross.
+    - title: Dispatch note for order KR-55120
+      text: |
+        Consignee: Lindqvist Freight AB, Gothenburg. Carrier: Harbour Express.
+        Consignment: HX-91455. Left on 2026-02-18. Estimated arrival: 2026-03-11.
+    - title: Returned shipment RT-2210
+      text: |
+        Relates to order KR-55107. One carton was refused at delivery and came back with Bluewing
+        Freight under return reference BW-4417999 on 2026-03-06. A replacement was raised separately.
+    - title: Carrier reference formats
+      text: |
+        Bluewing Freight issues air waybills beginning BW-. Harbour Express issues consignment
+        numbers beginning HX-. A return reference is not a tracking number and must never be quoted
+        to the customer as one.
+    - title: Delivery exception codes
+      text: |
+        Code 14 means refused at delivery. Code 07 means address not found. Exceptions do not change
+        the original estimated arrival date recorded on the dispatch note.
+  history:
+    - role: user
+      content: |
+        Hello, Ravi at Deccan Aerial Services. Our insurer will only accept the shipment details in a
+        structured form, straight from your dispatch records.
+    - role: assistant
+      content: Understood. I can return the dispatch note fields as JSON.
+query: Give me the shipment record for order KR-55107.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    order_id: KR-55107
+    carrier: Bluewing Freight
+    tracking_number: BW-4417803
+    dispatched: "2026-02-24"
+    eta: "2026-03-04"

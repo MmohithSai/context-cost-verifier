@@ -1,0 +1,55 @@
+id: ex-08
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the device registration record the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    serial_number (string), model (string), owner (string), city (string),
+    delivered (YYYY-MM-DD).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: KR4-88217, a K4 Hauler, registered to Orbital Parcel in Hyderabad, delivered 2026-01-11.
+    Output: {"serial_number": "KR4-88217", "model": "K4 Hauler", "owner": "Orbital Parcel", "city": "Hyderabad", "delivered": "2026-01-11"}
+
+    Document: Stowbot S1 SB1-20044 belongs to Nordkap Logistics, Gothenburg, handed over 5 Feb 2026.
+    Output: {"serial_number": "SB1-20044", "model": "Stowbot S1", "owner": "Nordkap Logistics", "city": "Gothenburg", "delivered": "2026-02-05"}
+  retrieved:
+    - title: Registration record KR4-70118L
+      text: |
+        Model: K4 Hauler Lite. Owner: SkyCart Deliveries. Registered city: Pune.
+        Delivered: 2026-01-22. Warranty start is the delivery date.
+    - title: Registration record KR4-70112L
+      text: |
+        Model: K4 Hauler Lite. Owner: SkyCart Deliveries. Registered city: Pune.
+        Delivered: 2026-01-22. This airframe is currently in storage.
+    - title: Registration record KR4-70121L
+      text: |
+        Model: K4 Hauler Lite. Owner: SkyCart Deliveries. Registered city: Pune.
+        Delivered: 2026-02-09. Delivered later than the other two because of a backorder.
+    - title: Registration record KR4-90533
+      text: |
+        Model: K4 Hauler. Owner: SkyCart Deliveries. Registered city: Pune. Delivered: 2026-01-09.
+    - title: Serial number format
+      text: |
+        K4 airframes carry serials beginning KR4-. A trailing L marks the Lite variant.
+        Stowbot serials begin SB followed by the model generation digit.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, Anita from SkyCart Deliveries. We are auditing the three Lite airframes.
+        I need the record for the one that arrived late on backorder, not the two that came in January.
+    - role: assistant
+      content: Understood, the Lite airframe that was delivered after the others because of a backorder.
+query: Give me the registration record for that airframe.
+gold_doc: 2
+grader:
+  type: json
+  strict: true
+  expected:
+    serial_number: KR4-70121L
+    model: K4 Hauler Lite
+    owner: SkyCart Deliveries
+    city: Pune
+    delivered: "2026-02-09"

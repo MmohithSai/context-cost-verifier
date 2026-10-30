@@ -1,0 +1,55 @@
+id: qa-03
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: Stowbot S1 product sheet
+      text: |
+        The Stowbot S1 is the entry-level warehouse robot. Sustained throughput: 900 parcels per hour.
+        Shelf height reach: 2.1 m. Battery: 36 V, charges from empty in 95 minutes.
+    - title: Stowbot S2 Pallet product sheet
+      text: |
+        The Stowbot S2 Pallet moves loaded pallets rather than individual parcels. Sustained
+        throughput: 1,150 parcels per hour when fitted with the parcel tray accessory.
+        Maximum pallet load: 480 kg. Battery: 48 V, charges from empty in 110 minutes.
+    - title: Stowbot S3 Sorter product sheet
+      text: |
+        The Stowbot S3 Sorter is the fastest robot in the Stowbot line. Sustained throughput:
+        1,450 parcels per hour. Peak throughput, for up to 10 minutes at a time: 1,700 parcels per
+        hour. Battery: 48 V, charges from empty in 80 minutes. Needs an aisle width of at least 1.4 m.
+    - title: Warehouse fleet sizing guide
+      text: |
+        Size a fleet on sustained throughput, never on peak throughput. Add 15% headroom for charging
+        rotations. Mixed fleets are supported, but each model needs its own dock type.
+    - title: Stowbot accessory catalogue
+      text: |
+        The parcel tray accessory (PRT-TRY-S2) lets an S2 Pallet handle loose parcels. The aisle guide
+        rail kit (PRT-RAIL-14) is required in aisles narrower than 1.6 m.
+  history:
+    - role: user
+      content: |
+        Hello, this is Ravi from Deccan Aerial Services. We are planning the robot fleet for our new
+        Hyderabad sorting hall and want to get the maths right before we order.
+    - role: assistant
+      content: Happy to help, Ravi. I can give you throughput and charging figures for any Stowbot model.
+query: What is the sustained throughput of the Stowbot S3 Sorter?
+gold_doc: 2
+grader:
+  type: qa
+  answers: ["1,450", "1450"]
+  distractors: ["900", "1,150", "1150", "1,700", "1700"]

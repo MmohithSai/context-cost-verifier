@@ -1,0 +1,55 @@
+id: ex-03
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the details of the single service appointment the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    serial_number (string), model (string), center_id (string), date (YYYY-MM-DD).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Booking for KR4-88217 (K4 Hauler) at SC-HYD-01 on 6 April 2026.
+    Output: {"serial_number": "KR4-88217", "model": "K4 Hauler", "center_id": "SC-HYD-01", "date": "2026-04-06"}
+
+    Document: SB1-20044, a Stowbot S1, is booked into SC-BLR-03 for 2026-03-30.
+    Output: {"serial_number": "SB1-20044", "model": "Stowbot S1", "center_id": "SC-BLR-03", "date": "2026-03-30"}
+  retrieved:
+    - title: Booking confirmation BK-9911
+      text: |
+        Device: KR3-41208, a K3 Sparrow. Center: SC-PNQ-02, Hinjewadi Phase 2.
+        Appointment: 2 April 2026, 09:30. Work: 50-flight-hour inspection.
+        Raised by Arjun, SkyCart Deliveries.
+    - title: Booking confirmation BK-9908
+      text: |
+        Device: KR4-90533, a K4 Hauler. Center: SC-PNQ-02. Appointment: 2026-03-26, 14:00.
+        Work: propeller replacement. This booking was completed and closed.
+    - title: Cancelled booking BK-9905
+      text: |
+        Device: KR3-41208, a K3 Sparrow. Center: SC-BLR-03. Appointment was 2026-03-18.
+        Cancelled by the customer on 2026-03-10. Cancelled bookings are kept for audit only.
+    - title: Booking reference format
+      text: |
+        Booking references start with BK-. A booking is open until the work is marked complete.
+        Only one open booking may exist per device at a time.
+    - title: Holiday notice
+      text: |
+        SC-PNQ-02 is closed on 2026-03-31 and 2026-04-01 for its annual inventory count.
+        Bookings on those dates were moved and the customer was notified.
+  history:
+    - role: user
+      content: |
+        Hello, Arjun from SkyCart Deliveries. Our compliance file needs the booking paperwork in a
+        structured form rather than a screenshot.
+    - role: assistant
+      content: Understood. I can return the booking fields as JSON.
+query: Give me the appointment details for booking BK-9911.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    serial_number: KR3-41208
+    model: K3 Sparrow
+    center_id: SC-PNQ-02
+    date: "2026-04-02"

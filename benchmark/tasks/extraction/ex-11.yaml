@@ -1,0 +1,56 @@
+id: ex-11
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the details of the single quote the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    quote_id (string), customer (string), total (number, no currency symbol),
+    currency (ISO 4217 code), valid_until (YYYY-MM-DD).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Quote Q-7712, Lindqvist Freight AB, EUR 1,905.00, valid until 31 January 2026.
+    Output: {"quote_id": "Q-7712", "customer": "Lindqvist Freight AB", "total": 1905.00, "currency": "EUR", "valid_until": "2026-01-31"}
+
+    Document: Q-7841 for Nordkap Logistics comes to EUR 3,810.00 and expires 2026-02-28.
+    Output: {"quote_id": "Q-7841", "customer": "Nordkap Logistics", "total": 3810.00, "currency": "EUR", "valid_until": "2026-02-28"}
+  retrieved:
+    - title: Quote Q-7903 for Whitefield Robotics
+      text: |
+        1 x Stowbot S3 Sorter with a 3-year service plan: INR 812,400.00.
+        Valid until 2026-03-20. Accepting the quote creates a new order number.
+    - title: Quote Q-7897 for Whitefield Robotics
+      text: |
+        1 x Stowbot S3 Sorter without a service plan: INR 742,000.00. Valid until 2026-03-14.
+        Superseded by a later quote at the customer's request.
+    - title: Order KR-55210
+      text: |
+        Customer: Whitefield Robotics. Confirmed 2026-03-02. Total: INR 781,900.00.
+        An order is not a quote and carries no validity date.
+    - title: Quote rules
+      text: |
+        Quote references begin Q-. A quote expires at the end of its validity date and is then
+        re-priced, never extended. A superseded quote stays on file but cannot be accepted.
+    - title: Service plan pricing
+      text: |
+        The 3-year service plan is priced at 9.5% of the machine list price and covers all preventive
+        maintenance labour. Wear parts are charged separately.
+  history:
+    - role: user
+      content: |
+        Hello, Priya at Whitefield Robotics. Our board pack is generated from structured data, so a
+        PDF quote is no use to us.
+    - role: assistant
+      content: Understood. I can return the quote fields as JSON.
+query: Give me quote Q-7903 in structured form for our board pack.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    quote_id: Q-7903
+    customer: Whitefield Robotics
+    total: 812400.0
+    currency: INR
+    valid_until: "2026-03-20"

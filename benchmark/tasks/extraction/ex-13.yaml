@@ -1,0 +1,56 @@
+id: ex-13
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the details of the single support ticket the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    ticket_id (string), serial_number (string), category (one of hardware, software, billing,
+    delivery), opened (YYYY-MM-DD), status (one of open, closed).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Ticket TK-5510 on KR4-88217, a delivery problem, opened 2026-01-15, still open.
+    Output: {"ticket_id": "TK-5510", "serial_number": "KR4-88217", "category": "delivery", "opened": "2026-01-15", "status": "open"}
+
+    Document: TK-5488, SB1-20044, billing query raised 2 Feb 2026 and resolved.
+    Output: {"ticket_id": "TK-5488", "serial_number": "SB1-20044", "category": "billing", "opened": "2026-02-02", "status": "closed"}
+  retrieved:
+    - title: Ticket TK-5602
+      text: |
+        Device: KR3-41208. Raised 2026-03-05. The customer reports the drone will not pair with the
+        Fleet console after an update. Category software. Still open, assigned to tier 2.
+    - title: Ticket TK-5590
+      text: |
+        Device: KR3-41208. Raised 2026-02-26. Chipped propeller after a hard landing.
+        Category hardware. Closed on 2026-03-01 once the replacement shipped.
+    - title: Ticket TK-5575
+      text: |
+        Device: KR4-90533. Raised 2026-02-18. Consignment arrived one carton short.
+        Category delivery. Closed on 2026-02-21.
+    - title: Ticket rules
+      text: |
+        Ticket references begin TK-. A ticket is closed when the customer confirms the fix or after
+        14 days of no reply. Reopening a closed ticket creates a new reference.
+    - title: Escalation tiers
+      text: |
+        Tier 1 handles configuration and account questions. Tier 2 handles firmware and controller
+        faults. Tier 3 is engineering and is reached only through tier 2.
+  history:
+    - role: user
+      content: |
+        Hello, Arjun from SkyCart. We are importing our open support items into our own tracker and
+        need them field by field.
+    - role: assistant
+      content: Understood. I can return the ticket fields as JSON.
+query: Give me the record for ticket TK-5602.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    ticket_id: TK-5602
+    serial_number: KR3-41208
+    category: software
+    opened: "2026-03-05"
+    status: open

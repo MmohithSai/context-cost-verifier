@@ -95,6 +95,11 @@ Records store `output` and `tool_calls`; `passed` is computed by `ccv analyze`.
 **D14. Task content is fictional, with shared segments referenced as `"@name"`** (2026-09-17)
 *Why:* fictional entities make the query-only configuration fail, which is what makes calibration meaningful; shared persona and tool catalogs keep 30 tasks consistent and cheap to author.
 
+**D14b. Two-thirds of tasks must be answerable *without* `history`** (2026-09-22)
+The query names its own record ("the record for ticket TK-5602") in 29 of 45 tasks; only 16 rely on the conversation to say which record is meant.
+*Why:* the first draft of the benchmark phrased almost every query as "our order" or "that airframe", which made `history` strictly required in 39 of 45 tasks. Shapley would then have reported a huge, near-constant value for `history` in every workload, with no contrast between tasks and nothing to learn. The interesting measurement is the *difference* between tasks that need the conversation and tasks that do not.
+*Consequence:* a reviewer adding a task must decide deliberately which side of that split it is on, and keep the ratio near a third. This is the concrete form of the plan's "about a third of tasks" rule ([PLAN.md](PLAN.md) §4).
+
 **D15. Truncation strategy** (2026-09-17)
 Head-of-text for `examples` and each retrieved doc; whole most-recent turns for `history`.
 *Why:* that is what production systems actually do — trim documents, drop old turns.
@@ -133,3 +138,8 @@ Scatter plots cap at three colours, so Pareto charts grey out non-frontier confi
 **D23. The benchmark flag is `--bench`, not the plan's `--tasks`** (2026-09-17) — one path points at the benchmark root, which holds `tasks/`, `shared/` and `compressed.json`.
 
 **D24. Stdlib `argparse`, one file per concern, no framework** (2026-09-17) — keeps the tool small enough to read in one sitting, which matters for a project that has to be explained in a viva.
+
+**D25. A missing compression-cache entry is an error record, not a crash** (2026-09-22)
+`variant()` still raises `KeyError` when `benchmark/compressed.json` has no entry for a task, but `runner.run` now catches it, writes a normal `status: "error"` record and carries on; `--dry-run` counts the affected runs and prints them as "awaiting `ccv compress`".
+*Why:* the cache goes stale every time a task is edited, which is the normal state during authoring. Raising out of `build()` killed a whole Kaggle session at the first `lingua2` config, after the noise and Shapley runs had already been paid for, and it made `--dry-run` — the offline task validator the runbook tells authors to keep clean — unusable at the same time.
+*Consequence:* error records are retried on the next launch, so re-running after `ccv compress` fills them in with no extra bookkeeping.

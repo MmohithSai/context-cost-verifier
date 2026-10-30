@@ -1,0 +1,59 @@
+id: qa-04
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: Kestrel warranty policy (2026 edition)
+      text: |
+        Every new K-series drone carries a standard warranty of 24 months from the delivery date.
+        The optional extended warranty adds a further 12 months, for 36 months in total, and has to be
+        bought at the time of order. Batteries carry 12 months whatever the airframe warranty says.
+    - title: Warranty policy for refurbished units
+      text: |
+        Refurbished K-series airframes sold through the Kestrel Renew programme carry 9 months of
+        warranty. Refurbished units are labelled with an R prefix on the order line.
+    - title: Quote Q-7841 for Nordkap Logistics
+      text: |
+        Proforma quote. 2 x K4 Hauler at EUR 1,650.00 each. Extended warranty offered at EUR 255.00
+        per airframe. Quote valid until 2026-02-28. Accepting a quote creates a new order number.
+    - title: Warranty claim procedure
+      text: |
+        Claims are opened by the registered owner and need the serial number and proof of delivery.
+        Claims raised after the warranty period are quoted as chargeable repairs.
+    - title: Stowbot warranty note
+      text: |
+        Stowbot warehouse robots carry a standard warranty of 18 months. Drive wheels and gripper pads
+        are wear parts and are excluded from the warranty entirely.
+  history:
+    - role: user
+      content: |
+        Hi, Freja at Nordkap Logistics. We took your quote Q-7841 for two K4 Haulers last month, but
+        we dropped the extended warranty line before signing to keep the budget down. They are new
+        airframes, not refurbished, and they were delivered on 2026-02-20.
+    - role: assistant
+      content: "Understood: two new K4 Haulers, delivered 2026-02-20, without the extended warranty."
+    - role: user
+      content: Right. Our insurer is now asking about the cover.
+    - role: assistant
+      content: I can confirm the warranty terms that apply to your airframes.
+query: How long is the warranty on our two drones?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["24 months", "24months", "2 years"]
+  distractors: ["36 months", "12 months", "18 months", "9 months"]

@@ -1,0 +1,72 @@
+id: qa-13
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: Stowbot preventive maintenance schedule
+      text: |
+        Drive wheel inspection: every 400 operating hours. Gripper pad replacement: every 1,200
+        operating hours or when pad depth falls below 2 mm, whichever comes first. Full service:
+        every 2,000 operating hours. Battery health report: every 6 months regardless of hours.
+    - title: K-series maintenance policy
+      text: |
+        A full inspection is required every 50 flight hours. Book it at a service center in the
+        customer's registered city that services the device type. Inspections take one working day.
+    - title: Operating hours versus flight hours
+      text: |
+        Stowbot intervals are counted in operating hours, which include idle time while the robot is
+        powered and docked. Drone intervals are counted in flight hours, which exclude ground time.
+        Confusing the two is the most common cause of a missed service.
+    - title: Wear part exclusions
+      text: |
+        Drive wheels and gripper pads are wear parts, excluded from warranty, and are charged at the
+        catalogue price at the time of replacement.
+    - title: Service reminder settings
+      text: |
+        The Kestrel Fleet console emails a reminder at 90% of any interval. Reminders can be turned
+        off per device but not per interval.
+    - title: Stowbot consumable costs
+      text: |
+        Gripper pad set (PRT-PAD-S2): INR 8,400.00 per set of six. Drive wheel (PRT-WHL-S2):
+        INR 4,900.00 each, fitted in pairs. Aisle guide rail kit (PRT-RAIL-14): INR 31,500.00.
+        Wear parts are charged at the catalogue price on the day of replacement, not the price
+        quoted when the machine was bought.
+    - title: Service labour rates
+      text: |
+        Preventive maintenance labour is billed at INR 2,200.00 per hour, with a one-hour minimum.
+        A full service is quoted at four hours. Customers on a 3-year service plan pay no labour for
+        preventive work; wear parts are still charged separately.
+    - title: Downtime planning guidance
+      text: |
+        A full service takes one working day and the machine is unavailable for the whole of it.
+        Plan a full service for the quietest day of the week and size the fleet with 15% headroom so
+        one machine can be out without slowing the line. A drive wheel inspection takes 40 minutes
+        and can be done between shifts.
+  history:
+    - role: user
+      content: |
+        Hi, we run a mixed site, a handful of Stowbot S2 Pallet robots and two K4 Haulers, and I am
+        building the preventive maintenance calendar for the robots.
+    - role: assistant
+      content: Happy to help with the Stowbot intervals. Which one do you need?
+query: How many operating hours between full services on a Stowbot?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["2,000", "2000"]
+  distractors: ["400", "1,200", "1200", "50"]

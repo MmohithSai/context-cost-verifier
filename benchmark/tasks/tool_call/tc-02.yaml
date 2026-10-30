@@ -1,0 +1,51 @@
+id: tc-02
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Dates must be YYYY-MM-DD.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Where has our Hyderabad order got to? It is KR-51002.
+    Action: call lookup_order with order_id "KR-51002".
+
+    Request: Send a copy of invoice INV-18840 to the finance address you have for us (ap@orbitalparcel.in).
+    Action: call send_invoice_copy with invoice_id "INV-18840", email "ap@orbitalparcel.in".
+  retrieved:
+    - title: Order KR-55210
+      text: |
+        Customer: Whitefield Robotics. Confirmed 2026-03-02. Lines: 1 x Stowbot S3 Sorter,
+        1 x PRT-RAIL-14, 1 x PRT-PAD-S2. Total: INR 781,900.00. Standard delivery, Bengaluru region.
+    - title: Order KR-55211
+      text: |
+        Customer: Whitefield Robotics. Confirmed 2026-03-04. Lines: 4 x PRT-WHL-S2 drive wheel.
+        Total: INR 19,600.00. A follow-up consumables order.
+    - title: Quote Q-7903 for Whitefield Robotics
+      text: |
+        Proforma quote, not an order. 1 x Stowbot S3 Sorter with a 3-year service plan:
+        INR 812,400.00. Valid until 2026-03-20. A quote number never becomes an order number.
+    - title: Order numbering note
+      text: |
+        Order numbers begin KR- and are issued at confirmation. Quote numbers begin Q-.
+        A customer may hold several open orders at once; they are never merged.
+    - title: Delivery lead times by region
+      text: |
+        Hyderabad region: 7 working days. Pune region: 9 working days. Bengaluru region: 12 working
+        days. Lead times exclude the day of confirmation itself.
+  history:
+    - role: user
+      content: |
+        Hi, Priya at Whitefield Robotics. Our warehouse team keeps asking me for status updates and
+        I would rather get them from you directly than guess.
+    - role: assistant
+      content: Of course. I can look up any order you name.
+query: Please check where order KR-55210 has got to.
+gold_doc: 0
+grader:
+  type: tool_call
+  name: lookup_order
+  arguments:
+    order_id: KR-55210

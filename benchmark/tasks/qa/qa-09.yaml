@@ -1,0 +1,54 @@
+id: qa-09
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: Invoice payment policy
+      text: |
+        Invoices are due 30 days after the issue date. A reminder is emailed 7 days before the due
+        date. A late fee of 1.5% per month applies to any balance still open after the due date,
+        charged from the day after the due date and pro-rated to the day.
+    - title: Dealer payment terms
+      text: |
+        Authorised dealers are billed on 60-day terms and are charged a late fee of 0.9% per month.
+        Dealer status is shown on the account record, never on the invoice itself.
+    - title: Early settlement discount
+      text: |
+        Invoices settled within 10 days of issue attract a 2% discount. The discount is applied as a
+        credit note in the following month and cannot be combined with a dealer rebate.
+    - title: Disputed invoices
+      text: |
+        A formally disputed invoice line is frozen while the dispute is open and does not accrue a
+        late fee. The rest of the invoice continues to accrue normally.
+    - title: Currency and rounding
+      text: |
+        Amounts keep two decimals. Fees are calculated on the outstanding amount in the invoice
+        currency and are never converted.
+  history:
+    - role: user
+      content: |
+        Hello, Maja from Lindqvist Freight. Our finance team is tightening up how we handle payment
+        terms and they want the rules written down rather than passed on by word of mouth.
+    - role: assistant
+      content: Happy to help. I can quote the policy exactly as it is published.
+query: What late fee applies to an overdue invoice for a direct customer, with nothing disputed?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["1.5% per month", "1.5 % per month", "1.5% a month", "1.5 percent per month"]
+  distractors: ["0.9%", "2%", "0.9 percent", "2 percent"]

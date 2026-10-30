@@ -267,10 +267,19 @@ def run(tasks, model, suites, out, bench=None, endpoint="http://localhost:8000/v
             if deadline and time.monotonic() > deadline:
                 print(f"time budget reached after {i - 1} runs; run the same command again to resume")
                 break
-            body, compression, attribution = build(task, cfg)
-            rec = {"run_id": run_id, "request_hash": digest(body), "model": model, "suite": suite,
-                   "task_id": task["id"], "task_hash": task["hash"], "workload": task["workload"],
+            rec = {"run_id": run_id, "model": model, "suite": suite, "task_id": task["id"],
+                   "task_hash": task["hash"], "workload": task["workload"],
                    "config_id": cfg, "repeat": rep}
+            try:
+                body, compression, attribution = build(task, cfg)
+            except KeyError as e:
+                # A stale compression cache must not cost the rest of the session; resume retries it.
+                rec.update(status="error", error=f"KeyError: {e}", request_hash=None, env=env,
+                           ts=datetime.now(timezone.utc).isoformat(timespec="seconds"))
+                _append(out, rec)
+                print(f"[{i}/{len(todo)}] {suite} {task['id']} {cfg} r{rep} error {e}", flush=True)
+                continue
+            rec["request_hash"] = digest(body)
             for attempt in range(3):
                 try:
                     with gpu:
@@ -296,15 +305,20 @@ def run(tasks, model, suites, out, bench=None, endpoint="http://localhost:8000/v
 def _dry_run(todo, build):
     stats = {}
     for _, suite, task, cfg, _ in todo:
-        body, _, attribution = build(task, cfg)
-        s = stats.setdefault(suite, {"runs": 0, "tokens": []})
+        s = stats.setdefault(suite, {"runs": 0, "tokens": [], "uncompressed": 0})
         s["runs"] += 1
+        try:
+            _, _, attribution = build(task, cfg)
+        except KeyError:  # no LLMLingua-2 cache entry yet; keep validating the other tasks
+            s["uncompressed"] += 1
+            continue
         if attribution:
             s["tokens"].append(attribution["total"])
     for suite, s in stats.items():
         t = s["tokens"]
         size = f"prompt tokens mean={sum(t) / len(t):.0f} max={max(t)}" if t else "no local tokenizer"
-        print(f"{suite:>10}: {s['runs']:5d} runs, {size}")
+        missing = f", {s['uncompressed']} awaiting `ccv compress`" if s["uncompressed"] else ""
+        print(f"{suite:>10}: {s['runs']:5d} runs, {size}{missing}")
     total = sum(s["runs"] for s in stats.values())
-    print(f"total {total} runs ≈ {total * SEC_PER_REQUEST / 3600:.1f} GPU-hours at ~{SEC_PER_REQUEST}s/request")
+    print(f"total {total} runs ~ {total * SEC_PER_REQUEST / 3600:.1f} GPU-hours at ~{SEC_PER_REQUEST}s/request")
     return stats

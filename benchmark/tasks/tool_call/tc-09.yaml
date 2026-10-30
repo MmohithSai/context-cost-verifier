@@ -1,0 +1,53 @@
+id: tc-09
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Dates must be YYYY-MM-DD.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Book the 50-hour inspection for KR4-88217 at the Hyderabad centre on its next free slot.
+    Action: call schedule_maintenance with serial_number "KR4-88217", center_id "SC-HYD-01", date "2026-04-06".
+
+    Request: Get SB1-20044 into Bengaluru for its full service at the earliest date.
+    Action: call schedule_maintenance with serial_number "SB1-20044", center_id "SC-BLR-03", date "2026-03-30".
+  retrieved:
+    - title: "Service center directory: Pune"
+      text: |
+        SC-PNQ-02, Hinjewadi Phase 2. Services K-series drones only. Next open slot: 2026-04-02.
+        SC-PNQ-01 in Kharadi services Stowbot robots only; its next open slot is 2026-03-27.
+    - title: "Service center directory: Hyderabad"
+      text: |
+        SC-HYD-01, Kondapur. Services K-series drones and Stowbot robots.
+        Next open maintenance slot: 2026-04-06.
+    - title: Stowbot preventive maintenance schedule
+      text: |
+        Drive wheel inspection: every 400 operating hours. Gripper pad replacement: every 1,200
+        operating hours. Full service: every 2,000 operating hours.
+    - title: Booking policy
+      text: |
+        Book at a service center in the customer's registered city that handles the device type.
+        Only one open booking may exist per device at a time.
+    - title: Fleet hours export for SkyCart Deliveries
+      text: |
+        SB2-30117 (Stowbot S2 Pallet): 1,835 operating hours. SB2-30119 (Stowbot S2 Pallet):
+        402 operating hours. KR3-41208 (K3 Sparrow): 51.7 flight hours.
+  history:
+    - role: user
+      content: |
+        Hi, Arjun from SkyCart Deliveries. We are registered in Pune. The pallet robot that is
+        closest to its 2,000-hour full service needs booking in, the higher-houred of the two.
+    - role: assistant
+      content: Understood, the Stowbot S2 Pallet nearest its full service, at a Pune centre that handles robots.
+query: Book it in on the earliest slot available.
+gold_doc: 0
+grader:
+  type: tool_call
+  name: schedule_maintenance
+  arguments:
+    serial_number: SB2-30117
+    center_id: SC-PNQ-01
+    date: "2026-03-27"

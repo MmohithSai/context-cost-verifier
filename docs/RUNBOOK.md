@@ -13,7 +13,7 @@ uv venv && uv pip install -e ".[dev]"
 Everyday commands:
 
 ```bash
-uv run pytest                                              # full suite, ~60 s
+uv run pytest                                              # full suite, ~30 s
 ccv run --model qwen2.5-7b --suite noise shapley --out results/x.jsonl --dry-run
 ccv attribute qa-01 --model qwen2.5-7b                     # per-segment token table
 ccv attribute qa-01 --model qwen2.5-7b --config truncate:0.5
@@ -31,7 +31,10 @@ The first `pytest` run downloads the Qwen2.5-0.5B and Llama-3.1 tokenizers (a fe
 2. Keep everything inside the fictional Kestrel Robotics world, and invent new products, IDs and dates rather than reusing existing ones.
 3. Fill all six segments. Reuse the shared persona and tool catalog with `"@kestrel_persona"` and `"@kestrel_tools"`.
 4. Put the answer in exactly one retrieved doc and set `gold_doc` to its index (0-based). Add near-miss values to the other docs and list them as `distractors`.
-5. For about a third of tasks, make one required fact appear **only** in `history`.
+5. Decide, deliberately, which side of the history split the task is on ([DECISIONS.md](DECISIONS.md) D14b):
+   - **Needs history** (about a third): the query says "our order" or "that airframe", and only the conversation says which. 16 of the current 45 are like this.
+   - **Self-contained**: the query names its own record ("the record for ticket TK-5602"). The history is still there and still on-topic, but carries no fact the answer depends on.
+   Keep the ratio near a third. If every task needs history, `history` dominates Shapley everywhere and the result says nothing.
 6. Check it:
 
 ```bash
@@ -46,7 +49,9 @@ This validates every task file offline and prints prompt sizes; aim for 1.5–3k
 ccv attribute <task-id> --model qwen2.5-7b
 ```
 
-**Checklist per task:** all six segments non-empty · one gold doc · distractors listed · fictional entities only · grader type matches the workload · history alternates user/assistant and starts with user · total 1.5–3k tokens.
+**Checklist per task:** all six segments non-empty · one gold doc · distractors listed · fictional entities only · grader type matches the workload · history alternates user/assistant and starts with user · total 1.5–3k tokens · history split chosen deliberately (step 5).
+
+8. Run the suite. `uv run pytest -k gold_answer` asserts every task's grader accepts its own gold answer and rejects each listed distractor — this catches an answer phrased so that a correctly-formatted reply would still be marked wrong, which is otherwise only visible after the GPU time is spent.
 
 ---
 

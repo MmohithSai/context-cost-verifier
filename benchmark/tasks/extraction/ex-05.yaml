@@ -1,0 +1,58 @@
+id: ex-05
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the details of the single warranty claim the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    claim_id (string), serial_number (string), category (one of hardware, software, billing,
+    delivery), opened (YYYY-MM-DD), covered (boolean).
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: Claim WC-3301 on KR4-88217, a cracked motor boss, opened 2026-01-14, inside warranty.
+    Output: {"claim_id": "WC-3301", "serial_number": "KR4-88217", "category": "hardware", "opened": "2026-01-14", "covered": true}
+
+    Document: Claim WC-3318 on SB1-20044, console would not pair, raised 2026-02-02, warranty expired.
+    Output: {"claim_id": "WC-3318", "serial_number": "SB1-20044", "category": "software", "opened": "2026-02-02", "covered": false}
+  retrieved:
+    - title: Claim WC-3402
+      text: |
+        Device: KR4-90533, a K4 Hauler delivered 2026-01-09. Fault: flight controller refuses to arm
+        after a firmware update. Raised on 2026-03-05. Assessed as a software fault.
+        The airframe is inside its 24-month standard warranty, so the claim is covered.
+    - title: Claim WC-3399
+      text: |
+        Device: KR4-90533. Fault: propeller chipped on landing. Raised 2026-02-27.
+        Assessed as a hardware fault, but propellers are wear parts, so the claim is not covered
+        and the repair was quoted as chargeable.
+    - title: Claim WC-3390
+      text: |
+        Device: KR3-41208. Fault: invoice charged twice. Raised 2026-02-20. Category billing.
+        Resolved by credit note. Billing claims never affect the airframe warranty.
+    - title: Warranty claim procedure
+      text: |
+        Claims are opened by the registered owner and need the serial number and proof of delivery.
+        A claim number begins WC-. Wear parts are excluded whatever the airframe warranty says.
+    - title: Warranty periods
+      text: |
+        New K-series airframes carry 24 months from delivery. The extended warranty adds 12 months.
+        Batteries carry 12 months. Stowbot robots carry 18 months.
+  history:
+    - role: user
+      content: |
+        Hello, Arjun from SkyCart. Our insurer wants the claim details as structured data so they can
+        load them straight into their system.
+    - role: assistant
+      content: Understood. I can return the claim fields as JSON.
+query: Give me the record for warranty claim WC-3402.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    claim_id: WC-3402
+    serial_number: KR4-90533
+    category: software
+    opened: "2026-03-05"
+    covered: true

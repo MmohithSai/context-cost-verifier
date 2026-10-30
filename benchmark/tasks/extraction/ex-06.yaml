@@ -1,0 +1,57 @@
+id: ex-06
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the stock position for the single part and warehouse the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    sku (string), warehouse (one of HYD, PNQ, BLR), on_hand (number),
+    reserved (number), available (number).
+    available is on_hand minus reserved. Do not add prose, comments or extra keys,
+    and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: PRT-BAT-36V in Hyderabad: 63 on hand, 5 reserved.
+    Output: {"sku": "PRT-BAT-36V", "warehouse": "HYD", "on_hand": 63, "reserved": 5, "available": 58}
+
+    Document: PRT-RAIL-14, Bengaluru stock 20, of which 20 are allocated.
+    Output: {"sku": "PRT-RAIL-14", "warehouse": "BLR", "on_hand": 20, "reserved": 20, "available": 0}
+  retrieved:
+    - title: "Stock report PRT-BAT-48V (spare 48 V battery pack)"
+      text: |
+        Hyderabad (HYD): 41 on hand, 6 reserved. Pune (PNQ): 18 on hand, 0 reserved.
+        Bengaluru (BLR): 7 on hand, 7 reserved. Figures as of 2026-03-02, 06:00 IST.
+    - title: "Stock report PRT-PROP-K4 (propeller set, K4 Hauler)"
+      text: |
+        Hyderabad (HYD): 52 on hand, 4 reserved. Pune (PNQ): 33 on hand, 11 reserved.
+        Bengaluru (BLR): 15 on hand, 0 reserved.
+    - title: "Stock report PRT-BAT-36V (spare 36 V battery pack)"
+      text: |
+        Hyderabad (HYD): 63 on hand, 5 reserved. Pune (PNQ): 29 on hand, 2 reserved.
+        Bengaluru (BLR): 12 on hand, 0 reserved.
+    - title: Which battery fits which machine
+      text: |
+        PRT-BAT-48V fits every K-series drone from the K3 Sparrow upward, and the Stowbot S2 Pallet
+        and S3 Sorter. PRT-BAT-36V fits the Stowbot S1 and the discontinued K2 Courier.
+    - title: Stock transfer policy
+      text: |
+        Customers are served from the warehouse in their registered city. Reserved units are already
+        allocated to another order. An inter-warehouse transfer adds 4 working days.
+  history:
+    - role: user
+      content: |
+        Hi, Arjun from SkyCart Deliveries. We are registered in Pune and we fly K4 Haulers, so it is
+        the 48 V pack we care about, not the 36 V one for the older robots.
+    - role: assistant
+      content: "Noted: SkyCart Deliveries, Pune, asking about the spare 48 V battery pack."
+query: Give me the stock position for that part at our warehouse.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    sku: PRT-BAT-48V
+    warehouse: PNQ
+    on_hand: 18
+    reserved: 0
+    available: 18

@@ -1,0 +1,55 @@
+id: qa-05
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: K5 Freighter technical sheet (rev. A)
+      text: |
+        The K5 Freighter is the largest airframe in the K-series, built for inter-depot runs.
+        Maximum payload: 24 kg. Range with full payload: 71 km. Top speed: 59 km/h.
+        Ingress protection: IP55. Minimum runway-free launch pad: 4 m by 4 m.
+    - title: K4 Hauler technical sheet (rev. F)
+      text: |
+        The K4 Hauler is the standard heavy-lift model of the K-series. Maximum payload: 12.5 kg.
+        Range with full payload: 46 km. Top speed: 68 km/h. Ingress protection: IP54.
+    - title: K3 Sparrow technical sheet (rev. C)
+      text: |
+        The K3 Sparrow is the compact last-mile drone. Maximum payload: 9 kg. Range: 38 km.
+        Top speed: 61 km/h. Ingress protection: IP43.
+    - title: Weatherproofing guidance for K-series operators
+      text: |
+        Ingress protection ratings describe dust and water resistance only. No K-series airframe is
+        cleared for flight in sustained rain above 8 mm per hour, whatever its IP rating.
+        The optional splash cowling (PRT-COWL-K5) does not change the rated IP class.
+    - title: "Service bulletin SB-2026-04: seal inspection"
+      text: |
+        Motor pod seals on all K-series airframes are inspected every 200 flight hours. A failed seal
+        drops the effective protection to IP20 until it is replaced.
+  history:
+    - role: user
+      content: |
+        Hello, Tomas from Orbital Parcel. We are drawing up a tender for depot-to-depot flights and
+        the customer keeps asking us for published figures rather than our own measurements.
+    - role: assistant
+      content: Understood. I will quote only what the technical sheets say.
+query: What is the published ingress protection rating of the K5 Freighter?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["IP55"]
+  distractors: ["IP54", "IP43", "IP20"]

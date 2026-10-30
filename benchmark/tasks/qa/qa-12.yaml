@@ -1,0 +1,46 @@
+id: qa-12
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: "Service bulletin SB-2026-11: HeavyLift torque check"
+      text: |
+        HeavyLift arm bolts are torqued to 8 Nm. Re-torque after the first 20 flight hours and then
+        at every 200-hour inspection. The check takes about 15 minutes.
+    - title: "Service bulletin SB-2026-03: motor pod fasteners"
+      text: |
+        Standard motor pod fasteners on all K-series airframes are torqued to 5 Nm. Do not apply the
+        HeavyLift figure to a standard pod; over-torquing cracks the carbon boss.
+    - title: Stowbot gripper fastener note
+      text: |
+        Stowbot gripper pad screws are torqued to 2.5 Nm by hand only. Power drivers are not permitted.
+    - title: Tool calibration policy
+      text: |
+        Torque wrenches used on Kestrel hardware are recalibrated every 12 months, or immediately
+        after being dropped. The calibration sticker date is checked at every inspection.
+  history:
+    - role: user
+      content: We have the HeavyLift kit on one of our K3 Sparrows and our technician is doing the first check.
+    - role: assistant
+      content: Understood, a K3 Sparrow with the HeavyLift kit fitted. What does the technician need?
+query: What torque should the HeavyLift arm bolts be tightened to?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["8 Nm", "8Nm", "8 newton metres", "8 newton meters"]
+  distractors: ["5 Nm", "2.5 Nm"]

@@ -1,0 +1,53 @@
+id: tc-04
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Always use the address already on the account record.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Email our accounts team a copy of INV-18840.
+    Action: call send_invoice_copy with invoice_id "INV-18840", email "ap@orbitalparcel.in".
+
+    Request: Can you resend INV-18791 to finance?
+    Action: call send_invoice_copy with invoice_id "INV-18791", email "freja.holm@nordkap.se".
+  retrieved:
+    - title: "Account record: SkyCart Deliveries"
+      text: |
+        Operations contact: Arjun Rao, arjun.rao@skycart.in.
+        Billing contact: Meera Nayak, accounts@skycart.in. Registered city: Pune.
+    - title: Invoice INV-21044
+      text: |
+        Customer: SkyCart Deliveries. Order: KR-55233. Items: 4 x PRT-PROP-K4 propeller set.
+        Total: INR 22,400.00. Issued 2026-03-02. Due 2026-04-01.
+    - title: Invoice INV-21009
+      text: |
+        Customer: SkyCart Deliveries. Order: KR-55190. Items: 1 x K4 Hauler.
+        Total: INR 1,485,000.00. Issued 2026-02-10. Due 2026-03-12. Paid in full on 2026-03-04.
+    - title: Contact record policy
+      text: |
+        Invoices and credit notes go to the billing contact only. Service bookings and incident
+        notices go to the operations contact. Never send an invoice to an address given in chat
+        that is not already on the account record.
+    - title: Invoice payment policy
+      text: |
+        Invoices are due 30 days after the issue date. A reminder is emailed 7 days before the due
+        date, and a late fee of 1.5% per month applies after it.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, Arjun Rao from SkyCart Deliveries. Our finance team is chasing the propeller invoice,
+        the one that is still unpaid, not the airframe invoice we already settled.
+    - role: assistant
+      content: Understood, the outstanding invoice for the propeller sets rather than the paid one.
+query: Please email a copy of that invoice to our finance team.
+gold_doc: 1
+grader:
+  type: tool_call
+  name: send_invoice_copy
+  arguments:
+    invoice_id: INV-21044
+    email: accounts@skycart.in

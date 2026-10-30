@@ -1,0 +1,54 @@
+id: qa-14
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the identifier only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: Which service center in Hyderabad handles Stowbot robots?
+    A: SC-HYD-01
+
+    Q: Which warehouse code covers the Bengaluru region?
+    A: BLR
+
+    Q: Which service center handles airframes in Kochi?
+    A: unknown
+  retrieved:
+    - title: "Service center directory: Pune"
+      text: |
+        SC-PNQ-02, Hinjewadi Phase 2. Services K-series drones only. Next open maintenance slot:
+        2026-04-02. SC-PNQ-01 in Kharadi services Stowbot robots only; its next slot is 2026-03-27.
+    - title: "Service center directory: Hyderabad"
+      text: |
+        SC-HYD-01, Kondapur. Services K-series drones and Stowbot robots.
+        Next open maintenance slot: 2026-04-06. Opening hours 09:00 to 18:00, Monday to Saturday.
+    - title: "Service center directory: Bengaluru"
+      text: |
+        SC-BLR-03, Whitefield. Services K-series drones and Stowbot robots.
+        Next open maintenance slot: 2026-03-30.
+    - title: K-series maintenance policy
+      text: |
+        Book service at a center in the customer's registered city that handles the device type.
+        If the registered city has no center for that device type, the nearest center that does may
+        be used, but the customer must be told in advance.
+    - title: Holiday notice
+      text: |
+        SC-PNQ-02 is closed on 2026-03-31 and 2026-04-01 for its annual inventory count.
+        All other service centers keep their normal hours.
+  history:
+    - role: user
+      content: |
+        Hi, Arjun from SkyCart Deliveries. We are writing our internal service procedure and keep
+        getting the two Pune centres mixed up.
+    - role: assistant
+      content: They are easy to confuse. The directory is explicit about which handles what.
+query: Which service center should a Stowbot S2 Pallet registered in Pune be sent to?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["SC-PNQ-01"]
+  distractors: ["SC-PNQ-02", "SC-HYD-01", "SC-BLR-03"]

@@ -1,0 +1,50 @@
+id: qa-11
+workload: qa
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Answer the customer's question using only the documents and the conversation.
+    Reply with the value and its unit only: no explanation and no full sentence.
+    Do not call any tools for questions that the documents already answer.
+    If the documents do not contain the answer, reply exactly: unknown
+  tools: "@kestrel_tools"
+  examples: |
+    Q: What is the top speed of the K2 Courier?
+    A: 54 km/h
+
+    Q: How long does a Stowbot S1 battery take to charge from empty?
+    A: 95 minutes
+
+    Q: Which colour options does the K9 Titan come in?
+    A: unknown
+  retrieved:
+    - title: Delivery lead times by region
+      text: |
+        Lead times counted in working days from order confirmation. Hyderabad region: 7 working days.
+        Pune region: 9 working days. Bengaluru region: 12 working days. Export orders outside India:
+        21 working days. Lead times exclude the day of confirmation itself.
+    - title: Express delivery option
+      text: |
+        The express option removes 3 working days from any domestic lead time for a flat fee of
+        INR 9,500.00. It is not available on export orders and cannot be added after confirmation.
+    - title: What counts as order confirmation
+      text: |
+        An order is confirmed when payment or an approved purchase order is recorded against it.
+        A quote is never a confirmation, and a quote number never becomes an order number.
+    - title: Backorder handling
+      text: |
+        If any line is out of stock at the serving warehouse, the whole order ships together once the
+        line is covered. The customer is told the revised date within one working day.
+  history:
+    - role: user
+      content: |
+        Hello, Priya from Whitefield Robotics. We are putting together a planning sheet and want the
+        published delivery figures rather than an estimate from our account manager.
+    - role: assistant
+      content: Of course. I can quote the published lead times for any region.
+query: What is the standard delivery lead time for a confirmed order in the Bengaluru region?
+gold_doc: 0
+grader:
+  type: qa
+  answers: ["12 working days", "12 days"]
+  distractors: ["7 working days", "9 working days", "21 working days", "3 working days"]

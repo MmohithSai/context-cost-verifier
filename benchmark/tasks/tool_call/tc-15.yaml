@@ -1,0 +1,71 @@
+id: tc-15
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Choose the ticket category from the documented
+    definitions, matching the root cause rather than the symptom.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: The console will not pair with KR4-88217 after an update.
+    Action: call create_support_ticket with serial_number "KR4-88217", category "software", summary "Console will not pair after firmware update".
+
+    Request: Our consignment arrived a carton short on order KR-50977.
+    Action: call create_support_ticket with category "delivery", summary "Consignment for KR-50977 arrived one carton short".
+  retrieved:
+    - title: Support category definitions
+      text: |
+        hardware: physical damage, wear, or a mechanical fault. software: firmware, console, pairing
+        or configuration. billing: invoices, credits and refunds. delivery: shipping, addresses and
+        missing cartons. Use the category that matches the root cause, not the symptom.
+    - title: Fleet register for Whitefield Robotics
+      text: |
+        SB3-40112 (Stowbot S3 Sorter), delivered 2026-03-12.
+        SB3-40115 (Stowbot S3 Sorter), delivered 2026-03-12.
+        SB2-30204 (Stowbot S2 Pallet), delivered 2025-11-28.
+    - title: Console pairing guide
+      text: |
+        A robot pairs with the Fleet console over the site Wi-Fi within 60 seconds of powering on.
+        A robot that never appears in the console, while its status light is steady green, has a
+        configuration fault and not a mechanical one.
+    - title: When to raise a ticket
+      text: |
+        Raise a ticket only for a problem that cannot be answered from the documents. Product facts,
+        stock levels and appointment dates are answered directly and need no ticket.
+    - title: Billing enquiries
+      text: |
+        Invoice and credit queries are handled by the billing team through a billing ticket, never
+        through the operations queue.
+    - title: Site Wi-Fi requirements
+      text: |
+        The Fleet console reaches robots over the site Wi-Fi on the 5 GHz band only. A robot on a
+        2.4 GHz-only access point powers up normally and shows a steady green light, but never
+        appears in the console. Check the access point band before assuming a fault in the robot.
+    - title: Status light meanings
+      text: |
+        Steady green: powered, healthy, idle. Flashing green: working. Amber: wear part due.
+        Flashing amber: drive fault, the robot has stopped. Red: critical fault, the robot is halted
+        and must not be restarted. A steady green light rules out a mechanical fault.
+    - title: Commissioning checklist for a new robot
+      text: |
+        Confirm the serial number against the delivery note, pair it with the Fleet console, run the
+        aisle calibration lap, and record the commissioning date. A robot that cannot be paired is
+        not commissioned, whatever else works, and the commissioning date stays blank.
+  history:
+    - role: user
+      content: |
+        Hi, Priya at Whitefield Robotics. We commissioned two new sorters last week and one of them
+        has not settled in as smoothly as the other.
+    - role: assistant
+      content: Tell me what it is doing and I will get it logged with the right team.
+query: "Raise a ticket for SB3-40115: it has never appeared in the Fleet console since installation, though its status light is steady green and it runs fine on its own."
+gold_doc: 0
+grader:
+  type: tool_call
+  name: create_support_ticket
+  arguments:
+    serial_number: SB3-40115
+    category: software

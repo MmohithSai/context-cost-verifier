@@ -1,0 +1,58 @@
+id: ex-14
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the maintenance position for the single machine the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    serial_number (string), model (string), hours (number), interval_hours (number),
+    hours_remaining (number).
+    hours_remaining is interval_hours minus hours. Do not add prose, comments or extra keys,
+    and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: KR4-88217, a K4 Hauler, has flown 34.5 hours; drones are inspected every 50.
+    Output: {"serial_number": "KR4-88217", "model": "K4 Hauler", "hours": 34.5, "interval_hours": 50, "hours_remaining": 15.5}
+
+    Document: SB1-20044, a Stowbot S1, is at 1,640 operating hours against a 2,000-hour full service.
+    Output: {"serial_number": "SB1-20044", "model": "Stowbot S1", "hours": 1640, "interval_hours": 2000, "hours_remaining": 360}
+  retrieved:
+    - title: Fleet hours export for SkyCart Deliveries
+      text: |
+        KR3-41208 (K3 Sparrow): 51.7 flight hours. KR4-90533 (K4 Hauler): 12.4 flight hours.
+        SB2-30117 (Stowbot S2 Pallet): 1,835 operating hours.
+        SB2-30119 (Stowbot S2 Pallet): 402 operating hours. Export taken 2026-03-06.
+    - title: K-series maintenance policy
+      text: |
+        A full inspection is required every 50 flight hours. Inspections take one working day and are
+        booked at a service center in the customer's registered city.
+    - title: Stowbot preventive maintenance schedule
+      text: |
+        Drive wheel inspection: every 400 operating hours. Gripper pad replacement: every 1,200
+        operating hours. Full service: every 2,000 operating hours.
+    - title: Operating hours versus flight hours
+      text: |
+        Stowbot intervals are counted in operating hours, which include powered idle time.
+        Drone intervals are counted in flight hours, which exclude ground time.
+    - title: Service reminder settings
+      text: |
+        The Fleet console emails a reminder at 90% of any interval. Reminders can be switched off
+        per device but not per interval.
+  history:
+    - role: user
+      content: |
+        Hi Kiri, Arjun from SkyCart. I am building a maintenance calendar and want the hours as
+        numbers rather than prose, so I can sort on them.
+    - role: assistant
+      content: Understood. I can return the maintenance fields as JSON.
+query: Give me the maintenance position for SB2-30117 against its full service interval.
+gold_doc: 0
+grader:
+  type: json
+  strict: true
+  expected:
+    serial_number: SB2-30117
+    model: Stowbot S2 Pallet
+    hours: 1835
+    interval_hours: 2000
+    hours_remaining: 165

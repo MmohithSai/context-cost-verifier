@@ -1,0 +1,69 @@
+id: tc-07
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Choose the ticket category from the documented
+    definitions. Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: The console will not pair with KR4-88217 after an update.
+    Action: call create_support_ticket with serial_number "KR4-88217", category "software", summary "Console will not pair after firmware update".
+
+    Request: Our consignment arrived a carton short on order KR-50977.
+    Action: call create_support_ticket with category "delivery", summary "Consignment for KR-50977 arrived one carton short".
+  retrieved:
+    - title: Support category definitions
+      text: |
+        hardware: physical damage, wear, or a mechanical fault. software: firmware, console, pairing
+        or configuration. billing: invoices, credits and refunds. delivery: shipping, addresses and
+        missing cartons. Use the category that matches the root cause, not the symptom.
+    - title: When to raise a ticket
+      text: |
+        Raise a ticket only for a problem that cannot be answered from the documents. Product facts,
+        stock levels and appointment dates are answered directly and need no ticket.
+    - title: Escalation tiers
+      text: |
+        Tier 1 handles configuration and account questions. Tier 2 handles firmware and controller
+        faults. Tier 3 is engineering and is reached only through tier 2.
+    - title: Fleet register for Deccan Aerial Services
+      text: |
+        KR5-11203 (K5 Freighter), delivered 2026-02-14. KR5-11207 (K5 Freighter), delivered
+        2026-02-14. SB3-40088 (Stowbot S3 Sorter), delivered 2026-01-30.
+    - title: "Service bulletin SB-2026-04: seal inspection"
+      text: |
+        Motor pod seals are inspected every 200 flight hours. A failed seal drops the effective
+        protection to IP20 until it is replaced.
+    - title: Pod seal failure symptoms
+      text: |
+        Water inside a motor pod shows as a rising winding temperature on that motor, a whistling
+        note in the hover, and moisture in the pod drain. The airframe must be grounded until the
+        seal is replaced. A seal replacement takes about 90 minutes and does not need a full
+        inspection slot.
+    - title: Grounding and airworthiness
+      text: |
+        An airframe reported with water ingress is marked not airworthy in the Fleet console within
+        one hour of the report. The mark is cleared only by a service center after the seal is
+        replaced and a leak test passes. Flying a grounded airframe voids the warranty entirely.
+    - title: What a ticket does and does not do
+      text: |
+        A ticket records and routes the problem. It does not book a service slot, order a part, or
+        ground an airframe; those are separate actions raised by the service team once the ticket is
+        triaged. Opening a second ticket for the same fault duplicates the work and is closed as such.
+  history:
+    - role: user
+      content: |
+        Hi, Ravi at Deccan Aerial Services. One of our two Freighters, KR5-11207, has water inside a
+        motor pod after a wet week. The other one, KR5-11203, is fine.
+    - role: assistant
+      content: That sounds like a failed pod seal on KR5-11207, which is a physical fault rather than a configuration one.
+query: Please open a ticket for it.
+gold_doc: 0
+grader:
+  type: tool_call
+  name: create_support_ticket
+  arguments:
+    serial_number: KR5-11207
+    category: hardware

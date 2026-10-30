@@ -1,0 +1,51 @@
+id: tc-10
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. A quote number is never an order number.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Any news on our Hyderabad shipment? Order KR-51002.
+    Action: call lookup_order with order_id "KR-51002".
+
+    Request: Chase the Gothenburg order for me, KR-50977.
+    Action: call lookup_order with order_id "KR-50977".
+  retrieved:
+    - title: Order KR-55061
+      text: |
+        Customer: Nordkap Logistics. Confirmed 2026-01-20. Lines: 1 x K4 Hauler, 1 x spare 48 V
+        battery pack. Total: EUR 1,840.50. Status: delivered 2026-02-03.
+    - title: Order KR-55248
+      text: |
+        Customer: Nordkap Logistics. Confirmed 2026-03-03. Lines: 2 x K4 Hauler.
+        Total: EUR 3,300.00. Status: in production.
+    - title: Quote Q-7841 for Nordkap Logistics
+      text: |
+        Proforma quote. 2 x K4 Hauler at EUR 1,650.00 each. Extended warranty offered at EUR 255.00
+        per airframe. Valid until 2026-02-28. Accepting a quote creates a new order number.
+    - title: Order numbering note
+      text: |
+        Order numbers begin KR- and are issued at confirmation. Quote numbers begin Q-.
+        A customer may hold several orders at once; they are never merged.
+    - title: Backorder handling
+      text: |
+        If a line is out of stock the whole order ships together once the line is covered, and the
+        customer is told the revised date within one working day.
+  history:
+    - role: user
+      content: |
+        Hi, Freja at Nordkap Logistics. Our depot manager is asking for an update and I would rather
+        give him something from your system than a guess.
+    - role: assistant
+      content: Of course. I can look up any order you name.
+query: Please chase order KR-55248 for us.
+gold_doc: 1
+grader:
+  type: tool_call
+  name: lookup_order
+  arguments:
+    order_id: KR-55248

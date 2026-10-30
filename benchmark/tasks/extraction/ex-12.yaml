@@ -1,0 +1,74 @@
+id: ex-12
+workload: extraction
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    Extract the firmware position for the single airframe the customer is asking about.
+    Return only one JSON object with exactly these keys:
+    serial_number (string), model (string), current_version (string),
+    required_version (string), flight_ready (boolean).
+    flight_ready is true only when the current version is at or above the required version.
+    Do not add prose, comments or extra keys, and do not call tools.
+  tools: "@kestrel_tools"
+  examples: |
+    Document: KR4-88217, a K4 Hauler, is on 4.2.1 and needs 4.2.1.
+    Output: {"serial_number": "KR4-88217", "model": "K4 Hauler", "current_version": "4.2.1", "required_version": "4.2.1", "flight_ready": true}
+
+    Document: KR2-10044 is a K2 Courier running 3.6.0; the minimum is 3.8.4.
+    Output: {"serial_number": "KR2-10044", "model": "K2 Courier", "current_version": "3.6.0", "required_version": "3.8.4", "flight_ready": false}
+  retrieved:
+    - title: "Firmware matrix 2026-Q1: K-series"
+      text: |
+        Minimum flight-ready firmware. K2 Courier: 3.8.4. K3 Sparrow: 4.2.1. K4 Hauler: 4.2.1.
+        K4 Hauler Lite: 5.0.3. K5 Freighter: 5.1.0. A drone below its minimum refuses to arm.
+    - title: Fleet console export for SkyCart Deliveries
+      text: |
+        KR4-70112L (K4 Hauler Lite): running 4.9.7. KR4-70118L (K4 Hauler Lite): running 5.0.3.
+        KR4-70121L (K4 Hauler Lite): running 5.0.3. KR3-41208 (K3 Sparrow): running 4.2.1.
+        KR4-90533 (K4 Hauler): running 4.2.1. Export taken 2026-03-06.
+    - title: Firmware update procedure
+      text: |
+        Updates are pushed from the Kestrel Fleet console over Wi-Fi and take 12 minutes.
+        Never update a drone below 40% battery. A failed update leaves the previous version in place.
+    - title: Legacy firmware notice
+      text: |
+        Firmware 3.x reached end of support on 2026-01-31. Airframes on a 3.x release can be updated
+        straight to the current minimum with no intermediate step.
+    - title: Serial number format
+      text: |
+        K4 airframes carry serials beginning KR4-. A trailing L marks the Lite variant, which uses a
+        different flight controller board and therefore a different firmware line.
+    - title: Firmware release notes 5.0.3
+      text: |
+        Release 5.0.3 is the first flight-ready build for the Lite flight controller. It fixes a
+        drift in the barometric hold above 1,800 m, shortens the arming self-test from 22 to 9
+        seconds, and adds the load-cell calibration record to the console export. It supersedes
+        4.9.7, which is a pre-release build that was never cleared for flight.
+    - title: Update windows and battery rules
+      text: |
+        Push updates outside flight hours. The airframe must stay powered for the full 12 minutes and
+        must start above 40% battery. A drone that drops below 15% mid-update rolls back to its
+        previous version automatically and reports update code 31 in the console.
+    - title: Version comparison rules
+      text: |
+        Versions are compared field by field from the left, so 4.9.7 is lower than 5.0.3 even though
+        its middle field is larger. A build with a trailing letter is a pre-release and is always
+        treated as lower than the plain release with the same numbers.
+  history:
+    - role: user
+      content: |
+        Hi, Anita from SkyCart Deliveries. Of our three Lite airframes only one is still behind on
+        firmware. I need the record for that one, the airframe that is not yet flight ready.
+    - role: assistant
+      content: Understood, the single Lite airframe still below its minimum version.
+query: Give me the firmware record for that airframe.
+gold_doc: 1
+grader:
+  type: json
+  strict: true
+  expected:
+    serial_number: KR4-70112L
+    model: K4 Hauler Lite
+    current_version: 4.9.7
+    required_version: 5.0.3
+    flight_ready: false

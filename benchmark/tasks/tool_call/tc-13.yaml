@@ -1,0 +1,53 @@
+id: tc-13
+workload: tool_call
+segments:
+  system: "@kestrel_persona"
+  instructions: |
+    When the user asks you to do something, complete it by calling exactly one tool.
+    Take every argument from the documents and the conversation. Never invent identifiers
+    and never ask follow-up questions. Refund the exact amount recorded on the approved request.
+    Do not reply with text when a tool call is needed.
+  tools: "@kestrel_tools"
+  examples: |
+    Request: Pay back the duplicate charge on INV-18840, USD 612.00.
+    Action: call issue_refund with invoice_id "INV-18840", amount 612.00, reason "duplicate payment".
+
+    Request: Refund the returned battery on INV-18791, INR 4,000.00.
+    Action: call issue_refund with invoice_id "INV-18791", amount 4000.00, reason "returned part".
+  retrieved:
+    - title: Refund request RR-1203
+      text: |
+        Against invoice INV-21118 (Whitefield Robotics). Amount asked: INR 4,900.00.
+        Reason recorded as damaged in transit, one drive wheel of four.
+        Finance approved it on 2026-03-11.
+    - title: Refund request RR-1199
+      text: |
+        Against invoice INV-21102 (Whitefield Robotics). Amount asked: INR 31,500.00 for the guide
+        rail kit the customer decided not to keep. Finance declined it because the kit was installed.
+    - title: Invoice INV-21118
+      text: |
+        Customer: Whitefield Robotics. Order: KR-55211. Items: 4 x PRT-WHL-S2 drive wheel at
+        INR 4,900.00 each. Total: INR 19,600.00. Issued 2026-03-07.
+    - title: Refund rules
+      text: |
+        A refund is raised only against an approved request. A declined request is never paid.
+        A refund never exceeds the invoice line it relates to.
+    - title: Transit damage policy
+      text: |
+        Damage in transit is refunded per affected unit, not per order line, and the carrier claim is
+        handled separately by Kestrel.
+  history:
+    - role: user
+      content: |
+        Hello, Priya at Whitefield Robotics. Finance has been through both of our requests and told
+        us where they landed.
+    - role: assistant
+      content: Understood. Only an approved request can be paid out.
+query: Please put refund request RR-1203 through.
+gold_doc: 0
+grader:
+  type: tool_call
+  name: issue_refund
+  arguments:
+    invoice_id: INV-21118
+    amount: 4900.0
