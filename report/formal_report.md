@@ -1,8 +1,6 @@
 # Context Cost Verifier (`ccv`): Measuring Whether Shrinking an LLM Prompt Really Saves Cost
 
-*Undergraduate major project — formal report (draft in Markdown; convert into the university template).*
-
-> **Status of this draft.** All chapters are complete. Chapter 8 (Results) is filled from the real Kaggle runs; see [findings_report.md](findings_report.md) for the full analysis and figures. Raw material, including every challenge met during development, is in [`docs/REPORT_NOTES.md`](../docs/REPORT_NOTES.md).
+*Undergraduate major project — formal report. The full analysis is in the companion findings report; the development record behind every chapter is in `docs/REPORT_NOTES.md`.*
 
 ---
 
@@ -84,7 +82,7 @@ A CLI that, for a fixed benchmark and model, (a) measures cost on the physical d
 ### 3.3 Feasibility
 
 - **Technical.** vLLM 0.29 supports AWQ on the T4's Turing architecture with fp16 and the Triton attention backend, and exposes per-request server timings. Hugging Face tokenizers expose character offsets, which makes exact attribution possible. All four models used are ungated on Hugging Face. Verified on 17 Sep 2026 (see `docs/DECISIONS.md`).
-- **Economic.** Zero budget: Kaggle provides a free T4 with a weekly GPU quota (~30 hours); all software is open source. The full Qwen study needs about 6 GPU-hours.
+- **Economic.** Zero budget: Kaggle provides a free T4 with a weekly GPU quota (~30 hours); all software is open source. The full Qwen sweep took 2.36 GPU-hours (2 h 56 min of wall time), plus about 40 minutes of calibration and debugging runs.
 - **Operational.** Free GPU sessions are time-limited and can die. The runner is resumable, writes every record durably, and stops itself before Kaggle's session limit, so no completed work is ever lost.
 
 ---
@@ -238,9 +236,9 @@ The most instructive problems (full list in `docs/REPORT_NOTES.md`):
 
 ### 7.1 Strategy
 
-- **Automated tests** (`tests/test_ccv.py`, 12 tests, pytest, ~2 minutes, no GPU): mathematical identities, statistics, graders, every task's own gold answer, variants, server flags, exact attribution on two real tokenizers, and a full end-to-end pipeline against a fake vLLM-style HTTP server that renders prompts with the real tokenizer.
+- **Automated tests** (`tests/test_ccv.py`, 12 tests, pytest, about 30 s, no GPU): mathematical identities, statistics, graders, every task's own gold answer, variants, server flags, exact attribution on two real tokenizers, and a full end-to-end pipeline against a fake vLLM-style HTTP server that renders prompts with the real tokenizer.
 - **Manual CLI tests:** error handling and user-facing commands.
-- **Offline validation:** `--dry-run` builds and attributes all 4,635 requests without a server.
+- **Offline validation:** `--dry-run` builds and attributes all 3,090 requests of the frozen benchmark without a server.
 - **Live validation:** sanity checks on real runs (`attribution_ok`, server metrics, energy, no duplicate IDs).
 
 ### 7.2 Automated test cases
@@ -271,7 +269,7 @@ The most instructive problems (full list in `docs/REPORT_NOTES.md`):
 | M5 | Server flags | `ccv serve --model qwen2.5-7b --print-only` | Unbatched, no prefix cache, metrics, fp16, hermes parser | Exact command printed with all flags | Pass |
 | M6 | Attribution of a variant | `ccv attribute qa-01 --model qwen2.5-7b --config truncate:0.5` | Per-segment table that sums to the total | 1,573 tokens; tools 994 (63.2%), retrieved 255, system 148 … | Pass |
 | M7 | Version | `ccv --version` | Version string | `ccv 0.1.0` | Pass |
-| M8 | Offline validation | `ccv run --suite noise shapley ablations --dry-run` | All tasks valid; counts and time estimate | 4,635 runs; mean prompt 1,777 tokens (noise), max 2,365; 135 awaiting `ccv compress` | Pass |
+| M8 | Offline validation | `ccv run --suite noise shapley ablations --dry-run` | All tasks valid; counts and time estimate | 3,090 runs (noise 900, Shapley 1,920, ablations 270); mean prompt 1,789 tokens (noise), max 2,365; none awaiting `ccv compress` | Pass |
 | M9 | Live sanity checks | Kaggle run K2 output (3,330 records) | `attribution_ok`, server metrics and energy on every record; no duplicate IDs | All 3,330 attributed exactly; metrics and energy on every record; 0 duplicates | Pass |
 
 ---
@@ -312,7 +310,21 @@ Full tables and figures are in [findings_report.md](findings_report.md), §6.
    - The tool catalogue is the most expensive segment on the price list (43%), but physically the documents cost more.
 4. **Truncation and compression lose accuracy at every rate.** Keeping 75% of the long text by truncation left 53% accuracy; keeping 85% with LLMLingua-2 left 80%. Most of the truncation losses come from dropping whole history turns. Compression took 0.88 s per task on the same GPU, more than the GPU time it saved.
 5. **Position matters little.** With the gold document in the middle, accuracy was 0.90, against 1.00 first and 0.97 last; the difference is not significant.
-6. **The cheapest sufficient prompts drop unused segments.** Keeping only the segments each workload needs passed every task at 66% (QA), 49% (extraction) and 14% (tool calling) less GPU time. These were chosen in-sample and need validation.
+6. **The cheapest sufficient prompts drop unused segments.** Keeping only the segments each workload needs passed every task at 66% (QA), 49% (extraction) and 14% (tool calling) less GPU time. These were chosen in-sample, so they were re-run on 13 held-out tasks (run K3). The savings replicated (−70%, −48%, −17%), and the single shared prompt scored 0.92 against 0.93 in-sample. The two held-out failures both came from dropping the few-shot examples, which turned out to define field meanings.
+
+### 8.3 Key figures
+
+![Figure 8.1. Prefill and decode time against token count over all 3,090 runs, with linear fits: 1.33 ms per input token, 25.5 ms per output token.](figures/cost_per_token.png)
+
+![Figure 8.2. Shapley value of each segment for pass rate, per workload, with 95% bootstrap intervals.](figures/shapley_passed.png)
+
+![Figure 8.3. Shapley value of each segment for GPU-seconds. Instructions and examples have negative cost: they shorten the answer.](figures/shapley_gpu_seconds.png)
+
+![Figure 8.4. Truncation against LLMLingua-2 at equal token budgets.](figures/truncation_vs_llmlingua2.png)
+
+![Figure 8.5. How much longer outputs get after each kind of context reduction (complementary CDF, log scales).](figures/expansion_ccdf.png)
+
+![Figure 8.6. Cost against accuracy for all configurations, under the physical (top) and price-list (bottom) cost models.](figures/pareto_qwen2.5-7b.png)
 
 ---
 

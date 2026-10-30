@@ -1,8 +1,6 @@
 # Does Shrinking the Prompt Save Cost? Physical Measurements, Exact Token Attribution and Shapley Ablations on a T4
 
-*Findings report (target: 10 pages). Draft in Markdown. Figures come from `analysis/` after `ccv analyze`.*
-
-> **Draft status:** complete. Every number in §6 traces to a file in `analysis/`, produced by `ccv analyze results/qwen2.5-7b.jsonl --out analysis/`. Insert the named figures from `analysis/` when converting to the final format.
+*Findings report. Every number in §6 traces to a file in `analysis/`, produced by `ccv analyze results/qwen2.5-7b.jsonl --out analysis/`; the figures are copies of its PNGs.*
 
 ---
 
@@ -119,6 +117,8 @@ The marginal decode:prefill ratio therefore runs from about 30:1 for short promp
 
 At these lengths one output token costs as much as about 19 input tokens. Cutting 1,000 input tokens saves about 1.3 s, and 52 extra output tokens are enough to cancel that saving.
 
+![Figure 1. Prefill and decode time against token count, all 3,090 runs, with the linear fits.](figures/cost_per_token.png)
+
 ### 6.3 Which segments carry accuracy (`shapley.csv`, `shapley_passed.png`)
 
 | Segment | Shapley φ (all) | 95% CI | Leave-one-out | QA | Extraction | Tool calling |
@@ -131,6 +131,8 @@ At these lengths one output token costs as much as about 19 input tokens. Cuttin
 | system | −0.006 | −0.027 – 0.023 | 0.033 | 0.030 | −0.050 | 0.002 |
 
 *φ for pass rate; values sum to v(all) − v(none) = 1 − 0, as the efficiency axiom requires.*
+
+![Figure 2. Shapley value of each segment for pass rate, per workload, with 95% bootstrap intervals.](figures/shapley_passed.png)
 
 The retrieved documents carry half of all accuracy. After that, each workload depends on the segment that tells it *what to produce*:
 
@@ -155,7 +157,11 @@ The strongest accuracy interactions are synergies between the documents and the 
 
 Each such segment is worth little on its own, so neither leave-one-out nor input-token share can rank them.
 
+![Figure 3. Pairwise Shapley interaction indices for pass rate, per workload.](figures/interactions_passed_qwen2.5-7b.png)
+
 For output length, instructions, tools and examples interact positively (all workloads: instructions × tools +46 tokens, instructions × examples +40). This means they are **substitutes**: any one of them is enough to keep answers short. Output grows only when all of them are gone.
+
+![Figure 4. Pairwise Shapley interaction indices for output tokens, per workload.](figures/interactions_decode_tokens_qwen2.5-7b.png)
 
 ### 6.5 Which segments carry cost (`shapley.csv`, `shapley_gpu_seconds.png`, `shapley_decode_tokens.png`)
 
@@ -169,6 +175,10 @@ For output length, instructions, tools and examples interact positively (all wor
 | instructions | 61 | **−60.9** | **−1.46** | **−97.1** | −243 |
 
 *All workloads; the baseline is 3.21 GPU-s and 1,980 price units.*
+
+![Figure 5. Shapley value of each segment for GPU-seconds, per workload.](figures/shapley_gpu_seconds.png)
+
+![Figure 6. Shapley value of each segment for output tokens, per workload.](figures/shapley_decode_tokens.png)
 
 The physical and price-list models disagree on which segment is most expensive:
 
@@ -197,6 +207,8 @@ The φ values sum to v(all) − v(none) = −0.58 s: the query alone is *more* e
 
 *Baseline accuracy is 1.0 by calibration; the kept fractions are medians of the achieved values.*
 
+![Figure 7. Truncation versus LLMLingua-2 at equal token budgets: accuracy and cost against the achieved kept fraction.](figures/truncation_vs_llmlingua2.png)
+
 **Every reduction lost a statistically significant amount of accuracy, even when it kept 75–85% of the long text.** At each budget, LLMLingua-2 kept more accuracy than truncation, and the two saved about the same GPU time per token removed. Neither method made outputs longer (§6.8).
 
 **Why truncation is so harsh here.** Truncation drops whole user/assistant turns from the history, oldest first, as a chat window does. Twenty-six of the 30 tasks have a single exchange of history, so "keep 80%" removed *all* of it. Eleven of the 14 tasks that fail at truncation 0.8 are exactly the tasks that fail whenever the history is removed. Their oldest turn holds the order number or serial the query refers to.
@@ -219,6 +231,8 @@ If compression runs once per request, total GPU time *rises* for 90–97% of tas
 
 The middle position is the lowest, matching Liu et al., but the drop is three tasks out of 30 and is **not significant** (McNemar q = 0.26). With 4–6 documents of about 2k tokens in total, position matters little for this model.
 
+![Figure 8. Pass rate by position of the gold document.](figures/reorder_position.png)
+
 ### 6.8 Output expansion and when reduction raised cost (`expansion.csv`, `expansion_ccdf.png`)
 
 Removing whole segments is a different matter from truncation or compression. Each cell below is one task under one reduced configuration, compared with the same task at full context:
@@ -232,6 +246,8 @@ Removing whole segments is a different matter from truncation or compression. Ea
 **In 19% of segment-removal cells, the shorter prompt used *more* GPU time than the full prompt (RQ2).** The price-list model sees only a third of these cases, because it underweights output (§6.2).
 
 Almost all of the cost increases are explained by one segment: **98.6% of the cells where GPU time rose had no instructions segment**, against 51% of all cells. The increases also come with failure: 295 of the 359 such cells also failed the task, so the model paid more to be wrong.
+
+![Figure 9. Share of reduced-context cells whose output-token ratio to the full prompt exceeds x, by reduction family.](figures/expansion_ccdf.png)
 
 | Workload | Instructions removed: output > 2× | Instructions removed: cost above full prompt | Instructions kept: cost above full prompt |
 |---|---|---|---|
@@ -266,9 +282,29 @@ The cheapest configuration that still passed every task:
 | Tool calling | instructions, tools, retrieved, history | 2.94 | −14% |
 | All (one prompt) | instructions, tools, retrieved, history | 2.72 | −15% (accuracy 0.93) |
 
-The savings come from dropping segments the workload does not use, chiefly the tool catalogue for QA and extraction, and from dropping the examples. They do not come from cutting content. These configurations were chosen in-sample, from 64 options on 10 tasks each, so they are optimistic and must be validated on held-out tasks before use.
+The savings come from dropping segments the workload does not use, chiefly the tool catalogue for QA and extraction, and from dropping the examples. They do not come from cutting content.
+
+**Held-out check (`analysis/heldout/`).** These configurations were chosen in-sample, from 64 options on the same 10 tasks per workload, so their accuracy is optimistic by construction. We therefore re-ran them, with the full prompt as baseline, on the 15 drafts that were written to the same rules but never used for selection (run K3, 60 requests). The primary set is the 13 drafts that passed calibration; ex-02 and ex-06 failed it.
+
+| Workload | Configuration | Held-out tasks | Accuracy (full prompt) | GPU-s vs full context (held-out) | In-sample |
+|---|---|---|---|---|---|
+| QA | system, instructions, retrieved, history | 5 | 5/5 (5/5) | **−70%** | −66% |
+| Extraction | instructions, retrieved, history | 3 | 2/3 (3/3) | **−48%** | −49% |
+| Tool calling | instructions, tools, retrieved, history | 5 | 4/5 (5/5) | −17% | −14% |
+| All (one prompt) | instructions, tools, retrieved, history | 13 | 12/13 = 0.92 (13/13) | −17% | −15%, accuracy 0.93 |
+
+- **The cost savings replicate.** On new tasks, each configuration saved within 4 percentage points of its in-sample saving.
+- **Accuracy mostly holds.** The single shared prompt scored 0.92 held-out against 0.93 in-sample. QA lost nothing. With one discordant task per workload, no difference is significant (McNemar p = 1).
+- **Both failures come from dropping the examples.** The few-shot examples turn out to carry field meanings that no other segment states:
+  - ex-03 put the booking ID into `serial_number` and the serial into `model`. The examples are where `model` is shown to be a product name.
+  - tc-04 emailed the invoice to `finance@skycart.in`, an address the model invented from "our finance team". The documents give `accounts@skycart.in`.
+- **Removing the tool catalogue rescued tasks it had broken.** ex-02 and ex-06 fail with the full prompt because the model calls a lookup tool instead of answering (§4). Both pass under every configuration without tools.
+
+The rule "drop what the workload does not use" therefore generalises; "drop the examples" is riskier than in-sample selection suggested.
 
 The price-list frontier (bottom row of the figure) has the same shape, but it ranks configurations with long outputs as cheaper than they are physically.
+
+![Figure 10. Cost against accuracy for every configuration; top row GPU-seconds, bottom row price-list units. Blue: Pareto frontier; orange: full context.](figures/pareto_qwen2.5-7b.png)
 
 ---
 
@@ -276,7 +312,7 @@ The price-list frontier (bottom row of the figure) has the same shape, but it ra
 
 1. **Measure output, not just input.** A decode token cost 19× a prefill token on this setup, against 5× on price lists. A change that removes input tokens but adds output tokens can raise both cost and latency, and input-token counters will not show it.
 2. **Never strip format and brevity instructions to save tokens.** Instructions are the only segment with clearly negative cost: removing them added 1.46 GPU-seconds per request and lay behind almost every case where a shorter prompt cost more. Few-shot examples behave similarly, to a lesser degree.
-3. **Remove what the workload does not use before compressing what it does.** Dropping the tool catalogue from QA and extraction prompts saved 49–66% of GPU time at no in-sample accuracy loss. Truncation and compression saved at most 29%, and lost accuracy at every rate.
+3. **Remove what the workload does not use before compressing what it does.** Dropping the tool catalogue from QA and extraction prompts saved 48–70% of GPU time, in-sample and on held-out tasks. Truncation and compression saved at most 29%, and lost accuracy at every rate. Keep the few-shot examples when they define what each output field means: dropping them caused both held-out failures.
 4. **Do not window chat history by whole turns.** The oldest turn often holds the identifiers the conversation is about. Pin those facts, or summarise old turns, rather than drop them.
 5. **If compressing, prefer LLMLingua-2 over head truncation, and cache the result.** It kept more accuracy at every budget. Run per request on the same GPU, however, its own cost exceeded the saving.
 6. **Gate every context change on accuracy with a paired test.** Even 80–85% retention lost significant accuracy. Greedy decoding is deterministic here (§6.1), so one paired run per task is enough to detect a change.
@@ -294,7 +330,7 @@ The price-list frontier (bottom row of the figure) has the same shape, but it ra
 - **Synthetic world.** The fictional world prevents memorisation but is cleaner than real enterprise data, and the shared tool catalogue fixes the share of tokens spent on tools.
 - **Calibration selection.** Keeping only tasks the model gets right with full context makes the baseline accuracy 100% by design. Results describe the loss from removing context, not absolute capability.
 - **Coarse history truncation.** Truncation drops whole turns, so with a single exchange of history any rate below 1.0 removes all of it. This mirrors common chat windowing, but it makes truncation look worse than token-level history truncation would.
-- **In-sample Pareto choices.** The cheapest sufficient configurations in §6.9 were picked from 64 options on the same 10 tasks they are scored on.
+- **Small held-out check.** The cheapest configurations in §6.9 were picked in-sample. They were re-tested on only 13 held-out tasks (3–5 per workload): enough to show the savings replicate and to expose the examples failure, too few to bound held-out accuracy tightly.
 - **Compression timing.** LLMLingua-2 compression was timed once per text, in the session that built the cache, rather than inside the measured requests.
 
 ---

@@ -1,6 +1,6 @@
 # Progress tracker
 
-**Last updated:** 2026-10-30 (session 5, after K2) · **Deadline:** mid-November 2026 · **Week:** 6 (schedule started Mon 21 Sep)
+**Last updated:** 2026-10-30 (session 6, after K3) · **Deadline:** mid-November 2026 · **Week:** 6 (schedule started Mon 21 Sep)
 
 > **Qwen study complete.** Session 5 cut the scope to Qwen2.5-7B only (D26) and did the following:
 >
@@ -9,7 +9,7 @@
 > - Ran the full sweep (Kaggle run K2: 3,090 requests, all clean) and analysed it.
 > - Wrote both reports, including results.
 >
-> What remains: render the UML, revoke the Kaggle token, and the release (tag `v1.0`, and a decision on publishing traces). Llama is future work.
+> Session 6 ran the held-out check of the Pareto choices (K3), put the figures into both reports, built Word versions, and tagged `v1.0`. What remains: render the UML (blocked here; use the VS Code extension), revoke the session-6 Kaggle token, push the tag, and the team's decision on publishing traces. Llama is future work.
 
 > Read this file first when picking the project back up. [PLAN.md](PLAN.md) is what we are building, [DECISIONS.md](DECISIONS.md) is why it is built that way, [RUNBOOK.md](RUNBOOK.md) is how to run it, and [REPORT_NOTES.md](REPORT_NOTES.md) is the report-writing journal (every challenge, option and choice, with evidence).
 
@@ -28,9 +28,10 @@
 | Kaggle automation | **Done** | Kaggle CLI push/status/output; results carried in private dataset `mmohithsai/ccv-results` |
 | Qwen main sweep (noise, Shapley, ablations) | **Done** — Kaggle run K2 | `results/qwen2.5-7b.jsonl`: 3,090 / 3,090 ok, 2.36 GPU-hours, no duplicates. Not in git (public repo); backed up in the private Kaggle dataset `mmohithsai/ccv-results` |
 | Analysis and figures | **Done** | `ccv analyze results/qwen2.5-7b.jsonl --out analysis/` → 12 CSVs, `summary.md`, 10 figures (`analysis/` is git-ignored; regenerate in about 10 s) |
-| Formal report | **Complete draft** | [report/formal_report.md](../report/formal_report.md) |
-| Findings report | **Complete draft** | [report/findings_report.md](../report/findings_report.md) |
-| UML diagrams | Written, not rendered | [`docs/uml/`](uml); render with the PlantUML VS Code extension |
+| Formal report | **Complete**, figures embedded; Word version built | [report/formal_report.md](../report/formal_report.md), `report/formal_report.docx` |
+| Findings report | **Complete**, 10 figures embedded; Word version built | [report/findings_report.md](../report/findings_report.md), `report/findings_report.docx` |
+| Held-out Pareto check | **Done** — Kaggle run K3 (D40) | `results/qwen2.5-7b.heldout.jsonl` (60/60 ok, not in git); findings §6.9 |
+| UML diagrams | Written, **not rendered** | [`docs/uml/`](uml); jar download and the PlantUML server are both blocked for Claude, so render with the VS Code extension into `docs/uml/png/` |
 | Llama-3.1-8B sweep | **Cut** (D26) | Future work |
 
 ---
@@ -43,22 +44,25 @@
 
 ### C. Reports
 - [x] Findings report §6, §7, §9 and formal report ch. 8, 9.1 and Appendix B filled from `analysis/`.
-- [ ] Read both reports end to end and convert them to the university template; insert the figures from `analysis/`.
-- [ ] Render [`docs/uml/`](uml) to PNG.
-- [ ] Revoke the Kaggle API token used in session 5. All runs are done.
+- [x] Read both reports end to end; figures inserted (`report/figures/`); Word versions built with pandoc (rebuild: see §7).
+- [ ] Render [`docs/uml/`](uml) to PNG into `docs/uml/png/`, then embed in formal report §5.2 and rebuild the .docx.
+- [ ] Paste or restyle the .docx files into the university template.
+- [ ] Revoke the Kaggle API token used in session 6 (the session-5 one is already revoked). All runs are done.
 
 ### Optional, if time allows
 - [ ] Token-level history truncation as a fourth ablation family. The current turn-based truncation removes all history at any rate below 1.0 for 26 tasks (findings §6.6). Costs one short Kaggle session.
-- [ ] Validate the in-sample Pareto configurations (findings §6.9) on the 15 drafts in `benchmark/drafts/` that were not used.
+- [x] Validate the in-sample Pareto configurations on the 15 unused drafts (K3, findings §6.9): savings replicate; 2 of 13 failures, both from dropping examples.
 
 ### D. Release (week 8)
-- [ ] RUNBOOK §7 checklist; tag `v1.0`; ask the team before publishing traces.
+- [x] RUNBOOK §7 checklist: tests pass, clean-venv `pip install .` and `ccv --help` work, `analysis/` regenerated. Tag `v1.0` created locally.
+- [ ] Push the `v1.0` tag; ask the team before publishing traces.
 
 ## 3. Blocked or waiting on a decision
 
 | Item | Needed from | Notes |
 |---|---|---|
-| Revoke the session-5 Kaggle API token | Account owner | Runs are done, so revoke it now (Kaggle → Settings → API) |
+| Revoke the session-6 Kaggle API token | Account owner | Runs are done, so revoke it now (Kaggle → Settings → API) |
+| UML rendering | Anyone with VS Code | Claude cannot download the PlantUML jar or use the PlantUML server here |
 | Whether traces are published publicly | The team | Plan says GitHub release or HF dataset in week 8; ask before anything is made public |
 
 ---
@@ -137,12 +141,29 @@
 - Checked the three surprising results against raw outputs (REPORT_NOTES §5.7): turn-based history truncation, LLMLingua-2's own cost, and the instructions segment driving cost increases.
 - Wrote findings report §6, §7, §9 and formal report ch. 8, 9.1 and Appendix B.
 
+### 2026-10-30 (session 6) — held-out check, figures, Word reports, v1.0
+
+- Re-read every document against the plan; fixed stale numbers in the formal report (dry run 3,090 not 4,635; tests ~30 s; sweep 2.36 GPU-hours) and the README (Llama is future work; added a results section).
+- Added a `heldout` suite and a notebook `HELDOUT` switch (D40); ran K3 on the 15 unused drafts: 60/60 ok, every sanity check passed. The Pareto savings replicate (QA −70%, extraction −48%, tool calling −17%); the shared prompt scored 12/13. Both failures came from dropping the few-shot examples (REPORT_NOTES §5.8).
+- The session-5 token was revoked mid-run; the output was fetched with a new token.
+- Embedded the 10 figures in both reports and built `.docx` versions with pandoc from a scratch venv (not a project dependency).
+- `results/*.jsonl` is now git-ignored (the traces stay out of the public repo).
+- UML rendering was blocked twice (jar download, PlantUML server); left to the VS Code extension.
+- Release checks passed; tagged `v1.0` locally.
+
 ---
 
 ## 7. How to pick this up in a new session
 
 ```bash
 .venv/Scripts/python.exe -m pytest     # `uv run` fails until the venv is recreated (stale launcher paths)
+```
+
+Rebuilding the Word reports after editing the Markdown (pandoc from any install, e.g. `pip install pypandoc_binary` in a throwaway venv), run inside `report/`:
+
+```bash
+pandoc findings_report.md -o findings_report.docx
+pandoc formal_report.md --toc -o formal_report.docx
 ```
 
 Then:

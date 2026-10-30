@@ -6,4 +6,4 @@ dist/
 build/
 vllm.log
 analysis/
-results/smoke*.jsonl
+results/*.jsonl

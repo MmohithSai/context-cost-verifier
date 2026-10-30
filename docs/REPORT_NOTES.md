@@ -185,6 +185,7 @@ LLMLingua-2 hits its target on average but varies a lot per text. That is why pl
 {…the correct JSON…}
 </tool_call>`. Extraction kept 13/15 (ex-02, ex-06 still call a lookup tool). |
 | K2 | 2026-10-30 08:26 | qwen2.5-7b, `noise shapley ablations`, frozen 30 tasks, dataset attached | 7 | 2 h 56 min (requests ended 11:22; 2.36 GPU-hours of requests) | 3,090 / 0 | **Complete; every planned request was made.** Kaggle still reported `ERROR`, because the notebook's final summary cell could not `import ccv` (§5.6). All data was already written. No session limit was hit, so no resume was needed. |
+| K3 | 2026-10-30 12:47 | qwen2.5-7b, `heldout`, `HELDOUT=True` (the 15 drafts as their own benchmark) | 8 | ~9 min (150 s server start, 2 min 21 s of requests) | 60 / 0 | **Complete.** `attribution_ok`, server metrics and energy 60/60; 0 duplicates; 0 capped; 7 extraction outputs recovered (D35). The CLI lost access mid-run when the session-5 token was revoked; the output was downloaded with a new token. |
 
 **Fixes after K1:**
 1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.
@@ -284,6 +285,29 @@ Other checks:
 - **Figures:** all ten were inspected. The interaction heatmap's overall title overlapped the panel titles; the figure was made taller (`report.py`).
 
 ---
+
+### 5.8 Held-out check of the Pareto choices (run K3)
+
+**Why.** Findings §6.9's cheapest full-accuracy prompts were picked from 64 options on the same 10 tasks they were scored on. The 15 unused drafts were written to the same rules and never used for selection, so they are a free held-out set (D40).
+
+**How.** A `heldout` suite runs four prompts on every draft: the full prompt plus the QA, extraction and tool-calling winners. The drafts became their own bench (`tasks/` = `benchmark/drafts/`, plus `shared/`), so no new code was needed beyond the suite entry and a notebook switch. `ccv analyze --bench` on the separate results file gave the tables, in `analysis/heldout/`. Before pushing, the analysis was run on the drafts' calibration records relabelled as `heldout`, to check that it handles a results file with no Shapley or noise data.
+
+**Result (13 drafts that passed calibration):**
+
+| Prompt | Accuracy | GPU-s vs full (held-out / in-sample) |
+|---|---|---|
+| QA winner on QA | 5/5 | −70% / −66% |
+| Extraction winner on extraction | 2/3 | −48% / −49% |
+| Tool-calling winner on tool calling | 4/5 | −17% / −14% |
+| Tool-calling winner as the one shared prompt | 12/13 | −17% / −15% |
+
+**The two failures were read in the raw outputs.** Both prompts drop the few-shot examples.
+- ex-03 swapped fields: the booking ID went into `serial_number` and the serial into `model`. Only the examples show `model` holding a product name.
+- tc-04 sent the invoice to `finance@skycart.in`, an address the model invented from "our finance team". The documents say `accounts@skycart.in`.
+
+**A bonus confirmation of the tools hijack.** ex-02 and ex-06 failed calibration because the model called a lookup tool. Both pass under every held-out prompt without the tool catalogue.
+
+**Verdict.** The cost savings generalise. Accuracy mostly does, but dropping examples is riskier than in-sample selection showed. The findings report §6.9, §7 and §8, and formal report §8.2, now say so.
 
 ## 6. Non-issues worth mentioning (so nobody "fixes" them)
 

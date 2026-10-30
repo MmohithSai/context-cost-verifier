@@ -197,3 +197,8 @@ Kept 13/15 extraction, 15/15 QA and 15/15 tool-calling drafts (pass 3/3 with ful
 
 **D39. Ablations stay at one repeat** (2026-10-30)
 *Why:* the plan added repeats only if the noise floor showed variation. All 900 noise outputs were identical within their task, with no pass flips, and timing CV was ≤ 2.3%. A single paired run per task and configuration is exact under greedy, unbatched decoding.
+
+**D40. The in-sample Pareto choices are re-tested on the unused drafts** (2026-10-30, session 6)
+A `heldout` suite runs the full prompt and the three cheapest full-accuracy prompts from the main sweep (`subset:110011` for QA, `subset:010011` for extraction, `subset:011011` for tool calling and the single shared prompt) on every task in `benchmark/drafts/`, once each. The drafts become a benchmark of their own (a copy of `drafts/` as `tasks/`, plus `shared/`), and results go to `results/<model>.heldout.jsonl`, analysed separately with `ccv analyze --bench`.
+*Why:* those configurations were picked from 64 options on the same 10 tasks per workload they were scored on, so their accuracy was optimistic by construction. The 15 drafts were written to the same rules, never used for selection, and 13 of them passed calibration. One repeat suffices because decoding is deterministic here (D39). A separate file and bench keep the main analysis unchanged, and existing `analyze` code already gives the paired McNemar and bootstrap comparisons, so no new analysis code was needed.
+*Consequence:* the notebook has a `HELDOUT` switch. ex-02 and ex-06 failed calibration, so they are reported apart from the 13 drafts whose full prompt passes.

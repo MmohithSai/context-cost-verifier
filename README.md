@@ -8,7 +8,15 @@ Shrinking an LLM prompt does not always make it cheaper. Output tokens are the e
 - **Statistics.** A 30-repeat noise floor, paired bootstrap CIs, exact McNemar tests, and Benjamini–Hochberg correction.
 - **Fault-tolerant runner.** Works with any OpenAI-compatible endpoint. It is resumable and survives dropped free-tier GPU sessions.
 
-It runs at zero cost on a free Kaggle T4 with `Qwen2.5-7B-Instruct-AWQ` and `Llama-3.1-8B-Instruct-AWQ` served by vLLM.
+It runs at zero cost on a free Kaggle T4 with `Qwen2.5-7B-Instruct-AWQ` served by vLLM. The tool also supports `Llama-3.1-8B-Instruct-AWQ` (template and attribution tested offline), but its GPU sweep is future work.
+
+## Results (Qwen2.5-7B on a T4, 3,090 requests)
+
+- A decode token cost **19×** a prefill token, against the 5× that price lists assume.
+- In **19%** of cases, removing a prompt segment made the request *more* expensive in GPU time, almost always because the format instructions were gone.
+- Truncation and LLMLingua-2 lost significant accuracy even when they kept 75–85% of the long context.
+
+Full write-up: [findings report](report/findings_report.md) · [formal report](report/formal_report.md).
 
 **Project documentation:** [plan](docs/PLAN.md) · [progress and next steps](docs/PROGRESS.md) · [decision log](docs/DECISIONS.md) · [runbook](docs/RUNBOOK.md) · [UML sources](docs/uml)
 
@@ -110,8 +118,8 @@ A removed segment takes its header and separator with it.
 - In about a third of tasks, put one needed fact only in `history`, so answering needs both `retrieved` and `history`.
 - **Calibration:**
   1. Draft about 15 tasks per workload.
-  2. Run `--suite calibrate` on both models.
-  3. Keep tasks whose full context passes 3/3 and whose query-only run fails, on both models.
+  2. Run `--suite calibrate` (on Qwen2.5-7B for `benchmark-v1.0`).
+  3. Keep tasks whose full context passes 3/3 and whose query-only run fails.
   4. Freeze 10 per workload with a git tag.
 - Run `ccv run --dry-run` to validate every task and see prompt sizes before using any GPU time.
 
@@ -170,6 +178,7 @@ It needs the Qwen2.5-0.5B and Llama-3.1 tokenizers from the Hugging Face Hub (do
 | `benchmark/` | tasks, shared segments, LLMLingua-2 cache |
 | `notebooks/ccv_kaggle.ipynb` | GPU runs on Kaggle |
 | `docs/uml/` | PlantUML diagrams for the project report (use-case, class, sequence, activity, deployment) |
+| `report/` | findings and formal reports (Markdown and Word), with their figures |
 | `results/` | raw JSONL traces |
 | `analysis/` | generated tables and figures |
 
