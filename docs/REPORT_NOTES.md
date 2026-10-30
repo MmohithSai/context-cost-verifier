@@ -87,7 +87,32 @@ Kaggle sessions die (time limits, quota, preemption). The runner was designed ar
 1. **History dominated everything.** In the first draft, 39 of 45 queries said "our order" or "that airframe", so every one needed `history`. Shapley would have given `history` a huge, near-constant value in every workload — no contrast, nothing learned. *Fix:* 24 tasks rewritten so the query names its own record; 16 of 45 now genuinely need history (D14b). The interesting quantity is the *difference* between the two groups.
 2. **Graders rejecting correct answers.** A new test asserts that every task's grader accepts its own gold answer and rejects every listed distractor. It immediately caught two QA tasks whose answers were phrased so that a correctly formatted reply would have been marked wrong.
 
-### 3.3 Calibration (planned rule)
+### 3.3 Pre-GPU review of all 45 drafts (session 5)
+
+**Why:** the 42 drafted tasks had never been read by a person, and every defect found *after* calibration costs GPU time and can silently bias Shapley.
+
+**Approach:** three independent reviewers (one per workload), each given the RUNBOOK §2 checklist plus three extra checks: (a) cross-task consistency of the fictional world, (b) whether a *correct, naturally phrased* answer would pass the grader, (c) whether any subset *without* the documents could still pass (which would flatten the Shapley contrast). They reported; I applied the fixes with a script that asserts each target text appears exactly the expected number of times, so no edit could land in the wrong place.
+
+**What was found (33 edits across 20 files):**
+
+| Kind of defect | Examples | Why it matters |
+|---|---|---|
+| Contradictions between tasks | qa-01's bulletin required firmware 4.2.1 for *all* K-series drones, while other tasks list different minimums per model; qa-06's "last flown" dates were *before* the delivery dates in ex-08; serials reused with conflicting histories | The model can be shown two contradicting facts in one prompt only if tasks share docs, but contradictions undermine the benchmark's credibility in a viva |
+| A contradiction *inside one prompt* | ex-11 said the service plan was 9.5% of list price, but the two quotes differ by 9.49% | The persona tells the model to flag contradictions, so a careful model would answer in prose and fail the JSON grader |
+| Correct answers that would fail | qa-09 accepted only "1.5% per month" (not "1.5%"); qa-11 lacked "12 business days"; qa-05 lacked "IP 55"; ex-02 expected "Whitefield Robotics" while the doc said "Whitefield Robotics (Bengaluru)" | False negatives in the baseline → task wrongly dropped at calibration |
+| Distractors a good answer may mention | qa-07 listed 1.6 m (a related threshold) as a distractor | A thorough correct answer would be marked wrong |
+| Guessable from world knowledge | 1.5%/month is the most common real late fee | Query-only might pass → task wrongly dropped; changed to 1.75% everywhere |
+| Answer leaked by the query or tool catalogue | tc-02 / tc-10 named the order number the tool needs; the shared tool catalogue's "e.g." values were gold ids of tc-01 and tc-08; a tc-03 example used the gold room | `{tools, query}` would pass with no documents, so `retrieved` would get no Shapley credit |
+| Wrong metadata | tc-12 `gold_doc` pointed at the wrong document | Breaks the reorder ablation for that task |
+
+**Judgement calls (recorded so they can be defended):**
+- When two reviewers proposed opposite fixes for the same contradiction (change qa-06's dates vs change ex-08's delivery dates), I changed qa-06: a one-task edit beats a multi-task one.
+- Not applied: tc-15's query hint ("runs fine on its own") — a soft hint, not a defect; calibration decides. Low-priority world inconsistencies left as-is: one example serial (SB1-20044) used inconsistently inside few-shot examples, mixed currencies for one customer, a K4 delivery date. None is visible inside a single prompt's gold path.
+- The test fixture keyed on qa-01's old history serial, so it failed after the rename — a reminder that tests embedding task text must move with the tasks.
+
+**Evidence:** commit `dcc4976`; `pytest` 12 passed; dry run 4,635 runs, prompts 1,558–2,365 tokens.
+
+### 3.4 Calibration (rule)
 
 Keep tasks whose full-context run passes 3/3 and whose query-only run fails, then keep 10 per workload. Results of the real calibration are in §5 below.
 
@@ -110,12 +135,27 @@ On 30 Oct the project was about five weeks behind on GPU work (the plan expected
 
 ### 5.1 Local smoke test
 
-_To be filled in as it runs._
+- **Plan:** serve Qwen2.5-0.5B in the official `vllm/vllm-openai:v0.29.0` Docker image on the laptop's RTX 3050 (Docker Desktop with the NVIDIA runtime was already installed).
+- **Challenge:** the ~10 GB image download failed with `unexpected EOF` partway through (network drop); retried, since completed layers are kept.
 
-### 5.2 Kaggle run log
+### 5.2 Kaggle automation
 
-| Run | Date | Parameters | Kernel version | Duration | Records (ok / error) | Outcome |
+**Approach:** drive Kaggle entirely from the Kaggle CLI: `kaggle kernels push` (a per-run copy of the notebook with `MODEL`/`SUITES`/`LIMIT`/`COMPRESS` substituted, so the committed notebook keeps its defaults), a background `kaggle kernels status` loop, and `kaggle kernels output` to download results. The API token is held in an environment variable read from a file outside the repository; it is never committed.
+
+**Why a dataset for resume:** in the Kaggle UI you attach a previous version's output to resume; the CLI cannot attach a kernel's own output to itself. Results are therefore carried between sessions as a private dataset, and the notebook's restore cell now searches `/kaggle/input/**/<model>.jsonl` instead of requiring a `results/` folder.
+
+### 5.3 Kaggle run log
+
+| Run | Date (UTC) | Parameters | Kernel version | Duration | Records (ok / error) | Outcome |
 |---|---|---|---|---|---|---|
+| K1 | 2026-10-30 06:58 | qwen2.5-7b, `calibrate`, `COMPRESS=True` | 1 | ~6 min | 0 / 0 | **Failed: no internet in the kernel.** `pip install vllm` could not resolve pypi.org, so nothing installed and the notebook stopped at `ccv serve`. Kaggle silently disables Internet for accounts without phone verification. A second, independent bug also surfaced: `python -m venv` on Kaggle's Python 3.13 image fails at `ensurepip`, so the compression venv could never have worked. |
+
+**Fixes after K1:**
+1. The compression venv is created `--without-pip` and uses the system pip through `--system-site-packages` (`python -m pip`), and calls `python -m ccv.cli compress`.
+2. The install cell now asserts `ccv` is on the path with a message naming the likely cause, so a missing-internet run fails in the first minute with a clear reason instead of cascading errors.
+3. `kernel-metadata.json` uses JSON booleans rather than the strings `"true"`.
+
+**Lesson for the report:** the notebook had been written in week 1 but never executed. Both failures were invisible offline — exactly why the plan put a smoke test first. The cost was one 6-minute session.
 
 ### 5.3 Measured hardware numbers
 
@@ -125,4 +165,6 @@ _See [PROGRESS.md](PROGRESS.md) §4 once measured._
 
 ## 6. Non-issues worth mentioning (so nobody "fixes" them)
 
+- **`uv run pytest` prints "Failed to canonicalize script path".** The `.venv` launchers still point at the project's old Desktop location (same cause as the stale `ccv.exe` in session 4). Use `.venv/Scripts/python.exe -m pytest` or recreate the venv; the code is unaffected.
+- **UML not rendered by Claude.** Downloading the PlantUML jar was blocked by the session's permission rules; render `docs/uml/*.puml` with the PlantUML VS Code extension.
 - **README "mojibake".** Viewed with Windows PowerShell 5.1's `Get-Content`, `README.md` shows `Benjaminiâ€“Hochberg` and `Â·`. The file on disk is valid UTF-8; PowerShell 5.1 decodes files without a byte-order mark as cp1252. Nothing to fix — read files with `-Encoding UTF8`.
