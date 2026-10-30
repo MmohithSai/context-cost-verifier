@@ -16,6 +16,8 @@ SUITES = {
     "shapley": [(f"subset:{m:06b}", 1) for m in range(64)],
     "ablations": [(f"{kind}:{r}", 1) for kind in ("truncate", "lingua2") for r in RATES]
     + [(f"reorder:{pos}", 1) for pos in ("first", "middle", "last")],
+    # the in-sample cheapest full-accuracy prompts (QA, extraction, tool calling), re-run on unused drafts (D40)
+    "heldout": [(BASELINE, 1), ("subset:110011", 1), ("subset:010011", 1), ("subset:011011", 1)],
 }
 
 
